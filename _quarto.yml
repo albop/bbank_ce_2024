@@ -1,0 +1,43 @@
+project:
+  type: website
+
+website:
+  title: "Ce_bb_2024"
+  sidebar:
+      style: "docked"
+      search: true
+      contents:
+        - section: "Slides"
+          contents:
+            - slides/python.qmd
+            - slides/methods.qmd
+            # - slides/interpolation.qmd
+            # - slides/optimization.qmd
+            # - slides/discretization.qmd
+            - slides/solution.qmd
+            - slides/vfi.qmd
+            - slides/ti.qmd
+            - slides/dolo.qmd
+            
+        - section: "Hands-on"
+          contents:
+            - handson/python_syntax.qmd
+            - handson/numeric_python.qmd
+        - section: "Exercises"
+          contents:
+            - exercises/python.qmd
+            - exercises/numeric.qmd
+            # - exercises/numpy.qmd
+            # - exercises/methods.qmd
+            # - exercises/solution.qmd
+            # - exercises/vfi.qmd
+            # - exercises/ti.qmd
+            # - exercises/dolo.qmd
+
+format:
+  html:
+    theme: flatly
+    css: styles.css
+    toc: true
+
+

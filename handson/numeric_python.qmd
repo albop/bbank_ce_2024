@@ -1,0 +1,437 @@
+---
+title: Numeric Python
+execute:
+  eval: false
+jupyter: python3
+format:
+    html: default
+    ipynb: default
+---
+
+### Numpy/scipy/matplotlib
+
+- Most python scientists, use the following libraries:
+    - `numpy`: performant array library  (vectors, matrices, tensors)
+    - `matplotlib`: plotting library
+    - `scipy`: all kinds of mathematical routines
+- In the rest of the course, we'll make some use of `numpy` and `matplotlib`
+- They are included in all python *distributions* like Anaconda Python
+- All additional libraries use `numpy` and `matplotlib`: `pandas`, `statsmodels`, `sklearn`
+
+### Importing the libraries
+
+It is standard to import the libraries as `np`, and `plt`. We'll follow this convention here.
+
+```{python}
+#| slideshow: {slide_type: fragment}
+# these lines need to be run only once per program
+import numpy as np
+import matplotlib as plt
+```
+
+```{python}
+#| slideshow: {slide_type: fragment}
+print(f"Numpy version {np.__version__}")
+print(f"Matplotlib version {plt.__version__}")
+```
+
+
+## Numpy
+
+### What is Numpy
+
+Numpy is an array type (python object) meant to store efficiently homogenous, square, arrays (like $(a_{i})_{i\in [1,N]}$ or  $(b_{i,j,k})_{i\in [1,N],j\in[1,J],k \in [1,K]}$)
+
+By default its stores data in contiguous C-order (last index varies faster), but also supports Fortran order and strided arrays (non-contiguous).
+
+Numpy has introduced well thought conventions, that have been reused by many other libraries (tensorflow, pytorch, jax), or even programming languages (julia)
+
+
+### Vector Creation
+
+- Vectors and matrices are created with the `np.array(...)` function.
+- Special vectors can be created with `np.zeros`, `np.ones`, `np.linspace`
+
+```{python}
+#| slideshow: {slide_type: fragment}
+# an array can be created from a list of numbers
+np.array( [1.0, 2.0, 3.0] )
+```
+
+```{python}
+#| slideshow: {slide_type: fragment}
+# or initialized by specifying the length of the array
+np.zeros(5)
+```
+
+```{python}
+# 10 regularly spaced points between 0 and 1
+np.linspace(0, 1, 11)
+```
+
+
+### Matrix Creation
+
+- A matrix is a 2-dimensional array and is created with `np.array`
+- Function `np.matrix()` has been deprecated: do not use it.
+- There are functions to create specific matrices: `np.eye`, `np.diag`, ...
+
+```{python}
+#| slideshow: {slide_type: fragment}
+# an array can be created from a list of (equal size) lists
+np.array([
+    [1.0, 2.0, 3.0],
+    [4  ,   5,   6] 
+])
+```
+
+```{python}
+#| slideshow: {slide_type: fragment}
+# initialize an empty matrix with the dimensions as a tuple
+A = np.zeros( (2, 3) )
+A
+```
+
+```{python}
+# matrix dimensions are contained in the shape attribute
+A.shape
+```
+
+### Tensors
+
+The construction generalizes to higher dimension arrays (a.k.a. tensors)
+
+
+```{python}
+#| slideshow: {slide_type: fragment}
+# an array can be created from a list of list of lists
+np.array([
+    [
+        [1.0, 2.0, 3.0],
+        [4  ,   5,   6] 
+    ],
+        [
+        [7.0, 8.0, 9.0],
+        [10 ,  11,   12] 
+    ]
+])
+```
+
+```{python}
+#| slideshow: {slide_type: fragment}
+# initialize an empty matrix with the dimensions as a tuple
+A = np.zeros( (2, 3) )
+A
+```
+
+```{python}
+# matrix dimensions are contained in the shape attribute
+A.shape
+```
+
+### Linear Algebra
+
+*Vector multiplications* and *Matrix multiplications* can be performed using special sign `@`
+
+```{python}
+#| slideshow: {slide_type: fragment}
+A = np.array([[1.0, 2.0], [2,4]])
+A
+```
+
+```{python}
+#| slideshow: {slide_type: fragment}
+B = np.array([1.0, 2.0])
+B
+```
+
+```{python}
+#| slideshow: {slide_type: fragment}
+A@B
+```
+
+```{python}
+#| slideshow: {slide_type: fragment}
+A@A
+```
+
+Note how multiplication reduces total number of dimensions by 2. It is a tensor reduction.
+
+```{python}
+#| slideshow: {slide_type: fragment}
+print(A.shape, A.shape, (A@A).shape)
+```
+
+### Scalar types
+
+Numpy arrays can contain data of several *scalar* types.
+
+```{python}
+[True, False, True]
+```
+
+```{python}
+# vector of boolean
+boolean_vector = np.array( [True, False, True] )
+print(f"type of scalar '{boolean_vector.dtype}'")
+boolean_vector
+```
+
+```{python}
+# vector of integers
+int_vector = np.array([1, 2, 0])
+print(f"type of scalar '{int_vector.dtype}'")
+int_vector
+```
+
+By default, numerical arrays contain `float64` numbers (like matlab).
+But GPUs typically process 16 bits or 32 bits numbers. 
+
+Can you create a 32 bits array?
+
+```{python}
+# your code here
+```
+
+### Subscripting Vectors
+
+- Elements and subarrays, can be retrieved using the same syntax as lists and strings.
+  - Remember that indexing starts at 0.
+
+```{python}
+V = np.array([0., 1., 2., 3., 4.])
+display(V[1])  # second element
+```
+
+```{python}
+V = np.array([0., 1., 2., 3., 4.])
+display(V[1:3])  # second, third and fourth element
+```
+
+### Modifying Vector Content
+
+- Elements and suvectors, can be assigned to new values, as long as they have the right dimensions.
+
+```{python}
+V = np.array([1., 1., 2., 4., 5., 8., 13.])
+V[3] = 3.0
+V
+```
+
+```{python}
+V = np.array([1., 1., 2., 4., 5., 8., 13.])
+# V[1:4] = [1,2,3,4] # this doesn't work
+V[1:4] = [2,3,4] # this works
+```
+
+### Subscripting Matrices
+
+- Indexing generalizes to matrices: there are two indices istead of one: `M[i,j]`
+- One can extract a row, or a column (a slice) with `M[i,:]` or `M[:,i]`
+- A submatrix is defining with two intervals: `M[i:j, k:l]` or `M[i:j, :]`, ...
+
+```{python}
+M = np.array([[1,2,3],[4,5,6],[7,8,9]])
+M
+```
+
+```{python}
+M[0,1] # access element (1,2)
+```
+
+```{python}
+M[2,:] # third row
+```
+
+```{python}
+M[:,1] # second column     # M[i,1] for any i
+```
+
+```{python}
+M[1:3, :] # lines from 1 (included) to 3 (excluded) ; all columns
+```
+
+### Modifying matrix content
+
+```{python}
+M = np.array([[1,2,3],[4,5,6],[7,8,9]])
+M
+```
+
+```{python}
+M[0,0] = 0
+M
+```
+
+```{python}
+M[1:3, 1:3] = np.array([[0,1],[1,0]]) # dimensions must match
+M
+```
+
+### Element-wise algebraic operations
+
+- The following algebraic operations are defined on arrays: `+`, `-`, `*`, `/`, `**`.
+- Comparisons operators (`<`,`<=`, `>`, `>=`, `==`) are defined are return boolean arrays.
+- They operate element by element.
+
+```{python}
+A = np.array([1,2,3,4])
+B = np.array([4,3,2,1])
+A+B
+```
+
+```{python}
+A*B    # note the difference with A@B
+```
+
+```{python}
+A>B
+```
+
+At first, one might be surprised that the default multiplication operator is element-wise multiplication rather than matrix multiplication.
+
+There are at least two good reasons:
+
+- consistency: all operators can be broadcasted with the exact same rules (like `*`, `+`, `>`)
+- for many workflows, elementwise operations are more common than matrix multiplication
+
+
+
+
+### Element-wise logical operations
+
+- The following logical operations are defined element-wise on arrays: `&` (and), `|` (or), `~` (not)
+
+```{python}
+A = np.array([False, False, True, True])
+B = np.array([False, True, False, True])
+```
+
+```{python}
+~A
+```
+
+```{python}
+A | B
+```
+
+```{python}
+A & B
+```
+
+### Vector indexing
+
+- Arrays can be indexed by boolean arrays instead of ranges.
+- Only elements corresponding to true are retrieved
+
+```{python}
+x = np.linspace(0,1,6)
+x
+```
+
+```{python}
+# indexes such that (x^2) > (x/2)
+x**2 > (x/2)
+```
+
+```{python}
+cond = x**2 > (x/2)
+x[ cond ] 
+```
+
+### Going further: broadcasting rules
+
+- Numpy library has defined very consistent conventions, to match inconsistent dimensions.
+- Ignore them for now...
+
+```{python}
+M = np.eye(4)
+M
+```
+
+```{python}
+M[2:4, 2:4] = 0.5 # float
+M
+```
+
+```{python}
+M[:,:2] = np.array([[0.1, 0.2]])  # 1x2 array
+M
+```
+
+### Going Further
+
+- Other useful functions (easy to google):
+    - `np.arange()` regularly spaced integers
+    - `np.where()` find elements in
+    - ...
+
+## Matplotlib
+
+### Matplotlib
+
+- `matplotlib` is ...
+- object oriented api optional Matlab-like syntax
+- main function is `plt.plot(x,y)` where `x` and `y` are vectors (or iterables like lists)
+    - __lots__ of optional arguments
+
+```{python}
+from matplotlib import pyplot as plt
+```
+
+### Example
+
+```{python}
+x = np.linspace(-1,1,6)
+```
+
+```{python}
+y = np.sin(x)/x # sinus cardinal
+```
+
+```{python}
+plt.plot(x,y,'o')
+plt.plot(x,y)
+```
+
+### Example (2)
+
+```{python}
+x = np.linspace(-5,5,100)
+
+fig = plt.figure() # keep a figure open to draw on it
+for k in range(1,5):
+    y = np.sin(x*k)/(x*k)
+    plt.plot(x, y, label=f"$sinc({k} x)$") # label each line
+plt.plot(x, x*0, color='black', linestyle='--')
+plt.grid(True) # add a grid
+plt.title("Looking for the right hat.")
+plt.legend(loc="upper right")
+```
+
+### Example (3)
+
+```{python}
+x = np.linspace(-5,5,100)
+
+plt.figure()
+plt.subplot(2,2,1) # create a 2x2 subplot and draw in first quadrant
+plt.plot(x,x)
+plt.subplot(2,2,2) # create a 2x2 subplot and draw in second quadrant
+plt.plot(x,-x)
+plt.subplot(2,2,3) # create a 2x2 subplot and draw in third quadrant
+plt.plot(x,-x)
+plt.subplot(2,2,4) # create a 2x2 subplot and draw in fourth quadrant
+plt.plot(x,x)
+
+plt.tight_layout() # save some space
+```
+
+### Alternatives to matplotlib
+
+- plotly (nice javascript graphs)
+- bqplot (native integration with jupyter)
+- altair    
+    - excellent for dataviz/interactivity
+    - python wrapper to Vega-lite
+    - very efficient to visualize `pandas` data (i.e. a dataframe)

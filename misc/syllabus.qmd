@@ -1,0 +1,54 @@
+---
+bibliography: references.bib
+title: Deep Learning and DSGE modeling
+---
+
+# 
+
+# Tentative Schedule
+
+## Preparation Session (online: 2\*1h)
+
+-   Installing Python
+
+-   Managing Python Environments
+
+-   Setting up JAX / GPU
+
+-   Quick Introduction to Scientific Programming with Python
+
+## Session 1: Introduction to Deep Learning (3h)
+
+Preliminaries:
+
+-   differentiable programming
+
+-   scaling-up calculations (vectorization, compilation)
+
+Optimization: Stochastic Gradient Algorithm
+
+Deep Learning:
+
+-   common neural network topologies
+
+-   dealing with symmetries
+
+Literature Review: Deep Learning Applications in Macroeconomics
+
+## Session 2: Solving DSGE Model with Deep Learning (3h)
+
+Writing DSGE Models with Python
+
+-   Importing Existing Models
+
+-   Nonlinearities / Occasionally Binding Constraints
+
+Local Solution
+
+-   Existence and Unicity
+
+-   Perturbation Solution
+
+Global Nonlinear Solution for Generic DSGE Models
+
+Application: Zero Lower Bound Model

@@ -1,0 +1,18 @@
+---
+title: "Computational Economics @ Bundesbank"
+---
+
+My email: `pwinant@escp.eu`
+
+## Tentative schedule
+
+- Introduction to computational economics
+    - nov 6
+        - python
+        - numpy / matplotlib
+        - interpolation / quantization
+    - nov 7
+        - solution methods: value-function iteration / time-iteration
+        - introduction to dolo
+
+- Introduction to Deep-Learning

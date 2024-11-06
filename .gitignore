@@ -1,0 +1,6 @@
+.quarto/*
+_site/*
+bak/*
+*.html
+slides/*_files/*
+syllabus_files/*

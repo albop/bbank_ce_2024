@@ -1,0 +1,41 @@
+---
+title: "Methods"
+author: "Pablo Winant"
+subtitle: "Computational Economics @ Bundesbank"
+format:
+  revealjs:
+    html-math-method: mathjax
+    navigation-mode: grid
+    width: 1920
+    height: 1080
+---
+
+# Introduction
+
+## Dynamic
+
+Dynamic programming comes in two flavours:
+
+- Markov Discrete Problems (MDP)
+  - states and controls take discrete values
+- Approximate Dynamic Programming (ADP)
+  - states and controls take continuous values
+
+For ADP, objects of interest (shocks, decision rules) live in infinitely dimensional spaces.
+
+They need be be quantized with a finite set of parameters.
+
+This motivates the study of:
+
+- interpolation (for the decision rule)
+- discretization (for the shocks)
+
+We will also need optimization but we will defer it to december.
+
+# Interpolation
+
+{{< include _interpolation.qmd >}}
+
+# Discretization
+
+{{< include _discretization.qmd >}}

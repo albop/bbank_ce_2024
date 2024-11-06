@@ -1,0 +1,303 @@
+---
+title: "Python"
+author: "Pablo Winant"
+subtitle: "Computational Economics @ Bundesbank"
+format: 
+    revealjs:
+        code-line-numbers: true
+        syntax-definitions: 
+            - mojo.xml
+        width: 1920
+        height: 1080
+---
+
+# Why Python?
+
+. . .
+
+![Center](graphs/popularity.png)
+
+. . .
+
+Python:
+
+- is popular
+- is free and opensource
+- has many many libraries
+
+## Why Python? (2)
+
+Historically, python was a glue language used to interoperate many low-level/system languages.
+
+It has been increasingly used for web-development (cf django)
+
+. . .
+
+
+::: columns
+
+:::: column
+
+Nowadays it is the lingua franca of machine learning
+
+Most major machine learning / deep learning libraries have python bindings
+
+::::
+:::: column
+
+![](graphs/python_ml.png)
+
+::::
+:::
+
+
+## An example
+
+```python
+def say_hello(name):
+    """This function prints morning greetings"""
+
+    print(f"Good morning {name}!\n")
+
+    # we can import libraries
+    import datetime
+    t = datetime.datetime.now()
+
+    # blocks are defined by indentation and colons
+    if (t.hour,t.min) <= (9,15):
+        print("All good?\n")
+    else:
+        print("Time to get started?\n")
+
+
+say_hello("Pablo")
+```
+
+## Python is everywhere
+
+
+::: {.columns}
+
+:::: {.column}
+
+![Code Warriors](graphs/code_warrior.png)
+
+::::
+:::: {.column}
+
+![MicroBits](graphs/microbits.webp)
+
+- Windows
+
+- Linux
+
+- Web
+
+::::
+
+:::
+
+
+## The Python family
+
+There are several flavours of Python:
+
+::: {.columns}
+
+:::: {.column}
+- Full Syntax
+    - CPython, PyPy, Pyston
+- Subset-Syntax
+    - micropython
+    - numba, pythran
+
+::::
+:::: {.column}
+
+- Superset-Syntax
+    - mypy (*)
+    - cython
+    - mojo
+- Near-Syntax
+    - boo
+
+::::
+:::
+
+- subset-syntax: restrict functionalities (no classes, simpler objects) for easier compilation
+- superset-syntax: add type/memory information
+- near-syntax: different language that looks familiar
+
+## Examples
+
+
+- mojo:
+
+```mojo
+fn greet2(name: String) -> String:
+    return "Hello, " + name + "!"
+```
+
+- cython
+
+```cython
+from libcpp.vector cimport vector
+
+def primes(unsigned int nb_primes):
+
+    cdef int n, i
+    cdef vector[int] p
+    p.reserve(nb_primes)  # allocate memory for 'nb_primes' elements.
+
+    n = 2
+    while p.size() < nb_primes:  # size() for vectors is similar to len()
+        for i in p:
+            if n % i == 0:
+                break 
+```
+
+## Python is interpreted
+
+::: {.callout-note title="Interpreted language"}
+
+In an interpreted language, instructions are read and translated into processor instructions, one after another.
+
+:::
+
+As consequence, it is:
+
+- flexible
+    - interactive development
+    - immediate feedback
+- slooooww [^slow]
+
+[^slow]: actualy not so much because python modules are converted into bytecode and because common objects are well optimized
+
+## Intepreters
+
+- Python
+- ipython a.k.a. jupyter
+    - send instructions to a kernel
+    - receive back MIME objects (with nice html representation)
+- VSCode
+    - has its own python kernel implementation
+- C API python.h
+    - julia
+    - your own...
+
+
+# Packages and Environment
+
+
+## Python modules
+
+A file ending with .py is a *python module*
+
+- `program.py`
+
+```python
+key = "low"
+def something():
+    return "hey"
+```
+
+The content from a module can be *imported*
+
+```python
+from program import something
+```
+
+To import all objects in a module (functions, strings, ...)
+
+```python
+from program import *
+```
+
+
+## Submodules
+
+- A folder containing modules and an `__init.py__` is a `package`.
+
+- import a package or a submodule:
+
+    - `import package`
+    - `from package.submodule import something`
+
+- The content of modules and submodules is evaluated only once.[^reload]
+
+- It is actually precompiled.
+
+- This is perfect for distributing a package.
+
+- Not so much to develop code interactively.
+
+
+
+[^reload]: since python 3.4 you can actually reload a module with `importlib.reload()`
+
+
+## Package managers
+
+Several ways to create / distribute python packages have been developped over the years.
+
+- setup.py, pip
+- setuptools, distutils, ...
+- pipenv, poetry, ...
+- conda
+
+There are essentially two kinds of packages:
+
+- pip packages
+- conda packages
+
+
+## Pip packages
+
+
+- pip files (what are eggs btw)
+    - pure python
+    - binary
+
+- can be installed with `pip install package`
+
+- no dependency solving ! no proper uninstallation !
+
+- pip files a virtual evnironment created with `venv`
+
+- reproducible setup can be described in
+    - requirements.txt (old)
+    - pyproject.toml (new)
+
+- directory specific environments can be managed with `poetry` or `venv`:
+    - `python -m venv directory`
+
+
+## Conda environment
+
+
+- conda files
+
+- installed in a conda environment
+
+- with proper / reversible dependency solving
+    - very quick using `mamba` or `micromamba`
+
+- reproducible environment can be described in:
+    - environment.yml (dependencies)
+    - manifest (...)
+
+- directory specific environments can be managed with `pixi`
+
+
+# Syntax Review
+
+##
+
+Let's setup the environment specified in [requirements.txt](../requirements.txt)
+
+. . .
+
+![](graphs/ea0.jpg)
+
+
+Move to [python syntax](../handson/python_syntax.qmd) tutorial

@@ -1,0 +1,271 @@
+---
+title: Numeric
+format: 
+    html: default
+    ipynb: default
+---
+
+## Using Numpy
+
+Selection from [w3resources](https://www.w3resource.com/python-exercises/numpy/python-numpy-random.php)
+and [rougier/numpy100](https://github.com/rougier/numpy-100)
+
+::: {#exr-numpy}
+
+- Write a NumPy program to generate five random numbers from the normal distribution.
+
+:::
+
+```{python}
+# code here
+```
+
+
+::: {#exr-numpy}
+
+Write a NumPy program to generate six random integers between 10 and 30.
+
+:::
+
+```{python}
+# code here
+```
+
+
+::: {#exr-numpy}
+
+Create a 3x3 matrix with values ranging from 0 to 8
+
+:::
+
+```{python}
+# code here
+```
+
+
+::: {#exr-numpy}
+
+Create 2d array $M$ such of size 3*3 such that $M_{ij} = i\times j$
+
+:::
+
+```{python}
+# code here
+```
+
+
+::: {#exr-numpy}
+
+Create 3 vectors of length 5 and create a matrix where each column is one of the vector.
+
+:::
+
+```{python}
+# code here
+```
+
+
+::: {#exr-numpy}
+
+Create 3 vectors of length 5 and create a matrix where each row is one of the vector.
+
+:::
+
+```{python}
+# code here
+```
+
+
+::: {#exr-numpy}
+
+Find indices of non-zero elements from `np.array([1,2,0,0,4,0])`. Replace them with -1.0
+
+:::
+
+```{python}
+# code here
+```
+
+
+::: {#exr-numpy}
+
+Write a NumPy program to normalize a 3x3 random matrix. (Define norm $|x|=\sqrt{\sum x_i^2}$ and compute $M/|M|$)
+
+:::
+
+```{python}
+# code here
+```
+
+
+::: {#exr-numpy}
+
+Create 2d array $M$ such of size 3*3 such that $M_{ij} = i\times j$
+
+:::
+
+```{python}
+# code here
+```
+
+
+::: {#exr-numpy}
+
+Take a random matrix $A$ of size $N\times 2$ (N=10) where each line represents a different 2d point. Compute the euclidean distance matrix such that $E_{ij}$ is the distance between point $i$ and point $j$.
+
+:::
+
+```{python}
+# code here
+```
+
+
+::: {#exr-numpy}
+
+Create A of size $10\times 3$. Create matrix $B$ with the same column as $A$ reordered by sum of absolute values.
+
+:::
+
+
+## Simulating an AR1
+
+Take an AR1 process $x_t = A \rho x_{t-1} + \epsilon_t$ with $\epsilon_t \sim \Sigma$ where $\Sigma$ is a positive definite matrix.
+
+
+::: {#exr-numpy}
+
+Define 2x2 matrices $A$ and $\Sigma$, the latter being symmetric positive definite
+
+:::
+
+```{python}
+# code here
+```
+
+
+::: {#exr-numpy}
+Compute asymptotic variance using matrix algebra (there is a recursive formula)
+:::
+
+```{python}
+# code here
+```
+
+
+::: {#exr-numpy}
+Simulate $N$ draws for $T$ periods and store the result in `sim`.
+:::
+
+```{python}
+# code here
+```
+
+
+::: {#exr-numpy}
+Compute ergodic variance (bonus compute std of the variance estimate)
+:::
+
+```{python}
+# code here
+```
+
+
+::: {#exr-numpy}
+Plot a few simulations on the same graph
+:::
+
+```{python}
+# code here
+```
+
+
+::: {#exr-numpy}
+Plot asymptotic distribution (seaborn)
+:::
+
+```{python}
+# code here
+```
+
+
+::: {#exr-numpy}
+Bonus: write a faster simulation routine.
+:::
+
+```{python}
+# code here
+```
+
+
+
+## Interpolation
+
+We consider the function $f(x) = sinc(\lambda x) = \frac{sin(\lambda x)}{x}$.
+Let $I=(x_i)_{i=[1,10]}$ be a regularly spaced interval between -2 and +2, containing 10 points. Call $Y=(y_i)=f(x_i)$ the values of $f$ on this interval.
+Let $T$ be a test set with 1000 regularly spaced points between -2.5 and 2.5. 
+
+The goal is to compare several ways interpolate function f on $T$.
+
+:::{#exr-interpolation}
+Define `f`, `I`, `Y`, `T`
+:::
+
+```{python}
+# 
+```
+:::{#exr-interpolation}
+Construct a stepwise approximation using numpy indexing
+:::
+
+```{python}
+# 
+```
+:::{#exr-interpolation}
+Plot it
+:::
+
+```{python}
+# 
+```
+:::{#exr-interpolation}
+Construct a linear approximation using numpy
+:::
+
+```{python}
+#
+```
+:::{#exr-interpolation}
+Use scipy.interpolate to get an approximation
+:::
+
+```{python}
+#
+```
+:::{#exr-interpolation}
+(bonus) Use interpolation.py
+:::
+
+```{python}
+#
+```
+:::{#exr-interpolation}
+Plot result
+:::
+
+```{python}
+#
+```
+:::{#exr-interpolation}
+Increase number of points and test performance of various options
+:::
+
+```{python}
+#
+```
+:::{#exr-interpolation}
+(bonus) optimize hand coded implementations using numba
+:::
+
+```{python}
+#
+```

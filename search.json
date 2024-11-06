@@ -1,0 +1,913 @@
+[
+  {
+    "objectID": "misc/syllabus.html#preparation-session-online-21h",
+    "href": "misc/syllabus.html#preparation-session-online-21h",
+    "title": "Deep Learning and DSGE modeling",
+    "section": "Preparation Session (online: 2*1h)",
+    "text": "Preparation Session (online: 2*1h)\n\nInstalling Python\nManaging Python Environments\nSetting up JAX / GPU\nQuick Introduction to Scientific Programming with Python"
+  },
+  {
+    "objectID": "misc/syllabus.html#session-1-introduction-to-deep-learning-3h",
+    "href": "misc/syllabus.html#session-1-introduction-to-deep-learning-3h",
+    "title": "Deep Learning and DSGE modeling",
+    "section": "Session 1: Introduction to Deep Learning (3h)",
+    "text": "Session 1: Introduction to Deep Learning (3h)\nPreliminaries:\n\ndifferentiable programming\nscaling-up calculations (vectorization, compilation)\n\nOptimization: Stochastic Gradient Algorithm\nDeep Learning:\n\ncommon neural network topologies\ndealing with symmetries\n\nLiterature Review: Deep Learning Applications in Macroeconomics"
+  },
+  {
+    "objectID": "misc/syllabus.html#session-2-solving-dsge-model-with-deep-learning-3h",
+    "href": "misc/syllabus.html#session-2-solving-dsge-model-with-deep-learning-3h",
+    "title": "Deep Learning and DSGE modeling",
+    "section": "Session 2: Solving DSGE Model with Deep Learning (3h)",
+    "text": "Session 2: Solving DSGE Model with Deep Learning (3h)\nWriting DSGE Models with Python\n\nImporting Existing Models\nNonlinearities / Occasionally Binding Constraints\n\nLocal Solution\n\nExistence and Unicity\nPerturbation Solution\n\nGlobal Nonlinear Solution for Generic DSGE Models\nApplication: Zero Lower Bound Model"
+  },
+  {
+    "objectID": "exercises/python.html",
+    "href": "exercises/python.html",
+    "title": "Python Basics",
+    "section": "",
+    "text": "(adapted from Quantecon)",
+    "crumbs": [
+      "Exercises",
+      "Python Basics"
+    ]
+  },
+  {
+    "objectID": "exercises/python.html#basics",
+    "href": "exercises/python.html#basics",
+    "title": "Python Basics",
+    "section": "Basics",
+    "text": "Basics\n\nExercise 1 Run the following code in the python interpreter:\ndef say_hello(name):\n    \"\"\"This function prints morning greetings\"\"\"\n\n    print(f\"Good morning {name}!\\n\")\n\n    # we can import libraries\n    import datetime\n    t = datetime.datetime.now()\n\n    # blocks are defined by indentation and colons\n    if (t.hour,t.min) &lt;= (9,15):\n        print(\"All good?\\n\")\n    else:\n        print(\"Time to get started?\\n\")\n\n\nsay_hello(\"Pablo\")\n\n\nExercise 2 What do you think the value of z is after running the code below?\n\nz = 3\nz = z + 4\nprint(\"z is\", z)\n\nz is 7\n\n\n\n\n# your response there\n\n\nExercise 3 Read about what the len function does (by writing len?).\nWhat will it produce if we give it the variable x?\nCheck whether you were right by running the code len(x).\n\n\n# your code here\n\n\nExercise 4 We can use our introspection skills to investigate a package’s contents.\nIn the cell below, use tab completion to find a function from the time module that will display the local time.\nUse time.FUNC_NAME? (where FUNC_NAME is replaced with the function you found) to see information about that function and then call the function.\nLook for something to do with the word local\n\n\nimport time\n# your code here\n\n\nExercise 5 The code below is invalid Python code (once uncommented)\n\n\n# x = 'What's wrong with this string'",
+    "crumbs": [
+      "Exercises",
+      "Python Basics"
+    ]
+  },
+  {
+    "objectID": "exercises/python.html#collections",
+    "href": "exercises/python.html#collections",
+    "title": "Python Basics",
+    "section": "Collections",
+    "text": "Collections\n\nExercise 6 In the first cell, try y.append(z).\nIn the second cell try y.extend(z).\nExplain the behavior.\nWhen you are trying to explain use y.append? and y.extend? to see a description of what these methods are supposed to do.\n\n\ny = [\"a\", \"b\", \"c\"]\nz = [1, 2, 3]\n# \n\n\ny = [\"a\", \"b\", \"c\"]\nz = [1, 2, 3]\n# \n\n\nExercise 7 Verify that tuples are indeed immutable by attempting the following:\n\nChanging the first element of t to be 100\n\nAppending a new element \"!!\" to the end of t (remember with a list x we would use x.append(\"!!\") to do this\n\nSorting t\n\nReversing t\n\n\n\nt = (1,2,3,4)\n\n\nExercise 8 Look at the World Factbook for Australia and create a dictionary with data containing the following types: float, string, integer, list, and dict. Choose any data you wish.\nTo confirm, you should have a dictionary that you identified via a key.\n\n\n# your code here\n\n\nExercise 9 Use Jupyter’s help facilities to learn how to use the pop method to remove the key \"irrigated_land\" (and its value) from the dict.\n\n\n# uncomment and use the Inspector or ?\n#china_data.pop()\n\n\nExercise 10 Explain what happens to the value you popped.\nExperiment with calling pop twice.\n\n\n# your code here",
+    "crumbs": [
+      "Exercises",
+      "Python Basics"
+    ]
+  },
+  {
+    "objectID": "exercises/python.html#control",
+    "href": "exercises/python.html#control",
+    "title": "Python Basics",
+    "section": "Control",
+    "text": "Control\n\nExercise 11 Run the following two variations on the code with only a single change in the indentation.\nAfter, modify the x to print 3 and then 2, 3 instead.\n\n\nx = 1\n\nif x &gt; 0:\n    print(\"1\")\n    print(\"2\")\nprint(\"3\")\n\n1\n2\n3\n\n\n\nx = 1\n\nif x &gt; 0:\n    print(\"1\")\nprint(\"2\") # changed the indentation\nprint(\"3\")\n\n1\n2\n3\n\n\n\nExercise 12 Write a for loop that uses the lists of cities and states below to print the same “{city} is in {state}” using a zip instead of an enumerate.\n\n\ncities = [\"Phoenix\", \"Austin\", \"San Diego\", \"New York\"]\nstates = [\"Arizona\", \"Texas\", \"California\", \"New York\"]\n\n\nfor i,c in enumerate(cities):\n    print(c, \" : \", states[i])\n\nPhoenix  :  Arizona\nAustin  :  Texas\nSan Diego  :  California\nNew York  :  New York\n\n\n\n# your code here",
+    "crumbs": [
+      "Exercises",
+      "Python Basics"
+    ]
+  },
+  {
+    "objectID": "slides/index.html",
+    "href": "slides/index.html",
+    "title": "Ce_bb_2024",
+    "section": "",
+    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+  },
+  {
+    "objectID": "slides/python.html#why-python-2",
+    "href": "slides/python.html#why-python-2",
+    "title": "Python",
+    "section": "Why Python? (2)",
+    "text": "Why Python? (2)\nHistorically, python was a glue language used to interoperate many low-level/system languages.\nIt has been increasingly used for web-development (cf django)\n\n\n\nNowadays it is the lingua franca of machine learning\nMost major machine learning / deep learning libraries have python bindings",
+    "crumbs": [
+      "Slides",
+      "Python"
+    ]
+  },
+  {
+    "objectID": "slides/python.html#an-example",
+    "href": "slides/python.html#an-example",
+    "title": "Python",
+    "section": "An example",
+    "text": "An example\ndef say_hello(name):\n    \"\"\"This function prints morning greetings\"\"\"\n\n    print(f\"Good morning {name}!\\n\")\n\n    # we can import libraries\n    import datetime\n    t = datetime.datetime.now()\n\n    # blocks are defined by indentation and colons\n    if (t.hour,t.min) &lt;= (9,15):\n        print(\"All good?\\n\")\n    else:\n        print(\"Time to get started?\\n\")\n\n\nsay_hello(\"Pablo\")",
+    "crumbs": [
+      "Slides",
+      "Python"
+    ]
+  },
+  {
+    "objectID": "slides/python.html#python-is-everywhere",
+    "href": "slides/python.html#python-is-everywhere",
+    "title": "Python",
+    "section": "Python is everywhere",
+    "text": "Python is everywhere\n\n\n\n\n\nCode Warriors\n\n\n\n\n\n\nMicroBits\n\n\n\nWindows\nLinux\nWeb",
+    "crumbs": [
+      "Slides",
+      "Python"
+    ]
+  },
+  {
+    "objectID": "slides/python.html#the-python-family",
+    "href": "slides/python.html#the-python-family",
+    "title": "Python",
+    "section": "The Python family",
+    "text": "The Python family\nThere are several flavours of Python:\n\n\n\nFull Syntax\n\nCPython, PyPy, Pyston\n\nSubset-Syntax\n\nmicropython\nnumba, pythran\n\n\n\n\nSuperset-Syntax\n\nmypy (*)\ncython\nmojo\n\nNear-Syntax\n\nboo\n\n\n\n\n\nsubset-syntax: restrict functionalities (no classes, simpler objects) for easier compilation\nsuperset-syntax: add type/memory information\nnear-syntax: different language that looks familiar",
+    "crumbs": [
+      "Slides",
+      "Python"
+    ]
+  },
+  {
+    "objectID": "slides/python.html#examples",
+    "href": "slides/python.html#examples",
+    "title": "Python",
+    "section": "Examples",
+    "text": "Examples\n\nmojo:\n\nfn greet2(name: String) -&gt; String:\n    return \"Hello, \" + name + \"!\"\n\ncython\n\nfrom libcpp.vector cimport vector\n\ndef primes(unsigned int nb_primes):\n\n    cdef int n, i\n    cdef vector[int] p\n    p.reserve(nb_primes)  # allocate memory for 'nb_primes' elements.\n\n    n = 2\n    while p.size() &lt; nb_primes:  # size() for vectors is similar to len()\n        for i in p:\n            if n % i == 0:\n                break",
+    "crumbs": [
+      "Slides",
+      "Python"
+    ]
+  },
+  {
+    "objectID": "slides/python.html#python-is-interpreted",
+    "href": "slides/python.html#python-is-interpreted",
+    "title": "Python",
+    "section": "Python is interpreted",
+    "text": "Python is interpreted\n\n\n\n\n\n\n\nInterpreted language\n\n\nIn an interpreted language, instructions are read and translated into processor instructions, one after another.\n\n\n\n\nAs consequence, it is:\n\nflexible\n\ninteractive development\nimmediate feedback\n\nslooooww 1\n\nactualy not so much because python modules are converted into bytecode and because common objects are well optimized",
+    "crumbs": [
+      "Slides",
+      "Python"
+    ]
+  },
+  {
+    "objectID": "slides/python.html#intepreters",
+    "href": "slides/python.html#intepreters",
+    "title": "Python",
+    "section": "Intepreters",
+    "text": "Intepreters\n\nPython\nipython a.k.a. jupyter\n\nsend instructions to a kernel\nreceive back MIME objects (with nice html representation)\n\nVSCode\n\nhas its own python kernel implementation\n\nC API python.h\n\njulia\nyour own…",
+    "crumbs": [
+      "Slides",
+      "Python"
+    ]
+  },
+  {
+    "objectID": "slides/python.html#python-modules",
+    "href": "slides/python.html#python-modules",
+    "title": "Python",
+    "section": "Python modules",
+    "text": "Python modules\nA file ending with .py is a python module\n\nprogram.py\n\nkey = \"low\"\ndef something():\n    return \"hey\"\nThe content from a module can be imported\nfrom program import something\nTo import all objects in a module (functions, strings, …)\nfrom program import *",
+    "crumbs": [
+      "Slides",
+      "Python"
+    ]
+  },
+  {
+    "objectID": "slides/python.html#submodules",
+    "href": "slides/python.html#submodules",
+    "title": "Python",
+    "section": "Submodules",
+    "text": "Submodules\n\nA folder containing modules and an __init.py__ is a package.\nimport a package or a submodule:\n\nimport package\nfrom package.submodule import something\n\nThe content of modules and submodules is evaluated only once.1\nIt is actually precompiled.\nThis is perfect for distributing a package.\nNot so much to develop code interactively.\n\nsince python 3.4 you can actually reload a module with importlib.reload()",
+    "crumbs": [
+      "Slides",
+      "Python"
+    ]
+  },
+  {
+    "objectID": "slides/python.html#package-managers",
+    "href": "slides/python.html#package-managers",
+    "title": "Python",
+    "section": "Package managers",
+    "text": "Package managers\nSeveral ways to create / distribute python packages have been developped over the years.\n\nsetup.py, pip\nsetuptools, distutils, …\npipenv, poetry, …\nconda\n\nThere are essentially two kinds of packages:\n\npip packages\nconda packages",
+    "crumbs": [
+      "Slides",
+      "Python"
+    ]
+  },
+  {
+    "objectID": "slides/python.html#pip-packages",
+    "href": "slides/python.html#pip-packages",
+    "title": "Python",
+    "section": "Pip packages",
+    "text": "Pip packages\n\npip files (what are eggs btw)\n\npure python\nbinary\n\ncan be installed with pip install package\nno dependency solving ! no proper uninstallation !\npip files a virtual evnironment created with venv\nreproducible setup can be described in\n\nrequirements.txt (old)\npyproject.toml (new)\n\ndirectory specific environments can be managed with poetry or venv:\n\npython -m venv directory",
+    "crumbs": [
+      "Slides",
+      "Python"
+    ]
+  },
+  {
+    "objectID": "slides/python.html#conda-environment",
+    "href": "slides/python.html#conda-environment",
+    "title": "Python",
+    "section": "Conda environment",
+    "text": "Conda environment\n\nconda files\ninstalled in a conda environment\nwith proper / reversible dependency solving\n\nvery quick using mamba or micromamba\n\nreproducible environment can be described in:\n\nenvironment.yml (dependencies)\nmanifest (…)\n\ndirectory specific environments can be managed with pixi",
+    "crumbs": [
+      "Slides",
+      "Python"
+    ]
+  },
+  {
+    "objectID": "slides/python.html#section",
+    "href": "slides/python.html#section",
+    "title": "Python",
+    "section": "",
+    "text": "Let’s setup the environment specified in requirements.txt\n\n\nMove to python syntax tutorial",
+    "crumbs": [
+      "Slides",
+      "Python"
+    ]
+  },
+  {
+    "objectID": "handson/python_syntax.html",
+    "href": "handson/python_syntax.html",
+    "title": "Python: syntax review",
+    "section": "",
+    "text": "# integers and floats\n\n\n1\n\n\n1.0\n\n\n# conversion with int() and float()\nfloat( 1 )\n\n\nint(2.9) # floor\n\n\n# no difference between various types of floats (16 bits, 32 bits, 64 bits, ...)\n\n\ntype( 2.2**50 ) # this doesn't fit in 32 bits\n\n\n# usual operations + - *\nprint( 2 + 3 )\nprint( 9 -6 )\nprint( 3 / 2 )\nprint(2304310958*41324)\n\n\n# divisions / and //\nprint(3/4)\nprint(13//4)\n\n\n# exponentiation ** (not ^!)\n# (1.04)^10\n(1.04)**10\n\n\n# comparison operators: &gt;, &lt;, &gt;=, &lt;=, ==\n\nprint((1.0453432)*(0.96)  &gt; 1.001 )\n\nprint(1.001 &gt;= 1.001)\n\n\n# comparison operators can be chained:\nprint(0.2&lt;0.4&lt;0.5)\nprint(0.5&lt;=0.4&lt;=0.5) # equivalent to ((0.5&lt;=0.4) and(0.4&lt;=0.5))\n\n\n\n\nThere are only two booleans: True and False (note uppercase). None is a dummy type, which is used when no other type fits.\n\nprint( False )\nTrue\n\n\n(True, False, None)\n\nDouble equal sign tests for equality. Result should always be a boolean.\n\nTrue==False\n\nLogical operators are not, and and or:\n\n(True or False)\n\n\nnot (True or False)\n\n\n(1.3**1.04 &gt; 1.9) | (1000**1143&gt;1001**1142)\n\nOperators or and and can be replaced by | and & respectively. They are non-greedy, that is terms are not evaluated if the result of the comparison is already known.\n\nFalse and (print(\"Hello\"))\n\n\nprint( (print(\"Hello\")) and False )\n\n\n\n\n\n\nStrings are defined by enclosing characters either by ' (single quotes) or \" (double quote). Single quotes strings can contain double quotes strings and vice-versa.\n\n\"name\"\n\n\n'name'\n\n\n'I say \"hello\"'\n\n\n\"You can 'quote' me\"\n\nStrings spanning over sever lines can be defined with triple quotes (single or double).\n\ns = \"\"\"¿Qué es la vida? Un frenesí.\n¿Qué es la vida? Una ilusión,\nuna sombra, una ficción,\ny el mayor bien es pequeño;\nque toda la vida es sueño,\ny los sueños, sueños son.\n\"\"\"\n\nIt is also possible to use the newline character \\n.\n\n\"La vida es sueño,\\ny los sueños, sueños son.\"\n\n\nprint(\"La vida es sueño,\\ny los sueños, sueños son.\")\n\n\n\n\nStrings can contain any unicode character:\n\ns = \"🎻⽻༽\"\n\nRefresher: ASCII vs unicode\nASCII (or ASCII-US) is an old standard which codes a character with 7 bits (or 8 bits for extended ASCII). This allows to code 128 different characters (256 for ex-ASCII).\nOnly a subset of these characters can be printed regularly.\n\nchr(44)\n\n\n# ASCII: \nfor i in range(32,127):\n    print( chr(i), end=' ')\n\nThe other characters include delete, newline and carriage return among others.\n\ns = 'This is\\na\\nmultiline string.' # note the newline character '\\n'\n\n\n# print(s)\nlen(s)\n\nSome antiquated platforms still use newline + carriage return at the end of each line. This is absolutely not required and causes incompatibilities.\n\ns2 = 'This is\\n\\ra\\n\\rmultiline string.' # note the newline character '\\n' and carriager return '\\r'\n\n\nprint(s2)\nprint(len(s2))\n\nUnicode contains a repertoire of over 137,000 characters with all ASCII characters as subcases\nTo type: copy/paste, ctrl+shift+hexadecimal, latex + tab\nVariable names aka identifiers can contain unicode characters with some restrictions: - they cannot start with a digit - they can’t contain special variables (‘!,#,@,%,$’ and other unicode specials ???) - they can contain underscore\n\n\n\nconcatenation\n\n'abc' + 'def'\n\n\n'abc'*3\n\n\n'abc' + 'abc' + 'abc'\n\n\n\n\n\n# strings can be accessed as arrays (0 based indexing)\ns = \"a b c\"\ns[0]\n\n\n# slice notation (  [min,max[ )\ns = \"a b c d\"\ns[2:5] # 0-based; 2 included, 5 excluded\n\n\n# substrings are easy to check\n\"a\" in s\n\n\n\"b c\" in \"a b c d\"\n\nIt is impossible to modify a substring.\n\n# but are immutable\ns = \"a b c\"\n#s[1] = 0 error\n\nInstead, one can replace a substring:\n\ns\n\n\ns.replace(' ', '🎻')\n\nOr use string interpolation\n\n# string interpolation (old school)\n\"ny name is {name}\".format(name=\"nobody\")\n\n\n\"calculation took {time}s\".format(time=10000)\n\n\n# number format can be tweaked\n\"I am {age:.0f} years old\".format(age=5.65)\n\n\n# formatted strings\nelapsed = 15914884.300292\n\nf\"computations took {elapsed/3600:.2f} hours\"\n\n\nname = \"arnaldur\"\n\n\n\"dasnfnaksujhn {name}\".format(name=\"whatever\")\n\n\n# basic string operations: str.split, str.join, etc...\n# fast regular expressions\n# more on it, with text processing lesson\n\n\nstr.split(\"me,you,others,them\",',')\n\n\nstr.join( \" | \",\n    str.split(\"me,you,others,them\",','),\n)\n\n\n\n\nThe example above used several special characters: \\n which corresponds to only one ascii character and {/} which disappears after the string formatting. If one desires to print these characters precisely one needs to escape them using \\ and { }.\n\nprint(\"This is a one \\\\nline string\")\nprint(\"This string keeps some {{curly}} brackets{}\".format('.'))\n\n\n\n\n(check help(str) or help?)\n\nlen() : length\nstrip() : removes characters at the ends\nsplit() : split strings into several substrings separated by separator\njoin() : opposite of split\n\n\n'others,'\n\n\n',me,others,'.strip(',')\n\n\ns.count(',')\n\n\nhelp(str)",
+    "crumbs": [
+      "Hands-on",
+      "Python: syntax review"
+    ]
+  },
+  {
+    "objectID": "handson/python_syntax.html#basic-types",
+    "href": "handson/python_syntax.html#basic-types",
+    "title": "Python: syntax review",
+    "section": "",
+    "text": "# integers and floats\n\n\n1\n\n\n1.0\n\n\n# conversion with int() and float()\nfloat( 1 )\n\n\nint(2.9) # floor\n\n\n# no difference between various types of floats (16 bits, 32 bits, 64 bits, ...)\n\n\ntype( 2.2**50 ) # this doesn't fit in 32 bits\n\n\n# usual operations + - *\nprint( 2 + 3 )\nprint( 9 -6 )\nprint( 3 / 2 )\nprint(2304310958*41324)\n\n\n# divisions / and //\nprint(3/4)\nprint(13//4)\n\n\n# exponentiation ** (not ^!)\n# (1.04)^10\n(1.04)**10\n\n\n# comparison operators: &gt;, &lt;, &gt;=, &lt;=, ==\n\nprint((1.0453432)*(0.96)  &gt; 1.001 )\n\nprint(1.001 &gt;= 1.001)\n\n\n# comparison operators can be chained:\nprint(0.2&lt;0.4&lt;0.5)\nprint(0.5&lt;=0.4&lt;=0.5) # equivalent to ((0.5&lt;=0.4) and(0.4&lt;=0.5))\n\n\n\n\nThere are only two booleans: True and False (note uppercase). None is a dummy type, which is used when no other type fits.\n\nprint( False )\nTrue\n\n\n(True, False, None)\n\nDouble equal sign tests for equality. Result should always be a boolean.\n\nTrue==False\n\nLogical operators are not, and and or:\n\n(True or False)\n\n\nnot (True or False)\n\n\n(1.3**1.04 &gt; 1.9) | (1000**1143&gt;1001**1142)\n\nOperators or and and can be replaced by | and & respectively. They are non-greedy, that is terms are not evaluated if the result of the comparison is already known.\n\nFalse and (print(\"Hello\"))\n\n\nprint( (print(\"Hello\")) and False )\n\n\n\n\n\n\nStrings are defined by enclosing characters either by ' (single quotes) or \" (double quote). Single quotes strings can contain double quotes strings and vice-versa.\n\n\"name\"\n\n\n'name'\n\n\n'I say \"hello\"'\n\n\n\"You can 'quote' me\"\n\nStrings spanning over sever lines can be defined with triple quotes (single or double).\n\ns = \"\"\"¿Qué es la vida? Un frenesí.\n¿Qué es la vida? Una ilusión,\nuna sombra, una ficción,\ny el mayor bien es pequeño;\nque toda la vida es sueño,\ny los sueños, sueños son.\n\"\"\"\n\nIt is also possible to use the newline character \\n.\n\n\"La vida es sueño,\\ny los sueños, sueños son.\"\n\n\nprint(\"La vida es sueño,\\ny los sueños, sueños son.\")\n\n\n\n\nStrings can contain any unicode character:\n\ns = \"🎻⽻༽\"\n\nRefresher: ASCII vs unicode\nASCII (or ASCII-US) is an old standard which codes a character with 7 bits (or 8 bits for extended ASCII). This allows to code 128 different characters (256 for ex-ASCII).\nOnly a subset of these characters can be printed regularly.\n\nchr(44)\n\n\n# ASCII: \nfor i in range(32,127):\n    print( chr(i), end=' ')\n\nThe other characters include delete, newline and carriage return among others.\n\ns = 'This is\\na\\nmultiline string.' # note the newline character '\\n'\n\n\n# print(s)\nlen(s)\n\nSome antiquated platforms still use newline + carriage return at the end of each line. This is absolutely not required and causes incompatibilities.\n\ns2 = 'This is\\n\\ra\\n\\rmultiline string.' # note the newline character '\\n' and carriager return '\\r'\n\n\nprint(s2)\nprint(len(s2))\n\nUnicode contains a repertoire of over 137,000 characters with all ASCII characters as subcases\nTo type: copy/paste, ctrl+shift+hexadecimal, latex + tab\nVariable names aka identifiers can contain unicode characters with some restrictions: - they cannot start with a digit - they can’t contain special variables (‘!,#,@,%,$’ and other unicode specials ???) - they can contain underscore\n\n\n\nconcatenation\n\n'abc' + 'def'\n\n\n'abc'*3\n\n\n'abc' + 'abc' + 'abc'\n\n\n\n\n\n# strings can be accessed as arrays (0 based indexing)\ns = \"a b c\"\ns[0]\n\n\n# slice notation (  [min,max[ )\ns = \"a b c d\"\ns[2:5] # 0-based; 2 included, 5 excluded\n\n\n# substrings are easy to check\n\"a\" in s\n\n\n\"b c\" in \"a b c d\"\n\nIt is impossible to modify a substring.\n\n# but are immutable\ns = \"a b c\"\n#s[1] = 0 error\n\nInstead, one can replace a substring:\n\ns\n\n\ns.replace(' ', '🎻')\n\nOr use string interpolation\n\n# string interpolation (old school)\n\"ny name is {name}\".format(name=\"nobody\")\n\n\n\"calculation took {time}s\".format(time=10000)\n\n\n# number format can be tweaked\n\"I am {age:.0f} years old\".format(age=5.65)\n\n\n# formatted strings\nelapsed = 15914884.300292\n\nf\"computations took {elapsed/3600:.2f} hours\"\n\n\nname = \"arnaldur\"\n\n\n\"dasnfnaksujhn {name}\".format(name=\"whatever\")\n\n\n# basic string operations: str.split, str.join, etc...\n# fast regular expressions\n# more on it, with text processing lesson\n\n\nstr.split(\"me,you,others,them\",',')\n\n\nstr.join( \" | \",\n    str.split(\"me,you,others,them\",','),\n)\n\n\n\n\nThe example above used several special characters: \\n which corresponds to only one ascii character and {/} which disappears after the string formatting. If one desires to print these characters precisely one needs to escape them using \\ and { }.\n\nprint(\"This is a one \\\\nline string\")\nprint(\"This string keeps some {{curly}} brackets{}\".format('.'))\n\n\n\n\n(check help(str) or help?)\n\nlen() : length\nstrip() : removes characters at the ends\nsplit() : split strings into several substrings separated by separator\njoin() : opposite of split\n\n\n'others,'\n\n\n',me,others,'.strip(',')\n\n\ns.count(',')\n\n\nhelp(str)",
+    "crumbs": [
+      "Hands-on",
+      "Python: syntax review"
+    ]
+  },
+  {
+    "objectID": "handson/python_syntax.html#assignment",
+    "href": "handson/python_syntax.html#assignment",
+    "title": "Python: syntax review",
+    "section": "Assignment",
+    "text": "Assignment\nAny object can be reused by assigning an identifier to it. This is done with assignment operator =.\n\na = 3\na\n\nNote that assignment operator = is different from comparison operator ==. Comparison operator is always True or False, while assignment operator has no value.\n\n(2==2) == True",
+    "crumbs": [
+      "Hands-on",
+      "Python: syntax review"
+    ]
+  },
+  {
+    "objectID": "handson/python_syntax.html#containers",
+    "href": "handson/python_syntax.html#containers",
+    "title": "Python: syntax review",
+    "section": "Containers",
+    "text": "Containers\nAny object created in Python is identified by a unique id. One can think of it approximately as its reference. Object collections, contain arbitrary other python objects, that is they contain references to them.\n\nid(s)\n\n\ntuples\n\nconstruction\n\n(1,2,\"a\" )\n\nSince tuples are immutable, two identical tuples, will always contain the same data.\n\nt1  = (2,23)\nt2  = (2,23)\n\n\n# can contain any data\nt = (1,2,3,4,5,6)\nt1 = (t, \"a\", (1,2))\nt2 = (0,)  # note trailing coma for one element tuple\nt3 = (t, \"a\", (1,2))\n\n\nt[0] = 78\n\nSince tuples never change, they can be compared by hash values (if the data they hold can be hashed). Two tuples are identical if they contain the same data.\nRemark: hash function is any function that can be used to map data of arbitrary size to data of a fixed size. It is such that the probability of two data points of having the same hash is very small even if they are close to each other.\n\nt3 == t1\n\n\nprint(hash(t3))\nprint(hash(t1))\n\n\nid(t3), id(t1)\n\n\n\naccess elements\n\n# elements are accessed with brackets (0-based)\nt[0]\n\n\n# slice notation works too (  [min,max[ )\nt[1:3]\n\n\n# repeat with *\n(3,2)*5\n\n\n(0)*5\n\n\n(0,)*5\n\n\nt2*5\n\n\n# concatenate with +\nt+t1+t2\n\n\n# test for membership\n\n(1 in t)\n\n\n\n\nlists\nlists are enclosed by brackets are mutable ordered collections of elements\n\nl = [1,\"a\",4,5]\n\n\nl[1]\n\n\nl[1:] # if we omit the upper-bound it goes until the last element\n\n\nl[:2]\n\n\n# lists are concatenated with +\nl[:2] + l[2:] == l\n\n\n# test for membership\n(5 in l)\n\n\n# lists can be extended inplace\nll = [1,2,3]\nll.extend([4,5]) # several elements\nll.append(6)\nll\n\nSince lists are mutable, it makes no sense to compute them by hash value (or the hash needs to be recomputed every time the values change).\n\nhash(ll)\n\nSorted lists can be created with sorted (if elements can be ranked)\n\nll = [4,3,5]\n\n\nsorted(ll)\n\n\nll\n\nIt is also possible to sort in place.\n\nll.sort()\nll\n\n\nsorted(ll) # creates a new list\nll.sort()  # does it in place\n\n\n# in python internals:    ll.sort() equivalent sort(ll)\n\n\n\nset\nSets are unordered collections of unique elements.\n\ns1 = set([1,2,3,3,4,3,4])\ns2 = set([3,4,4,6,8])\nprint(s1, s2)\nprint(s1.intersection(s2))\n\n\n{3,4} == {4,3}\n\n\n\ndictionaries\nDictionaries are ordered associative collections of elements. They store values associated to keys.\n\n# construction with curly brackets\nd = {'a':0, 'b':1}\n\n\nd\n\n\n# values can be recovered by indexing the dict with a key\nd['b']\n\n\nd = dict()\n# d['a'] = 42\n# d['b'] = 78\nd\n\n\nd['a'] = 42\n\n\nd['b']\n\nKeys can be any hashable value:\n\nd[('a','b')] = 100\n\n\nd[ ['a','b'] ] = 100 # that won't work\n\nNote: until python 3.5 dictionaries were not ordered. Now the are guaranteed to keep the insertion order",
+    "crumbs": [
+      "Hands-on",
+      "Python: syntax review"
+    ]
+  },
+  {
+    "objectID": "handson/python_syntax.html#control-flows",
+    "href": "handson/python_syntax.html#control-flows",
+    "title": "Python: syntax review",
+    "section": "Control flows",
+    "text": "Control flows\n\nConditional blocks\nConditional blocks are preceeded by if and followed by an indented block. Note that it is advised to indent a block by a fixed set of space (usually 4) rather than use tabs.\n\nif 'sun'&gt;'moon':\n    print('warm')\n\nThey can also be followed by elif and else statements:\n\nx = 0.5\nif (x&lt;0):\n    y = 0.0\nelif (x&lt;1.0):\n    y = x\nelse:\n    y = 1+(x-1)*0.5\n\nRemark that in the conditions, any variable can be used. The following evaluate to False: - 0 - empty collection\n\nif 0: print(\"I won't print this.\")\nif 1: print(\"Maybe I will.\")\nif {}: print(\"Sir, your dictionary is empty\")\nif \"\": print(\"Sir, there is no string to speak of.\")\n\n\n\nWhile\nThe content of the while loop is repeated as long as a certain condition is met. Don’t forget to change that condition or the loop might run forever.\n\npoint_made = False\ni = 0\nwhile not point_made:\n    print(\"A fanatic is one who can't change his mind and won't change the subject.\")\n    i += 1 # this is a quasi-synonym of i = i + 1\n    if i&gt;=20:\n          point_made = True\n\n\n\nLoops\n\n# while loops\ni = 0\nwhile i&lt;=10:\n    print(str(i)+\" \",  end='')\n    i+=1\n\n\n# for loop\nfor i in [0,1,2,3,4,5,6,7,8,9,10]:\n    print(str(i)+\" \",  end='')\n\n\n# this works for any kind of iterable\n# for loop\nfor i in (0,1,2,3,4,5,6,7,8,9,10):\n    print(str(i)+\" \",  end='')\n\n\n# including range generator (note last value)\nfor i in range(11): \n    print(str(i)+\" \",  end='')\n\n\nrange(11)\n\n\n# one can also enumerate elements\ncountries = (\"france\", \"uk\", \"germany\")\nfor i,c in enumerate(countries): \n    print(f\"{i}: {c}\")\n\n\ns = set(c)\n\n\n# conditional blocks are constructed with if, elif, else\nfor i,c in enumerate(countries):\n    if len(set(c).intersection(set(\"brexit\"))):\n        print(c)\n    else:\n        print(c + \" 😢\")\n\nIt is possible to iterate over any iterable. This is true for a list or a generator:\n\nfor i in range(10): # range(10) is a generator\n    print(i)\n\n\nfor i in [0,1,2,3,4,5,6,7,8,9]:\n    print(i)\n\nWe can iterate of dictionary keys or values\n\nd = {1:2, 3:'i'}\nfor k in d.keys():\n    print(k, d[k])\nfor k in d.values():\n    print(k)\n\nor both at the same time:\n\nfor t in d.items():\n    print(t)\n\n# look at automatic unpacking\nfor (k,v) in d.items():\n    print(f\"key: {k}, value: {v}\")\n\n\n\nComprehension and generators\nThere is an easy syntax to construct lists/tuples/dicts: comprehension. Syntax is remminiscent of a for loop.\n\n[i**2 for i in range(10)]\n\n\nset(i-(i//2*2) for i in range(10))\n\n\n{i: i**2 for i in range(10)}\n\nComprehension can be combined with conditions:\n\n[i**2 for i in range(10) if i//3&gt;2]\n\nBehind the comprehension syntax, there is a special object called generator. Its role is to supply objects one by one like any other iterable.\n\n# note the bracket\ngen = (i**2 for i in range(10))\ngen # does nothing\n\n\ngen = (i**2 for i in range(10))\nfor e in gen:\n    print(e)\n\n\ngen = (i**2 for i in range(10))\nprint([e for e in gen])\n\nThere is a shortcut to converte a generator into a list: it’s called unpacking:\n\ngen = (i**2 for i in range(10))\n[*gen]",
+    "crumbs": [
+      "Hands-on",
+      "Python: syntax review"
+    ]
+  },
+  {
+    "objectID": "handson/python_syntax.html#functions",
+    "href": "handson/python_syntax.html#functions",
+    "title": "Python: syntax review",
+    "section": "Functions",
+    "text": "Functions\nWrong approach\n\na1 = 34\nb1 = (1+a1*a1)\nc1 = (a1+b1*b1)\n\na2 = 36\nb2 = (1+a2*a2)\nc2 = (a2+b2*b2)\n\nprint(c1,c2)\n\nBetter approach\n\ndef calc(a):\n    b = 1+a*a\n    c = a+b*b\n    return c\n\n(calc(34), calc(36))\n\nit is equivalent to replace the content of the function by:\n\na = 32\n_a = a          # def calc(a):\n_b = 1+_a*_a    #    b = 1+a*a\n_c = _a+_b*_b   #    c = a+b*b\nres = _c        #    return c\n\nNote that variable names within the function have different names. This is to avoid name conflicts as in:\n\ny = 1\ndef f(x):\n    y = x**2\n    return y+1\ndef g(x):\n    y = x**2+0.1\n    return y+1\nr1 = f(1.4)\nr2 = g(1.4)\nr3 = y\n(r1,r2,r3)\n\n\nl = ['france', 'germany']\ndef fun(i):\n    print(f\"Country: {l[i]}\")\nfun(0)\n\n\nl = ['france', 'germany']\ndef fun(i):\n    l = ['usa', 'japan']\n    l.append('spain')\n    print(f\"Country: {l[i]}\")\nfun(0)\n\n\nl\n\nIn the preceding code block, value of y has not been changed by calling the two functions. Check pythontutor.\n\nCalling conventions\nFunction definitions start with def and a colon indentation. Value are returned by return keyword. Otherwise the return value is None. Functions can have several arguments: def f(x,y) but always one return argument. It is however to return a tuple, and “unpack” it.\n\ndef f(x,y):\n    z1 = x+y\n    z2 = x-y\n    return (z1,z2)      # here brackets are optional:  `return z1,z2` works too\n\nres = f(0.1, 0.2)\nt1, t2 = f(0.2, 0.2)     # t1,t2=res works too\n\n\nres\n\nNamed arguments can be passed in any order and receive default values.\n\ndef problem(why=\"The moon shines.\", what=\"Curiosity killed the cat.\", where=\"Paris\"):\n    print(f\"Is it because {why.lower().strip('.')} that {what.lower().strip('.')}, in {where.strip('.')}?\")\n\n\nproblem(where='Paris')\n\n\nproblem(where=\"ESCP\", why=\"Square root of two is irrational\", what=\"Some regressions never work.\")\n\nPositional arguments and keyword arguments can be combined\n\ndef f(x, y, β=0.9, γ=4.0, δ=0.1):\n    return x*β+y**γ*δ\n\n\nf(0.1, 0.2)\n\n\n\nDocstrings\nFunctions are documented with a special string. Documentation It must follow the function signature immediately and explain what arguments are expected and what the function does\n\ndef f(x, y, β=0.9, γ=4.0, δ=0.1):   # kjhkugku\n    \"\"\"Compute the model residuals\n    \n    Parameters\n    ----------\n    x: (float) marginal propensity to do complicated stuff\n    y: (float) inverse of the elasticity of bifractional risk-neutral substitution\n    β: (float) time discount (default 0.9)\n    γ: (float) time discount (default 4.0)\n    δ: (float) time discount (default 0.1)\n    \n    Result\n    ------\n    res: beta-Hadamard measure of cohesiveness\n    \n    \"\"\"\n    res = x*β+y**γ*δ\n    return res\n\nRemark: Python 3.6 has introduced type indication for functions. They are useful as an element of indication and potentially for type checking. We do not cover them in this tutorial but this is what they look like:\n\ndef f(a: int, b:int)-&gt;int:\n    if a&lt;=1:\n        return 1\n    else:\n        return f(a-1,b) + f(a-2,b)*b\n\n\n\n\nPacking and unpacking\nA common case is when one wants to pass the elements of an iterable as positional argument and/or the elements of a dictionary as keyword arguments. This is espacially the case, when one wants to determine functions that act on a given calibration. Without unpacking all arguments would need to be passed separately.\n\nv = (0.1, 0.2)\np = dict(β=0.9, γ=4.0, δ=0.1)\n\nf(v[0], v[1], β=p['β'], γ=p['γ'], δ=p['δ'])\n\nThere is a special syntax for that: * unpacks positional arguments and ** unpacks keyword arguments. Here is an example:\n\nf(*v, **p)\n\nThe same characters * and ** can actually be used for the reverse operation, that is packing. This is useful to determine functions of a variable number of arguments.\n\ndef fun(**p):\n    β = p['β']\n    return β+1\nfun(β=1.0)\nfun(β=1.0, γ=2.0) # γ is just ignored\n\nInside the function, unpacked objects are lists and dictionaries respectively.\n\ndef fun(*args, **kwargs):\n    print(f\"Positional arguments: {len(args)}\")\n    for a in args:\n        print(f\"- {a}\")\n    print(f\"Keyword arguments: {len(args)}\")\n    for key,value in kwargs.items():\n        print(f\"- {key}: {value}\")\n\n\nfun(0.1, 0.2, a=2, b=3, c=4)\n\n\n\nFunctions are first class objects\nThis means they can be assigned and passed around.\n\ndef f(x): return 2*x*(1-x)\ng = f # now `g` and `f` point to the same function\ng(0.4)\n\n\ndef sumsfun(l, f):\n    return [f(e) for e in l]\n\n\nsumsfun([0.0, 0.1, 0.2], f)\n\n\ndef compute_recursive_series(x0, fun, T=50):\n    a = [x0]\n    for t in range(T):\n        x0 = a[-1]\n        x = fun(x0)\n        a.append(x)\n    return a\n\ncompute_recursive_series(0.3, f, T=5)\n\nThere is another syntax to define a function, without giving it a name first: lambda functions. It is useful when passing a function as argument.\n\nsorted(range(6), key=lambda x: (-2)**x)\n\nLambda functions are also useful to reduce quickly the number of arguments of a function (aka curryfication)\n\ndef logistic(μ,x): return μ*x*(1-x)\n# def chaotic(x): return logistic(3.7, x)\n# def convergent(x): return logistic(2.5, x)\nchaotic = lambda x: logistic(3.7, x)\nconvergent = lambda x: logistic(2.5, x)\n\n\nl = [compute_recursive_series(0.3,fun, T=20) for fun in [convergent, chaotic]]\n[*zip(*l)]\n\n\nfrom matplotlib import pyplot as plt\nimport numpy as np\ntab = np.array(l)\nplt.plot(tab[0,:-1],tab[0,1:])\ntab = np.array(l)\nplt.plot(tab[1,:-1],tab[1,1:])\nplt.plot(np.linspace(0,1),np.linspace(0,1))\nplt.xlabel(\"$x_n$\")\nplt.ylabel(\"$x_{n+1}$\")\nplt.grid()\n\n\n\nFunctions pass arguments by reference\nMost of the time, variable affectation just create a reference.\n\na = [1,2,3]\nb = a\na[1] = 0\n(a, b)\n\nTo get a copy instead, one needs to specify it explicitly.\n\nimport copy\na = [1,2,3]\nb = copy.copy(a)\na[1] = 0\n(a, b)\n\nNot that copy follows only one level of references. Use deepcopy for more safety.\n\na0 = ['a','b']\na = [a0, 1, 2]\nb = copy.copy(a)\na[0][0] = 'ξ'\na, b\n\n\na0 = ['a','b']\na = [a0, 1, 2]\nb = copy.deepcopy(a)\na[0][0] = 'ξ'\na, b\n\nArguments in a function are references towards the original object. No data is copied. It is then easy to construct functions with side-effects.\n\ndef append_inplace(l1, obs):\n    l1.append(obs)\n    return l1\nl1, obs = ([1,2,3], 1.5)\nl2 = append_inplace(l1,obs)\nprint(l2, l1)\n# note that l1 and l2 point to the same object\nl1[0] = 'hey'\nprint(l2, l1)\n\nThis behaviour might feel unnatural but is very sensible. For instance if the argument is a database of several gigabytes and one wants to write a function which will modify a few of its elements, it is not reasonable to copy the db in full.",
+    "crumbs": [
+      "Hands-on",
+      "Python: syntax review"
+    ]
+  },
+  {
+    "objectID": "handson/python_syntax.html#objects",
+    "href": "handson/python_syntax.html#objects",
+    "title": "Python: syntax review",
+    "section": "Objects",
+    "text": "Objects\nObjects ?\n\ncan be passed around / referred too\nhave properties (data) and methods (functions) attached to them\ninherit properties/methods from other objects\n\nObjects are defined by a class definition. By convention, classes names start with uppercase . To create an object, one calls the class name, possibly with additional arguments.\n\nclass Dog:\n    name = \"May\" # class property\n\nd1 = Dog()\nd2 = Dog()\n\nprint(f\"Class: d1-&gt;{type(d1)}, d2-&gt;{type(d2)}\")\nprint(f\"Instance address: d2-&gt;{d1},{d2}\")\n\nNow, d1 and d2 are two different instances of the same class Dog. Since properties are mutable, instances can have different data attached to it.\n\nd1.name = \"Boris\"\nprint([e.name for e in [d1,d2]])\n\nMethods are functions attached to a class / an instance. Their first argument is always an instance. The first argument can be used to acess data held by the instance.\n\nclass Dog:\n    name = None # default value\n    def bark(self):\n        print(\"Wouf\")\n    def converse(self):\n        n = self.name\n        print(f\"Hi, my name is {n}. I'm committed to a strong and stable government.\")\n        \nd = Dog()\nd.bark()   # bark(d)\nd.converse()\n\n\nConstructor\nThere is also a special method __init__ called the constructor. When an object is created, it is called on the instance. This is useful in order to initialize parameters of the instance.\n\nclass Calibration:\n    \n    def __init__(self, x=0.1, y=0.1, β=0.0):\n        if not (β&gt;0) and (β&lt;1):\n            raise Exception(\"Incorrect calibration\"})\n        self.x = x\n        self.y = y\n        self.β = β\n\n\nc1 = Calibration()\nc2 = Calibration(x=3, y=4)\n\nTwo instances of the same class have the same method, but can hold different data. This can change the behaviour of these methods.\n\n# class Dog:\n    \n#     state = 'ok'\n    \n#     def bark(self):\n#         if self.state == 'ok':\n#             print(\"Wouf!\")\n#         else:\n#             print(\"Ahouuu!\")\n        \n# d = Dog()\n# d1 = Dog()\n# d1.state = 'hungry'\n\n# d.bark()\n# d1.bark()\n\nTo write a function which will manipulate properties and methods of an object, it is not required to know its type in advance. The function will succeed as long as the required method exist, fail other wise. This is called “Duck Typing”: if it walks like a duck, it must be a duck…\n\nclass Duck:\n    def walk(self): print(\"/-\\_/-\\_/\")\n        \nclass Dog:\n    def walk(self): print(\"/-\\_/*\\_/\")\n    def bark(self): print(\"Wouf\")\n\n\nanimals = [C() for C in (Duck,Dog)]\ndef go_in_the_park(animal):\n    for i in range(3): animal.walk()\nfor a in animals:\n    go_in_the_park(a)\n\n\nInheritance\nThe whole point of classes, is that one can construct hierarchies of classes to avoid redefining the same methods many times. This is done by using inheritance.\n\nclass Animal:\n    \n    def run(self): print(\"👣\"*4)\n\nclass Dog(Animal):\n    def bark(self): print(\"Wouf\")\n        \nclass Rabbit(Animal):\n    def run(self):\n        super().run() ; print( \"🐇\" )\n\n\nAnimal().run()\ndog = Dog()\ndog.run()\ndog.bark()\nRabbit().run()\n\nIn the above example, the Dog class inherits from inherits the method run from the Animal class: it doesn’t need to be redefined again. Essentially, when run(dog) is called, since the method is not defined for a dog, python looks for the first ancestor of dog and applies the method of the ancestor.\n\n\nSpecial methods\nBy conventions methods starting with double lowercase __ are hidden. They don’t appear in tab completion. Several special methods can be reimplemented that way.\n\nclass Calibration:\n    \n    def __init__(self, x=0.1, y=0.1, β=0.1):\n        if not (β&gt;0) and (β&lt;1):\n            raise Exception(\"Incorrect calibration\")\n        self.x = x\n        self.y = y\n        self.β = β\n    \n    def __str__(self):\n        return f\"Calibration(x={self.x},y={self.y}, β={self.β})\"\n\n\nstr(Calibration() )\n\n\n\ncomplement\nPython is not 100% object oriented. - some objects cannot be subclassed - basic types behave sometimes funny (interning strings)\nmindfuck: Something that destabilizes, confuses, or manipulates a person’s mind.\n\na = 'a'*4192\nb = 'a'*4192\na is b\n\n\na = 'a'*512\nb = 'a'*512\na is b",
+    "crumbs": [
+      "Hands-on",
+      "Python: syntax review"
+    ]
+  },
+  {
+    "objectID": "handson/numeric_python.html",
+    "href": "handson/numeric_python.html",
+    "title": "Numeric Python",
+    "section": "",
+    "text": "Most python scientists, use the following libraries:\n\nnumpy: performant array library (vectors, matrices, tensors)\nmatplotlib: plotting library\nscipy: all kinds of mathematical routines\n\nIn the rest of the course, we’ll make some use of numpy and matplotlib\nThey are included in all python distributions like Anaconda Python\nAll additional libraries use numpy and matplotlib: pandas, statsmodels, sklearn",
+    "crumbs": [
+      "Hands-on",
+      "Numeric Python"
+    ]
+  },
+  {
+    "objectID": "handson/numeric_python.html#numpy",
+    "href": "handson/numeric_python.html#numpy",
+    "title": "Numeric Python",
+    "section": "Numpy",
+    "text": "Numpy\n\nWhat is Numpy\nNumpy is an array type (python object) meant to store efficiently homogenous, square, arrays (like \\((a_{i})_{i\\in [1,N]}\\) or \\((b_{i,j,k})_{i\\in [1,N],j\\in[1,J],k \\in [1,K]}\\))\nBy default its stores data in contiguous C-order (last index varies faster), but also supports Fortran order and strided arrays (non-contiguous).\nNumpy has introduced well thought conventions, that have been reused by many other libraries (tensorflow, pytorch, jax), or even programming languages (julia)\n\n\nVector Creation\n\nVectors and matrices are created with the np.array(...) function.\nSpecial vectors can be created with np.zeros, np.ones, np.linspace\n\n\n# an array can be created from a list of numbers\nnp.array( [1.0, 2.0, 3.0] )\n\n\n# or initialized by specifying the length of the array\nnp.zeros(5)\n\n\n# 10 regularly spaced points between 0 and 1\nnp.linspace(0, 1, 11)\n\n\n\nMatrix Creation\n\nA matrix is a 2-dimensional array and is created with np.array\nFunction np.matrix() has been deprecated: do not use it.\nThere are functions to create specific matrices: np.eye, np.diag, …\n\n\n# an array can be created from a list of (equal size) lists\nnp.array([\n    [1.0, 2.0, 3.0],\n    [4  ,   5,   6] \n])\n\n\n# initialize an empty matrix with the dimensions as a tuple\nA = np.zeros( (2, 3) )\nA\n\n\n# matrix dimensions are contained in the shape attribute\nA.shape\n\n\n\nTensors\nThe construction generalizes to higher dimension arrays (a.k.a. tensors)\n\n# an array can be created from a list of list of lists\nnp.array([\n    [\n        [1.0, 2.0, 3.0],\n        [4  ,   5,   6] \n    ],\n        [\n        [7.0, 8.0, 9.0],\n        [10 ,  11,   12] \n    ]\n])\n\n\n# initialize an empty matrix with the dimensions as a tuple\nA = np.zeros( (2, 3) )\nA\n\n\n# matrix dimensions are contained in the shape attribute\nA.shape\n\n\n\nLinear Algebra\nVector multiplications and Matrix multiplications can be performed using special sign @\n\nA = np.array([[1.0, 2.0], [2,4]])\nA\n\n\nB = np.array([1.0, 2.0])\nB\n\n\nA@B\n\n\nA@A\n\nNote how multiplication reduces total number of dimensions by 2. It is a tensor reduction.\n\nprint(A.shape, A.shape, (A@A).shape)\n\n\n\nScalar types\nNumpy arrays can contain data of several scalar types.\n\n[True, False, True]\n\n\n# vector of boolean\nboolean_vector = np.array( [True, False, True] )\nprint(f\"type of scalar '{boolean_vector.dtype}'\")\nboolean_vector\n\n\n# vector of integers\nint_vector = np.array([1, 2, 0])\nprint(f\"type of scalar '{int_vector.dtype}'\")\nint_vector\n\nBy default, numerical arrays contain float64 numbers (like matlab). But GPUs typically process 16 bits or 32 bits numbers.\nCan you create a 32 bits array?\n\n# your code here\n\n\n\nSubscripting Vectors\n\nElements and subarrays, can be retrieved using the same syntax as lists and strings.\n\nRemember that indexing starts at 0.\n\n\n\nV = np.array([0., 1., 2., 3., 4.])\ndisplay(V[1])  # second element\n\n\nV = np.array([0., 1., 2., 3., 4.])\ndisplay(V[1:3])  # second, third and fourth element\n\n\n\nModifying Vector Content\n\nElements and suvectors, can be assigned to new values, as long as they have the right dimensions.\n\n\nV = np.array([1., 1., 2., 4., 5., 8., 13.])\nV[3] = 3.0\nV\n\n\nV = np.array([1., 1., 2., 4., 5., 8., 13.])\n# V[1:4] = [1,2,3,4] # this doesn't work\nV[1:4] = [2,3,4] # this works\n\n\n\nSubscripting Matrices\n\nIndexing generalizes to matrices: there are two indices istead of one: M[i,j]\nOne can extract a row, or a column (a slice) with M[i,:] or M[:,i]\nA submatrix is defining with two intervals: M[i:j, k:l] or M[i:j, :], …\n\n\nM = np.array([[1,2,3],[4,5,6],[7,8,9]])\nM\n\n\nM[0,1] # access element (1,2)\n\n\nM[2,:] # third row\n\n\nM[:,1] # second column     # M[i,1] for any i\n\n\nM[1:3, :] # lines from 1 (included) to 3 (excluded) ; all columns\n\n\n\nModifying matrix content\n\nM = np.array([[1,2,3],[4,5,6],[7,8,9]])\nM\n\n\nM[0,0] = 0\nM\n\n\nM[1:3, 1:3] = np.array([[0,1],[1,0]]) # dimensions must match\nM\n\n\n\nElement-wise algebraic operations\n\nThe following algebraic operations are defined on arrays: +, -, *, /, **.\nComparisons operators (&lt;,&lt;=, &gt;, &gt;=, ==) are defined are return boolean arrays.\nThey operate element by element.\n\n\nA = np.array([1,2,3,4])\nB = np.array([4,3,2,1])\nA+B\n\n\nA*B    # note the difference with A@B\n\n\nA&gt;B\n\nAt first, one might be surprised that the default multiplication operator is element-wise multiplication rather than matrix multiplication.\nThere are at least two good reasons:\n\nconsistency: all operators can be broadcasted with the exact same rules (like *, +, &gt;)\nfor many workflows, elementwise operations are more common than matrix multiplication\n\n\n\nElement-wise logical operations\n\nThe following logical operations are defined element-wise on arrays: & (and), | (or), ~ (not)\n\n\nA = np.array([False, False, True, True])\nB = np.array([False, True, False, True])\n\n\n~A\n\n\nA | B\n\n\nA & B\n\n\n\nVector indexing\n\nArrays can be indexed by boolean arrays instead of ranges.\nOnly elements corresponding to true are retrieved\n\n\nx = np.linspace(0,1,6)\nx\n\n\n# indexes such that (x^2) &gt; (x/2)\nx**2 &gt; (x/2)\n\n\ncond = x**2 &gt; (x/2)\nx[ cond ] \n\n\n\nGoing further: broadcasting rules\n\nNumpy library has defined very consistent conventions, to match inconsistent dimensions.\nIgnore them for now…\n\n\nM = np.eye(4)\nM\n\n\nM[2:4, 2:4] = 0.5 # float\nM\n\n\nM[:,:2] = np.array([[0.1, 0.2]])  # 1x2 array\nM\n\n\n\nGoing Further\n\nOther useful functions (easy to google):\n\nnp.arange() regularly spaced integers\nnp.where() find elements in\n…",
+    "crumbs": [
+      "Hands-on",
+      "Numeric Python"
+    ]
+  },
+  {
+    "objectID": "handson/numeric_python.html#matplotlib",
+    "href": "handson/numeric_python.html#matplotlib",
+    "title": "Numeric Python",
+    "section": "Matplotlib",
+    "text": "Matplotlib\n\nMatplotlib\n\nmatplotlib is …\nobject oriented api optional Matlab-like syntax\nmain function is plt.plot(x,y) where x and y are vectors (or iterables like lists)\n\nlots of optional arguments\n\n\n\nfrom matplotlib import pyplot as plt\n\n\n\nExample\n\nx = np.linspace(-1,1,6)\n\n\ny = np.sin(x)/x # sinus cardinal\n\n\nplt.plot(x,y,'o')\nplt.plot(x,y)\n\n\n\nExample (2)\n\nx = np.linspace(-5,5,100)\n\nfig = plt.figure() # keep a figure open to draw on it\nfor k in range(1,5):\n    y = np.sin(x*k)/(x*k)\n    plt.plot(x, y, label=f\"$sinc({k} x)$\") # label each line\nplt.plot(x, x*0, color='black', linestyle='--')\nplt.grid(True) # add a grid\nplt.title(\"Looking for the right hat.\")\nplt.legend(loc=\"upper right\")\n\n\n\nExample (3)\n\nx = np.linspace(-5,5,100)\n\nplt.figure()\nplt.subplot(2,2,1) # create a 2x2 subplot and draw in first quadrant\nplt.plot(x,x)\nplt.subplot(2,2,2) # create a 2x2 subplot and draw in second quadrant\nplt.plot(x,-x)\nplt.subplot(2,2,3) # create a 2x2 subplot and draw in third quadrant\nplt.plot(x,-x)\nplt.subplot(2,2,4) # create a 2x2 subplot and draw in fourth quadrant\nplt.plot(x,x)\n\nplt.tight_layout() # save some space\n\n\n\nAlternatives to matplotlib\n\nplotly (nice javascript graphs)\nbqplot (native integration with jupyter)\naltair\n\nexcellent for dataviz/interactivity\npython wrapper to Vega-lite\nvery efficient to visualize pandas data (i.e. a dataframe)",
+    "crumbs": [
+      "Hands-on",
+      "Numeric Python"
+    ]
+  },
+  {
+    "objectID": "slides/methods.html#dynamic",
+    "href": "slides/methods.html#dynamic",
+    "title": "Methods",
+    "section": "Dynamic",
+    "text": "Dynamic\nDynamic programming comes in two flavours:\n\nMarkov Discrete Problems (MDP)\n\nstates and controls take discrete values\n\nApproximate Dynamic Programming (ADP)\n\nstates and controls take continuous values\n\n\nFor ADP, objects of interest (shocks, decision rules) live in infinitely dimensional spaces.\nThey need be be quantized with a finite set of parameters.\nThis motivates the study of:\n\ninterpolation (for the decision rule)\ndiscretization (for the shocks)\n\nWe will also need optimization but we will defer it to december.",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "slides/methods.html#approximation",
+    "href": "slides/methods.html#approximation",
+    "title": "Methods",
+    "section": "Approximation",
+    "text": "Approximation\nDefine two continuous sets \\(X\\in R^p\\), \\(Y \\in R^q\\).\nTake a dataset: \\((x_i, y_i)_{i\\in[1,N]} \\in X \\times Y\\)\n \nTake \\(\\tilde{x} \\in X \\setminus \\{x_i\\}_{i\\in[1,N]}\\). What should be the matching \\(\\tilde{y}\\) ?\n \nApproximation method:\n\nDiscover implicit relation \\(y=f^t(x)\\) (the model) then compute \\(\\tilde{y}=f^t (\\tilde{x})\\).\n\nConcretely we choose \\(f\\) from a family \\(\\mathcal{F}\\) of functions parameterized by a parameter \\(\\theta\\), the approximation family.\n\nwe approximate the true \\(f^t(x)\\) by some \\(f(x;\\theta)\\)",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "slides/methods.html#interpolation-vs.-regression",
+    "href": "slides/methods.html#interpolation-vs.-regression",
+    "title": "Methods",
+    "section": "Interpolation vs. Regression",
+    "text": "Interpolation vs. Regression\n\nInterpolation: \\(f\\) is chosen such that \\(\\forall n, y_n=f(x_n)\\) \nRegression: \\(f\\) is chosen so as to minimize a fitness criterium such as\n\n\\(\\min_f \\sum_n \\left( y_n-f(x_n) \\right)^2\\)\nor \\(\\min_{\\theta} \\sum_n \\left( y_n-f(x_n;\\theta) \\right)^2 + \\lambda  || \\theta ||^2\\) with \\(\\lambda&gt;0\\)\n\n\n \n\nConfusing remarks:\n\nsometimes one differentiate interpolation (when \\(\\tilde{ x}\\)) is in the convex hull of \\(X\\) and extrapolation (when \\(\\tilde{x}\\) is outside)\nsome applied mathematicians tend interpolation for everything(i.e. interpolate=evaluate f outside of X)",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "slides/methods.html#examples-1-linear-interpolation",
+    "href": "slides/methods.html#examples-1-linear-interpolation",
+    "title": "Methods",
+    "section": "Examples (1): Linear Interpolation",
+    "text": "Examples (1): Linear Interpolation\n1d Graph. Join the dots. Linear/Spline\n2d Graph: Regression\nConclusion: interpolate only if \\(f\\) is known precisely on \\(X\\)",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "slides/methods.html#example-2",
+    "href": "slides/methods.html#example-2",
+    "title": "Methods",
+    "section": "Example (2)",
+    "text": "Example (2)\n\n\n\\(X\\) and \\(Y\\): large databases of low and high resolutions images\n\\(\\mathcal{F}\\): neural network",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "slides/methods.html#why-do-we-need-it",
+    "href": "slides/methods.html#why-do-we-need-it",
+    "title": "Methods",
+    "section": "Why do we need it?",
+    "text": "Why do we need it?\n\nIn economics, we often solve a problem \\(\\Phi(f)=0\\) where \\(f\\) is a function: \\(\\forall s, \\Phi(f)(s) = 0\\)\nIf we approximate \\(f\\) by some element \\(f(;\\theta)\\in\\mathcal{F}\\) we just need to identify a finite set of parameters \\(\\theta \\in R^n\\)\nHow do we identify \\(\\theta\\)?\n\nchoose a finite set of \\(n\\) criteria that must be met\n\n\\(f\\) is pinned down uniquely\nexample: colocation, choose \\(s_1, ..., s_n\\). Find \\(f\\) such that \\(\\forall i=1:n, \\Phi(f)(s_i) = 0\\)\n\nchoose higher number of objectives (\\(p&gt;n\\)) that must be minimized:\n\nexample: regression, choose \\(s_1, ..., s_p\\). Find \\(f\\) such that minimize \\(\\sum_i \\Phi(f)(s_i)^2 = 0\\)",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "slides/methods.html#several-interpolation-flavours",
+    "href": "slides/methods.html#several-interpolation-flavours",
+    "title": "Methods",
+    "section": "Several interpolation flavours",
+    "text": "Several interpolation flavours\n\nlocal vs spectral:\n\nlocal: functions in \\(f\\) have compact support\nspectral: noncompact support\n\nlinear vs nonlinear:\n\n\\(\\mathcal{F}\\) is a vector space: \\(f(x) \\approx \\sum_{i=1}^N \\theta_n b_n(x)\\) where \\(b_n\\) is a base of \\(\\mathcal{F}\\)\nnonlinear: wavelets, neural networks, ….",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "slides/methods.html#linear-splines",
+    "href": "slides/methods.html#linear-splines",
+    "title": "Methods",
+    "section": "Linear Splines",
+    "text": "Linear Splines\n\nTake function \\(f\\) defined on an interval \\([a,b]\\). Suppose the value is known at \\((a=x_1, ... x_N=b)\\). Denote \\(y_i = f(x_i)\\).\nJoin the dots: define a piecewise linear function as \\[\\forall x \\in [x_i, x_{i+1}], \\tilde{f}(x) = y_i + \\underbrace{\\frac{x-x_i}{x_{i+1}-x_i}}_{\\text{barycentric coordinate}} (y_{i+1} - y_i)\\]",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "slides/methods.html#linear-splines-1",
+    "href": "slides/methods.html#linear-splines-1",
+    "title": "Methods",
+    "section": "Linear Splines",
+    "text": "Linear Splines\n\nAlternate view: \\[\\tilde{f}(x) = \\sum_{i=1}^N y_i B^i_1(x)\\] where \\(b_1^i(x)=\\frac{x-x_{i-1}}{x_i-x_{i-1}}.1_{x\\in[x_{i-1},x_i]} + (1-\\frac{x-x_{i}}{x_{i+1}-x_{i}}).1_{x\\in [x_i, x_{i+1}]}\\)\n\\((B^i)\\) is an interpolation basis",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "slides/methods.html#splines",
+    "href": "slides/methods.html#splines",
+    "title": "Methods",
+    "section": "Splines",
+    "text": "Splines\n\n\\(n\\)-th order spline : piecewise polynomial function that is \\(n\\) times differentiable except on a finite set of break points (aka knots), where it is \\((n-1)\\) times differentiable.\nin practice the data points are the breakpoints\nexample: order 2\n\nsuppose \\(\\tilde{f}(x_i)\\) and \\(\\tilde{f}^{\\prime}(x_i)\\) are known, choose the coefficients for the patch \\(p_{i+1}(x) = a_{i+1}x^2+b_{i+1}x + c_{i+1}\\)\nAlready two constraints. Condition \\(p_{i+1}(x_{i+1})=\\tilde{f}(x_{i+1})\\) supplies another one.\nDo it for every patch. Note that it requires to set \\(f^{\\prime}(a)\\) beforehand.",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "slides/methods.html#basis-splines-much-better",
+    "href": "slides/methods.html#basis-splines-much-better",
+    "title": "Methods",
+    "section": "Basis Splines (much better)",
+    "text": "Basis Splines (much better)\n\nDefine \\[B_{i,1}(x) = 1_{x \\in [x_i, x_{i+1}]}\\] \\[B_{i,k+1}(x) = \\frac{x-x_i}{x_{i+k}-x_i}B_{i,k}(x) + \\frac{x_{i+k+1}-x}{x_{i+k+1}-x_{i+1}}B_{i+1,k}(x)\\]\nProperties:\n\nAll basis splines have compact support.\nIf grid is regularly spaced there is \\(B_k\\) such that \\(B_{i,k}(x) = B_k(x-x_i)\\)\n\nTheorem (de Boor): Any spline of order \\(k\\) on the knots \\((x_i)\\) can be expressed as a linear combination of the basis splines \\((B_{i,k})\\).",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "slides/methods.html#basis-splines",
+    "href": "slides/methods.html#basis-splines",
+    "title": "Methods",
+    "section": "Basis splines",
+    "text": "Basis splines\n\nBasis Splines",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "slides/methods.html#basis-splines-are-not-interpolating",
+    "href": "slides/methods.html#basis-splines-are-not-interpolating",
+    "title": "Methods",
+    "section": "Basis splines are not interpolating",
+    "text": "Basis splines are not interpolating\n\nUnfortunately basis splines are not “interpolating” in the sense that in general \\[f(x_i) \\neq \\sum_{n} f(x_n) B_{n,k} (x_i)\\]\nOne must choose other coefficients \\((c_n)\\) which satisfy:\n\\[y_i = \\sum_n c_n B_{n,k} (x_i)\\]\n\nthere are more coefficients than data points:\n\nrequires boundary conditions\n\n\\(f''=0\\): natural spline\n\ngoing from \\(y_n\\) to \\(c_n\\) is called prefiltering",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "slides/methods.html#in-practice-interpolations",
+    "href": "slides/methods.html#in-practice-interpolations",
+    "title": "Methods",
+    "section": "In practice: Interpolations",
+    "text": "In practice: Interpolations\nf(x) = log(x)\nxs = 1:0.2:5\nA = [f(x) for x in xs]\n\n# linear interpolation\ninterp_linear = LinearInterpolation(xs, A)\ninterp_linear(1.3) # interpolate\n\n# cubic spline interpolation\ninterp_cubic = CubicSplineInterpolation(xs, A)\ninterp_cubic(1.3) # interpolate",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "slides/methods.html#in-practice-interpolations-2",
+    "href": "slides/methods.html#in-practice-interpolations-2",
+    "title": "Methods",
+    "section": "In practice: Interpolations (2)",
+    "text": "In practice: Interpolations (2)\nNote that in \\(y_i = \\sum_n c_n B_{n,k} (x_i)\\), \\(y_i\\) and \\(c_n\\) could perfectly well be vectors. If we use a Vector type which implements all operations (zeros, *, …) we can interpolate them with the same operations\nusing StaticArrays\n\nf(x) = SVector(log(x), exp(x))\nxs = 1:0.2:5\nA = [f(x) for x in xs]\n\n# linear interpolation\ninterp_linear = LinearInterpolation(xs, A)\ninterp_linear(1.3) # returns a 2d SVector",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "slides/methods.html#mental-break-matrix-conditioning",
+    "href": "slides/methods.html#mental-break-matrix-conditioning",
+    "title": "Methods",
+    "section": "Mental break: matrix conditioning",
+    "text": "Mental break: matrix conditioning\n\nSuppose you want to solve vector equation \\(A x=y\\). Will a small error in \\(y\\) affect a lot the value of \\(x\\)? (in particular round-off errors)\n\ncondition number: \\(\\lim_{\\epsilon\\rightarrow 0} \\sup_{\\delta y\\leq \\epsilon} \\frac{\\delta x}{\\delta y}\\)\nor \\(\\kappa(A) = ||A^{-1}|| || A||\\) where \\(||. ||\\) is a subordonate norm.\nif very-large: the matrix is ill conditioned\n\nWhat makes a matrix ill-conditioned?\n\nsome rows/columns are very small, others are gigantic\nrows/columns are almost colinear",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "slides/methods.html#polynomial-approximation",
+    "href": "slides/methods.html#polynomial-approximation",
+    "title": "Methods",
+    "section": "Polynomial approximation",
+    "text": "Polynomial approximation",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "slides/methods.html#fitting-polynomials",
+    "href": "slides/methods.html#fitting-polynomials",
+    "title": "Methods",
+    "section": "Fitting polynomials",
+    "text": "Fitting polynomials\n\nLet’s approximate: \\(f(;\\theta) = \\sum_{n=0}^K \\theta_k x^k\\).\nWe need \\((K+1)\\) points to fit a polynomial of order \\(K\\). Let’s take grid points \\((x_0, ... x_{K})\\) and denote \\(y_k=f(x_k)\\)\nWe need to solve in \\((\\theta_k)_{k=[0,K]}\\):\n\n\\[\\forall n \\in[0,K],  \\underbrace{\\sum_k \\theta_k (x_n)^{k}}_{M \\theta} = y_k\\]",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "slides/methods.html#vandermonde-matrix",
+    "href": "slides/methods.html#vandermonde-matrix",
+    "title": "Methods",
+    "section": "Vandermonde Matrix",
+    "text": "Vandermonde Matrix\n\n\\(M\\) has a special structure, a Vandermode matrix: \\[\nM =\n\\begin{bmatrix}\n1 & x_0 & x_0^2 \\cdots & x_0^K \\\\\\\\\n1 & x_1 & x_1^2  \\cdots  & x_1^K \\\\\\\\\n1 & x_2 & x_2^2  \\cdots  & x_2^K \\\\\\\\\n\\vdots & \\vdots & \\ddots & \\vdots \\\\\\\\\n1 & x_K & x_K^2  \\cdots & x_K^K\n\\end{bmatrix}\n\\]\nVandermonde matrix is ill-conditioned if points are too close or if \\(K\\) is high.",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "slides/methods.html#orthogonal-polynomials",
+    "href": "slides/methods.html#orthogonal-polynomials",
+    "title": "Methods",
+    "section": "Orthogonal polynomials",
+    "text": "Orthogonal polynomials\n\nDefine a scalar product over functions on the domain \\([a,b]\\) by choosing a positive weight function \\(w(x)\\). \\[&lt;P,Q&gt; = \\int_a^b w(x) P(x)Q(x) dx\\]\nConstruct an orthogonal base \\((T_n)_{n=[1,K]}\\).\nApproximate \\[f(x)\\approx f(x; \\theta) = \\sum_{n=0}^K \\theta_n T_n(x)=\\sum_{n=0}^K &lt;f|T_n&gt; T_n(x)\\]\n\nthis is optimal for the norm associated to \\(&lt;&gt;\\) (projection on the orthogonal base)",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "slides/methods.html#vandermonde-matrix-1",
+    "href": "slides/methods.html#vandermonde-matrix-1",
+    "title": "Methods",
+    "section": "Vandermonde matrix",
+    "text": "Vandermonde matrix\nCoefficients can still be identified by inverting: \\[\\forall n \\in[0,K] \\underbrace{\\sum_k \\theta_k T_k(x_n)}_{M \\theta} = y_n\\]\n\\[\nM =\n\\begin{bmatrix}\nT_0(x_0) & T_1(x_0) & \\cdots & T_K(x_0) \\\\\\\\\nT_0(x_1) & T_1(x_1) &  \\cdots  & T_K(x_1) \\\\\\\\\nT_0(x_2) & T_1(x_2) &  \\cdots  & T_K(x_2) \\\\\\\\\n\\vdots & \\vdots & \\ddots & \\vdots \\\\\nT_0(x_K) & T_1(x_K) &  \\cdots & T_K(x_K)\n\\end{bmatrix}\n\\]",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "slides/methods.html#problem-runge-error",
+    "href": "slides/methods.html#problem-runge-error",
+    "title": "Methods",
+    "section": "Problem: Runge error",
+    "text": "Problem: Runge error\n\n\n\nRed: Runge function \\(f(x)=\\frac{1}{1+25x^2}\\)\nBlue: interpolates at 6, regularly-spaced, points\nGreen: interpolates at 10, regularly-spaced, points\nWhat happens when interpolation order increases?\n\noscillations increase.\n\nDoes it contradict Stone-Weierstrass theorem ? No.\nSolutions:\n\nuse regression method instead\nchoose the interpolation points wisely",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "slides/methods.html#chebychev-nodes",
+    "href": "slides/methods.html#chebychev-nodes",
+    "title": "Methods",
+    "section": "Chebychev Nodes",
+    "text": "Chebychev Nodes\n\nThere is an optimal way to choose the interpolation points:\n\nthe roots of \\(cos(\\frac{2 k - 1}{2n} \\pi)\\) for [-1,1]\nrescale for a finite interval [a,b]\n\nfor the interpolating polynomial: \\[|f(x) - P_n(x)|  \\leq \\frac{1}{2^n (n+1)!} \\max_{\\xi \\in [-1,1]} |f^n(\\xi)|\\]",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "slides/methods.html#chebychev-polynomials",
+    "href": "slides/methods.html#chebychev-polynomials",
+    "title": "Methods",
+    "section": "Chebychev polynomials",
+    "text": "Chebychev polynomials\n\nChebychev polynomials (of the first kind) have their zeros on the nodes.\nDefinitions:\n\n\\(T_n(x) = \\cos(n  \\arccos(x))\\) (in [0,1])\nrecursive: \\(T_0(x)=1\\), \\(T_1(x)=x\\), \\(T_n(x)=2 x T_{n-1}(x)-T_{n-2}(x)\\)\n\nVery good choice:\n\nmatrix \\(M\\) is well conditioned: \\(\\sqrt{2}\\)",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "slides/methods.html#chebychev-polynomial",
+    "href": "slides/methods.html#chebychev-polynomial",
+    "title": "Methods",
+    "section": "Chebychev Polynomial",
+    "text": "Chebychev Polynomial",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "slides/methods.html#multidimensional-interpolation",
+    "href": "slides/methods.html#multidimensional-interpolation",
+    "title": "Methods",
+    "section": "Multidimensional interpolation",
+    "text": "Multidimensional interpolation\n\nConsider a function \\(f\\) defined on a space \\(X_1 \\times X_d\\)\nTake \\(d\\) grids \\(\\mathcal{G}_1\\subset X_1, ..., \\mathcal{G}_d\\subset X_d\\) with linear approximation bases \\(\\mathcal{B}_1=(b_1^1, ... b_1^{N_1}),..., \\mathcal{B}_d=(b_d^1, ... b_d^{N_d})\\).\nThen \\(f\\) can be approximated by \\(f(x_1, ... x_d ; \\theta) = \\sum_{i_1=1}^{N_1} ... \\sum_{i_d=1}^{N_d} \\theta_{i_1, ... i_d} \\underbrace{b_{i_1}^1(x_1) ...  b_{i_d}^d(x_d)}_{\\text{Product Base}}\\)\nMorality:\n\nlinear appoximation along each dimension induces a natural (multi)-linear in many dimensions\nCoefficients are still the solution of a linear system: \\[M \\theta = y\\]\nbut \\(M\\) has a special structure (tensor product)\n\nProblem: number of coefficients to determine increases exponentially with number of dimensions:\n\n“Curse of Dimensionality”",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "slides/methods.html#multidimensional-interpolation-2",
+    "href": "slides/methods.html#multidimensional-interpolation-2",
+    "title": "Methods",
+    "section": "Multidimensional interpolation (2)",
+    "text": "Multidimensional interpolation (2)\n\nWays to mitigate the curse of dimensionality\nRemedies:\n\nsparse grids\nadaptive approximation\n\ndelaunay tessellation\nadaptive sparse grid\n\nneural networks\n…\n\nNo black-magic theorem: there is no solution to the curse of dimensionality\n\n.. but there are methods to adapt to problem whose intrinsic dimension is smaller than the actual number of variables",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "slides/methods.html#delaunay-and-sparse-grid",
+    "href": "slides/methods.html#delaunay-and-sparse-grid",
+    "title": "Methods",
+    "section": "Delaunay and sparse grid",
+    "text": "Delaunay and sparse grid\n\n\n\nDelaunay Tessellation\n\n\n\n\n\nSparse Grid",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "slides/methods.html#python-libraries",
+    "href": "slides/methods.html#python-libraries",
+    "title": "Methods",
+    "section": "Python libraries",
+    "text": "Python libraries\n\nscipy.interpolation many common methods\ninterpolation.py\n\nlinear and cubic splines\njitted with numba\nalso complete and smolyak polynomials",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "slides/methods.html#several-kinds-of-discretization",
+    "href": "slides/methods.html#several-kinds-of-discretization",
+    "title": "Methods",
+    "section": "Several kinds of Discretization",
+    "text": "Several kinds of Discretization\n\napproximate operator with a finite number of iterations:\n\ncompute \\(\\int_a^b f(x) dx\\)\ncompute \\(E_\\omega f(\\omega)\\)\n\nrepresent an infinite dimensional object with a finite set of parameters:\n\n\\(f \\equiv (f(x_i))_{i=1:N}\\) with \\(x_i=a+\\frac{i-1}{N-1}(b-a)\\)\n\ndiscretize arguments\n\n\\(\\omega \\equiv (\\mu_i, \\omega_i)_{i=1:N}\\) such that \\(E_\\omega f(\\omega) \\approx \\sum_i \\mu_i f(\\omega_i)\\) (quantization)\n\ndiscretize continous process by a discrete one:\n\ncontinuous markov chain to discrete markov Chain",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "slides/methods.html#discretizing-an-ar1",
+    "href": "slides/methods.html#discretizing-an-ar1",
+    "title": "Methods",
+    "section": "Discretizing an AR1",
+    "text": "Discretizing an AR1\n\nTake \\(AR1\\) process \\[x_t = \\rho x_{t-1} + \\epsilon_t\\]\n\nwith \\(|\\rho| &lt;1\\) and \\(\\epsilon \\sim N(0,\\sigma)\\)\n\nCan we replace \\((x_t)\\) by a discrete markov chain?\n\napproximate version:\n\ngood time \\(x^g\\) and bad time \\(x^b\\). Probability \\(\\pi\\) of staying in the same, \\(1-\\pi\\) of switching.\n\ntwo systematic methods (available in QuantEcon.py)\n\nTauchen\nRouwenhorst",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "slides/methods.html#ar1-tauchen",
+    "href": "slides/methods.html#ar1-tauchen",
+    "title": "Methods",
+    "section": "AR1: Tauchen",
+    "text": "AR1: Tauchen\n\nThe unconditional distribution of an AR1 is a normal law \\(\\mathcal{N}(0,\\frac{\\sigma}{\\sqrt{1-\\rho^2}})\\)\nChoose \\(m&gt;0\\), typically \\(m=3\\)\nBound the process: \\(\\underline{x} = -m \\frac{\\sigma}{\\sqrt{1-\\rho^2}}\\) and \\(\\overline{x} = m \\frac{\\sigma}{\\sqrt{1-\\rho^2}}\\)\nDefine the \\(N\\) discretized points (\\(i\\in[1,n]\\)): \\(y_i = \\underline{x} + \\frac{i-1}{N-1}(\\overline{x}-\\underline{x})\\)\nDefine the transitions:\n\n\\[\\begin{eqnarray}\n\\pi_{ij} & = & prob \\left( y_{t+1}=y_j|y_t=y_i\\right)\\\\\n         & = & prob \\left( |y_{t+1}-x_j| = \\inf_k |y_{t+1}-x_k| \\left| y_t=y_i \\right. \\right)\n\\end{eqnarray}\\]",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "slides/methods.html#ar1-tauchen-2",
+    "href": "slides/methods.html#ar1-tauchen-2",
+    "title": "Methods",
+    "section": "AR1: Tauchen (2)",
+    "text": "AR1: Tauchen (2)\n\nFormulas \\(\\delta=\\frac{\\overline{x}-\\underline{x}}{N}\\):\n\nif \\(1&lt;k&lt;N-1\\)\n\\[\\pi_{jk} = F(\\frac{y_k + \\delta/2-\\rho y_j}{\\sigma_{\\epsilon}}) - F(y_k + \\delta/2-\\rho y_j)\\]\nif \\(k=1\\)\n\\[\\pi_{j} = F(\\frac{y_k + \\delta/2-\\rho y_j}{\\sigma_{\\epsilon}}) \\]\nif \\(k=N\\)\n\\[\\pi_{j} = 1- F(\\frac{y_k - \\delta/2-\\rho y_j}{\\sigma_{\\epsilon}}) \\]",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "slides/methods.html#how-to-assess-the-quality-of-approximation",
+    "href": "slides/methods.html#how-to-assess-the-quality-of-approximation",
+    "title": "Methods",
+    "section": "How to assess the quality of approximation ?",
+    "text": "How to assess the quality of approximation ?\n\ncompare generated stationary moments between discretized process and true AR1:\n\nE(), Var(), ACor()\n\nby looking at the exact ergodic distribution or by doing some simulations\nnot very precise when the process is very persistent \\(\\rho\\approx 1\\)",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "slides/methods.html#rouvenhorst-method-1",
+    "href": "slides/methods.html#rouvenhorst-method-1",
+    "title": "Methods",
+    "section": "Rouvenhorst method (1)",
+    "text": "Rouvenhorst method (1)\n\nN = 2\n\nchoose \\(y_1=-\\psi\\), \\(y_2=\\psi\\)\ndefine transition matrix: \\[\\Theta_2 = \\begin{bmatrix}\np & 1-p\\\\\\\\\n1-q & q\n\\end{bmatrix}\\]\nchoose \\(p\\), \\(q\\) and \\(\\psi\\) to match some moments: \\(E()\\), \\(Var()\\), \\(ACor()\\)\n\nthey can be computed analytically for AR1 and for discretized version.",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "slides/methods.html#rouvenhorst-method-2",
+    "href": "slides/methods.html#rouvenhorst-method-2",
+    "title": "Methods",
+    "section": "Rouvenhorst method (2)",
+    "text": "Rouvenhorst method (2)\n\nN &gt;2 \\[\\Theta_N =\np \\begin{bmatrix}  \n\\Theta_{N-1}  & 0\\\\\\\\\n0 & 0\n\\end{bmatrix} +\n(1-p) \\begin{bmatrix}  \n0 & \\Theta_{N-1} \\\\\\\\\n0 & 0\n\\end{bmatrix} +\n(1-q) \\begin{bmatrix}  \n0 & 0\\\\\\\\\n\\Theta_{N-1} & 0\n\\end{bmatrix} +\nq \\begin{bmatrix}  \n0 & 0\\\\\\\\\n0 & \\Theta_{N-1}\n\\end{bmatrix}\n\\]\nNormalize all lines",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "slides/methods.html#rouvenhorst-method-3",
+    "href": "slides/methods.html#rouvenhorst-method-3",
+    "title": "Methods",
+    "section": "Rouvenhorst method (3)",
+    "text": "Rouvenhorst method (3)\n\nProcedure converges to Bernouilli distribution.\nMoments can be computed in closed form:\n\n\\(E() = \\frac{(q-p)\\psi}{2-(p+q)}\\)\n\\(Var() = \\psi^2 \\left[ 1-4 s (1-s) + \\frac{4s(1-s)}{N-1}\\right]\\)\n\\(Acor()= p+q-1\\)\n\nRouwenhorst method performs better for highly correlated processes",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "slides/methods.html#discretizing-an-iid-law",
+    "href": "slides/methods.html#discretizing-an-iid-law",
+    "title": "Methods",
+    "section": "Discretizing an iid law",
+    "text": "Discretizing an iid law\n\nGiven \\(f\\), and an iid process \\(\\epsilon \\sim N(0,\\sigma^2)\\), how to approximate \\(E_{\\epsilon} f(\\epsilon)\\) ?\nIdeas:\n\ndraw lots of random \\((\\epsilon\\_n)\\_{n=1:N}\\) and compute \\[\\frac{1}{N}\\sum_{n=1}^N f(\\epsilon_n)\\]\n\naka Monte-Carlo simulations\n\ngiven a method to approximate integrals, compute \\[\\int_{u=-\\infty}^{\\infty} f(u) \\mu(u) du\\] with \\(\\mu(u)=\\frac{1}{\\sigma\\sqrt{2 \\pi}}e^{-\\frac{u^2}{2\\sigma^2}}\\)\ndiscretize (or quantize) the signal \\(\\epsilon\\) as \\((w_i, \\epsilon_i)_{i=1:N}\\) and compute:\n\n\n\\[\\frac{1}{N} \\sum_n w_n f(\\epsilon_n)\\]",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "slides/methods.html#whats-wrong-with-monte-carlo-simulations",
+    "href": "slides/methods.html#whats-wrong-with-monte-carlo-simulations",
+    "title": "Methods",
+    "section": "What’s wrong with Monte-Carlo Simulations?",
+    "text": "What’s wrong with Monte-Carlo Simulations?\n\nLet’s take an exemple:\n\nconsumption is \\(C(\\epsilon)=U(e^{\\epsilon})\\)\nwith \\({\\sigma}\\_{\\epsilon}=0.05\\) and \\(U(x)=\\frac{x^{1-\\gamma}}{1-\\gamma}\\) and \\(\\gamma=40\\).\n\nLet’s compute \\(E_{\\epsilon}(C(\\epsilon))\\) precisely.\nDiscuss value of \\(\\gamma\\): is it crazy? (risk return)",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "slides/methods.html#whats-wrong-with-monte-carlo-simulations-1",
+    "href": "slides/methods.html#whats-wrong-with-monte-carlo-simulations-1",
+    "title": "Methods",
+    "section": "What’s wrong with Monte-Carlo Simulations?",
+    "text": "What’s wrong with Monte-Carlo Simulations?\nCompute expectation\n# imports:\nusing Distributions: Normal\n\n# define the model\nσ = 0.05; γ = 40\nU(x)=(x^(-γ))/(-γ)\nC(e) = U(exp(e))\n\n# create distributions\ndis = Normal(0,σ)      \nE_ϵ(f;N=1000) = sum(f(rand(dis)) for i=1:N)/N\n\nNVec = [1000, 5000, 10000, 15000, 20000]\nvals = [E_ϵ(C; N=i) for i=NVec]\njulia&gt; vals = [E_ϵ(C; N=i) for i=NVec\n5-element Array{Float64,1}:\n -0.17546927855215824\n -0.2906119630309043\n -0.17924501776041424\n -0.1826805612086024\n -0.181184208323609",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "slides/methods.html#whats-wrong-with-monte-carlo-simulations-2",
+    "href": "slides/methods.html#whats-wrong-with-monte-carlo-simulations-2",
+    "title": "Methods",
+    "section": "What’s wrong with Monte-Carlo Simulations?",
+    "text": "What’s wrong with Monte-Carlo Simulations?\nusing Statistics: std\n\n#computes estimates for various N\nstdev(f; N=100, K=100) = std(E_ϵ(f; N=N) for k=1:K)\nsdvals = [stdev(C; N=n, K=10000) for n=NVec]\njulia&gt; @time sdvals = [stdev(C; N=n, K=10000) for n=NVec]      \n 99.558940 seconds (2.55 G allocations: 38.011 GiB, 0.81% gc time)\n5-element Array{Float64,1}:                                       \n 0.04106466473642666                                              \n 0.018296399941889575                                             \n 0.013174287295527257                                             \n 0.01086721462174894                                              \n 0.009383218078206898",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "slides/methods.html#quick-theory-1",
+    "href": "slides/methods.html#quick-theory-1",
+    "title": "Methods",
+    "section": "Quick theory (1)",
+    "text": "Quick theory (1)\n\nFact: the sum of several independent gaussian variables is a gaussian variable\nSo \\(T_N =\\frac{1}{N}\\sum_{n=1}^N \\epsilon_n\\) is gaussian variable. Its mean is 0 (unbiased). Let’s compute its variance: \\[E(T_N^2) = \\frac{1}{N^2} \\sum_{n=1}^N E\\left[ \\epsilon_n^2 \\right]\\]\nThe standard deviation is: \\[s_N = \\sigma(T_N^2) = \\frac{1}{\\sqrt{\\color{red} N}} \\sigma_{\\epsilon}\\]\nConclusion: the precision of (basic) Monte-Carlo decreases only as a square root of the number of experiments.",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "slides/methods.html#quick-theory-2",
+    "href": "slides/methods.html#quick-theory-2",
+    "title": "Methods",
+    "section": "Quick theory (2)",
+    "text": "Quick theory (2)\n\nIn the general case, the Monte-Carlo estimator is: \\[T^{MC}_N =\\frac{1}{N}\\sum_{n=1}^N f(\\epsilon_n)\\]\nIt is unbiased: \\[E(T_N^{MC}) = E\\left[f(\\epsilon) \\right]\\]\nIt’s variance is \\[E(T_N^{MC}) \\propto \\frac{1}{\\sqrt{N}}\\]\n\nslow\non the plus side: rate independent of the dimension of \\(\\epsilon\\)",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "slides/methods.html#quantization-using-quantiles",
+    "href": "slides/methods.html#quantization-using-quantiles",
+    "title": "Methods",
+    "section": "Quantization using quantiles",
+    "text": "Quantization using quantiles\n\n\n\n\nEquiprobable discretization\nWorks for any distribution with pdf and cdf\nSplit the space into equal \\(N\\) quantiles: \\[(I_i=[a_i,a_{i+1}])_{i=1:N}\\] such that \\[prob(\\epsilon \\in I_i)=\\frac{1}{N}\\]\nChoose the nodes as the median of each interval: \\[prob(\\epsilon\\in[a_i,x_i]) = prob(\\epsilon\\in[x_i,a_{i+1}])\\]\nThe quantization is \\((1/N, x_i)_{i=1:N}\\)",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "slides/methods.html#gauss-hermite",
+    "href": "slides/methods.html#gauss-hermite",
+    "title": "Methods",
+    "section": "Gauss-Hermite",
+    "text": "Gauss-Hermite\n\n\\(f\\in \\mathcal{F}\\) a Banach space (or \\(\\mathbb{R}^n\\)), \\(\\epsilon\\) a gaussian variable\n\n\\(I: f\\rightarrow E_{\\epsilon} f(\\epsilon)\\) is a linear application\n\nsuppose there is a dense family of polynomials \\(P_n\\), spanning \\(\\mathcal{F}_n\\)\n\n\\(I\\) restricted to \\(\\mathcal{F}_N\\) is a \\(N\\)-dimensional linear form\n\nGauss quadrature magic\n\na way to choose \\(\\epsilon_i\\) and \\(w_i\\) such that \\[\\left(f\\rightarrow\\sum_{n=1}^N w_n f(\\epsilon_i) \\right)= \\left.I\\right|_{\\mathcal{F}_{2N}}\\]",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "slides/methods.html#gauss-hermite-1",
+    "href": "slides/methods.html#gauss-hermite-1",
+    "title": "Methods",
+    "section": "Gauss-Hermite",
+    "text": "Gauss-Hermite\n\nVery accurate if a function can be approximated by polynomials\nBad:\n\nimprecise if function \\(f\\) has kinks or non local behaviour\n\npoints \\(\\epsilon_n\\) can be very far from the origin\n\nnot super easy to commute weights and nodes (but there are good libraries)",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "slides/methods.html#gauss-",
+    "href": "slides/methods.html#gauss-",
+    "title": "Methods",
+    "section": "Gauss-*",
+    "text": "Gauss-*\n\nSame logic can be applied to compute integration with weight function \\(w(x)\\): \\[\\int_a^b f(x) w(x)\\]\nGauss-Hermite:\n\n\\(w(x) = e^{-x^2}\\), \\([a,b] = [-\\infty, \\infty]\\)\n\nGauss-Legendre:\n\n\\(w(x) = 1\\)\n\nGauss-Chebychev:\n\n\\(w(x)=\\sqrt{1-x^2}\\), \\([a,b] = [-1, 1]\\)\nfor periodic functions",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "slides/methods.html#in-practice",
+    "href": "slides/methods.html#in-practice",
+    "title": "Methods",
+    "section": "In practice",
+    "text": "In practice\nBeware that weight is not the density of the normal law:\n\\[\\frac{1}{\\sqrt{2 \\pi \\sigma^2}}\\int f(x) e^{-\\frac{x^2}{2\\sigma^2}}dx = {\\frac{1}{\\sqrt{\\pi}}}\\int f(u {\\sigma \\sqrt{2}}) e^{-{u^2}}du \\] \\[{\\frac{1}{\\sqrt{\\pi}}}\\sum_n w_n f(\\epsilon_n {\\sigma \\sqrt{2}})\\]\nusing FastGaussQuadrature\n\nx, w = gausslegendre( 10 );\nx = x.*σ*sqrt(2) # renormalize nodes\ns = sum( w_*U(exp(x_)) for (w_,x_) in zip(x,w))\ns /= sqrt(\\pi) # renormalize output",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Computational Economics @ Bundesbank",
+    "section": "",
+    "text": "My email: pwinant@escp.eu"
+  },
+  {
+    "objectID": "index.html#tentative-schedule",
+    "href": "index.html#tentative-schedule",
+    "title": "Computational Economics @ Bundesbank",
+    "section": "Tentative schedule",
+    "text": "Tentative schedule\n\nIntroduction to computational economics\n\nnov 6\n\npython\nnumpy / matplotlib\ninterpolation / quantization\n\nnov 7\n\nsolution methods: value-function iteration / time-iteration\nintroduction to dolo\n\n\nIntroduction to Deep-Learning"
+  },
+  {
+    "objectID": "exercises/numeric.html",
+    "href": "exercises/numeric.html",
+    "title": "Numeric",
+    "section": "",
+    "text": "Selection from w3resources and rougier/numpy100\n\nExercise 1  \n\nWrite a NumPy program to generate five random numbers from the normal distribution.\n\n\n\n# code here\n\n\nExercise 2 Write a NumPy program to generate six random integers between 10 and 30.\n\n\n# code here\n\n\nExercise 3 Create a 3x3 matrix with values ranging from 0 to 8\n\n\n# code here\n\n\nExercise 4 Create 2d array \\(M\\) such of size 3*3 such that \\(M_{ij} = i\\times j\\)\n\n\n# code here\n\n\nExercise 5 Create 3 vectors of length 5 and create a matrix where each column is one of the vector.\n\n\n# code here\n\n\nExercise 6 Create 3 vectors of length 5 and create a matrix where each row is one of the vector.\n\n\n# code here\n\n\nExercise 7 Find indices of non-zero elements from np.array([1,2,0,0,4,0]). Replace them with -1.0\n\n\n# code here\n\n\nExercise 8 Write a NumPy program to normalize a 3x3 random matrix. (Define norm \\(|x|=\\sqrt{\\sum x_i^2}\\) and compute \\(M/|M|\\))\n\n\n# code here\n\n\nExercise 9 Create 2d array \\(M\\) such of size 3*3 such that \\(M_{ij} = i\\times j\\)\n\n\n# code here\n\n\nExercise 10 Take a random matrix \\(A\\) of size \\(N\\times 2\\) (N=10) where each line represents a different 2d point. Compute the euclidean distance matrix such that \\(E_{ij}\\) is the distance between point \\(i\\) and point \\(j\\).\n\n\n# code here\n\n\nExercise 11 Create A of size \\(10\\times 3\\). Create matrix \\(B\\) with the same column as \\(A\\) reordered by sum of absolute values.",
+    "crumbs": [
+      "Exercises",
+      "Numeric"
+    ]
+  },
+  {
+    "objectID": "exercises/numeric.html#using-numpy",
+    "href": "exercises/numeric.html#using-numpy",
+    "title": "Numeric",
+    "section": "",
+    "text": "Selection from w3resources and rougier/numpy100\n\nExercise 1  \n\nWrite a NumPy program to generate five random numbers from the normal distribution.\n\n\n\n# code here\n\n\nExercise 2 Write a NumPy program to generate six random integers between 10 and 30.\n\n\n# code here\n\n\nExercise 3 Create a 3x3 matrix with values ranging from 0 to 8\n\n\n# code here\n\n\nExercise 4 Create 2d array \\(M\\) such of size 3*3 such that \\(M_{ij} = i\\times j\\)\n\n\n# code here\n\n\nExercise 5 Create 3 vectors of length 5 and create a matrix where each column is one of the vector.\n\n\n# code here\n\n\nExercise 6 Create 3 vectors of length 5 and create a matrix where each row is one of the vector.\n\n\n# code here\n\n\nExercise 7 Find indices of non-zero elements from np.array([1,2,0,0,4,0]). Replace them with -1.0\n\n\n# code here\n\n\nExercise 8 Write a NumPy program to normalize a 3x3 random matrix. (Define norm \\(|x|=\\sqrt{\\sum x_i^2}\\) and compute \\(M/|M|\\))\n\n\n# code here\n\n\nExercise 9 Create 2d array \\(M\\) such of size 3*3 such that \\(M_{ij} = i\\times j\\)\n\n\n# code here\n\n\nExercise 10 Take a random matrix \\(A\\) of size \\(N\\times 2\\) (N=10) where each line represents a different 2d point. Compute the euclidean distance matrix such that \\(E_{ij}\\) is the distance between point \\(i\\) and point \\(j\\).\n\n\n# code here\n\n\nExercise 11 Create A of size \\(10\\times 3\\). Create matrix \\(B\\) with the same column as \\(A\\) reordered by sum of absolute values.",
+    "crumbs": [
+      "Exercises",
+      "Numeric"
+    ]
+  },
+  {
+    "objectID": "exercises/numeric.html#simulating-an-ar1",
+    "href": "exercises/numeric.html#simulating-an-ar1",
+    "title": "Numeric",
+    "section": "Simulating an AR1",
+    "text": "Simulating an AR1\nTake an AR1 process \\(x_t = A \\rho x_{t-1} + \\epsilon_t\\) with \\(\\epsilon_t \\sim \\Sigma\\) where \\(\\Sigma\\) is a positive definite matrix.\n\nExercise 12 Define 2x2 matrices \\(A\\) and \\(\\Sigma\\), the latter being symmetric positive definite\n\n\n# code here\n\n\nExercise 13 Compute asymptotic variance using matrix algebra (there is a recursive formula)\n\n\n# code here\n\n\nExercise 14 Simulate \\(N\\) draws for \\(T\\) periods and store the result in sim.\n\n\n# code here\n\n\nExercise 15 Compute ergodic variance (bonus compute std of the variance estimate)\n\n\n# code here\n\n\nExercise 16 Plot a few simulations on the same graph\n\n\n# code here\n\n\nExercise 17 Plot asymptotic distribution (seaborn)\n\n\n# code here\n\n\nExercise 18 Bonus: write a faster simulation routine.\n\n\n# code here",
+    "crumbs": [
+      "Exercises",
+      "Numeric"
+    ]
+  },
+  {
+    "objectID": "exercises/numeric.html#interpolation",
+    "href": "exercises/numeric.html#interpolation",
+    "title": "Numeric",
+    "section": "Interpolation",
+    "text": "Interpolation\nWe consider the function \\(f(x) = sinc(\\lambda x) = \\frac{sin(\\lambda x)}{x}\\). Let \\(I=(x_i)_{i=[1,10]}\\) be a regularly spaced interval between -2 and +2, containing 10 points. Call \\(Y=(y_i)=f(x_i)\\) the values of \\(f\\) on this interval. Let \\(T\\) be a test set with 1000 regularly spaced points between -2.5 and 2.5.\nThe goal is to compare several ways interpolate function f on \\(T\\).\n\nExercise 19 Define f, I, Y, T\n\n\n# \n\n\nExercise 20 Construct a stepwise approximation using numpy indexing\n\n\n# \n\n\nExercise 21 Plot it\n\n\n# \n\n\nExercise 22 Construct a linear approximation using numpy\n\n\n#\n\n\nExercise 23 Use scipy.interpolate to get an approximation\n\n\n#\n\n\nExercise 24 (bonus) Use interpolation.py\n\n\n#\n\n\nExercise 25 Plot result\n\n\n#\n\n\nExercise 26 Increase number of points and test performance of various options\n\n\n#\n\n\nExercise 27 (bonus) optimize hand coded implementations using numba\n\n\n#",
+    "crumbs": [
+      "Exercises",
+      "Numeric"
+    ]
+  }
+]

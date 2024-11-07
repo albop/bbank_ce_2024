@@ -65,263 +65,190 @@
     ]
   },
   {
-    "objectID": "slides/index.html",
-    "href": "slides/index.html",
-    "title": "Ce_bb_2024",
-    "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
-  },
-  {
-    "objectID": "slides/python.html#why-python-2",
-    "href": "slides/python.html#why-python-2",
-    "title": "Python",
-    "section": "Why Python? (2)",
-    "text": "Why Python? (2)\nHistorically, python was a glue language used to interoperate many low-level/system languages.\nIt has been increasingly used for web-development (cf django)\n\n\n\nNowadays it is the lingua franca of machine learning\nMost major machine learning / deep learning libraries have python bindings",
+    "objectID": "slides/time_iteration.html#introduction-1",
+    "href": "slides/time_iteration.html#introduction-1",
+    "title": "Time Iteration",
+    "section": "Introduction",
+    "text": "Introduction\nHow do we solve models? One needs to choose between several representations.\n\nbellman representation\nfirst order conditions\nother iterative schemes\n\nGoal:\n\ndefine what is the time-iteration method for first-order models\nexplain how to discretize a model and apply it in practice",
     "crumbs": [
       "Slides",
-      "Python"
+      "Time Iteration"
     ]
   },
   {
-    "objectID": "slides/python.html#an-example",
-    "href": "slides/python.html#an-example",
-    "title": "Python",
-    "section": "An example",
-    "text": "An example\ndef say_hello(name):\n    \"\"\"This function prints morning greetings\"\"\"\n\n    print(f\"Good morning {name}!\\n\")\n\n    # we can import libraries\n    import datetime\n    t = datetime.datetime.now()\n\n    # blocks are defined by indentation and colons\n    if (t.hour,t.min) &lt;= (9,15):\n        print(\"All good?\\n\")\n    else:\n        print(\"Time to get started?\\n\")\n\n\nsay_hello(\"Pablo\")",
+    "objectID": "slides/time_iteration.html#generic-value-function-representation",
+    "href": "slides/time_iteration.html#generic-value-function-representation",
+    "title": "Time Iteration",
+    "section": "Generic Value Function Representation",
+    "text": "Generic Value Function Representation\n\nAll variables of the model are vectors:\n\nstates \\(s \\in \\mathcal{S} \\subset R^{n_s}\\)\ncontrols \\(x \\in \\mathcal{F}(\\mathcal{S}, R^{n_x})\\)\n\nwe assume bounds \\(a(s)\\leq x \\leq b(s)\\)\n\nshocks: \\(\\epsilon \\sim \\text{i.i.d. distrib}\\)\n\nTransition: \\[s_{t+1} = g(s_t, x_t, \\epsilon_{t+1})\\]\nValue function: \\[V(s) = E_0 \\sum_{t\\geq 0} \\beta^t \\left[ U(s_t, x_t)\\right]\\]\nSolution is a function \\(V()\\) (value) which is a fixed point of the Bellman-operator: \\[\\forall s, V(s) = \\max_{a(s)\\leq x \\leq b(s)} U(s,x) + \\beta E \\left[ V(g(s,x,\\epsilon)) \\right]\\]\nThe argmax, defines a decision rule function: \\(x = \\varphi(s)\\)",
     "crumbs": [
       "Slides",
-      "Python"
+      "Time Iteration"
     ]
   },
   {
-    "objectID": "slides/python.html#python-is-everywhere",
-    "href": "slides/python.html#python-is-everywhere",
-    "title": "Python",
-    "section": "Python is everywhere",
-    "text": "Python is everywhere\n\n\n\n\n\nCode Warriors\n\n\n\n\n\n\nMicroBits\n\n\n\nWindows\nLinux\nWeb",
+    "objectID": "slides/time_iteration.html#first-order-representation",
+    "href": "slides/time_iteration.html#first-order-representation",
+    "title": "Time Iteration",
+    "section": "First order representation",
+    "text": "First order representation\n\n\n\nAll variables of the model are vectors:\n\nstates \\(s_t\\)\ncontrols \\(x_t\\)\n\nwe assume bounds \\(a(s)\\leq x \\leq b(s)\\)\n\nshocks: \\(\\epsilon_t\\) (i.i.d. random law)\n\nTransition: \\[s_{t+1} = g(s_t, x_t, \\epsilon_{t+1})\\]\nDecision rule: \\[x_t = \\varphi(s_t)\\]\nArbitrage: \\[ E_t\\left[ f(s_t, x_t, s_{t+1}, x_{t+1}) \\right] = 0 \\perp a(s_t) \\leq x_t \\leq b(s_t) \\]\n\n\n\nThese equations must be true for any \\(s_t\\).\nRemark: time subscript are conventional. They are used to precise:\n\nwhen expectation is taken (w.r.t \\(\\epsilon_{t+1}\\))\nto avoid repeating \\(x_t=\\varphi(s_t)\\) and \\(x_{t+1} = \\varphi(s_t)\\)\n\nSometimes there are bounds on the controls\n\nwe encode them with complementarity constraints\nmore on it later",
     "crumbs": [
       "Slides",
-      "Python"
+      "Time Iteration"
     ]
   },
   {
-    "objectID": "slides/python.html#the-python-family",
-    "href": "slides/python.html#the-python-family",
-    "title": "Python",
-    "section": "The Python family",
-    "text": "The Python family\nThere are several flavours of Python:\n\n\n\nFull Syntax\n\nCPython, PyPy, Pyston\n\nSubset-Syntax\n\nmicropython\nnumba, pythran\n\n\n\n\nSuperset-Syntax\n\nmypy (*)\ncython\nmojo\n\nNear-Syntax\n\nboo\n\n\n\n\n\nsubset-syntax: restrict functionalities (no classes, simpler objects) for easier compilation\nsuperset-syntax: add type/memory information\nnear-syntax: different language that looks familiar",
+    "objectID": "slides/time_iteration.html#example-1-neoclassical-growth-model",
+    "href": "slides/time_iteration.html#example-1-neoclassical-growth-model",
+    "title": "Time Iteration",
+    "section": "Example 1: neoclassical growth model",
+    "text": "Example 1: neoclassical growth model\n\n\n\ncapital accumulation: \\[k_t = (1-\\delta)k_{t-1} + i_{t-1}\\]\nproduction: \\[y_t = k_t^\\alpha\\]\nconsumption: \\[c_t = (1-s_t) y_t\\] \\[i_t = s_t y_t\\]\noptimality: \\[\\beta E_t \\left[ \\frac{U^{\\prime}(c_{t+1})}{U^{\\prime}(c_{t})} (1-\\delta + \\alpha k_{t+1}^{\\alpha-1}\\alpha) \\right]= 1\\]\n\n\n\nstates: \\(k_t\\), with one transition equation\ncontrols: \\(y_t, c_t, i_t, s_t\\), with four “arbitrage” equations\n\nit is possible but not mandatory to reduce the number of variables/equations by simple susbtitutions",
     "crumbs": [
       "Slides",
-      "Python"
+      "Time Iteration"
     ]
   },
   {
-    "objectID": "slides/python.html#examples",
-    "href": "slides/python.html#examples",
-    "title": "Python",
-    "section": "Examples",
-    "text": "Examples\n\nmojo:\n\nfn greet2(name: String) -&gt; String:\n    return \"Hello, \" + name + \"!\"\n\ncython\n\nfrom libcpp.vector cimport vector\n\ndef primes(unsigned int nb_primes):\n\n    cdef int n, i\n    cdef vector[int] p\n    p.reserve(nb_primes)  # allocate memory for 'nb_primes' elements.\n\n    n = 2\n    while p.size() &lt; nb_primes:  # size() for vectors is similar to len()\n        for i in p:\n            if n % i == 0:\n                break",
+    "objectID": "slides/time_iteration.html#example-2-consumption-savings-model",
+    "href": "slides/time_iteration.html#example-2-consumption-savings-model",
+    "title": "Time Iteration",
+    "section": "Example 2: consumption-savings model",
+    "text": "Example 2: consumption-savings model\n\n\nSimplest consumption/savings model:\n\nTransition: \\[w_t = \\exp(\\epsilon_t) + (w_{t-1} - c_{t-1}) \\overline{r}\\]\nObjective: \\[\\max_{0\\leq c_t \\leq w_t} E_0 \\left[ \\sum \\beta^t U(c_t) \\right]\\]\nFirst order conditions: \\[\\beta E_t \\left[  \\frac{U^{\\prime}(c_{t+1})}{U^{\\prime}(c_t)} \\overline{r} \\right] - 1 \\perp 0 \\leq c_t \\leq w_t\\]\n\n\n\nF.O.C. reads as: \\[\\beta E_t \\left[  \\frac{U^{\\prime}(c_{t+1})}{U^{\\prime}(c_t)} \\overline{r} \\right] - 1 \\leq 0 \\perp c_t \\leq w_t\\] and \\[0 \\leq \\beta E_t \\left[  \\frac{U^{\\prime}(c_{t+1})}{U^{\\prime}(c_t)} \\overline{r} \\right] - 1  \\perp 0 \\leq c_t \\]\nFirst one reads: if my marginal utility of consumption today is higher than expected mg. utility of cons. tomorrow, I’d like to consume more, but I can’t because, consumption is bounded by income (and no-borrowing constraint).\nSecond one reads: only way I could tolerate higher utility in the present, than in the future, would be if I want dissave more than I can, or equivalently, consume less than zero. This is never happening.",
     "crumbs": [
       "Slides",
-      "Python"
+      "Time Iteration"
     ]
   },
   {
-    "objectID": "slides/python.html#python-is-interpreted",
-    "href": "slides/python.html#python-is-interpreted",
-    "title": "Python",
-    "section": "Python is interpreted",
-    "text": "Python is interpreted\n\n\n\n\n\n\n\nInterpreted language\n\n\nIn an interpreted language, instructions are read and translated into processor instructions, one after another.\n\n\n\n\nAs consequence, it is:\n\nflexible\n\ninteractive development\nimmediate feedback\n\nslooooww 1\n\nactualy not so much because python modules are converted into bytecode and because common objects are well optimized",
+    "objectID": "slides/time_iteration.html#example-3-new-keynesian-with-without-zlb",
+    "href": "slides/time_iteration.html#example-3-new-keynesian-with-without-zlb",
+    "title": "Time Iteration",
+    "section": "Example 3: new-keynesian with / without ZLB",
+    "text": "Example 3: new-keynesian with / without ZLB\n\n\nConsider the following new keynesian model:\n\nAssume \\(z_t\\) is an autocorrelated shock: \\[z_t = \\rho z_{t-1} + \\epsilon_t\\]\nNew philips curve (PC):\\[\\pi_t = \\beta \\mathbb{E}_t \\pi_{t+1} + \\kappa y_t\\]\ndynamic investment-saving equation (IS):\\[y_t = \\beta \\mathbb{E}_t y_{t+1} - \\frac{1}{\\sigma}(i_t - \\mathbb{E}_t(\\pi_{t+1}) ) - {\\color{green} z_t}\\]\nInterest Rate Setting (taylor rule): \\[i_t = \\alpha_{\\pi} \\pi_t + \\alpha_{y} y_t\\]\n\n\n\nThe model satisfies the same specification with:\n\none state \\(z_t\\) and one transition equation\nthree controls: \\(\\pi_t\\), \\(y_t\\) and \\(i_t\\) with three “arbitrage” equation\n\nThese are not real first order conditions as they are not derived from a maximization program\n\nunless one tries to microfound them…\n\nIt is possible to add a zero-lower bound constraint by replacing IRS with: \\[ \\alpha_{\\pi} \\pi_t + \\alpha_{y} y_t \\leq i_t \\perp 0 \\leq i_t\\]",
     "crumbs": [
       "Slides",
-      "Python"
+      "Time Iteration"
     ]
   },
   {
-    "objectID": "slides/python.html#intepreters",
-    "href": "slides/python.html#intepreters",
-    "title": "Python",
-    "section": "Intepreters",
-    "text": "Intepreters\n\nPython\nipython a.k.a. jupyter\n\nsend instructions to a kernel\nreceive back MIME objects (with nice html representation)\n\nVSCode\n\nhas its own python kernel implementation\n\nC API python.h\n\njulia\nyour own…",
+    "objectID": "slides/time_iteration.html#time-iteration-1",
+    "href": "slides/time_iteration.html#time-iteration-1",
+    "title": "Time Iteration",
+    "section": "Time iteration",
+    "text": "Time iteration\n\nSo we have the equation, \\(\\forall s_t\\)\n\n\\[ E_t\\left[ f(s_t, x_t, s_{t+1}, x_{t+1}) \\right] = 0 \\perp a(s_t) \\leq x_t \\leq b(s_t)\\]\\[ E_t\\left[ f(s_t, x_t, s_{t+1}, x_{t+1}) \\right] = 0\\]\n\nwhere \\[s_{t+1} = g(s_t, x_t, \\epsilon_{t+1})\\] \\[x_t = \\varphi(s_t)\\] \\[x_{t+1} = \\tilde{\\varphi}(s_{t+1})\\]\nLet’s leave the complementarity conditions aside for now\nIn equilibrium \\(\\tilde{\\varphi} = {\\varphi}\\)",
     "crumbs": [
       "Slides",
-      "Python"
+      "Time Iteration"
     ]
   },
   {
-    "objectID": "slides/python.html#python-modules",
-    "href": "slides/python.html#python-modules",
-    "title": "Python",
-    "section": "Python modules",
-    "text": "Python modules\nA file ending with .py is a python module\n\nprogram.py\n\nkey = \"low\"\ndef something():\n    return \"hey\"\nThe content from a module can be imported\nfrom program import something\nTo import all objects in a module (functions, strings, …)\nfrom program import *",
+    "objectID": "slides/time_iteration.html#time-iteration-2",
+    "href": "slides/time_iteration.html#time-iteration-2",
+    "title": "Time Iteration",
+    "section": "Time iteration",
+    "text": "Time iteration\n\nWe can rewrite everything as one big functional equation: \\[\\forall s, \\Phi(\\varphi, \\tilde{\\varphi})(s) = E\\left[ f(s, \\varphi(s), g(s,\\varphi(s), \\epsilon), \\tilde{\\varphi}(g(s,\\varphi(s), \\epsilon)) \\right]\\]\nA solution is \\(\\varphi\\) such that \\(\\Phi(\\varphi, \\varphi) = 0\\)\nThe Coleman operator \\(\\mathcal{T}\\) is defined implicitly by: \\[\\Phi(\\mathcal{T}(\\varphi), \\varphi)=0\\]\nThe core of the time iteration algorithm, consists in the recursion: \\[\\varphi_{n+1} = \\mathcal{T}(\\varphi_n)\\]\nIt maps future decision rules to current decision rules\n\nsame as “linear time iterations”, remember?\n\nSounds fun but how do we implement it concretely?",
     "crumbs": [
       "Slides",
-      "Python"
+      "Time Iteration"
     ]
   },
   {
-    "objectID": "slides/python.html#submodules",
-    "href": "slides/python.html#submodules",
-    "title": "Python",
-    "section": "Submodules",
-    "text": "Submodules\n\nA folder containing modules and an __init.py__ is a package.\nimport a package or a submodule:\n\nimport package\nfrom package.submodule import something\n\nThe content of modules and submodules is evaluated only once.1\nIt is actually precompiled.\nThis is perfect for distributing a package.\nNot so much to develop code interactively.\n\nsince python 3.4 you can actually reload a module with importlib.reload()",
+    "objectID": "slides/time_iteration.html#practical-implementation",
+    "href": "slides/time_iteration.html#practical-implementation",
+    "title": "Time Iteration",
+    "section": "Practical implementation",
+    "text": "Practical implementation\n\nWe need to find a way to:\n\ncompute expectations\nrepresent decision rules \\(\\varphi\\) and \\(\\varphi\\) with a finite number of parameters",
     "crumbs": [
       "Slides",
-      "Python"
+      "Time Iteration"
     ]
   },
   {
-    "objectID": "slides/python.html#package-managers",
-    "href": "slides/python.html#package-managers",
-    "title": "Python",
-    "section": "Package managers",
-    "text": "Package managers\nSeveral ways to create / distribute python packages have been developped over the years.\n\nsetup.py, pip\nsetuptools, distutils, …\npipenv, poetry, …\nconda\n\nThere are essentially two kinds of packages:\n\npip packages\nconda packages",
+    "objectID": "slides/time_iteration.html#practical-implementation-2",
+    "href": "slides/time_iteration.html#practical-implementation-2",
+    "title": "Time Iteration",
+    "section": "Practical implementation (2)",
+    "text": "Practical implementation (2)\n\nComputing expectations:\n\ndiscretize shock \\(\\epsilon\\) with finite quantization \\((w_i, e_i)_{i=1:K}\\)\nreplace optimality condition with: \\[\\forall s, \\Phi(\\varphi, \\tilde{\\varphi})(s) = \\sum_i w_i f(s, \\varphi(s), g(s,\\varphi(s), e_i), \\tilde{\\varphi}(g(s,\\varphi(s), e_i)) \\]\n\n… but we still can’t compute all the \\(\\varphi\\)",
     "crumbs": [
       "Slides",
-      "Python"
+      "Time Iteration"
     ]
   },
   {
-    "objectID": "slides/python.html#pip-packages",
-    "href": "slides/python.html#pip-packages",
-    "title": "Python",
-    "section": "Pip packages",
-    "text": "Pip packages\n\npip files (what are eggs btw)\n\npure python\nbinary\n\ncan be installed with pip install package\nno dependency solving ! no proper uninstallation !\npip files a virtual evnironment created with venv\nreproducible setup can be described in\n\nrequirements.txt (old)\npyproject.toml (new)\n\ndirectory specific environments can be managed with poetry or venv:\n\npython -m venv directory",
+    "objectID": "slides/time_iteration.html#approximating-decision-rules",
+    "href": "slides/time_iteration.html#approximating-decision-rules",
+    "title": "Time Iteration",
+    "section": "Approximating decision rules",
+    "text": "Approximating decision rules\n\nWe’ll limit ourselves to interpolating functional spaces\n\nWe define a finite grid \\(\\mathbf{s}=(s_1, ... s_N)\\) to approximate the state space (\\(\\mathbf{s}\\) is a finite vector of points)\nIf we know the vector of values \\(\\mathbf{x}=(x_1, ..., x_N)\\) a function \\(\\varphi\\) takes on \\(\\mathbf{s}\\), we approximate \\(\\varphi\\) at any \\(s\\) using an interpolation scheme \\(\\mathcal{I}\\): \\[\\varphi(s) \\approx \\mathcal{I}(s, \\mathbf{s}, \\mathbf{x})\\]\n\nNow if we replace \\(\\varphi\\) by \\(\\mathcal{I}(s, \\mathbf{s}, \\mathbf{x})\\) and \\(\\tilde{\\varphi}\\) by \\(\\mathcal{I}(s, \\mathbf{s}, \\mathbf{\\tilde{x}})\\) the functional equation becomes: \\[\\forall s,  \\Phi(\\varphi, \\tilde{\\varphi})(s) \\approx F( \\mathbf{x}, \\mathbf{\\tilde{x}} )(s) = \\sum_i w_i f(s, x, \\tilde{s}, \\tilde{x})\\] where \\[x = \\mathcal{I}(s, \\mathbf{s}, \\mathbf{x})\\] \\[\\tilde{s} = g(s, x, e_i)\\] \\[\\tilde{x} = \\mathcal{I}(s, \\mathbf{s}, \\mathbf{\\tilde{x}})\\]",
     "crumbs": [
       "Slides",
-      "Python"
+      "Time Iteration"
     ]
   },
   {
-    "objectID": "slides/python.html#conda-environment",
-    "href": "slides/python.html#conda-environment",
-    "title": "Python",
-    "section": "Conda environment",
-    "text": "Conda environment\n\nconda files\ninstalled in a conda environment\nwith proper / reversible dependency solving\n\nvery quick using mamba or micromamba\n\nreproducible environment can be described in:\n\nenvironment.yml (dependencies)\nmanifest (…)\n\ndirectory specific environments can be managed with pixi",
+    "objectID": "slides/time_iteration.html#pinning-down-decision-rules",
+    "href": "slides/time_iteration.html#pinning-down-decision-rules",
+    "title": "Time Iteration",
+    "section": "Pinning down decision rules",
+    "text": "Pinning down decision rules\n\nNote that this equation must be statisfied \\(\\forall s\\).\nIn order to pin-down the \\(N\\) coefficients \\(\\mathbf{x}\\), it is enough to satisfy the equations at \\(N\\) different points.\nHence we solve the square system: \\[\\forall i\\in [1,N], F( \\mathbf{x}, \\mathbf{\\tilde{x}} )(s_i) = 0\\]\nIn vectorized form, this is just: \\[F( \\mathbf{x}, \\mathbf{\\tilde{x}} )(\\mathbf{s}) = 0\\]\nOr, since grid \\(\\mathbf{s}\\) is fixed: \\[F( \\mathbf{x}, \\mathbf{\\tilde{x}} ) = 0\\]\nNow the vector of decisions today, at each point of the grid, is determined as a function of the vector of decisions tomorrow, on the same grid.",
     "crumbs": [
       "Slides",
-      "Python"
+      "Time Iteration"
     ]
   },
   {
-    "objectID": "slides/python.html#section",
-    "href": "slides/python.html#section",
-    "title": "Python",
-    "section": "",
-    "text": "Let’s setup the environment specified in requirements.txt\n\n\nMove to python syntax tutorial",
+    "objectID": "slides/time_iteration.html#recap",
+    "href": "slides/time_iteration.html#recap",
+    "title": "Time Iteration",
+    "section": "Recap",
+    "text": "Recap\n\nChoose a finite grid for states \\(\\mathbf{s} = (s_1, ..., s_N)\\)\nFor a given vector of controls tomorrow \\(\\mathbf{\\tilde{x}}\\), one can compute theoptimality of a vector of controls today by computing the value of :\\[F( \\mathbf{x}, \\mathbf{\\tilde{x}} ) = \\sum_i w_i f(\\mathbf{s}, \\mathbf{x}, \\tilde{\\mathbf{s}}, \\tilde{\\mathbf{x}})\\] \\[\\mathbf{\\tilde{s}} = g(\\mathbf{s}, \\mathbf{x}, e_i)\\] \\[\\mathbf{\\tilde{x}} = \\mathcal{I}(\\mathbf{\\tilde{s}}; \\mathbf{s}, \\mathbf{{x}})\\]\nNote that because we use interpolating approximation: \\(\\forall i, x_i = \\mathcal{I}(s, \\mathbf{s}, \\mathbf{x})\\)\nWe have enough to define an approximated time-iteration operator: implicitly defined by \\[F(T(\\mathbf{x}), \\mathbf{x}))\\]\nWe can then implement time-iteration, but…\n\nhow do we compute \\(T(x)\\)?",
     "crumbs": [
       "Slides",
-      "Python"
+      "Time Iteration"
     ]
   },
   {
-    "objectID": "handson/python_syntax.html",
-    "href": "handson/python_syntax.html",
-    "title": "Python: syntax review",
-    "section": "",
-    "text": "# integers and floats\n\n\n1\n\n\n1.0\n\n\n# conversion with int() and float()\nfloat( 1 )\n\n\nint(2.9) # floor\n\n\n# no difference between various types of floats (16 bits, 32 bits, 64 bits, ...)\n\n\ntype( 2.2**50 ) # this doesn't fit in 32 bits\n\n\n# usual operations + - *\nprint( 2 + 3 )\nprint( 9 -6 )\nprint( 3 / 2 )\nprint(2304310958*41324)\n\n\n# divisions / and //\nprint(3/4)\nprint(13//4)\n\n\n# exponentiation ** (not ^!)\n# (1.04)^10\n(1.04)**10\n\n\n# comparison operators: &gt;, &lt;, &gt;=, &lt;=, ==\n\nprint((1.0453432)*(0.96)  &gt; 1.001 )\n\nprint(1.001 &gt;= 1.001)\n\n\n# comparison operators can be chained:\nprint(0.2&lt;0.4&lt;0.5)\nprint(0.5&lt;=0.4&lt;=0.5) # equivalent to ((0.5&lt;=0.4) and(0.4&lt;=0.5))\n\n\n\n\nThere are only two booleans: True and False (note uppercase). None is a dummy type, which is used when no other type fits.\n\nprint( False )\nTrue\n\n\n(True, False, None)\n\nDouble equal sign tests for equality. Result should always be a boolean.\n\nTrue==False\n\nLogical operators are not, and and or:\n\n(True or False)\n\n\nnot (True or False)\n\n\n(1.3**1.04 &gt; 1.9) | (1000**1143&gt;1001**1142)\n\nOperators or and and can be replaced by | and & respectively. They are non-greedy, that is terms are not evaluated if the result of the comparison is already known.\n\nFalse and (print(\"Hello\"))\n\n\nprint( (print(\"Hello\")) and False )\n\n\n\n\n\n\nStrings are defined by enclosing characters either by ' (single quotes) or \" (double quote). Single quotes strings can contain double quotes strings and vice-versa.\n\n\"name\"\n\n\n'name'\n\n\n'I say \"hello\"'\n\n\n\"You can 'quote' me\"\n\nStrings spanning over sever lines can be defined with triple quotes (single or double).\n\ns = \"\"\"¿Qué es la vida? Un frenesí.\n¿Qué es la vida? Una ilusión,\nuna sombra, una ficción,\ny el mayor bien es pequeño;\nque toda la vida es sueño,\ny los sueños, sueños son.\n\"\"\"\n\nIt is also possible to use the newline character \\n.\n\n\"La vida es sueño,\\ny los sueños, sueños son.\"\n\n\nprint(\"La vida es sueño,\\ny los sueños, sueños son.\")\n\n\n\n\nStrings can contain any unicode character:\n\ns = \"🎻⽻༽\"\n\nRefresher: ASCII vs unicode\nASCII (or ASCII-US) is an old standard which codes a character with 7 bits (or 8 bits for extended ASCII). This allows to code 128 different characters (256 for ex-ASCII).\nOnly a subset of these characters can be printed regularly.\n\nchr(44)\n\n\n# ASCII: \nfor i in range(32,127):\n    print( chr(i), end=' ')\n\nThe other characters include delete, newline and carriage return among others.\n\ns = 'This is\\na\\nmultiline string.' # note the newline character '\\n'\n\n\n# print(s)\nlen(s)\n\nSome antiquated platforms still use newline + carriage return at the end of each line. This is absolutely not required and causes incompatibilities.\n\ns2 = 'This is\\n\\ra\\n\\rmultiline string.' # note the newline character '\\n' and carriager return '\\r'\n\n\nprint(s2)\nprint(len(s2))\n\nUnicode contains a repertoire of over 137,000 characters with all ASCII characters as subcases\nTo type: copy/paste, ctrl+shift+hexadecimal, latex + tab\nVariable names aka identifiers can contain unicode characters with some restrictions: - they cannot start with a digit - they can’t contain special variables (‘!,#,@,%,$’ and other unicode specials ???) - they can contain underscore\n\n\n\nconcatenation\n\n'abc' + 'def'\n\n\n'abc'*3\n\n\n'abc' + 'abc' + 'abc'\n\n\n\n\n\n# strings can be accessed as arrays (0 based indexing)\ns = \"a b c\"\ns[0]\n\n\n# slice notation (  [min,max[ )\ns = \"a b c d\"\ns[2:5] # 0-based; 2 included, 5 excluded\n\n\n# substrings are easy to check\n\"a\" in s\n\n\n\"b c\" in \"a b c d\"\n\nIt is impossible to modify a substring.\n\n# but are immutable\ns = \"a b c\"\n#s[1] = 0 error\n\nInstead, one can replace a substring:\n\ns\n\n\ns.replace(' ', '🎻')\n\nOr use string interpolation\n\n# string interpolation (old school)\n\"ny name is {name}\".format(name=\"nobody\")\n\n\n\"calculation took {time}s\".format(time=10000)\n\n\n# number format can be tweaked\n\"I am {age:.0f} years old\".format(age=5.65)\n\n\n# formatted strings\nelapsed = 15914884.300292\n\nf\"computations took {elapsed/3600:.2f} hours\"\n\n\nname = \"arnaldur\"\n\n\n\"dasnfnaksujhn {name}\".format(name=\"whatever\")\n\n\n# basic string operations: str.split, str.join, etc...\n# fast regular expressions\n# more on it, with text processing lesson\n\n\nstr.split(\"me,you,others,them\",',')\n\n\nstr.join( \" | \",\n    str.split(\"me,you,others,them\",','),\n)\n\n\n\n\nThe example above used several special characters: \\n which corresponds to only one ascii character and {/} which disappears after the string formatting. If one desires to print these characters precisely one needs to escape them using \\ and { }.\n\nprint(\"This is a one \\\\nline string\")\nprint(\"This string keeps some {{curly}} brackets{}\".format('.'))\n\n\n\n\n(check help(str) or help?)\n\nlen() : length\nstrip() : removes characters at the ends\nsplit() : split strings into several substrings separated by separator\njoin() : opposite of split\n\n\n'others,'\n\n\n',me,others,'.strip(',')\n\n\ns.count(',')\n\n\nhelp(str)",
+    "objectID": "slides/time_iteration.html#computing-tmathbfx",
+    "href": "slides/time_iteration.html#computing-tmathbfx",
+    "title": "Time Iteration",
+    "section": "Computing \\(T(\\mathbf{x})\\)",
+    "text": "Computing \\(T(\\mathbf{x})\\)\n\nIn each step, we have a guess, for decision rule tomorrow \\(\\mathbf{\\tilde{x}}\\)\nWe can then find the decision rule today, by solving numerically for: \\(\\mathbf{x} \\mapsto  F(\\mathbf{x}, \\mathbf{\\tilde{x}})\\)\n\nusually with some variant of a Newton method\n\nIt is possible to solve for the values at each grid point separately…\n\nfor each \\(i\\), find optimal controls \\(x_i\\) in state \\(s_i\\) that satisfy \\(F(x_i, \\mathbf{\\tilde{x}}) = 0\\)\nall the problems are independent from each other\n\n…or to solve everything as a big system\n\nthe jacobian is block-diagonal: finding optimal value in state \\(i\\) or in state \\(j\\) today are two independent problems",
     "crumbs": [
-      "Hands-on",
-      "Python: syntax review"
+      "Slides",
+      "Time Iteration"
     ]
   },
   {
-    "objectID": "handson/python_syntax.html#basic-types",
-    "href": "handson/python_syntax.html#basic-types",
-    "title": "Python: syntax review",
-    "section": "",
-    "text": "# integers and floats\n\n\n1\n\n\n1.0\n\n\n# conversion with int() and float()\nfloat( 1 )\n\n\nint(2.9) # floor\n\n\n# no difference between various types of floats (16 bits, 32 bits, 64 bits, ...)\n\n\ntype( 2.2**50 ) # this doesn't fit in 32 bits\n\n\n# usual operations + - *\nprint( 2 + 3 )\nprint( 9 -6 )\nprint( 3 / 2 )\nprint(2304310958*41324)\n\n\n# divisions / and //\nprint(3/4)\nprint(13//4)\n\n\n# exponentiation ** (not ^!)\n# (1.04)^10\n(1.04)**10\n\n\n# comparison operators: &gt;, &lt;, &gt;=, &lt;=, ==\n\nprint((1.0453432)*(0.96)  &gt; 1.001 )\n\nprint(1.001 &gt;= 1.001)\n\n\n# comparison operators can be chained:\nprint(0.2&lt;0.4&lt;0.5)\nprint(0.5&lt;=0.4&lt;=0.5) # equivalent to ((0.5&lt;=0.4) and(0.4&lt;=0.5))\n\n\n\n\nThere are only two booleans: True and False (note uppercase). None is a dummy type, which is used when no other type fits.\n\nprint( False )\nTrue\n\n\n(True, False, None)\n\nDouble equal sign tests for equality. Result should always be a boolean.\n\nTrue==False\n\nLogical operators are not, and and or:\n\n(True or False)\n\n\nnot (True or False)\n\n\n(1.3**1.04 &gt; 1.9) | (1000**1143&gt;1001**1142)\n\nOperators or and and can be replaced by | and & respectively. They are non-greedy, that is terms are not evaluated if the result of the comparison is already known.\n\nFalse and (print(\"Hello\"))\n\n\nprint( (print(\"Hello\")) and False )\n\n\n\n\n\n\nStrings are defined by enclosing characters either by ' (single quotes) or \" (double quote). Single quotes strings can contain double quotes strings and vice-versa.\n\n\"name\"\n\n\n'name'\n\n\n'I say \"hello\"'\n\n\n\"You can 'quote' me\"\n\nStrings spanning over sever lines can be defined with triple quotes (single or double).\n\ns = \"\"\"¿Qué es la vida? Un frenesí.\n¿Qué es la vida? Una ilusión,\nuna sombra, una ficción,\ny el mayor bien es pequeño;\nque toda la vida es sueño,\ny los sueños, sueños son.\n\"\"\"\n\nIt is also possible to use the newline character \\n.\n\n\"La vida es sueño,\\ny los sueños, sueños son.\"\n\n\nprint(\"La vida es sueño,\\ny los sueños, sueños son.\")\n\n\n\n\nStrings can contain any unicode character:\n\ns = \"🎻⽻༽\"\n\nRefresher: ASCII vs unicode\nASCII (or ASCII-US) is an old standard which codes a character with 7 bits (or 8 bits for extended ASCII). This allows to code 128 different characters (256 for ex-ASCII).\nOnly a subset of these characters can be printed regularly.\n\nchr(44)\n\n\n# ASCII: \nfor i in range(32,127):\n    print( chr(i), end=' ')\n\nThe other characters include delete, newline and carriage return among others.\n\ns = 'This is\\na\\nmultiline string.' # note the newline character '\\n'\n\n\n# print(s)\nlen(s)\n\nSome antiquated platforms still use newline + carriage return at the end of each line. This is absolutely not required and causes incompatibilities.\n\ns2 = 'This is\\n\\ra\\n\\rmultiline string.' # note the newline character '\\n' and carriager return '\\r'\n\n\nprint(s2)\nprint(len(s2))\n\nUnicode contains a repertoire of over 137,000 characters with all ASCII characters as subcases\nTo type: copy/paste, ctrl+shift+hexadecimal, latex + tab\nVariable names aka identifiers can contain unicode characters with some restrictions: - they cannot start with a digit - they can’t contain special variables (‘!,#,@,%,$’ and other unicode specials ???) - they can contain underscore\n\n\n\nconcatenation\n\n'abc' + 'def'\n\n\n'abc'*3\n\n\n'abc' + 'abc' + 'abc'\n\n\n\n\n\n# strings can be accessed as arrays (0 based indexing)\ns = \"a b c\"\ns[0]\n\n\n# slice notation (  [min,max[ )\ns = \"a b c d\"\ns[2:5] # 0-based; 2 included, 5 excluded\n\n\n# substrings are easy to check\n\"a\" in s\n\n\n\"b c\" in \"a b c d\"\n\nIt is impossible to modify a substring.\n\n# but are immutable\ns = \"a b c\"\n#s[1] = 0 error\n\nInstead, one can replace a substring:\n\ns\n\n\ns.replace(' ', '🎻')\n\nOr use string interpolation\n\n# string interpolation (old school)\n\"ny name is {name}\".format(name=\"nobody\")\n\n\n\"calculation took {time}s\".format(time=10000)\n\n\n# number format can be tweaked\n\"I am {age:.0f} years old\".format(age=5.65)\n\n\n# formatted strings\nelapsed = 15914884.300292\n\nf\"computations took {elapsed/3600:.2f} hours\"\n\n\nname = \"arnaldur\"\n\n\n\"dasnfnaksujhn {name}\".format(name=\"whatever\")\n\n\n# basic string operations: str.split, str.join, etc...\n# fast regular expressions\n# more on it, with text processing lesson\n\n\nstr.split(\"me,you,others,them\",',')\n\n\nstr.join( \" | \",\n    str.split(\"me,you,others,them\",','),\n)\n\n\n\n\nThe example above used several special characters: \\n which corresponds to only one ascii character and {/} which disappears after the string formatting. If one desires to print these characters precisely one needs to escape them using \\ and { }.\n\nprint(\"This is a one \\\\nline string\")\nprint(\"This string keeps some {{curly}} brackets{}\".format('.'))\n\n\n\n\n(check help(str) or help?)\n\nlen() : length\nstrip() : removes characters at the ends\nsplit() : split strings into several substrings separated by separator\njoin() : opposite of split\n\n\n'others,'\n\n\n',me,others,'.strip(',')\n\n\ns.count(',')\n\n\nhelp(str)",
+    "objectID": "slides/time_iteration.html#time-iteration-algorithm",
+    "href": "slides/time_iteration.html#time-iteration-algorithm",
+    "title": "Time Iteration",
+    "section": "Time iteration algorithm",
+    "text": "Time iteration algorithm\n\nDiscretize state-space with grid \\(\\mathbf{s}=(s_1, ..., s_N)\\)\nChoose initial values, for the vector of controls on the grid \\(\\mathbf{x}=(x_1, ..., x_N)\\)\nSpecify tolerance levels \\(\\eta&gt;0\\) and \\(\\epsilon&gt;0\\)\nGiven an intial guess \\(\\mathbf{x_n}\\)\n\nfind the zero \\(\\mathbf{x_{n+1}}\\) of function \\(\\mathbf{u}\\mapsto F(u,\\mathbf{x_n})\\)\n\nthat is, such that controls on the grid are optimal given controls tomorrow\nnonlinear solver can use \\(\\mathbf{x_n}\\) as initial guess\n\ncompute norm \\(\\mathbf{\\eta_n} = |\\mathbf{x_n} - \\mathbf{x_{n+1}}|\\)\nif \\(\\eta_n&lt;\\eta\\), stop and return \\(\\mathbf{x_{n+1}}\\)\n\nelse, set \\(\\mathbf{x_n} \\leftarrow \\mathbf{x_{n+1}}\\) and continue\n\n\nLike usual, during the iterations, it is useful to look at \\(\\mathbf{\\epsilon_n}=|F(\\mathbf{x_n},\\mathbf{x_n})|\\) and \\(\\lambda_n = \\frac{\\eta_n}{\\eta_{n-1}}\\)",
     "crumbs": [
-      "Hands-on",
-      "Python: syntax review"
+      "Slides",
+      "Time Iteration"
     ]
   },
   {
-    "objectID": "handson/python_syntax.html#assignment",
-    "href": "handson/python_syntax.html#assignment",
-    "title": "Python: syntax review",
-    "section": "Assignment",
-    "text": "Assignment\nAny object can be reused by assigning an identifier to it. This is done with assignment operator =.\n\na = 3\na\n\nNote that assignment operator = is different from comparison operator ==. Comparison operator is always True or False, while assignment operator has no value.\n\n(2==2) == True",
+    "objectID": "slides/time_iteration.html#what-about-the-complementarities",
+    "href": "slides/time_iteration.html#what-about-the-complementarities",
+    "title": "Time Iteration",
+    "section": "What about the complementarities ?",
+    "text": "What about the complementarities ?\n\nWhen there aren’t any occasionally binding constraint, we look for the of zero \\(\\mathbf{x_{n+1}}\\) of function \\(\\mathbf{u}\\mapsto F(u,\\mathbf{x_n})\\).\nIf we define the vector of constraints on all grid points as \\(\\mathbf{a}=(a(s_1), ..., a(s_N))\\) and \\(\\mathbf{b}=(b(s_1), ..., b(s_N))\\), we can rewrite the system to solve as: \\[F(u) \\perp \\mathbf{a} \\leq u \\leq \\mathbf{b}\\]\nThen we can:\n\nfeed \\(F\\), \\(a\\) and \\(b\\) to an NCP solver (like nlsolve.jl)\nor transform this relation using Fisher-Burmeister function into a smooth nonlinear system",
     "crumbs": [
-      "Hands-on",
-      "Python: syntax review"
+      "Slides",
+      "Time Iteration"
     ]
   },
   {
-    "objectID": "handson/python_syntax.html#containers",
-    "href": "handson/python_syntax.html#containers",
-    "title": "Python: syntax review",
-    "section": "Containers",
-    "text": "Containers\nAny object created in Python is identified by a unique id. One can think of it approximately as its reference. Object collections, contain arbitrary other python objects, that is they contain references to them.\n\nid(s)\n\n\ntuples\n\nconstruction\n\n(1,2,\"a\" )\n\nSince tuples are immutable, two identical tuples, will always contain the same data.\n\nt1  = (2,23)\nt2  = (2,23)\n\n\n# can contain any data\nt = (1,2,3,4,5,6)\nt1 = (t, \"a\", (1,2))\nt2 = (0,)  # note trailing coma for one element tuple\nt3 = (t, \"a\", (1,2))\n\n\nt[0] = 78\n\nSince tuples never change, they can be compared by hash values (if the data they hold can be hashed). Two tuples are identical if they contain the same data.\nRemark: hash function is any function that can be used to map data of arbitrary size to data of a fixed size. It is such that the probability of two data points of having the same hash is very small even if they are close to each other.\n\nt3 == t1\n\n\nprint(hash(t3))\nprint(hash(t1))\n\n\nid(t3), id(t1)\n\n\n\naccess elements\n\n# elements are accessed with brackets (0-based)\nt[0]\n\n\n# slice notation works too (  [min,max[ )\nt[1:3]\n\n\n# repeat with *\n(3,2)*5\n\n\n(0)*5\n\n\n(0,)*5\n\n\nt2*5\n\n\n# concatenate with +\nt+t1+t2\n\n\n# test for membership\n\n(1 in t)\n\n\n\n\nlists\nlists are enclosed by brackets are mutable ordered collections of elements\n\nl = [1,\"a\",4,5]\n\n\nl[1]\n\n\nl[1:] # if we omit the upper-bound it goes until the last element\n\n\nl[:2]\n\n\n# lists are concatenated with +\nl[:2] + l[2:] == l\n\n\n# test for membership\n(5 in l)\n\n\n# lists can be extended inplace\nll = [1,2,3]\nll.extend([4,5]) # several elements\nll.append(6)\nll\n\nSince lists are mutable, it makes no sense to compute them by hash value (or the hash needs to be recomputed every time the values change).\n\nhash(ll)\n\nSorted lists can be created with sorted (if elements can be ranked)\n\nll = [4,3,5]\n\n\nsorted(ll)\n\n\nll\n\nIt is also possible to sort in place.\n\nll.sort()\nll\n\n\nsorted(ll) # creates a new list\nll.sort()  # does it in place\n\n\n# in python internals:    ll.sort() equivalent sort(ll)\n\n\n\nset\nSets are unordered collections of unique elements.\n\ns1 = set([1,2,3,3,4,3,4])\ns2 = set([3,4,4,6,8])\nprint(s1, s2)\nprint(s1.intersection(s2))\n\n\n{3,4} == {4,3}\n\n\n\ndictionaries\nDictionaries are ordered associative collections of elements. They store values associated to keys.\n\n# construction with curly brackets\nd = {'a':0, 'b':1}\n\n\nd\n\n\n# values can be recovered by indexing the dict with a key\nd['b']\n\n\nd = dict()\n# d['a'] = 42\n# d['b'] = 78\nd\n\n\nd['a'] = 42\n\n\nd['b']\n\nKeys can be any hashable value:\n\nd[('a','b')] = 100\n\n\nd[ ['a','b'] ] = 100 # that won't work\n\nNote: until python 3.5 dictionaries were not ordered. Now the are guaranteed to keep the insertion order",
+    "objectID": "slides/time_iteration.html#time-iteration-variants",
+    "href": "slides/time_iteration.html#time-iteration-variants",
+    "title": "Time Iteration",
+    "section": "Time iteration variants",
+    "text": "Time iteration variants\n\nYou can check out:\n\nendogenous grid points:\n\nmathematically equivalent to TI,\nmuch faster for models that have a particular structure (consumption saving models)\nno need for a nonlinear solver\n\nimproved time iterations:\n\nsame as policy iterations for value function iterations\nconvergence is equivalent to that of TI\nmuch faster but requires correct initial guess\n\nparameterized expectations\n\nrequires that all controls are determined as a function of expectations",
     "crumbs": [
-      "Hands-on",
-      "Python: syntax review"
-    ]
-  },
-  {
-    "objectID": "handson/python_syntax.html#control-flows",
-    "href": "handson/python_syntax.html#control-flows",
-    "title": "Python: syntax review",
-    "section": "Control flows",
-    "text": "Control flows\n\nConditional blocks\nConditional blocks are preceeded by if and followed by an indented block. Note that it is advised to indent a block by a fixed set of space (usually 4) rather than use tabs.\n\nif 'sun'&gt;'moon':\n    print('warm')\n\nThey can also be followed by elif and else statements:\n\nx = 0.5\nif (x&lt;0):\n    y = 0.0\nelif (x&lt;1.0):\n    y = x\nelse:\n    y = 1+(x-1)*0.5\n\nRemark that in the conditions, any variable can be used. The following evaluate to False: - 0 - empty collection\n\nif 0: print(\"I won't print this.\")\nif 1: print(\"Maybe I will.\")\nif {}: print(\"Sir, your dictionary is empty\")\nif \"\": print(\"Sir, there is no string to speak of.\")\n\n\n\nWhile\nThe content of the while loop is repeated as long as a certain condition is met. Don’t forget to change that condition or the loop might run forever.\n\npoint_made = False\ni = 0\nwhile not point_made:\n    print(\"A fanatic is one who can't change his mind and won't change the subject.\")\n    i += 1 # this is a quasi-synonym of i = i + 1\n    if i&gt;=20:\n          point_made = True\n\n\n\nLoops\n\n# while loops\ni = 0\nwhile i&lt;=10:\n    print(str(i)+\" \",  end='')\n    i+=1\n\n\n# for loop\nfor i in [0,1,2,3,4,5,6,7,8,9,10]:\n    print(str(i)+\" \",  end='')\n\n\n# this works for any kind of iterable\n# for loop\nfor i in (0,1,2,3,4,5,6,7,8,9,10):\n    print(str(i)+\" \",  end='')\n\n\n# including range generator (note last value)\nfor i in range(11): \n    print(str(i)+\" \",  end='')\n\n\nrange(11)\n\n\n# one can also enumerate elements\ncountries = (\"france\", \"uk\", \"germany\")\nfor i,c in enumerate(countries): \n    print(f\"{i}: {c}\")\n\n\ns = set(c)\n\n\n# conditional blocks are constructed with if, elif, else\nfor i,c in enumerate(countries):\n    if len(set(c).intersection(set(\"brexit\"))):\n        print(c)\n    else:\n        print(c + \" 😢\")\n\nIt is possible to iterate over any iterable. This is true for a list or a generator:\n\nfor i in range(10): # range(10) is a generator\n    print(i)\n\n\nfor i in [0,1,2,3,4,5,6,7,8,9]:\n    print(i)\n\nWe can iterate of dictionary keys or values\n\nd = {1:2, 3:'i'}\nfor k in d.keys():\n    print(k, d[k])\nfor k in d.values():\n    print(k)\n\nor both at the same time:\n\nfor t in d.items():\n    print(t)\n\n# look at automatic unpacking\nfor (k,v) in d.items():\n    print(f\"key: {k}, value: {v}\")\n\n\n\nComprehension and generators\nThere is an easy syntax to construct lists/tuples/dicts: comprehension. Syntax is remminiscent of a for loop.\n\n[i**2 for i in range(10)]\n\n\nset(i-(i//2*2) for i in range(10))\n\n\n{i: i**2 for i in range(10)}\n\nComprehension can be combined with conditions:\n\n[i**2 for i in range(10) if i//3&gt;2]\n\nBehind the comprehension syntax, there is a special object called generator. Its role is to supply objects one by one like any other iterable.\n\n# note the bracket\ngen = (i**2 for i in range(10))\ngen # does nothing\n\n\ngen = (i**2 for i in range(10))\nfor e in gen:\n    print(e)\n\n\ngen = (i**2 for i in range(10))\nprint([e for e in gen])\n\nThere is a shortcut to converte a generator into a list: it’s called unpacking:\n\ngen = (i**2 for i in range(10))\n[*gen]",
-    "crumbs": [
-      "Hands-on",
-      "Python: syntax review"
-    ]
-  },
-  {
-    "objectID": "handson/python_syntax.html#functions",
-    "href": "handson/python_syntax.html#functions",
-    "title": "Python: syntax review",
-    "section": "Functions",
-    "text": "Functions\nWrong approach\n\na1 = 34\nb1 = (1+a1*a1)\nc1 = (a1+b1*b1)\n\na2 = 36\nb2 = (1+a2*a2)\nc2 = (a2+b2*b2)\n\nprint(c1,c2)\n\nBetter approach\n\ndef calc(a):\n    b = 1+a*a\n    c = a+b*b\n    return c\n\n(calc(34), calc(36))\n\nit is equivalent to replace the content of the function by:\n\na = 32\n_a = a          # def calc(a):\n_b = 1+_a*_a    #    b = 1+a*a\n_c = _a+_b*_b   #    c = a+b*b\nres = _c        #    return c\n\nNote that variable names within the function have different names. This is to avoid name conflicts as in:\n\ny = 1\ndef f(x):\n    y = x**2\n    return y+1\ndef g(x):\n    y = x**2+0.1\n    return y+1\nr1 = f(1.4)\nr2 = g(1.4)\nr3 = y\n(r1,r2,r3)\n\n\nl = ['france', 'germany']\ndef fun(i):\n    print(f\"Country: {l[i]}\")\nfun(0)\n\n\nl = ['france', 'germany']\ndef fun(i):\n    l = ['usa', 'japan']\n    l.append('spain')\n    print(f\"Country: {l[i]}\")\nfun(0)\n\n\nl\n\nIn the preceding code block, value of y has not been changed by calling the two functions. Check pythontutor.\n\nCalling conventions\nFunction definitions start with def and a colon indentation. Value are returned by return keyword. Otherwise the return value is None. Functions can have several arguments: def f(x,y) but always one return argument. It is however to return a tuple, and “unpack” it.\n\ndef f(x,y):\n    z1 = x+y\n    z2 = x-y\n    return (z1,z2)      # here brackets are optional:  `return z1,z2` works too\n\nres = f(0.1, 0.2)\nt1, t2 = f(0.2, 0.2)     # t1,t2=res works too\n\n\nres\n\nNamed arguments can be passed in any order and receive default values.\n\ndef problem(why=\"The moon shines.\", what=\"Curiosity killed the cat.\", where=\"Paris\"):\n    print(f\"Is it because {why.lower().strip('.')} that {what.lower().strip('.')}, in {where.strip('.')}?\")\n\n\nproblem(where='Paris')\n\n\nproblem(where=\"ESCP\", why=\"Square root of two is irrational\", what=\"Some regressions never work.\")\n\nPositional arguments and keyword arguments can be combined\n\ndef f(x, y, β=0.9, γ=4.0, δ=0.1):\n    return x*β+y**γ*δ\n\n\nf(0.1, 0.2)\n\n\n\nDocstrings\nFunctions are documented with a special string. Documentation It must follow the function signature immediately and explain what arguments are expected and what the function does\n\ndef f(x, y, β=0.9, γ=4.0, δ=0.1):   # kjhkugku\n    \"\"\"Compute the model residuals\n    \n    Parameters\n    ----------\n    x: (float) marginal propensity to do complicated stuff\n    y: (float) inverse of the elasticity of bifractional risk-neutral substitution\n    β: (float) time discount (default 0.9)\n    γ: (float) time discount (default 4.0)\n    δ: (float) time discount (default 0.1)\n    \n    Result\n    ------\n    res: beta-Hadamard measure of cohesiveness\n    \n    \"\"\"\n    res = x*β+y**γ*δ\n    return res\n\nRemark: Python 3.6 has introduced type indication for functions. They are useful as an element of indication and potentially for type checking. We do not cover them in this tutorial but this is what they look like:\n\ndef f(a: int, b:int)-&gt;int:\n    if a&lt;=1:\n        return 1\n    else:\n        return f(a-1,b) + f(a-2,b)*b\n\n\n\n\nPacking and unpacking\nA common case is when one wants to pass the elements of an iterable as positional argument and/or the elements of a dictionary as keyword arguments. This is espacially the case, when one wants to determine functions that act on a given calibration. Without unpacking all arguments would need to be passed separately.\n\nv = (0.1, 0.2)\np = dict(β=0.9, γ=4.0, δ=0.1)\n\nf(v[0], v[1], β=p['β'], γ=p['γ'], δ=p['δ'])\n\nThere is a special syntax for that: * unpacks positional arguments and ** unpacks keyword arguments. Here is an example:\n\nf(*v, **p)\n\nThe same characters * and ** can actually be used for the reverse operation, that is packing. This is useful to determine functions of a variable number of arguments.\n\ndef fun(**p):\n    β = p['β']\n    return β+1\nfun(β=1.0)\nfun(β=1.0, γ=2.0) # γ is just ignored\n\nInside the function, unpacked objects are lists and dictionaries respectively.\n\ndef fun(*args, **kwargs):\n    print(f\"Positional arguments: {len(args)}\")\n    for a in args:\n        print(f\"- {a}\")\n    print(f\"Keyword arguments: {len(args)}\")\n    for key,value in kwargs.items():\n        print(f\"- {key}: {value}\")\n\n\nfun(0.1, 0.2, a=2, b=3, c=4)\n\n\n\nFunctions are first class objects\nThis means they can be assigned and passed around.\n\ndef f(x): return 2*x*(1-x)\ng = f # now `g` and `f` point to the same function\ng(0.4)\n\n\ndef sumsfun(l, f):\n    return [f(e) for e in l]\n\n\nsumsfun([0.0, 0.1, 0.2], f)\n\n\ndef compute_recursive_series(x0, fun, T=50):\n    a = [x0]\n    for t in range(T):\n        x0 = a[-1]\n        x = fun(x0)\n        a.append(x)\n    return a\n\ncompute_recursive_series(0.3, f, T=5)\n\nThere is another syntax to define a function, without giving it a name first: lambda functions. It is useful when passing a function as argument.\n\nsorted(range(6), key=lambda x: (-2)**x)\n\nLambda functions are also useful to reduce quickly the number of arguments of a function (aka curryfication)\n\ndef logistic(μ,x): return μ*x*(1-x)\n# def chaotic(x): return logistic(3.7, x)\n# def convergent(x): return logistic(2.5, x)\nchaotic = lambda x: logistic(3.7, x)\nconvergent = lambda x: logistic(2.5, x)\n\n\nl = [compute_recursive_series(0.3,fun, T=20) for fun in [convergent, chaotic]]\n[*zip(*l)]\n\n\nfrom matplotlib import pyplot as plt\nimport numpy as np\ntab = np.array(l)\nplt.plot(tab[0,:-1],tab[0,1:])\ntab = np.array(l)\nplt.plot(tab[1,:-1],tab[1,1:])\nplt.plot(np.linspace(0,1),np.linspace(0,1))\nplt.xlabel(\"$x_n$\")\nplt.ylabel(\"$x_{n+1}$\")\nplt.grid()\n\n\n\nFunctions pass arguments by reference\nMost of the time, variable affectation just create a reference.\n\na = [1,2,3]\nb = a\na[1] = 0\n(a, b)\n\nTo get a copy instead, one needs to specify it explicitly.\n\nimport copy\na = [1,2,3]\nb = copy.copy(a)\na[1] = 0\n(a, b)\n\nNot that copy follows only one level of references. Use deepcopy for more safety.\n\na0 = ['a','b']\na = [a0, 1, 2]\nb = copy.copy(a)\na[0][0] = 'ξ'\na, b\n\n\na0 = ['a','b']\na = [a0, 1, 2]\nb = copy.deepcopy(a)\na[0][0] = 'ξ'\na, b\n\nArguments in a function are references towards the original object. No data is copied. It is then easy to construct functions with side-effects.\n\ndef append_inplace(l1, obs):\n    l1.append(obs)\n    return l1\nl1, obs = ([1,2,3], 1.5)\nl2 = append_inplace(l1,obs)\nprint(l2, l1)\n# note that l1 and l2 point to the same object\nl1[0] = 'hey'\nprint(l2, l1)\n\nThis behaviour might feel unnatural but is very sensible. For instance if the argument is a database of several gigabytes and one wants to write a function which will modify a few of its elements, it is not reasonable to copy the db in full.",
-    "crumbs": [
-      "Hands-on",
-      "Python: syntax review"
-    ]
-  },
-  {
-    "objectID": "handson/python_syntax.html#objects",
-    "href": "handson/python_syntax.html#objects",
-    "title": "Python: syntax review",
-    "section": "Objects",
-    "text": "Objects\nObjects ?\n\ncan be passed around / referred too\nhave properties (data) and methods (functions) attached to them\ninherit properties/methods from other objects\n\nObjects are defined by a class definition. By convention, classes names start with uppercase . To create an object, one calls the class name, possibly with additional arguments.\n\nclass Dog:\n    name = \"May\" # class property\n\nd1 = Dog()\nd2 = Dog()\n\nprint(f\"Class: d1-&gt;{type(d1)}, d2-&gt;{type(d2)}\")\nprint(f\"Instance address: d2-&gt;{d1},{d2}\")\n\nNow, d1 and d2 are two different instances of the same class Dog. Since properties are mutable, instances can have different data attached to it.\n\nd1.name = \"Boris\"\nprint([e.name for e in [d1,d2]])\n\nMethods are functions attached to a class / an instance. Their first argument is always an instance. The first argument can be used to acess data held by the instance.\n\nclass Dog:\n    name = None # default value\n    def bark(self):\n        print(\"Wouf\")\n    def converse(self):\n        n = self.name\n        print(f\"Hi, my name is {n}. I'm committed to a strong and stable government.\")\n        \nd = Dog()\nd.bark()   # bark(d)\nd.converse()\n\n\nConstructor\nThere is also a special method __init__ called the constructor. When an object is created, it is called on the instance. This is useful in order to initialize parameters of the instance.\n\nclass Calibration:\n    \n    def __init__(self, x=0.1, y=0.1, β=0.0):\n        if not (β&gt;0) and (β&lt;1):\n            raise Exception(\"Incorrect calibration\"})\n        self.x = x\n        self.y = y\n        self.β = β\n\n\nc1 = Calibration()\nc2 = Calibration(x=3, y=4)\n\nTwo instances of the same class have the same method, but can hold different data. This can change the behaviour of these methods.\n\n# class Dog:\n    \n#     state = 'ok'\n    \n#     def bark(self):\n#         if self.state == 'ok':\n#             print(\"Wouf!\")\n#         else:\n#             print(\"Ahouuu!\")\n        \n# d = Dog()\n# d1 = Dog()\n# d1.state = 'hungry'\n\n# d.bark()\n# d1.bark()\n\nTo write a function which will manipulate properties and methods of an object, it is not required to know its type in advance. The function will succeed as long as the required method exist, fail other wise. This is called “Duck Typing”: if it walks like a duck, it must be a duck…\n\nclass Duck:\n    def walk(self): print(\"/-\\_/-\\_/\")\n        \nclass Dog:\n    def walk(self): print(\"/-\\_/*\\_/\")\n    def bark(self): print(\"Wouf\")\n\n\nanimals = [C() for C in (Duck,Dog)]\ndef go_in_the_park(animal):\n    for i in range(3): animal.walk()\nfor a in animals:\n    go_in_the_park(a)\n\n\nInheritance\nThe whole point of classes, is that one can construct hierarchies of classes to avoid redefining the same methods many times. This is done by using inheritance.\n\nclass Animal:\n    \n    def run(self): print(\"👣\"*4)\n\nclass Dog(Animal):\n    def bark(self): print(\"Wouf\")\n        \nclass Rabbit(Animal):\n    def run(self):\n        super().run() ; print( \"🐇\" )\n\n\nAnimal().run()\ndog = Dog()\ndog.run()\ndog.bark()\nRabbit().run()\n\nIn the above example, the Dog class inherits from inherits the method run from the Animal class: it doesn’t need to be redefined again. Essentially, when run(dog) is called, since the method is not defined for a dog, python looks for the first ancestor of dog and applies the method of the ancestor.\n\n\nSpecial methods\nBy conventions methods starting with double lowercase __ are hidden. They don’t appear in tab completion. Several special methods can be reimplemented that way.\n\nclass Calibration:\n    \n    def __init__(self, x=0.1, y=0.1, β=0.1):\n        if not (β&gt;0) and (β&lt;1):\n            raise Exception(\"Incorrect calibration\")\n        self.x = x\n        self.y = y\n        self.β = β\n    \n    def __str__(self):\n        return f\"Calibration(x={self.x},y={self.y}, β={self.β})\"\n\n\nstr(Calibration() )\n\n\n\ncomplement\nPython is not 100% object oriented. - some objects cannot be subclassed - basic types behave sometimes funny (interning strings)\nmindfuck: Something that destabilizes, confuses, or manipulates a person’s mind.\n\na = 'a'*4192\nb = 'a'*4192\na is b\n\n\na = 'a'*512\nb = 'a'*512\na is b",
-    "crumbs": [
-      "Hands-on",
-      "Python: syntax review"
-    ]
-  },
-  {
-    "objectID": "handson/numeric_python.html",
-    "href": "handson/numeric_python.html",
-    "title": "Numeric Python",
-    "section": "",
-    "text": "Most python scientists, use the following libraries:\n\nnumpy: performant array library (vectors, matrices, tensors)\nmatplotlib: plotting library\nscipy: all kinds of mathematical routines\n\nIn the rest of the course, we’ll make some use of numpy and matplotlib\nThey are included in all python distributions like Anaconda Python\nAll additional libraries use numpy and matplotlib: pandas, statsmodels, sklearn",
-    "crumbs": [
-      "Hands-on",
-      "Numeric Python"
-    ]
-  },
-  {
-    "objectID": "handson/numeric_python.html#numpy",
-    "href": "handson/numeric_python.html#numpy",
-    "title": "Numeric Python",
-    "section": "Numpy",
-    "text": "Numpy\n\nWhat is Numpy\nNumpy is an array type (python object) meant to store efficiently homogenous, square, arrays (like \\((a_{i})_{i\\in [1,N]}\\) or \\((b_{i,j,k})_{i\\in [1,N],j\\in[1,J],k \\in [1,K]}\\))\nBy default its stores data in contiguous C-order (last index varies faster), but also supports Fortran order and strided arrays (non-contiguous).\nNumpy has introduced well thought conventions, that have been reused by many other libraries (tensorflow, pytorch, jax), or even programming languages (julia)\n\n\nVector Creation\n\nVectors and matrices are created with the np.array(...) function.\nSpecial vectors can be created with np.zeros, np.ones, np.linspace\n\n\n# an array can be created from a list of numbers\nnp.array( [1.0, 2.0, 3.0] )\n\n\n# or initialized by specifying the length of the array\nnp.zeros(5)\n\n\n# 10 regularly spaced points between 0 and 1\nnp.linspace(0, 1, 11)\n\n\n\nMatrix Creation\n\nA matrix is a 2-dimensional array and is created with np.array\nFunction np.matrix() has been deprecated: do not use it.\nThere are functions to create specific matrices: np.eye, np.diag, …\n\n\n# an array can be created from a list of (equal size) lists\nnp.array([\n    [1.0, 2.0, 3.0],\n    [4  ,   5,   6] \n])\n\n\n# initialize an empty matrix with the dimensions as a tuple\nA = np.zeros( (2, 3) )\nA\n\n\n# matrix dimensions are contained in the shape attribute\nA.shape\n\n\n\nTensors\nThe construction generalizes to higher dimension arrays (a.k.a. tensors)\n\n# an array can be created from a list of list of lists\nnp.array([\n    [\n        [1.0, 2.0, 3.0],\n        [4  ,   5,   6] \n    ],\n        [\n        [7.0, 8.0, 9.0],\n        [10 ,  11,   12] \n    ]\n])\n\n\n# initialize an empty matrix with the dimensions as a tuple\nA = np.zeros( (2, 3) )\nA\n\n\n# matrix dimensions are contained in the shape attribute\nA.shape\n\n\n\nLinear Algebra\nVector multiplications and Matrix multiplications can be performed using special sign @\n\nA = np.array([[1.0, 2.0], [2,4]])\nA\n\n\nB = np.array([1.0, 2.0])\nB\n\n\nA@B\n\n\nA@A\n\nNote how multiplication reduces total number of dimensions by 2. It is a tensor reduction.\n\nprint(A.shape, A.shape, (A@A).shape)\n\n\n\nScalar types\nNumpy arrays can contain data of several scalar types.\n\n[True, False, True]\n\n\n# vector of boolean\nboolean_vector = np.array( [True, False, True] )\nprint(f\"type of scalar '{boolean_vector.dtype}'\")\nboolean_vector\n\n\n# vector of integers\nint_vector = np.array([1, 2, 0])\nprint(f\"type of scalar '{int_vector.dtype}'\")\nint_vector\n\nBy default, numerical arrays contain float64 numbers (like matlab). But GPUs typically process 16 bits or 32 bits numbers.\nCan you create a 32 bits array?\n\n# your code here\n\n\n\nSubscripting Vectors\n\nElements and subarrays, can be retrieved using the same syntax as lists and strings.\n\nRemember that indexing starts at 0.\n\n\n\nV = np.array([0., 1., 2., 3., 4.])\ndisplay(V[1])  # second element\n\n\nV = np.array([0., 1., 2., 3., 4.])\ndisplay(V[1:3])  # second, third and fourth element\n\n\n\nModifying Vector Content\n\nElements and suvectors, can be assigned to new values, as long as they have the right dimensions.\n\n\nV = np.array([1., 1., 2., 4., 5., 8., 13.])\nV[3] = 3.0\nV\n\n\nV = np.array([1., 1., 2., 4., 5., 8., 13.])\n# V[1:4] = [1,2,3,4] # this doesn't work\nV[1:4] = [2,3,4] # this works\n\n\n\nSubscripting Matrices\n\nIndexing generalizes to matrices: there are two indices istead of one: M[i,j]\nOne can extract a row, or a column (a slice) with M[i,:] or M[:,i]\nA submatrix is defining with two intervals: M[i:j, k:l] or M[i:j, :], …\n\n\nM = np.array([[1,2,3],[4,5,6],[7,8,9]])\nM\n\n\nM[0,1] # access element (1,2)\n\n\nM[2,:] # third row\n\n\nM[:,1] # second column     # M[i,1] for any i\n\n\nM[1:3, :] # lines from 1 (included) to 3 (excluded) ; all columns\n\n\n\nModifying matrix content\n\nM = np.array([[1,2,3],[4,5,6],[7,8,9]])\nM\n\n\nM[0,0] = 0\nM\n\n\nM[1:3, 1:3] = np.array([[0,1],[1,0]]) # dimensions must match\nM\n\n\n\nElement-wise algebraic operations\n\nThe following algebraic operations are defined on arrays: +, -, *, /, **.\nComparisons operators (&lt;,&lt;=, &gt;, &gt;=, ==) are defined are return boolean arrays.\nThey operate element by element.\n\n\nA = np.array([1,2,3,4])\nB = np.array([4,3,2,1])\nA+B\n\n\nA*B    # note the difference with A@B\n\n\nA&gt;B\n\nAt first, one might be surprised that the default multiplication operator is element-wise multiplication rather than matrix multiplication.\nThere are at least two good reasons:\n\nconsistency: all operators can be broadcasted with the exact same rules (like *, +, &gt;)\nfor many workflows, elementwise operations are more common than matrix multiplication\n\n\n\nElement-wise logical operations\n\nThe following logical operations are defined element-wise on arrays: & (and), | (or), ~ (not)\n\n\nA = np.array([False, False, True, True])\nB = np.array([False, True, False, True])\n\n\n~A\n\n\nA | B\n\n\nA & B\n\n\n\nVector indexing\n\nArrays can be indexed by boolean arrays instead of ranges.\nOnly elements corresponding to true are retrieved\n\n\nx = np.linspace(0,1,6)\nx\n\n\n# indexes such that (x^2) &gt; (x/2)\nx**2 &gt; (x/2)\n\n\ncond = x**2 &gt; (x/2)\nx[ cond ] \n\n\n\nGoing further: broadcasting rules\n\nNumpy library has defined very consistent conventions, to match inconsistent dimensions.\nIgnore them for now…\n\n\nM = np.eye(4)\nM\n\n\nM[2:4, 2:4] = 0.5 # float\nM\n\n\nM[:,:2] = np.array([[0.1, 0.2]])  # 1x2 array\nM\n\n\n\nGoing Further\n\nOther useful functions (easy to google):\n\nnp.arange() regularly spaced integers\nnp.where() find elements in\n…",
-    "crumbs": [
-      "Hands-on",
-      "Numeric Python"
-    ]
-  },
-  {
-    "objectID": "handson/numeric_python.html#matplotlib",
-    "href": "handson/numeric_python.html#matplotlib",
-    "title": "Numeric Python",
-    "section": "Matplotlib",
-    "text": "Matplotlib\n\nMatplotlib\n\nmatplotlib is …\nobject oriented api optional Matlab-like syntax\nmain function is plt.plot(x,y) where x and y are vectors (or iterables like lists)\n\nlots of optional arguments\n\n\n\nfrom matplotlib import pyplot as plt\n\n\n\nExample\n\nx = np.linspace(-1,1,6)\n\n\ny = np.sin(x)/x # sinus cardinal\n\n\nplt.plot(x,y,'o')\nplt.plot(x,y)\n\n\n\nExample (2)\n\nx = np.linspace(-5,5,100)\n\nfig = plt.figure() # keep a figure open to draw on it\nfor k in range(1,5):\n    y = np.sin(x*k)/(x*k)\n    plt.plot(x, y, label=f\"$sinc({k} x)$\") # label each line\nplt.plot(x, x*0, color='black', linestyle='--')\nplt.grid(True) # add a grid\nplt.title(\"Looking for the right hat.\")\nplt.legend(loc=\"upper right\")\n\n\n\nExample (3)\n\nx = np.linspace(-5,5,100)\n\nplt.figure()\nplt.subplot(2,2,1) # create a 2x2 subplot and draw in first quadrant\nplt.plot(x,x)\nplt.subplot(2,2,2) # create a 2x2 subplot and draw in second quadrant\nplt.plot(x,-x)\nplt.subplot(2,2,3) # create a 2x2 subplot and draw in third quadrant\nplt.plot(x,-x)\nplt.subplot(2,2,4) # create a 2x2 subplot and draw in fourth quadrant\nplt.plot(x,x)\n\nplt.tight_layout() # save some space\n\n\n\nAlternatives to matplotlib\n\nplotly (nice javascript graphs)\nbqplot (native integration with jupyter)\naltair\n\nexcellent for dataviz/interactivity\npython wrapper to Vega-lite\nvery efficient to visualize pandas data (i.e. a dataframe)",
-    "crumbs": [
-      "Hands-on",
-      "Numeric Python"
+      "Slides",
+      "Time Iteration"
     ]
   },
   {
@@ -853,11 +780,271 @@
     ]
   },
   {
+    "objectID": "handson/numeric_python.html",
+    "href": "handson/numeric_python.html",
+    "title": "Numeric Python",
+    "section": "",
+    "text": "Most python scientists, use the following libraries:\n\nnumpy: performant array library (vectors, matrices, tensors)\nmatplotlib: plotting library\nscipy: all kinds of mathematical routines\n\nIn the rest of the course, we’ll make some use of numpy and matplotlib\nThey are included in all python distributions like Anaconda Python\nAll additional libraries use numpy and matplotlib: pandas, statsmodels, sklearn",
+    "crumbs": [
+      "Hands-on",
+      "Numeric Python"
+    ]
+  },
+  {
+    "objectID": "handson/numeric_python.html#numpy",
+    "href": "handson/numeric_python.html#numpy",
+    "title": "Numeric Python",
+    "section": "Numpy",
+    "text": "Numpy\n\nWhat is Numpy\nNumpy is an array type (python object) meant to store efficiently homogenous, square, arrays (like \\((a_{i})_{i\\in [1,N]}\\) or \\((b_{i,j,k})_{i\\in [1,N],j\\in[1,J],k \\in [1,K]}\\))\nBy default its stores data in contiguous C-order (last index varies faster), but also supports Fortran order and strided arrays (non-contiguous).\nNumpy has introduced well thought conventions, that have been reused by many other libraries (tensorflow, pytorch, jax), or even programming languages (julia)\n\n\nVector Creation\n\nVectors and matrices are created with the np.array(...) function.\nSpecial vectors can be created with np.zeros, np.ones, np.linspace\n\n\n# an array can be created from a list of numbers\nnp.array( [1.0, 2.0, 3.0] )\n\n\n# or initialized by specifying the length of the array\nnp.zeros(5)\n\n\n# 10 regularly spaced points between 0 and 1\nnp.linspace(0, 1, 11)\n\n\n\nMatrix Creation\n\nA matrix is a 2-dimensional array and is created with np.array\nFunction np.matrix() has been deprecated: do not use it.\nThere are functions to create specific matrices: np.eye, np.diag, …\n\n\n# an array can be created from a list of (equal size) lists\nnp.array([\n    [1.0, 2.0, 3.0],\n    [4  ,   5,   6] \n])\n\n\n# initialize an empty matrix with the dimensions as a tuple\nA = np.zeros( (2, 3) )\nA\n\n\n# matrix dimensions are contained in the shape attribute\nA.shape\n\n\n\nTensors\nThe construction generalizes to higher dimension arrays (a.k.a. tensors)\n\n# an array can be created from a list of list of lists\nnp.array([\n    [\n        [1.0, 2.0, 3.0],\n        [4  ,   5,   6] \n    ],\n        [\n        [7.0, 8.0, 9.0],\n        [10 ,  11,   12] \n    ]\n])\n\n\n# initialize an empty matrix with the dimensions as a tuple\nA = np.zeros( (2, 3) )\nA\n\n\n# matrix dimensions are contained in the shape attribute\nA.shape\n\n\n\nLinear Algebra\nVector multiplications and Matrix multiplications can be performed using special sign @\n\nA = np.array([[1.0, 2.0], [2,4]])\nA\n\n\nB = np.array([1.0, 2.0])\nB\n\n\nA@B\n\n\nA@A\n\nNote how multiplication reduces total number of dimensions by 2. It is a tensor reduction.\n\nprint(A.shape, A.shape, (A@A).shape)\n\n\n\nScalar types\nNumpy arrays can contain data of several scalar types.\n\n[True, False, True]\n\n\n# vector of boolean\nboolean_vector = np.array( [True, False, True] )\nprint(f\"type of scalar '{boolean_vector.dtype}'\")\nboolean_vector\n\n\n# vector of integers\nint_vector = np.array([1, 2, 0])\nprint(f\"type of scalar '{int_vector.dtype}'\")\nint_vector\n\nBy default, numerical arrays contain float64 numbers (like matlab). But GPUs typically process 16 bits or 32 bits numbers.\nCan you create a 32 bits array?\n\n# your code here\n\n\n\nSubscripting Vectors\n\nElements and subarrays, can be retrieved using the same syntax as lists and strings.\n\nRemember that indexing starts at 0.\n\n\n\nV = np.array([0., 1., 2., 3., 4.])\ndisplay(V[1])  # second element\n\n\nV = np.array([0., 1., 2., 3., 4.])\ndisplay(V[1:3])  # second, third and fourth element\n\n\n\nModifying Vector Content\n\nElements and suvectors, can be assigned to new values, as long as they have the right dimensions.\n\n\nV = np.array([1., 1., 2., 4., 5., 8., 13.])\nV[3] = 3.0\nV\n\n\nV = np.array([1., 1., 2., 4., 5., 8., 13.])\n# V[1:4] = [1,2,3,4] # this doesn't work\nV[1:4] = [2,3,4] # this works\n\n\n\nSubscripting Matrices\n\nIndexing generalizes to matrices: there are two indices istead of one: M[i,j]\nOne can extract a row, or a column (a slice) with M[i,:] or M[:,i]\nA submatrix is defining with two intervals: M[i:j, k:l] or M[i:j, :], …\n\n\nM = np.array([[1,2,3],[4,5,6],[7,8,9]])\nM\n\n\nM[0,1] # access element (1,2)\n\n\nM[2,:] # third row\n\n\nM[:,1] # second column     # M[i,1] for any i\n\n\nM[1:3, :] # lines from 1 (included) to 3 (excluded) ; all columns\n\n\n\nModifying matrix content\n\nM = np.array([[1,2,3],[4,5,6],[7,8,9]])\nM\n\n\nM[0,0] = 0\nM\n\n\nM[1:3, 1:3] = np.array([[0,1],[1,0]]) # dimensions must match\nM\n\n\n\nElement-wise algebraic operations\n\nThe following algebraic operations are defined on arrays: +, -, *, /, **.\nComparisons operators (&lt;,&lt;=, &gt;, &gt;=, ==) are defined are return boolean arrays.\nThey operate element by element.\n\n\nA = np.array([1,2,3,4])\nB = np.array([4,3,2,1])\nA+B\n\n\nA*B    # note the difference with A@B\n\n\nA&gt;B\n\nAt first, one might be surprised that the default multiplication operator is element-wise multiplication rather than matrix multiplication.\nThere are at least two good reasons:\n\nconsistency: all operators can be broadcasted with the exact same rules (like *, +, &gt;)\nfor many workflows, elementwise operations are more common than matrix multiplication\n\n\n\nElement-wise logical operations\n\nThe following logical operations are defined element-wise on arrays: & (and), | (or), ~ (not)\n\n\nA = np.array([False, False, True, True])\nB = np.array([False, True, False, True])\n\n\n~A\n\n\nA | B\n\n\nA & B\n\n\n\nVector indexing\n\nArrays can be indexed by boolean arrays instead of ranges.\nOnly elements corresponding to true are retrieved\n\n\nx = np.linspace(0,1,6)\nx\n\n\n# indexes such that (x^2) &gt; (x/2)\nx**2 &gt; (x/2)\n\n\ncond = x**2 &gt; (x/2)\nx[ cond ] \n\n\n\nGoing further: broadcasting rules\n\nNumpy library has defined very consistent conventions, to match inconsistent dimensions.\nIgnore them for now…\n\n\nM = np.eye(4)\nM\n\n\nM[2:4, 2:4] = 0.5 # float\nM\n\n\nM[:,:2] = np.array([[0.1, 0.2]])  # 1x2 array\nM\n\n\n\nGoing Further\n\nOther useful functions (easy to google):\n\nnp.arange() regularly spaced integers\nnp.where() find elements in\n…",
+    "crumbs": [
+      "Hands-on",
+      "Numeric Python"
+    ]
+  },
+  {
+    "objectID": "handson/numeric_python.html#matplotlib",
+    "href": "handson/numeric_python.html#matplotlib",
+    "title": "Numeric Python",
+    "section": "Matplotlib",
+    "text": "Matplotlib\n\nMatplotlib\n\nmatplotlib is …\nobject oriented api optional Matlab-like syntax\nmain function is plt.plot(x,y) where x and y are vectors (or iterables like lists)\n\nlots of optional arguments\n\n\n\nfrom matplotlib import pyplot as plt\n\n\n\nExample\n\nx = np.linspace(-1,1,6)\n\n\ny = np.sin(x)/x # sinus cardinal\n\n\nplt.plot(x,y,'o')\nplt.plot(x,y)\n\n\n\nExample (2)\n\nx = np.linspace(-5,5,100)\n\nfig = plt.figure() # keep a figure open to draw on it\nfor k in range(1,5):\n    y = np.sin(x*k)/(x*k)\n    plt.plot(x, y, label=f\"$sinc({k} x)$\") # label each line\nplt.plot(x, x*0, color='black', linestyle='--')\nplt.grid(True) # add a grid\nplt.title(\"Looking for the right hat.\")\nplt.legend(loc=\"upper right\")\n\n\n\nExample (3)\n\nx = np.linspace(-5,5,100)\n\nplt.figure()\nplt.subplot(2,2,1) # create a 2x2 subplot and draw in first quadrant\nplt.plot(x,x)\nplt.subplot(2,2,2) # create a 2x2 subplot and draw in second quadrant\nplt.plot(x,-x)\nplt.subplot(2,2,3) # create a 2x2 subplot and draw in third quadrant\nplt.plot(x,-x)\nplt.subplot(2,2,4) # create a 2x2 subplot and draw in fourth quadrant\nplt.plot(x,x)\n\nplt.tight_layout() # save some space\n\n\n\nAlternatives to matplotlib\n\nplotly (nice javascript graphs)\nbqplot (native integration with jupyter)\naltair\n\nexcellent for dataviz/interactivity\npython wrapper to Vega-lite\nvery efficient to visualize pandas data (i.e. a dataframe)",
+    "crumbs": [
+      "Hands-on",
+      "Numeric Python"
+    ]
+  },
+  {
+    "objectID": "handson/python_syntax.html",
+    "href": "handson/python_syntax.html",
+    "title": "Python: syntax review",
+    "section": "",
+    "text": "# integers and floats\n\n\n1\n\n\n1.0\n\n\n# conversion with int() and float()\nfloat( 1 )\n\n\nint(2.9) # floor\n\n\n# no difference between various types of floats (16 bits, 32 bits, 64 bits, ...)\n\n\ntype( 2.2**50 ) # this doesn't fit in 32 bits\n\n\n# usual operations + - *\nprint( 2 + 3 )\nprint( 9 -6 )\nprint( 3 / 2 )\nprint(2304310958*41324)\n\n\n# divisions / and //\nprint(3/4)\nprint(13//4)\n\n\n# exponentiation ** (not ^!)\n# (1.04)^10\n(1.04)**10\n\n\n# comparison operators: &gt;, &lt;, &gt;=, &lt;=, ==\n\nprint((1.0453432)*(0.96)  &gt; 1.001 )\n\nprint(1.001 &gt;= 1.001)\n\n\n# comparison operators can be chained:\nprint(0.2&lt;0.4&lt;0.5)\nprint(0.5&lt;=0.4&lt;=0.5) # equivalent to ((0.5&lt;=0.4) and(0.4&lt;=0.5))\n\n\n\n\nThere are only two booleans: True and False (note uppercase). None is a dummy type, which is used when no other type fits.\n\nprint( False )\nTrue\n\n\n(True, False, None)\n\nDouble equal sign tests for equality. Result should always be a boolean.\n\nTrue==False\n\nLogical operators are not, and and or:\n\n(True or False)\n\n\nnot (True or False)\n\n\n(1.3**1.04 &gt; 1.9) | (1000**1143&gt;1001**1142)\n\nOperators or and and can be replaced by | and & respectively. They are non-greedy, that is terms are not evaluated if the result of the comparison is already known.\n\nFalse and (print(\"Hello\"))\n\n\nprint( (print(\"Hello\")) and False )\n\n\n\n\n\n\nStrings are defined by enclosing characters either by ' (single quotes) or \" (double quote). Single quotes strings can contain double quotes strings and vice-versa.\n\n\"name\"\n\n\n'name'\n\n\n'I say \"hello\"'\n\n\n\"You can 'quote' me\"\n\nStrings spanning over sever lines can be defined with triple quotes (single or double).\n\ns = \"\"\"¿Qué es la vida? Un frenesí.\n¿Qué es la vida? Una ilusión,\nuna sombra, una ficción,\ny el mayor bien es pequeño;\nque toda la vida es sueño,\ny los sueños, sueños son.\n\"\"\"\n\nIt is also possible to use the newline character \\n.\n\n\"La vida es sueño,\\ny los sueños, sueños son.\"\n\n\nprint(\"La vida es sueño,\\ny los sueños, sueños son.\")\n\n\n\n\nStrings can contain any unicode character:\n\ns = \"🎻⽻༽\"\n\nRefresher: ASCII vs unicode\nASCII (or ASCII-US) is an old standard which codes a character with 7 bits (or 8 bits for extended ASCII). This allows to code 128 different characters (256 for ex-ASCII).\nOnly a subset of these characters can be printed regularly.\n\nchr(44)\n\n\n# ASCII: \nfor i in range(32,127):\n    print( chr(i), end=' ')\n\nThe other characters include delete, newline and carriage return among others.\n\ns = 'This is\\na\\nmultiline string.' # note the newline character '\\n'\n\n\n# print(s)\nlen(s)\n\nSome antiquated platforms still use newline + carriage return at the end of each line. This is absolutely not required and causes incompatibilities.\n\ns2 = 'This is\\n\\ra\\n\\rmultiline string.' # note the newline character '\\n' and carriager return '\\r'\n\n\nprint(s2)\nprint(len(s2))\n\nUnicode contains a repertoire of over 137,000 characters with all ASCII characters as subcases\nTo type: copy/paste, ctrl+shift+hexadecimal, latex + tab\nVariable names aka identifiers can contain unicode characters with some restrictions: - they cannot start with a digit - they can’t contain special variables (‘!,#,@,%,$’ and other unicode specials ???) - they can contain underscore\n\n\n\nconcatenation\n\n'abc' + 'def'\n\n\n'abc'*3\n\n\n'abc' + 'abc' + 'abc'\n\n\n\n\n\n# strings can be accessed as arrays (0 based indexing)\ns = \"a b c\"\ns[0]\n\n\n# slice notation (  [min,max[ )\ns = \"a b c d\"\ns[2:5] # 0-based; 2 included, 5 excluded\n\n\n# substrings are easy to check\n\"a\" in s\n\n\n\"b c\" in \"a b c d\"\n\nIt is impossible to modify a substring.\n\n# but are immutable\ns = \"a b c\"\n#s[1] = 0 error\n\nInstead, one can replace a substring:\n\ns\n\n\ns.replace(' ', '🎻')\n\nOr use string interpolation\n\n# string interpolation (old school)\n\"ny name is {name}\".format(name=\"nobody\")\n\n\n\"calculation took {time}s\".format(time=10000)\n\n\n# number format can be tweaked\n\"I am {age:.0f} years old\".format(age=5.65)\n\n\n# formatted strings\nelapsed = 15914884.300292\n\nf\"computations took {elapsed/3600:.2f} hours\"\n\n\nname = \"arnaldur\"\n\n\n\"dasnfnaksujhn {name}\".format(name=\"whatever\")\n\n\n# basic string operations: str.split, str.join, etc...\n# fast regular expressions\n# more on it, with text processing lesson\n\n\nstr.split(\"me,you,others,them\",',')\n\n\nstr.join( \" | \",\n    str.split(\"me,you,others,them\",','),\n)\n\n\n\n\nThe example above used several special characters: \\n which corresponds to only one ascii character and {/} which disappears after the string formatting. If one desires to print these characters precisely one needs to escape them using \\ and { }.\n\nprint(\"This is a one \\\\nline string\")\nprint(\"This string keeps some {{curly}} brackets{}\".format('.'))\n\n\n\n\n(check help(str) or help?)\n\nlen() : length\nstrip() : removes characters at the ends\nsplit() : split strings into several substrings separated by separator\njoin() : opposite of split\n\n\n'others,'\n\n\n',me,others,'.strip(',')\n\n\ns.count(',')\n\n\nhelp(str)",
+    "crumbs": [
+      "Hands-on",
+      "Python: syntax review"
+    ]
+  },
+  {
+    "objectID": "handson/python_syntax.html#basic-types",
+    "href": "handson/python_syntax.html#basic-types",
+    "title": "Python: syntax review",
+    "section": "",
+    "text": "# integers and floats\n\n\n1\n\n\n1.0\n\n\n# conversion with int() and float()\nfloat( 1 )\n\n\nint(2.9) # floor\n\n\n# no difference between various types of floats (16 bits, 32 bits, 64 bits, ...)\n\n\ntype( 2.2**50 ) # this doesn't fit in 32 bits\n\n\n# usual operations + - *\nprint( 2 + 3 )\nprint( 9 -6 )\nprint( 3 / 2 )\nprint(2304310958*41324)\n\n\n# divisions / and //\nprint(3/4)\nprint(13//4)\n\n\n# exponentiation ** (not ^!)\n# (1.04)^10\n(1.04)**10\n\n\n# comparison operators: &gt;, &lt;, &gt;=, &lt;=, ==\n\nprint((1.0453432)*(0.96)  &gt; 1.001 )\n\nprint(1.001 &gt;= 1.001)\n\n\n# comparison operators can be chained:\nprint(0.2&lt;0.4&lt;0.5)\nprint(0.5&lt;=0.4&lt;=0.5) # equivalent to ((0.5&lt;=0.4) and(0.4&lt;=0.5))\n\n\n\n\nThere are only two booleans: True and False (note uppercase). None is a dummy type, which is used when no other type fits.\n\nprint( False )\nTrue\n\n\n(True, False, None)\n\nDouble equal sign tests for equality. Result should always be a boolean.\n\nTrue==False\n\nLogical operators are not, and and or:\n\n(True or False)\n\n\nnot (True or False)\n\n\n(1.3**1.04 &gt; 1.9) | (1000**1143&gt;1001**1142)\n\nOperators or and and can be replaced by | and & respectively. They are non-greedy, that is terms are not evaluated if the result of the comparison is already known.\n\nFalse and (print(\"Hello\"))\n\n\nprint( (print(\"Hello\")) and False )\n\n\n\n\n\n\nStrings are defined by enclosing characters either by ' (single quotes) or \" (double quote). Single quotes strings can contain double quotes strings and vice-versa.\n\n\"name\"\n\n\n'name'\n\n\n'I say \"hello\"'\n\n\n\"You can 'quote' me\"\n\nStrings spanning over sever lines can be defined with triple quotes (single or double).\n\ns = \"\"\"¿Qué es la vida? Un frenesí.\n¿Qué es la vida? Una ilusión,\nuna sombra, una ficción,\ny el mayor bien es pequeño;\nque toda la vida es sueño,\ny los sueños, sueños son.\n\"\"\"\n\nIt is also possible to use the newline character \\n.\n\n\"La vida es sueño,\\ny los sueños, sueños son.\"\n\n\nprint(\"La vida es sueño,\\ny los sueños, sueños son.\")\n\n\n\n\nStrings can contain any unicode character:\n\ns = \"🎻⽻༽\"\n\nRefresher: ASCII vs unicode\nASCII (or ASCII-US) is an old standard which codes a character with 7 bits (or 8 bits for extended ASCII). This allows to code 128 different characters (256 for ex-ASCII).\nOnly a subset of these characters can be printed regularly.\n\nchr(44)\n\n\n# ASCII: \nfor i in range(32,127):\n    print( chr(i), end=' ')\n\nThe other characters include delete, newline and carriage return among others.\n\ns = 'This is\\na\\nmultiline string.' # note the newline character '\\n'\n\n\n# print(s)\nlen(s)\n\nSome antiquated platforms still use newline + carriage return at the end of each line. This is absolutely not required and causes incompatibilities.\n\ns2 = 'This is\\n\\ra\\n\\rmultiline string.' # note the newline character '\\n' and carriager return '\\r'\n\n\nprint(s2)\nprint(len(s2))\n\nUnicode contains a repertoire of over 137,000 characters with all ASCII characters as subcases\nTo type: copy/paste, ctrl+shift+hexadecimal, latex + tab\nVariable names aka identifiers can contain unicode characters with some restrictions: - they cannot start with a digit - they can’t contain special variables (‘!,#,@,%,$’ and other unicode specials ???) - they can contain underscore\n\n\n\nconcatenation\n\n'abc' + 'def'\n\n\n'abc'*3\n\n\n'abc' + 'abc' + 'abc'\n\n\n\n\n\n# strings can be accessed as arrays (0 based indexing)\ns = \"a b c\"\ns[0]\n\n\n# slice notation (  [min,max[ )\ns = \"a b c d\"\ns[2:5] # 0-based; 2 included, 5 excluded\n\n\n# substrings are easy to check\n\"a\" in s\n\n\n\"b c\" in \"a b c d\"\n\nIt is impossible to modify a substring.\n\n# but are immutable\ns = \"a b c\"\n#s[1] = 0 error\n\nInstead, one can replace a substring:\n\ns\n\n\ns.replace(' ', '🎻')\n\nOr use string interpolation\n\n# string interpolation (old school)\n\"ny name is {name}\".format(name=\"nobody\")\n\n\n\"calculation took {time}s\".format(time=10000)\n\n\n# number format can be tweaked\n\"I am {age:.0f} years old\".format(age=5.65)\n\n\n# formatted strings\nelapsed = 15914884.300292\n\nf\"computations took {elapsed/3600:.2f} hours\"\n\n\nname = \"arnaldur\"\n\n\n\"dasnfnaksujhn {name}\".format(name=\"whatever\")\n\n\n# basic string operations: str.split, str.join, etc...\n# fast regular expressions\n# more on it, with text processing lesson\n\n\nstr.split(\"me,you,others,them\",',')\n\n\nstr.join( \" | \",\n    str.split(\"me,you,others,them\",','),\n)\n\n\n\n\nThe example above used several special characters: \\n which corresponds to only one ascii character and {/} which disappears after the string formatting. If one desires to print these characters precisely one needs to escape them using \\ and { }.\n\nprint(\"This is a one \\\\nline string\")\nprint(\"This string keeps some {{curly}} brackets{}\".format('.'))\n\n\n\n\n(check help(str) or help?)\n\nlen() : length\nstrip() : removes characters at the ends\nsplit() : split strings into several substrings separated by separator\njoin() : opposite of split\n\n\n'others,'\n\n\n',me,others,'.strip(',')\n\n\ns.count(',')\n\n\nhelp(str)",
+    "crumbs": [
+      "Hands-on",
+      "Python: syntax review"
+    ]
+  },
+  {
+    "objectID": "handson/python_syntax.html#assignment",
+    "href": "handson/python_syntax.html#assignment",
+    "title": "Python: syntax review",
+    "section": "Assignment",
+    "text": "Assignment\nAny object can be reused by assigning an identifier to it. This is done with assignment operator =.\n\na = 3\na\n\nNote that assignment operator = is different from comparison operator ==. Comparison operator is always True or False, while assignment operator has no value.\n\n(2==2) == True",
+    "crumbs": [
+      "Hands-on",
+      "Python: syntax review"
+    ]
+  },
+  {
+    "objectID": "handson/python_syntax.html#containers",
+    "href": "handson/python_syntax.html#containers",
+    "title": "Python: syntax review",
+    "section": "Containers",
+    "text": "Containers\nAny object created in Python is identified by a unique id. One can think of it approximately as its reference. Object collections, contain arbitrary other python objects, that is they contain references to them.\n\nid(s)\n\n\ntuples\n\nconstruction\n\n(1,2,\"a\" )\n\nSince tuples are immutable, two identical tuples, will always contain the same data.\n\nt1  = (2,23)\nt2  = (2,23)\n\n\n# can contain any data\nt = (1,2,3,4,5,6)\nt1 = (t, \"a\", (1,2))\nt2 = (0,)  # note trailing coma for one element tuple\nt3 = (t, \"a\", (1,2))\n\n\nt[0] = 78\n\nSince tuples never change, they can be compared by hash values (if the data they hold can be hashed). Two tuples are identical if they contain the same data.\nRemark: hash function is any function that can be used to map data of arbitrary size to data of a fixed size. It is such that the probability of two data points of having the same hash is very small even if they are close to each other.\n\nt3 == t1\n\n\nprint(hash(t3))\nprint(hash(t1))\n\n\nid(t3), id(t1)\n\n\n\naccess elements\n\n# elements are accessed with brackets (0-based)\nt[0]\n\n\n# slice notation works too (  [min,max[ )\nt[1:3]\n\n\n# repeat with *\n(3,2)*5\n\n\n(0)*5\n\n\n(0,)*5\n\n\nt2*5\n\n\n# concatenate with +\nt+t1+t2\n\n\n# test for membership\n\n(1 in t)\n\n\n\n\nlists\nlists are enclosed by brackets are mutable ordered collections of elements\n\nl = [1,\"a\",4,5]\n\n\nl[1]\n\n\nl[1:] # if we omit the upper-bound it goes until the last element\n\n\nl[:2]\n\n\n# lists are concatenated with +\nl[:2] + l[2:] == l\n\n\n# test for membership\n(5 in l)\n\n\n# lists can be extended inplace\nll = [1,2,3]\nll.extend([4,5]) # several elements\nll.append(6)\nll\n\nSince lists are mutable, it makes no sense to compute them by hash value (or the hash needs to be recomputed every time the values change).\n\nhash(ll)\n\nSorted lists can be created with sorted (if elements can be ranked)\n\nll = [4,3,5]\n\n\nsorted(ll)\n\n\nll\n\nIt is also possible to sort in place.\n\nll.sort()\nll\n\n\nsorted(ll) # creates a new list\nll.sort()  # does it in place\n\n\n# in python internals:    ll.sort() equivalent sort(ll)\n\n\n\nset\nSets are unordered collections of unique elements.\n\ns1 = set([1,2,3,3,4,3,4])\ns2 = set([3,4,4,6,8])\nprint(s1, s2)\nprint(s1.intersection(s2))\n\n\n{3,4} == {4,3}\n\n\n\ndictionaries\nDictionaries are ordered associative collections of elements. They store values associated to keys.\n\n# construction with curly brackets\nd = {'a':0, 'b':1}\n\n\nd\n\n\n# values can be recovered by indexing the dict with a key\nd['b']\n\n\nd = dict()\n# d['a'] = 42\n# d['b'] = 78\nd\n\n\nd['a'] = 42\n\n\nd['b']\n\nKeys can be any hashable value:\n\nd[('a','b')] = 100\n\n\nd[ ['a','b'] ] = 100 # that won't work\n\nNote: until python 3.5 dictionaries were not ordered. Now the are guaranteed to keep the insertion order",
+    "crumbs": [
+      "Hands-on",
+      "Python: syntax review"
+    ]
+  },
+  {
+    "objectID": "handson/python_syntax.html#control-flows",
+    "href": "handson/python_syntax.html#control-flows",
+    "title": "Python: syntax review",
+    "section": "Control flows",
+    "text": "Control flows\n\nConditional blocks\nConditional blocks are preceeded by if and followed by an indented block. Note that it is advised to indent a block by a fixed set of space (usually 4) rather than use tabs.\n\nif 'sun'&gt;'moon':\n    print('warm')\n\nThey can also be followed by elif and else statements:\n\nx = 0.5\nif (x&lt;0):\n    y = 0.0\nelif (x&lt;1.0):\n    y = x\nelse:\n    y = 1+(x-1)*0.5\n\nRemark that in the conditions, any variable can be used. The following evaluate to False: - 0 - empty collection\n\nif 0: print(\"I won't print this.\")\nif 1: print(\"Maybe I will.\")\nif {}: print(\"Sir, your dictionary is empty\")\nif \"\": print(\"Sir, there is no string to speak of.\")\n\n\n\nWhile\nThe content of the while loop is repeated as long as a certain condition is met. Don’t forget to change that condition or the loop might run forever.\n\npoint_made = False\ni = 0\nwhile not point_made:\n    print(\"A fanatic is one who can't change his mind and won't change the subject.\")\n    i += 1 # this is a quasi-synonym of i = i + 1\n    if i&gt;=20:\n          point_made = True\n\n\n\nLoops\n\n# while loops\ni = 0\nwhile i&lt;=10:\n    print(str(i)+\" \",  end='')\n    i+=1\n\n\n# for loop\nfor i in [0,1,2,3,4,5,6,7,8,9,10]:\n    print(str(i)+\" \",  end='')\n\n\n# this works for any kind of iterable\n# for loop\nfor i in (0,1,2,3,4,5,6,7,8,9,10):\n    print(str(i)+\" \",  end='')\n\n\n# including range generator (note last value)\nfor i in range(11): \n    print(str(i)+\" \",  end='')\n\n\nrange(11)\n\n\n# one can also enumerate elements\ncountries = (\"france\", \"uk\", \"germany\")\nfor i,c in enumerate(countries): \n    print(f\"{i}: {c}\")\n\n\ns = set(c)\n\n\n# conditional blocks are constructed with if, elif, else\nfor i,c in enumerate(countries):\n    if len(set(c).intersection(set(\"brexit\"))):\n        print(c)\n    else:\n        print(c + \" 😢\")\n\nIt is possible to iterate over any iterable. This is true for a list or a generator:\n\nfor i in range(10): # range(10) is a generator\n    print(i)\n\n\nfor i in [0,1,2,3,4,5,6,7,8,9]:\n    print(i)\n\nWe can iterate of dictionary keys or values\n\nd = {1:2, 3:'i'}\nfor k in d.keys():\n    print(k, d[k])\nfor k in d.values():\n    print(k)\n\nor both at the same time:\n\nfor t in d.items():\n    print(t)\n\n# look at automatic unpacking\nfor (k,v) in d.items():\n    print(f\"key: {k}, value: {v}\")\n\n\n\nComprehension and generators\nThere is an easy syntax to construct lists/tuples/dicts: comprehension. Syntax is remminiscent of a for loop.\n\n[i**2 for i in range(10)]\n\n\nset(i-(i//2*2) for i in range(10))\n\n\n{i: i**2 for i in range(10)}\n\nComprehension can be combined with conditions:\n\n[i**2 for i in range(10) if i//3&gt;2]\n\nBehind the comprehension syntax, there is a special object called generator. Its role is to supply objects one by one like any other iterable.\n\n# note the bracket\ngen = (i**2 for i in range(10))\ngen # does nothing\n\n\ngen = (i**2 for i in range(10))\nfor e in gen:\n    print(e)\n\n\ngen = (i**2 for i in range(10))\nprint([e for e in gen])\n\nThere is a shortcut to converte a generator into a list: it’s called unpacking:\n\ngen = (i**2 for i in range(10))\n[*gen]",
+    "crumbs": [
+      "Hands-on",
+      "Python: syntax review"
+    ]
+  },
+  {
+    "objectID": "handson/python_syntax.html#functions",
+    "href": "handson/python_syntax.html#functions",
+    "title": "Python: syntax review",
+    "section": "Functions",
+    "text": "Functions\nWrong approach\n\na1 = 34\nb1 = (1+a1*a1)\nc1 = (a1+b1*b1)\n\na2 = 36\nb2 = (1+a2*a2)\nc2 = (a2+b2*b2)\n\nprint(c1,c2)\n\nBetter approach\n\ndef calc(a):\n    b = 1+a*a\n    c = a+b*b\n    return c\n\n(calc(34), calc(36))\n\nit is equivalent to replace the content of the function by:\n\na = 32\n_a = a          # def calc(a):\n_b = 1+_a*_a    #    b = 1+a*a\n_c = _a+_b*_b   #    c = a+b*b\nres = _c        #    return c\n\nNote that variable names within the function have different names. This is to avoid name conflicts as in:\n\ny = 1\ndef f(x):\n    y = x**2\n    return y+1\ndef g(x):\n    y = x**2+0.1\n    return y+1\nr1 = f(1.4)\nr2 = g(1.4)\nr3 = y\n(r1,r2,r3)\n\n\nl = ['france', 'germany']\ndef fun(i):\n    print(f\"Country: {l[i]}\")\nfun(0)\n\n\nl = ['france', 'germany']\ndef fun(i):\n    l = ['usa', 'japan']\n    l.append('spain')\n    print(f\"Country: {l[i]}\")\nfun(0)\n\n\nl\n\nIn the preceding code block, value of y has not been changed by calling the two functions. Check pythontutor.\n\nCalling conventions\nFunction definitions start with def and a colon indentation. Value are returned by return keyword. Otherwise the return value is None. Functions can have several arguments: def f(x,y) but always one return argument. It is however to return a tuple, and “unpack” it.\n\ndef f(x,y):\n    z1 = x+y\n    z2 = x-y\n    return (z1,z2)      # here brackets are optional:  `return z1,z2` works too\n\nres = f(0.1, 0.2)\nt1, t2 = f(0.2, 0.2)     # t1,t2=res works too\n\n\nres\n\nNamed arguments can be passed in any order and receive default values.\n\ndef problem(why=\"The moon shines.\", what=\"Curiosity killed the cat.\", where=\"Paris\"):\n    print(f\"Is it because {why.lower().strip('.')} that {what.lower().strip('.')}, in {where.strip('.')}?\")\n\n\nproblem(where='Paris')\n\n\nproblem(where=\"ESCP\", why=\"Square root of two is irrational\", what=\"Some regressions never work.\")\n\nPositional arguments and keyword arguments can be combined\n\ndef f(x, y, β=0.9, γ=4.0, δ=0.1):\n    return x*β+y**γ*δ\n\n\nf(0.1, 0.2)\n\n\n\nDocstrings\nFunctions are documented with a special string. Documentation It must follow the function signature immediately and explain what arguments are expected and what the function does\n\ndef f(x, y, β=0.9, γ=4.0, δ=0.1):   # kjhkugku\n    \"\"\"Compute the model residuals\n    \n    Parameters\n    ----------\n    x: (float) marginal propensity to do complicated stuff\n    y: (float) inverse of the elasticity of bifractional risk-neutral substitution\n    β: (float) time discount (default 0.9)\n    γ: (float) time discount (default 4.0)\n    δ: (float) time discount (default 0.1)\n    \n    Result\n    ------\n    res: beta-Hadamard measure of cohesiveness\n    \n    \"\"\"\n    res = x*β+y**γ*δ\n    return res\n\nRemark: Python 3.6 has introduced type indication for functions. They are useful as an element of indication and potentially for type checking. We do not cover them in this tutorial but this is what they look like:\n\ndef f(a: int, b:int)-&gt;int:\n    if a&lt;=1:\n        return 1\n    else:\n        return f(a-1,b) + f(a-2,b)*b\n\n\n\n\nPacking and unpacking\nA common case is when one wants to pass the elements of an iterable as positional argument and/or the elements of a dictionary as keyword arguments. This is espacially the case, when one wants to determine functions that act on a given calibration. Without unpacking all arguments would need to be passed separately.\n\nv = (0.1, 0.2)\np = dict(β=0.9, γ=4.0, δ=0.1)\n\nf(v[0], v[1], β=p['β'], γ=p['γ'], δ=p['δ'])\n\nThere is a special syntax for that: * unpacks positional arguments and ** unpacks keyword arguments. Here is an example:\n\nf(*v, **p)\n\nThe same characters * and ** can actually be used for the reverse operation, that is packing. This is useful to determine functions of a variable number of arguments.\n\ndef fun(**p):\n    β = p['β']\n    return β+1\nfun(β=1.0)\nfun(β=1.0, γ=2.0) # γ is just ignored\n\nInside the function, unpacked objects are lists and dictionaries respectively.\n\ndef fun(*args, **kwargs):\n    print(f\"Positional arguments: {len(args)}\")\n    for a in args:\n        print(f\"- {a}\")\n    print(f\"Keyword arguments: {len(args)}\")\n    for key,value in kwargs.items():\n        print(f\"- {key}: {value}\")\n\n\nfun(0.1, 0.2, a=2, b=3, c=4)\n\n\n\nFunctions are first class objects\nThis means they can be assigned and passed around.\n\ndef f(x): return 2*x*(1-x)\ng = f # now `g` and `f` point to the same function\ng(0.4)\n\n\ndef sumsfun(l, f):\n    return [f(e) for e in l]\n\n\nsumsfun([0.0, 0.1, 0.2], f)\n\n\ndef compute_recursive_series(x0, fun, T=50):\n    a = [x0]\n    for t in range(T):\n        x0 = a[-1]\n        x = fun(x0)\n        a.append(x)\n    return a\n\ncompute_recursive_series(0.3, f, T=5)\n\nThere is another syntax to define a function, without giving it a name first: lambda functions. It is useful when passing a function as argument.\n\nsorted(range(6), key=lambda x: (-2)**x)\n\nLambda functions are also useful to reduce quickly the number of arguments of a function (aka curryfication)\n\ndef logistic(μ,x): return μ*x*(1-x)\n# def chaotic(x): return logistic(3.7, x)\n# def convergent(x): return logistic(2.5, x)\nchaotic = lambda x: logistic(3.7, x)\nconvergent = lambda x: logistic(2.5, x)\n\n\nl = [compute_recursive_series(0.3,fun, T=20) for fun in [convergent, chaotic]]\n[*zip(*l)]\n\n\nfrom matplotlib import pyplot as plt\nimport numpy as np\ntab = np.array(l)\nplt.plot(tab[0,:-1],tab[0,1:])\ntab = np.array(l)\nplt.plot(tab[1,:-1],tab[1,1:])\nplt.plot(np.linspace(0,1),np.linspace(0,1))\nplt.xlabel(\"$x_n$\")\nplt.ylabel(\"$x_{n+1}$\")\nplt.grid()\n\n\n\nFunctions pass arguments by reference\nMost of the time, variable affectation just create a reference.\n\na = [1,2,3]\nb = a\na[1] = 0\n(a, b)\n\nTo get a copy instead, one needs to specify it explicitly.\n\nimport copy\na = [1,2,3]\nb = copy.copy(a)\na[1] = 0\n(a, b)\n\nNot that copy follows only one level of references. Use deepcopy for more safety.\n\na0 = ['a','b']\na = [a0, 1, 2]\nb = copy.copy(a)\na[0][0] = 'ξ'\na, b\n\n\na0 = ['a','b']\na = [a0, 1, 2]\nb = copy.deepcopy(a)\na[0][0] = 'ξ'\na, b\n\nArguments in a function are references towards the original object. No data is copied. It is then easy to construct functions with side-effects.\n\ndef append_inplace(l1, obs):\n    l1.append(obs)\n    return l1\nl1, obs = ([1,2,3], 1.5)\nl2 = append_inplace(l1,obs)\nprint(l2, l1)\n# note that l1 and l2 point to the same object\nl1[0] = 'hey'\nprint(l2, l1)\n\nThis behaviour might feel unnatural but is very sensible. For instance if the argument is a database of several gigabytes and one wants to write a function which will modify a few of its elements, it is not reasonable to copy the db in full.",
+    "crumbs": [
+      "Hands-on",
+      "Python: syntax review"
+    ]
+  },
+  {
+    "objectID": "handson/python_syntax.html#objects",
+    "href": "handson/python_syntax.html#objects",
+    "title": "Python: syntax review",
+    "section": "Objects",
+    "text": "Objects\nObjects ?\n\ncan be passed around / referred too\nhave properties (data) and methods (functions) attached to them\ninherit properties/methods from other objects\n\nObjects are defined by a class definition. By convention, classes names start with uppercase . To create an object, one calls the class name, possibly with additional arguments.\n\nclass Dog:\n    name = \"May\" # class property\n\nd1 = Dog()\nd2 = Dog()\n\nprint(f\"Class: d1-&gt;{type(d1)}, d2-&gt;{type(d2)}\")\nprint(f\"Instance address: d2-&gt;{d1},{d2}\")\n\nNow, d1 and d2 are two different instances of the same class Dog. Since properties are mutable, instances can have different data attached to it.\n\nd1.name = \"Boris\"\nprint([e.name for e in [d1,d2]])\n\nMethods are functions attached to a class / an instance. Their first argument is always an instance. The first argument can be used to acess data held by the instance.\n\nclass Dog:\n    name = None # default value\n    def bark(self):\n        print(\"Wouf\")\n    def converse(self):\n        n = self.name\n        print(f\"Hi, my name is {n}. I'm committed to a strong and stable government.\")\n        \nd = Dog()\nd.bark()   # bark(d)\nd.converse()\n\n\nConstructor\nThere is also a special method __init__ called the constructor. When an object is created, it is called on the instance. This is useful in order to initialize parameters of the instance.\n\nclass Calibration:\n    \n    def __init__(self, x=0.1, y=0.1, β=0.0):\n        if not (β&gt;0) and (β&lt;1):\n            raise Exception(\"Incorrect calibration\"})\n        self.x = x\n        self.y = y\n        self.β = β\n\n\nc1 = Calibration()\nc2 = Calibration(x=3, y=4)\n\nTwo instances of the same class have the same method, but can hold different data. This can change the behaviour of these methods.\n\n# class Dog:\n    \n#     state = 'ok'\n    \n#     def bark(self):\n#         if self.state == 'ok':\n#             print(\"Wouf!\")\n#         else:\n#             print(\"Ahouuu!\")\n        \n# d = Dog()\n# d1 = Dog()\n# d1.state = 'hungry'\n\n# d.bark()\n# d1.bark()\n\nTo write a function which will manipulate properties and methods of an object, it is not required to know its type in advance. The function will succeed as long as the required method exist, fail other wise. This is called “Duck Typing”: if it walks like a duck, it must be a duck…\n\nclass Duck:\n    def walk(self): print(\"/-\\_/-\\_/\")\n        \nclass Dog:\n    def walk(self): print(\"/-\\_/*\\_/\")\n    def bark(self): print(\"Wouf\")\n\n\nanimals = [C() for C in (Duck,Dog)]\ndef go_in_the_park(animal):\n    for i in range(3): animal.walk()\nfor a in animals:\n    go_in_the_park(a)\n\n\nInheritance\nThe whole point of classes, is that one can construct hierarchies of classes to avoid redefining the same methods many times. This is done by using inheritance.\n\nclass Animal:\n    \n    def run(self): print(\"👣\"*4)\n\nclass Dog(Animal):\n    def bark(self): print(\"Wouf\")\n        \nclass Rabbit(Animal):\n    def run(self):\n        super().run() ; print( \"🐇\" )\n\n\nAnimal().run()\ndog = Dog()\ndog.run()\ndog.bark()\nRabbit().run()\n\nIn the above example, the Dog class inherits from inherits the method run from the Animal class: it doesn’t need to be redefined again. Essentially, when run(dog) is called, since the method is not defined for a dog, python looks for the first ancestor of dog and applies the method of the ancestor.\n\n\nSpecial methods\nBy conventions methods starting with double lowercase __ are hidden. They don’t appear in tab completion. Several special methods can be reimplemented that way.\n\nclass Calibration:\n    \n    def __init__(self, x=0.1, y=0.1, β=0.1):\n        if not (β&gt;0) and (β&lt;1):\n            raise Exception(\"Incorrect calibration\")\n        self.x = x\n        self.y = y\n        self.β = β\n    \n    def __str__(self):\n        return f\"Calibration(x={self.x},y={self.y}, β={self.β})\"\n\n\nstr(Calibration() )\n\n\n\ncomplement\nPython is not 100% object oriented. - some objects cannot be subclassed - basic types behave sometimes funny (interning strings)\nmindfuck: Something that destabilizes, confuses, or manipulates a person’s mind.\n\na = 'a'*4192\nb = 'a'*4192\na is b\n\n\na = 'a'*512\nb = 'a'*512\na is b",
+    "crumbs": [
+      "Hands-on",
+      "Python: syntax review"
+    ]
+  },
+  {
+    "objectID": "slides/python.html#why-python-3",
+    "href": "slides/python.html#why-python-3",
+    "title": "Python",
+    "section": "Why Python? (3)",
+    "text": "Why Python? (3)\nHistorically, python was a glue language used to interoperate many low-level/system languages.\nIt has been increasingly used for web-development (cf django)\n\n\n\nNowadays it is the lingua franca of machine learning\nMost major machine learning / deep learning libraries have python bindings",
+    "crumbs": [
+      "Slides",
+      "Python"
+    ]
+  },
+  {
+    "objectID": "slides/python.html#an-example",
+    "href": "slides/python.html#an-example",
+    "title": "Python",
+    "section": "An example",
+    "text": "An example\ndef say_hello(name):\n    \"\"\"This function prints morning greetings\"\"\"\n\n    print(f\"Good morning {name}!\\n\")\n\n    # we can import libraries\n    import datetime\n    t = datetime.datetime.now()\n\n    # blocks are defined by indentation and colons\n    if (t.hour,t.min) &lt;= (9,15):\n        print(\"All good?\\n\")\n    else:\n        print(\"Time to get started?\\n\")\n\n\nsay_hello(\"Pablo\")",
+    "crumbs": [
+      "Slides",
+      "Python"
+    ]
+  },
+  {
+    "objectID": "slides/python.html#python-is-everywhere",
+    "href": "slides/python.html#python-is-everywhere",
+    "title": "Python",
+    "section": "Python is everywhere",
+    "text": "Python is everywhere\n\n\n\n\n\nCode Warriors\n\n\n\n\n\nWindows\nLinux\nWeb",
+    "crumbs": [
+      "Slides",
+      "Python"
+    ]
+  },
+  {
+    "objectID": "slides/python.html#the-python-family",
+    "href": "slides/python.html#the-python-family",
+    "title": "Python",
+    "section": "The Python family",
+    "text": "The Python family\nThere are several flavours of Python:\n\n\n\nFull Syntax\n\nCPython, PyPy, Pyston\n\nSubset-Syntax\n\nmicropython\nnumba, pythran\n\n\n\n\nSuperset-Syntax\n\nmypy (*)\ncython\nmojo\n\nNear-Syntax\n\nboo\n\n\n\n\n\nsubset-syntax: restrict functionalities (no classes, simpler objects) for easier compilation\nsuperset-syntax: add type/memory information\nnear-syntax: different language that looks familiar",
+    "crumbs": [
+      "Slides",
+      "Python"
+    ]
+  },
+  {
+    "objectID": "slides/python.html#examples",
+    "href": "slides/python.html#examples",
+    "title": "Python",
+    "section": "Examples",
+    "text": "Examples\n\nmojo:\n\nfn greet2(name: String) -&gt; String:\n    return \"Hello, \" + name + \"!\"\n\ncython\n\nfrom libcpp.vector cimport vector\n\ndef primes(unsigned int nb_primes):\n\n    cdef int n, i\n    cdef vector[int] p\n    p.reserve(nb_primes)  # allocate memory for 'nb_primes' elements.\n\n    n = 2\n    while p.size() &lt; nb_primes:  # size() for vectors is similar to len()\n        for i in p:\n            if n % i == 0:\n                break",
+    "crumbs": [
+      "Slides",
+      "Python"
+    ]
+  },
+  {
+    "objectID": "slides/python.html#python-is-interpreted",
+    "href": "slides/python.html#python-is-interpreted",
+    "title": "Python",
+    "section": "Python is interpreted",
+    "text": "Python is interpreted\n\n\n\n\n\n\n\nInterpreted language\n\n\nIn an interpreted language, instructions are read and translated into processor instructions, one after another.\n\n\n\n\nAs consequence, it is:\n\nflexible\n\ninteractive development\nimmediate feedback\n\nslooooww 1\n\nactualy not so much because python modules are converted into bytecode and because common objects are well optimized",
+    "crumbs": [
+      "Slides",
+      "Python"
+    ]
+  },
+  {
+    "objectID": "slides/python.html#intepreters",
+    "href": "slides/python.html#intepreters",
+    "title": "Python",
+    "section": "Intepreters",
+    "text": "Intepreters\n\nPython\nipython a.k.a. jupyter\n\nsend instructions to a kernel\nreceive back MIME objects (with nice html representation)\n\nVSCode\n\nhas its own python kernel implementation\n\nC API python.h\n\njulia\nyour own…",
+    "crumbs": [
+      "Slides",
+      "Python"
+    ]
+  },
+  {
+    "objectID": "slides/python.html#python-modules",
+    "href": "slides/python.html#python-modules",
+    "title": "Python",
+    "section": "Python modules",
+    "text": "Python modules\nA file ending with .py is a python module\n\nprogram.py\n\nkey = \"low\"\ndef something():\n    return \"hey\"\nThe content from a module can be imported\nfrom program import something\nTo import all objects in a module (functions, strings, …)\nfrom program import *",
+    "crumbs": [
+      "Slides",
+      "Python"
+    ]
+  },
+  {
+    "objectID": "slides/python.html#submodules",
+    "href": "slides/python.html#submodules",
+    "title": "Python",
+    "section": "Submodules",
+    "text": "Submodules\n\nA folder containing modules and an __init.py__ is a package.\nimport a package or a submodule:\n\nimport package\nfrom package.submodule import something\n\nThe content of modules and submodules is evaluated only once.1\nIt is actually precompiled.\nThis is perfect for distributing a package.\nNot so much to develop code interactively.\n\nsince python 3.4 you can actually reload a module with importlib.reload()",
+    "crumbs": [
+      "Slides",
+      "Python"
+    ]
+  },
+  {
+    "objectID": "slides/python.html#package-managers",
+    "href": "slides/python.html#package-managers",
+    "title": "Python",
+    "section": "Package managers",
+    "text": "Package managers\nSeveral ways to create / distribute python packages have been developped over the years.\n\nsetup.py, pip\nsetuptools, distutils, …\npipenv, poetry, …\nconda\n\nThere are essentially two kinds of packages:\n\npip packages\nconda packages",
+    "crumbs": [
+      "Slides",
+      "Python"
+    ]
+  },
+  {
+    "objectID": "slides/python.html#pip-packages",
+    "href": "slides/python.html#pip-packages",
+    "title": "Python",
+    "section": "Pip packages",
+    "text": "Pip packages\n\npip files (what are eggs btw)\n\npure python\nbinary\n\ncan be installed with pip install package\nno dependency solving ! no proper uninstallation !\npip files a virtual evnironment created with venv\nreproducible setup can be described in\n\nrequirements.txt (old)\npyproject.toml (new)\n\ndirectory specific environments can be managed with poetry or venv:\n\npython -m venv directory",
+    "crumbs": [
+      "Slides",
+      "Python"
+    ]
+  },
+  {
+    "objectID": "slides/python.html#conda-environment",
+    "href": "slides/python.html#conda-environment",
+    "title": "Python",
+    "section": "Conda environment",
+    "text": "Conda environment\n\nconda files\ninstalled in a conda environment\nwith proper / reversible dependency solving\n\nvery quick using mamba or micromamba\n\nreproducible environment can be described in:\n\nenvironment.yml (dependencies)\nmanifest (…)\n\ndirectory specific environments can be managed with pixi",
+    "crumbs": [
+      "Slides",
+      "Python"
+    ]
+  },
+  {
+    "objectID": "slides/python.html#section",
+    "href": "slides/python.html#section",
+    "title": "Python",
+    "section": "",
+    "text": "Let’s setup the environment specified in requirements.txt\n\n\nMove to python syntax tutorial",
+    "crumbs": [
+      "Slides",
+      "Python"
+    ]
+  },
+  {
+    "objectID": "slides/index.html",
+    "href": "slides/index.html",
+    "title": "Ce_bb_2024",
+    "section": "",
+    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Computational Economics @ Bundesbank",
     "section": "",
-    "text": "My email: pwinant@escp.eu"
+    "text": "My email: pwinant@escp.eu\nWebsite for this course: https://www.mosphere.fr/bbank_ce_2024"
   },
   {
     "objectID": "index.html#tentative-schedule",

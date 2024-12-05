@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Solution Algorithms – Ce_bb_2024</title>
+<title>Methods – Ce_bb_2024</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -67,6 +101,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -80,9 +143,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
-      Ce_bb_2024
-      </li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../exercises/python.html">Exercises</a></li><li class="breadcrumb-item"><a href="../exercises/methods.html">Methods</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -182,7 +243,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../exercises/methods.html" class="sidebar-item-text sidebar-link">
+  <a href="../exercises/methods.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Methods</span></a>
   </div>
 </li>
@@ -193,15 +254,23 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#optimization-and-root-finding" id="toc-optimization-and-root-finding" class="nav-link active" data-scroll-target="#optimization-and-root-finding">Optimization and root finding</a></li>
+  <li><a href="#interpolation" id="toc-interpolation" class="nav-link" data-scroll-target="#interpolation">Interpolation</a></li>
+  <li><a href="#discretization" id="toc-discretization" class="nav-link" data-scroll-target="#discretization">Discretization</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="methods.ipynb" download="methods.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../exercises/python.html">Exercises</a></li><li class="breadcrumb-item"><a href="../exercises/methods.html">Methods</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Solution Algorithms</h1>
+<h1 class="title">Methods</h1>
 </div>
 
 
@@ -218,8 +287,95 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="optimization-and-root-finding" class="level2">
+<h2 class="anchored" data-anchor-id="optimization-and-root-finding">Optimization and root finding</h2>
+<div id="exr-optimization" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 1</strong></span> Consider the function <span class="math inline">\(f(x,y)=1-(x-x_0)^2-0.5(y-y_0)^2\)</span> with <span class="math inline">\(x_0=0.5\)</span> and <span class="math inline">\(y_0=1.0\)</span>. Check the documentatin for <code>scipy.optimize</code>. Use it to maximze function <span class="math inline">\(f\)</span>.</p>
+</div>
+<div id="c329faac" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># one needs to define $f$ as a function of a vector</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># f(v)=1-(v[0]-x_0)^2-0.5*(v[1]-y_0)^2$ </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="expr-1d-root">
+<p>Consider the function <span class="math inline">\(g(x)=0.1+exp(-x)x(1-x)\)</span> over [0,2]. Choose the scipy function and find the root of <span class="math inline">\(g\)</span>.</p>
+</div>
+<div id="6d0785dc" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="expr-2d-root">
+<p>Consider the function <span class="math inline">\(h(x,y)=0.1+exp(-x)x(1-x)\)</span> over [0,2]. Choose the scipy function and find the root of <span class="math inline">\(g\)</span>. to find the root of <span class="math inline">\(g\)</span>?</p>
+</div>
+<div id="7e027d41" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="interpolation" class="level2">
+<h2 class="anchored" data-anchor-id="interpolation">Interpolation</h2>
+<p>We consider the function <span class="math inline">\(f(x) = sinc(\lambda x) = \frac{sin(\lambda x)}{x}\)</span>. Let <span class="math inline">\(I=(x_i)_{i=[1,10]}\)</span> be a regularly spaced interval between -2 and +2, containing 10 points. Call <span class="math inline">\(Y=(y_i)=f(x_i)\)</span> the values of <span class="math inline">\(f\)</span> on this interval. Let <span class="math inline">\(T\)</span> be a test set with 1000 regularly spaced points between -2.5 and 2.5.</p>
+<p>The goal is to compare several ways interpolate function f on <span class="math inline">\(T\)</span>.</p>
+<div id="exr-interpolation" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 2</strong></span> Define <code>f</code>, <code>I</code>, <code>Y</code>, <code>T</code> with numpy.</p>
+</div>
+<div id="8805383c" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="exr-interpolation" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 3</strong></span> Construct a stepwise approximation using numpy indexing</p>
+</div>
+<div id="e6c20b9b" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="exr-interpolation" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 4</strong></span> Plot it</p>
+</div>
+<div id="ccd87b53" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="exr-interpolation" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 5</strong></span> Construct a linear approximation using numpy</p>
+</div>
+<div id="f91901bb" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="exr-interpolation" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 6</strong></span> Use scipy.interpolate to interpolate the data linearly. Compare the various extrapolation options.</p>
+</div>
+<div id="4a4e8b35" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="exr-interpolation" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 7</strong></span> Use scipy.interpolate to interolate the data with cubic splines. Compare the various extrapolation options.</p>
+</div>
+<div id="8705d4e4" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="exr-interpolation" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 8</strong></span> Plot the results</p>
+</div>
+<div id="0b1725e1" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="discretization" class="level2">
+<h2 class="anchored" data-anchor-id="discretization">Discretization</h2>
+<div id="exr-markov-chain" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 9</strong></span> Consider the AR1 process <span class="math inline">\(y_t = \rho y_{t-1} + \epsilon_t\)</span> where <span class="math inline">\(\rho=0.9\)</span> and <span class="math inline">\(\epsilon_t=0.01\)</span>. Use the <code>quantecon</code> library to discretize <span class="math inline">\((y_t)\)</span> as a discrete markov chain.</p>
+</div>
+<div id="4e7655e1" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="exr-mu" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 10</strong></span> Suppose <span class="math inline">\(\epsilon\)</span> follows a normal law with standard deviation <span class="math inline">\(σ = 0.05\)</span>. Take γ = 40 and define <span class="math inline">\(U(x)=(x^{-γ})/(-γ)\)</span> We want to compute <span class="math inline">\(C(\epsilon) = \mathbb{E} [U(exp(\epsilon)) ]\)</span>.</p>
+<ul>
+<li>Choose <span class="math inline">\(N&gt;0\)</span> and construct a 1d vector with <span class="math inline">\(N\)</span> realizations of <span class="math inline">\(\epsilon\)</span>. Use it to compute the expectation.</li>
+<li>Estimate the standard deviation of this expectation.</li>
+<li>Use gauss-hermite method from numpy to compute the same expectation.</li>
+<li>Compare both methods.</li>
+</ul>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

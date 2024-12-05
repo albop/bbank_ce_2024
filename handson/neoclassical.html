@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Solution Algorithms – Ce_bb_2024</title>
+<title>Neoclassical model with time iteration – Ce_bb_2024</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -67,6 +101,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -193,15 +256,23 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-neoclassical-model" id="toc-the-neoclassical-model" class="nav-link active" data-scroll-target="#the-neoclassical-model">The neoclassical model</a></li>
+  <li><a href="#naive-solution" id="toc-naive-solution" class="nav-link" data-scroll-target="#naive-solution">Naive solution</a></li>
+  <li><a href="#vectorization" id="toc-vectorization" class="nav-link" data-scroll-target="#vectorization">Vectorization</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="neoclassical.ipynb" download="neoclassical.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Solution Algorithms</h1>
+<h1 class="title">Neoclassical model with time iteration</h1>
 </div>
 
 
@@ -218,8 +289,170 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>Our goal consists in this tutorial will be to solve numerically the neoclassical model using the time-iteration algorithms in two ways: - with a naive iterative algorithm - with a vectorized one (using numpy)</p>
+<p>Remark: this tutorial uses typehints as a way to help structure the code. They can safely be ignored.</p>
+<div id="603dcff9" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> exp, sqrt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> typing <span class="im">import</span> Any, Tuple</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy.typing <span class="im">as</span> npt</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>Vector <span class="op">=</span> npt.NDArray[<span class="dv">1</span>]</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>Matrix <span class="op">=</span> npt.NDArray[<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="the-neoclassical-model" class="level3">
+<h3 class="anchored" data-anchor-id="the-neoclassical-model">The neoclassical model</h3>
+<p>The representative agent maximizes intertemporal discounted utility of consumption <span class="math display">\[\sum_{t\geq0} \beta^t U(c_t)\]</span> where <span class="math inline">\(U(c_t)=\frac{(c_t)^{1-\gamma}}{1-\gamma}\)</span>.</p>
+<p>Production is <span class="math display">\[y_t=exp(z_t) k_t^{\alpha}\]</span> where <span class="math inline">\(k_t\)</span> is the amount of capital and <span class="math inline">\(z_t=\rho z_{t-1} + \epsilon_t\)</span> and AR1 process with <span class="math inline">\((\epsilon_t)\)</span> a normal innovation of standard deviation <span class="math inline">\(\sigma\)</span>.</p>
+<p>The law of motion for the capital depends on investment <span class="math inline">\(i_t\)</span> and capital depreciation <span class="math inline">\(\delta\)</span>:</p>
+<p><span class="math display">\[k_t = (1-\delta) k_{t-1} + i_{t-1}\]</span></p>
+<p>The first order condition corresponding to the optimization problem is:</p>
+<p><span class="math display">\[\beta E_t \left[ \frac{U^{\prime}(c_{t+1}}{U^{\prime}(c_t)})\left( 1- \delta + \alpha exp(z_{t+1}) k_{t+1}^{\alpha-1} \right) \right] =1\]</span></p>
+<div id="exr-python-main" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 1</strong></span> What are the states of the problems? the controls? the exogenous shocks?</p>
+<div id="f6d62edd" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your response here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="exr-python-main" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 2</strong></span> Define an object to represent the model calibration (you can use a dataclass).</p>
+<div id="8210505c" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="at">@dataclass</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Neoclassical:</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># modify the content here</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> Neoclassical()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="exr-python-main" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 3</strong></span> Define a function to compute the steady-state controls and states.</p>
+<div id="9608ee68" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> steady_state(m: Neoclassical) <span class="op">-&gt;</span> Tuple[ Tuple[<span class="bu">float</span>, <span class="bu">float</span>], Tuple[<span class="bu">float</span>]]</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ...</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># s = ... tuple of states</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># x = ... tuple of controls</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (s,x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="naive-solution" class="level3">
+<h3 class="anchored" data-anchor-id="naive-solution">Naive solution</h3>
+<div id="exr-python-main" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 4</strong></span> Define a cartesian grid on productivity and capital:</p>
+<div id="07e797be" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_grid(m: Neoclassical, size: Tuple[<span class="bu">int</span>, <span class="bu">int</span>]) <span class="op">-&gt;</span> Tuple[ Vector, Vector ca]</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> get_grid(model, (<span class="dv">10</span>,<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="exr-python-main" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 5</strong></span> Define an initial guess representing the values of the controls on the grid</p>
+<div id="2a437010" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> initial_guess(m: Neoclassical, grid)<span class="op">-&gt;</span>npt.NDArray[<span class="dv">3</span>]</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># x0 = 3-dimensional array of size</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>x0 <span class="op">=</span> initial_guess(m, grid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="exr-python-main" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 6</strong></span> Define a decision rule which interpolates the initial guess on any state</p>
+<div id="f3e823d1" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> phi(m: Neoclassical, s:: Tuple[<span class="bu">float</span>, <span class="bu">float</span>], x0::npt.NDArray[<span class="dv">3</span>])<span class="op">-&gt;</span> Tuple[<span class="bu">float</span>]</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="exr-python-main" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 7</strong></span> Compute the euler residual, for a given realization of the exogenous shocks.</p>
+<div id="0b63ad02" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(m: RBC, s: Tuple[<span class="bu">float</span>,<span class="bu">float</span>], x:Tuple[<span class="bu">float</span>], E: Tuple[<span class="bu">float</span>], grid, theta):</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">## grid is the discretized grid from before</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">## theta contains the values of the controls on the grid</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="exr-python-main" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 8</strong></span> Compute the expected euler residuals, integrating over all possible realizations of the exogenous shocks.</p>
+<div id="6b49e733" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> F(m: RBC, s: Tuple[<span class="bu">float</span>,<span class="bu">float</span>], x:Tuple[<span class="bu">float</span>], grid, theta, discr:Tuple[Vector, Vector]):</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">## grid is the discretized grid from before</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">## theta contains the values of the controls on the grid</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">## discr contains the weights w,x of the gaussian quadrature</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p>:::</p>
+<div id="exr-python-main" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 9</strong></span> At the steady-state, find the optimal control, assuming future decisions are taken according to the initial guess.</p>
+<div id="1caf90d1" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># find x such that F(m,s,x,grid,theta_0,discr) = 0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="exr-python-main" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 10</strong></span> Solve for the optimal controls over the whole grid, still assuming future decisions are taken according to the initial guess.</p>
+<div id="acf727ba" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># find x such that F(m,s,x,grid,theta_0,discr) = 0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="exr-python-main" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 11</strong></span> Implement the time iteration algorithm.</p>
+<div id="977b0941" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> time_iteration_0(m: Neoclassical, grid, discr, x0):</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="exr-python-main" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 12</strong></span> Time the result (and profile).</p>
+<div id="fb856cde" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> time_iteration_0(m: Neoclassical, grid, discr, x0):</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="vectorization" class="level3">
+<h3 class="anchored" data-anchor-id="vectorization">Vectorization</h3>
+<p>There are at least two approaches to speed up the code, with the same algorithm: - avoid the interpretation cost by compiling the code (for instance using numba) - vectorize the operations over the whole grid</p>
+<div id="exr-python-main" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 13</strong></span> Given <span class="math inline">\(N\)</span> the number of points of the grid, create a matrix, representing the vector of all grid points. It should be an <span class="math inline">\(N \times 2\)</span> matrix.</p>
+<div id="55720d73" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># grid_v = </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="exr-python-main" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 14</strong></span> Rewrite the decision rule so that it can operate on a vector of states.</p>
+<div id="4c318960" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> phi_v(m: Neoclassical, s:: Matrix, x0::npt.NDArray[<span class="dv">3</span>])<span class="op">-&gt;</span> Matrix</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="exr-python-main" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 15</strong></span> Rewrite the euler residual function so that it can operate on a vector of states with the corresponding vector of controls.</p>
+<div id="b8240af1" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f_v(m: RBC, s: Matrix, x:Matrix, E: Tuple[<span class="bu">float</span>], grid, theta)<span class="op">-&gt;</span>Matrix:</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">## grid is the discretized grid from before</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">## theta contains the values of the controls on the grid</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="exr-python-main" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 16</strong></span> Rewrite the integrated euler residual function so that it can operate on a vector of states with the corresponding vector of controls.</p>
+<div id="f1815c17" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> F_v(m: RBC, s: Matrix, x:Matrix, E: Tuple[<span class="bu">float</span>], grid, theta)<span class="op">-&gt;</span>Matrix:</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">## grid is the discretized grid from before</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">## theta contains the values of the controls on the grid</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="exr-python-main" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 17</strong></span> Compute the jacobian of <span class="math inline">\(F_v\)</span> w.r.t <span class="math inline">\(x\)</span>.</p>
+<div id="aa958645" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

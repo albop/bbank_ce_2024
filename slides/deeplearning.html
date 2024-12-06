@@ -301,7 +301,7 @@
 <h2>Stochastic gradient descent</h2>
 <ul>
 <li><p>Given <span class="math inline">\(\epsilon \sim \mathcal{D}\)</span>, minimize <span class="math display">\[\Xi(\theta)=E J(\theta,\epsilon)\]</span></p></li>
-<li><p>Idea: draw a random <span class="math inline">\(\epsilon_t\)</span> at each step and do: <span class="math display">\[\theta\leftarrow \theta + \gamma J(\theta,\epsilon_t)\]</span></p></li>
+<li><p>Idea: draw a random <span class="math inline">\(\epsilon_t\)</span> at each step and do: <span class="math display">\[\theta\leftarrow \theta + \gamma \nabla J(\theta,\epsilon_t)\]</span></p></li>
 <li><p>It works !<sup>1</sup></p>
 <ul>
 <li>Reason: <span class="math inline">\(\nabla_{\theta}\Xi = E\left[ \nabla_{\theta} J(\theta,\epsilon) \right]\)</span></li>

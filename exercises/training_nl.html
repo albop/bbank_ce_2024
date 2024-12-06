@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Solution Algorithms – Ce_bb_2024</title>
+<title>Training a Neural Network – Ce_bb_2024</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -67,6 +101,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -134,6 +197,18 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Time Iteration</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides/deeplearning_models/slides.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deep Learning for Solving Dynamic Economic Models</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides/deeplearning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to deeplearning</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -161,6 +236,18 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="../handson/neoclassical.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Neoclassical model with time iteration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../handson/jax_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">An Introduction to JAX</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../handson/qe_notebook_jax.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deep learning solution method with all-in-one expectation operator</span></a>
   </div>
 </li>
       </ul>
@@ -192,6 +279,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Methods</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../exercises/lifetime_reward.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning consumption rules</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -199,15 +292,21 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#learning-a-function" id="toc-learning-a-function" class="nav-link active" data-scroll-target="#learning-a-function">Learning a function</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="training_nl.ipynb" download="training_nl.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Solution Algorithms</h1>
+<h1 class="title">Training a Neural Network</h1>
 </div>
 
 
@@ -224,8 +323,51 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="learning-a-function" class="level2">
+<h2 class="anchored" data-anchor-id="learning-a-function">Learning a function</h2>
+<p>Consider the following (pseudo)-function</p>
+<div id="a1cd3fbd" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> jax</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> jax <span class="im">import</span> numpy <span class="im">as</span> jnp</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mystery(key):</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    key1, key2 <span class="op">=</span> jax.random.split(key)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> jax.random.uniform(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    epsilon <span class="op">=</span> jax.random.normal(key2)<span class="op">*</span><span class="fl">0.01</span> <span class="co"># random nmer</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> jnp.sin(x)<span class="op">/</span>x <span class="op">+</span> epsilon</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (x,y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The goal is to learn a function representation using a finite (possibly big) number of draws from the function.</p>
+<div id="exr-plot" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 1</strong></span> Draw 100 different values and plot them.</p>
+</div>
+<div id="exr-1d-root" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 2</strong></span> Create a neural network using library flax (with the linen API), to predict <span class="math inline">\(y\)</span> from <span class="math inline">\(x\)</span>.</p>
+<p>Initialize it with random weights and plot the initial guess.</p>
+<p>We will call <span class="math inline">\(\varphi(x;\theta)\)</span> the prediction from the neural network for weights <span class="math inline">\(\theta\)</span>.</p>
+</div>
+<div id="0df6bbf5" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="exr-2d-root" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 3</strong></span> Create an objective function <span class="math inline">\(\xi(key, theta, N)\)</span> for the empirical risk using a minibatch of size <span class="math inline">\(N\)</span>.</p>
+</div>
+<div id="3b37676d" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="exr-2d-root" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 4</strong></span> Compute the gradient of <span class="math inline">\(\xi\)</span> using jax.</p>
+</div>
+<div id="exr-2d-root" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 5</strong></span> Train the neural network, either by hand, or by using Optax. Inspect the result.</p>
+</div>
+<div id="db1d647a" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

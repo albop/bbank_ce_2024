@@ -5,28 +5,40 @@
     <lastmod>2024-11-06T06:53:59.708Z</lastmod>
   </url>
   <url>
-    <loc>https://albop.github.io/bbank_ce_2024/exercises/methods.html</loc>
-    <lastmod>2024-11-07T05:55:11.522Z</lastmod>
+    <loc>https://albop.github.io/bbank_ce_2024/exercises/numeric.html</loc>
+    <lastmod>2024-12-06T07:08:07.981Z</lastmod>
   </url>
   <url>
-    <loc>https://albop.github.io/bbank_ce_2024/index.html</loc>
-    <lastmod>2024-12-05T12:07:40.670Z</lastmod>
+    <loc>https://albop.github.io/bbank_ce_2024/exercises/training_nl.html</loc>
+    <lastmod>2024-12-06T08:03:17.913Z</lastmod>
   </url>
   <url>
-    <loc>https://albop.github.io/bbank_ce_2024/slides/vfi.html</loc>
-    <lastmod>2024-11-06T06:53:59.721Z</lastmod>
+    <loc>https://albop.github.io/bbank_ce_2024/exercises/python.html</loc>
+    <lastmod>2024-11-06T06:53:59.707Z</lastmod>
+  </url>
+  <url>
+    <loc>https://albop.github.io/bbank_ce_2024/slides/pres_JHU/slides.html</loc>
+    <lastmod>2024-12-06T05:10:57.688Z</lastmod>
   </url>
   <url>
     <loc>https://albop.github.io/bbank_ce_2024/slides/index.html</loc>
     <lastmod>2024-11-06T06:53:59.720Z</lastmod>
   </url>
   <url>
-    <loc>https://albop.github.io/bbank_ce_2024/slides/solution.html</loc>
-    <lastmod>2024-11-06T06:53:59.720Z</lastmod>
+    <loc>https://albop.github.io/bbank_ce_2024/slides/slides.html</loc>
+    <lastmod>2024-12-06T05:10:57.687Z</lastmod>
+  </url>
+  <url>
+    <loc>https://albop.github.io/bbank_ce_2024/slides/deeplearning_models/slides.html</loc>
+    <lastmod>2024-12-06T05:43:40.010Z</lastmod>
   </url>
   <url>
     <loc>https://albop.github.io/bbank_ce_2024/slides/python.html</loc>
-    <lastmod>2024-12-05T08:01:37.161Z</lastmod>
+    <lastmod>2024-12-06T08:06:27.465Z</lastmod>
+  </url>
+  <url>
+    <loc>https://albop.github.io/bbank_ce_2024/handson/jax_intro.html</loc>
+    <lastmod>2024-12-06T07:16:48.469Z</lastmod>
   </url>
   <url>
     <loc>https://albop.github.io/bbank_ce_2024/handson/numeric_python.html</loc>
@@ -34,15 +46,15 @@
   </url>
   <url>
     <loc>https://albop.github.io/bbank_ce_2024/handson/neoclassical.html</loc>
-    <lastmod>2024-12-05T12:10:19.190Z</lastmod>
-  </url>
-  <url>
-    <loc>https://albop.github.io/bbank_ce_2024/handson/discretization.html</loc>
-    <lastmod>2024-11-07T05:08:13.399Z</lastmod>
+    <lastmod>2024-12-05T15:14:59.243Z</lastmod>
   </url>
   <url>
     <loc>https://albop.github.io/bbank_ce_2024/handson/python_syntax.html</loc>
     <lastmod>2024-11-06T06:53:59.707Z</lastmod>
+  </url>
+  <url>
+    <loc>https://albop.github.io/bbank_ce_2024/handson/qe_notebook_jax.html</loc>
+    <lastmod>2024-12-06T08:00:46.040Z</lastmod>
   </url>
   <url>
     <loc>https://albop.github.io/bbank_ce_2024/notes.html</loc>
@@ -50,26 +62,34 @@
   </url>
   <url>
     <loc>https://albop.github.io/bbank_ce_2024/slides/dolo.html</loc>
-    <lastmod>2024-11-06T06:53:59.710Z</lastmod>
+    <lastmod>2024-12-05T23:29:55.562Z</lastmod>
   </url>
   <url>
     <loc>https://albop.github.io/bbank_ce_2024/slides/methods.html</loc>
-    <lastmod>2024-11-06T06:53:59.720Z</lastmod>
+    <lastmod>2024-12-05T23:30:48.349Z</lastmod>
+  </url>
+  <url>
+    <loc>https://albop.github.io/bbank_ce_2024/slides/deeplearning.html</loc>
+    <lastmod>2024-12-06T07:11:21.599Z</lastmod>
   </url>
   <url>
     <loc>https://albop.github.io/bbank_ce_2024/slides/time_iteration.html</loc>
-    <lastmod>2024-11-07T04:48:33.491Z</lastmod>
+    <lastmod>2024-12-05T23:31:23.246Z</lastmod>
   </url>
   <url>
-    <loc>https://albop.github.io/bbank_ce_2024/slides/ti.html</loc>
-    <lastmod>2024-11-06T06:53:59.721Z</lastmod>
+    <loc>https://albop.github.io/bbank_ce_2024/index.html</loc>
+    <lastmod>2024-12-06T00:11:51.738Z</lastmod>
   </url>
   <url>
-    <loc>https://albop.github.io/bbank_ce_2024/exercises/python.html</loc>
-    <lastmod>2024-11-06T06:53:59.707Z</lastmod>
+    <loc>https://albop.github.io/bbank_ce_2024/exercises/methods.html</loc>
+    <lastmod>2024-11-07T05:55:11.522Z</lastmod>
   </url>
   <url>
-    <loc>https://albop.github.io/bbank_ce_2024/exercises/numeric.html</loc>
-    <lastmod>2024-11-07T09:11:54.021Z</lastmod>
+    <loc>https://albop.github.io/bbank_ce_2024/exercises/deeplearning.html</loc>
+    <lastmod>2024-12-06T05:02:40.266Z</lastmod>
+  </url>
+  <url>
+    <loc>https://albop.github.io/bbank_ce_2024/exercises/lifetime_reward.html</loc>
+    <lastmod>2024-12-06T01:06:00.177Z</lastmod>
   </url>
 </urlset>

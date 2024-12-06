@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Numeric – Ce_bb_2024</title>
+<title>Quick Introduction to deep learning – Ce_bb_2024</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,59 +20,25 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-29e2c20b02301cfff04dc8050bf30c7e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-8ff3484ca9bbd6d5fb6ed573e258e126.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-29e2c20b02301cfff04dc8050bf30c7e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-8ff3484ca9bbd6d5fb6ed573e258e126.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -131,7 +97,7 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-sidebar docked">
@@ -143,7 +109,9 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../exercises/python.html">Exercises</a></li><li class="breadcrumb-item"><a href="../exercises/numeric.html">Numeric</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
+      Ce_bb_2024
+      </li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -158,7 +126,7 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">Ce_bb_2024</a> 
+      <a href="../../">Ce_bb_2024</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -179,31 +147,31 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../slides/python.html" class="sidebar-item-text sidebar-link">
+  <a href="../../slides/python.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Python</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../slides/methods.html" class="sidebar-item-text sidebar-link">
+  <a href="../../slides/methods.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Methods</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../slides/time_iteration.html" class="sidebar-item-text sidebar-link">
+  <a href="../../slides/time_iteration.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Time Iteration</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../slides/deeplearning_models/slides.html" class="sidebar-item-text sidebar-link">
+  <a href="../../slides/deeplearning_models/slides.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Deep Learning for Solving Dynamic Economic Models</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../slides/deeplearning.html" class="sidebar-item-text sidebar-link">
+  <a href="../../slides/deeplearning.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction to deeplearning</span></a>
   </div>
 </li>
@@ -220,31 +188,31 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../handson/python_syntax.html" class="sidebar-item-text sidebar-link">
+  <a href="../../handson/python_syntax.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Python: syntax review</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../handson/numeric_python.html" class="sidebar-item-text sidebar-link">
+  <a href="../../handson/numeric_python.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Numeric Python</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../handson/neoclassical.html" class="sidebar-item-text sidebar-link">
+  <a href="../../handson/neoclassical.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Neoclassical model with time iteration</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../handson/jax_intro.html" class="sidebar-item-text sidebar-link">
+  <a href="../../handson/jax_intro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">An Introduction to JAX</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../handson/qe_notebook_jax.html" class="sidebar-item-text sidebar-link">
+  <a href="../../handson/qe_notebook_jax.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Deep learning solution method with all-in-one expectation operator</span></a>
   </div>
 </li>
@@ -261,25 +229,25 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../exercises/python.html" class="sidebar-item-text sidebar-link">
+  <a href="../../exercises/python.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Python Basics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../exercises/numeric.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../exercises/numeric.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Numeric</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../exercises/methods.html" class="sidebar-item-text sidebar-link">
+  <a href="../../exercises/methods.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Methods</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../exercises/lifetime_reward.html" class="sidebar-item-text sidebar-link">
+  <a href="../../exercises/lifetime_reward.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Learning consumption rules</span></a>
   </div>
 </li>
@@ -295,17 +263,37 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#using-numpy" id="toc-using-numpy" class="nav-link active" data-scroll-target="#using-numpy">Using Numpy</a></li>
-  <li><a href="#simulating-an-ar1" id="toc-simulating-an-ar1" class="nav-link" data-scroll-target="#simulating-an-ar1">Simulating an AR1</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
+  <ul class="collapse">
+  <li><a href="#outline" id="toc-outline" class="nav-link" data-scroll-target="#outline">Outline</a></li>
+  <li><a href="#we-are-in-the-big-data-era" id="toc-we-are-in-the-big-data-era" class="nav-link" data-scroll-target="#we-are-in-the-big-data-era">We are in the big-data era</a></li>
+  <li><a href="#what-about-deep-learning" id="toc-what-about-deep-learning" class="nav-link" data-scroll-target="#what-about-deep-learning">What about deep learning ?</a></li>
+  <li><a href="#another-step-towards-ai-reinforcement-learning" id="toc-another-step-towards-ai-reinforcement-learning" class="nav-link" data-scroll-target="#another-step-towards-ai-reinforcement-learning">Another step towards AI: reinforcement learning</a></li>
+  </ul></li>
+  <li><a href="#the-basics-of-deep-learning" id="toc-the-basics-of-deep-learning" class="nav-link" data-scroll-target="#the-basics-of-deep-learning">The basics of deep learning</a>
+  <ul class="collapse">
+  <li><a href="#optimization" id="toc-optimization" class="nav-link" data-scroll-target="#optimization">Optimization</a></li>
+  <li><a href="#gradient-descent" id="toc-gradient-descent" class="nav-link" data-scroll-target="#gradient-descent">Gradient descent</a></li>
+  <li><a href="#variants-of-gradient-descent" id="toc-variants-of-gradient-descent" class="nav-link" data-scroll-target="#variants-of-gradient-descent">Variants of Gradient Descent</a></li>
+  <li><a href="#variants-of-gradient-descent-2" id="toc-variants-of-gradient-descent-2" class="nav-link" data-scroll-target="#variants-of-gradient-descent-2">Variants of Gradient Descent (2)</a></li>
+  <li><a href="#problem-1-overshooting" id="toc-problem-1-overshooting" class="nav-link" data-scroll-target="#problem-1-overshooting">Problem 1: overshooting</a></li>
+  <li><a href="#problem-2-saddle-points" id="toc-problem-2-saddle-points" class="nav-link" data-scroll-target="#problem-2-saddle-points">Problem 2: saddle points</a></li>
+  <li><a href="#stochastic-gradient-descent" id="toc-stochastic-gradient-descent" class="nav-link" data-scroll-target="#stochastic-gradient-descent">Stochastic gradient descent</a></li>
+  <li><a href="#stochastic-gradient-descent-2" id="toc-stochastic-gradient-descent-2" class="nav-link" data-scroll-target="#stochastic-gradient-descent-2">Stochastic gradient descent (2)</a></li>
+  <li><a href="#neural-networks" id="toc-neural-networks" class="nav-link" data-scroll-target="#neural-networks">Neural networks</a></li>
+  <li><a href="#clarifications" id="toc-clarifications" class="nav-link" data-scroll-target="#clarifications">Clarifications:</a></li>
+  <li><a href="#the-perceptron" id="toc-the-perceptron" class="nav-link" data-scroll-target="#the-perceptron">The Perceptron</a></li>
+  <li><a href="#modern-neural-model" id="toc-modern-neural-model" class="nav-link" data-scroll-target="#modern-neural-model">Modern neural model</a></li>
+  </ul></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="numeric.ipynb" download="numeric.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../exercises/python.html">Exercises</a></li><li class="breadcrumb-item"><a href="../exercises/numeric.html">Numeric</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Numeric</h1>
+<h1 class="title">Quick Introduction to deep learning</h1>
 </div>
 
 
@@ -322,123 +310,356 @@ window.Quarto = {
 </header>
 
 
-<section id="using-numpy" class="level2">
-<h2 class="anchored" data-anchor-id="using-numpy">Using Numpy</h2>
-<p>Selection from <a href="https://www.w3resource.com/python-exercises/numpy/python-numpy-random.php">w3resources</a> and <a href="https://github.com/rougier/numpy-100">rougier/numpy100</a></p>
-<div id="exr-numpy" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 1</strong></span> &nbsp;</p>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<section id="outline" class="level2">
+<h2 class="anchored" data-anchor-id="outline">Outline</h2>
 <ul>
-<li>Write a NumPy program to generate five random numbers from the normal distribution.</li>
+<li><p>General discussion:</p>
+<ul>
+<li>machine learning / artificial intelligence</li>
+<li>technology / technology</li>
+</ul></li>
+<li><p>Introduction to deep learning</p>
+<ul>
+<li>Stochastic Gradient Descent</li>
+<li>Neural Networks</li>
+</ul></li>
+<li><p>Practical Application</p></li>
+<li><p>Application to an economic model</p></li>
 </ul>
+</section>
+<section id="we-are-in-the-big-data-era" class="level2">
+<h2 class="anchored" data-anchor-id="we-are-in-the-big-data-era">We are in the big-data era</h2>
+<ul>
+<li><p>Lots of data (consumers, regulators, flights, …)</p></li>
+<li><p>Traditionnel models (econometrics for instance) fail</p>
+<ul>
+<li>data is heterogenous</li>
+<li>doesn’t fit in the memory</li>
+<li>doesn’t match a model…</li>
+</ul></li>
+<li><p>Many machine learning algorithms</p></li>
+<li><p>Hardware developments: (GPU, online computing)</p></li>
+<li><p>Software stack: linux/git/python/scikit/tensorflow…</p></li>
+</ul>
+</section>
+<section id="what-about-deep-learning" class="level2">
+<h2 class="anchored" data-anchor-id="what-about-deep-learning">What about deep learning ?</h2>
+<ul>
+<li>Deep learning: hugely successful in many different areas:
+<ul>
+<li>a non-linear structure which self-organizes itself to reach a goal</li>
+<li>compare with artificial intelligence (achieve a goal without being told how)</li>
+</ul></li>
+<li>Challenges: transferability, explainability</li>
+</ul>
+</section>
+<section id="another-step-towards-ai-reinforcement-learning" class="level2">
+<h2 class="anchored" data-anchor-id="another-step-towards-ai-reinforcement-learning">Another step towards AI: reinforcement learning</h2>
+<ul>
+<li>Reinforcement learning:
+<ul>
+<li>solve a dynamic problem by experimenting with it</li>
+<li>actions have a cost: tradeoff (exploiting/exploring)</li>
+<li>close to economic RE formulation: <span class="math inline">\(\max \beta^t r_t\)</span></li>
+</ul></li>
+<li>Successful applications to:
+<ul>
+<li>driving, trajectory optimizations</li>
+<li>tic-tac-toe, backgammon</li>
+<li>chess, go ! (combined with deep-learning)</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="the-basics-of-deep-learning" class="level1">
+<h1>The basics of deep learning</h1>
+<section id="optimization" class="level2">
+<h2 class="anchored" data-anchor-id="optimization">Optimization</h2>
+<p>Check http://ruder.io/optimizing-gradient-descent/ for more details</p>
+</section>
+<section id="gradient-descent" class="level2">
+<h2 class="anchored" data-anchor-id="gradient-descent">Gradient descent</h2>
+<p>Consider the scalar function <span class="math inline">\(\Xi(\theta)\)</span> where <span class="math inline">\(\theta\)</span> is a vector.</p>
+<p>Define <span class="math inline">\(\nabla\_{\theta}=   \begin{bmatrix} \frac{\partial}{\partial \theta_1} \\\\...\\\\\frac{\partial}{\partial \theta_n} \end{bmatrix}\)</span></p>
+<ul>
+<li><p>Gradient descent: go to steepest slope</p>
+<p><span class="math inline">\(\theta \leftarrow \theta - \gamma \nabla\_{\theta}\Xi(\theta)\)</span></p></li>
+</ul>
+</section>
+<section id="variants-of-gradient-descent" class="level2">
+<h2 class="anchored" data-anchor-id="variants-of-gradient-descent">Variants of Gradient Descent</h2>
+<ul>
+<li><p>Momentum: (ball goes down the hill, <span class="math inline">\(\gamma\)</span> is air-resistence)</p>
+<p><span class="math display">\[v\_t = \gamma v\_{t-1} + \eta \nabla_{\theta} J(\theta)\]</span> <span class="math display">\[\theta \leftarrow \theta - v_t\]</span></p></li>
+<li><p>Nesterov Momentum: (slow down before going up…)</p>
+<p><span class="math display">\[v\_t = \gamma v\_{t-1} + \eta \nabla\_{\theta} J\left(\theta-\gamma v\_{t-1}\right)\]</span> <span class="math display">\[\theta \leftarrow \theta - v_t\]</span> —-</p></li>
+</ul>
+</section>
+<section id="variants-of-gradient-descent-2" class="level2">
+<h2 class="anchored" data-anchor-id="variants-of-gradient-descent-2">Variants of Gradient Descent (2)</h2>
+<ul>
+<li><p>Learning rate annealing</p>
+<p><span class="math display">\[\eta_t = \eta_0 / ({1+\kappa t})\]</span></p></li>
+<li><p>Parameter specific updates (ADAM)</p>
+<p><span class="math display">\[m_t = \beta\_1 m\_{t-1} + (1-\beta_1) g\_t\]</span> <span class="math display">\[v\_t = \beta\_2  v\_{t-1} + (1-\beta\_2) g\_t^2\]</span></p>
+<p><span class="math display">\[\theta_\{t+1} \leftarrow \theta_t-\frac{\eta}{\sqrt{\frac{v_t}{1-\beta_2^t}+\epsilon}}\frac{m_t}{1-\beta_1^t}\]</span></p></li>
+<li><p>see AdaGrad, AdaMax, Rmsprop</p></li>
+</ul>
+</section>
+<section id="problem-1-overshooting" class="level2">
+<h2 class="anchored" data-anchor-id="problem-1-overshooting">Problem 1: overshooting</h2>
+<p><img src="contours_evaluation_optimizers.gif" class="img-fluid"></p>
+</section>
+<section id="problem-2-saddle-points" class="level2">
+<h2 class="anchored" data-anchor-id="problem-2-saddle-points">Problem 2: saddle points</h2>
+<p><img src="saddle_point_evaluation_optimizers.gif" class="img-fluid"></p>
+</section>
+<section id="stochastic-gradient-descent" class="level2">
+<h2 class="anchored" data-anchor-id="stochastic-gradient-descent">Stochastic gradient descent</h2>
+<ul>
+<li><p>Given <span class="math inline">\(\epsilon \sim \mathcal{D}\)</span>, minimize <span class="math display">\[\Xi(\theta)=E J(\theta,\epsilon)\]</span></p></li>
+<li><p>Idea: draw a random <span class="math inline">\(\epsilon_t\)</span> at each step and do: <span class="math display">\[\theta\leftarrow \theta + \gamma J(\theta,\epsilon_t)\]</span></p></li>
+<li><p>It works !</p>
+<ul>
+<li>Reason: <span class="math inline">\(\nabla\_{\theta}\Xi = E\left[ \nabla\_{\theta} J(\theta,\epsilon) \right]\)</span></li>
+<li><span class="math inline">\(\gamma\)</span> small, the cumulative last steps (<span class="math inline">\(\sum\_k \gamma^k \nabla\_{\theta} J(\theta\_{t-k},\epsilon\_{t-k})\)</span> ) are close to unbiased</li>
+<li>logic extends to other GD algorithms</li>
+</ul></li>
+</ul>
+</section>
+<section id="stochastic-gradient-descent-2" class="level2">
+<h2 class="anchored" data-anchor-id="stochastic-gradient-descent-2">Stochastic gradient descent (2)</h2>
+<ul>
+<li><p>Can escape local minima (with annealing)</p></li>
+<li><p>Gradient is estimated from a random mini-batch <span class="math inline">\((\epsilon\_1, ... \epsilon\_{N_m})\)</span></p>
+<p><span class="math display">\[\theta\leftarrow \theta + \gamma \sum_{i=1:N_m} \nabla J(\theta,\epsilon^i)\]</span></p></li>
+<li><p>Common case: dataset set finite <span class="math inline">\((\epsilon_1, ..., \epsilon_N)\)</span></p>
+<ul>
+<li>batch gradient: full dataset</li>
+<li>mini-batch gradient: random (shuffled) <span class="math inline">\((\epsilon\_i)\_{i \in 1:N_m}\)</span></li>
+<li>stochastic gradient: one point</li>
+</ul></li>
+</ul>
+</section>
+<section id="neural-networks" class="level2">
+<h2 class="anchored" data-anchor-id="neural-networks">Neural networks</h2>
+<p>http://cs231n.github.io/neural-networks-1/</p>
+<hr>
+</section>
+<section id="clarifications" class="level2">
+<h2 class="anchored" data-anchor-id="clarifications">Clarifications:</h2>
+<ul>
+<li>neural networks and neurons in our brains are two distinct concepts</li>
+<li>brains do things in different ways (e.g.&nbsp;<a href="http://mcgovern.mit.edu/news/videos/the-brains-long-range-connections/">long range connections</a>)</li>
+<li>NN are fast and their organization is not always inspired by the brain</li>
+</ul>
+</section>
+<section id="the-perceptron" class="level2">
+<h2 class="anchored" data-anchor-id="the-perceptron">The Perceptron</h2>
+<p>First neural neuron, the perception, invented by a psychologist, Dr Rosenblatt (1952):</p>
+<p><img src="Perceptron.jpg" class="img-fluid"></p>
+</section>
+<section id="modern-neural-model" class="level2">
+<h2 class="anchored" data-anchor-id="modern-neural-model">Modern neural model</h2>
+<p>Evolution of the model: - arbitrary activation function <span class="math inline">\(f\)</span></p>
+<div id="left">
+<img src="neuron.png" class="img-fluid">
+<div>
+<div id="right">
+<p><img src="modern_neuron_model.jpeg" class="img-fluid"></p>
 </div>
-<div id="de2ec779" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="activation-functions" class="level2">
+<h2 class="anchored" data-anchor-id="activation-functions">Activation functions</h2>
+<ul>
+<li>heavyside function: <span class="math inline">\(h(x)=1_{x \geq 0}\)</span></li>
+<li>sigmoid (logistic): <span class="math inline">\(\sigma(x)=\frac{1}{1+e^{-x}}\)</span>
+<ul>
+<li>cool fact: <span class="math inline">\(\sigma^\prime(x)=\sigma(x)(1-\sigma(x))\)</span></li>
+</ul></li>
+<li>arctan</li>
+<li>relu: <span class="math inline">\(r(x)=x*1_{x \geq 0}\)</span></li>
+<li>leaky relu: <span class="math inline">\(r(x)=\kappa x 1\_{x &lt; 0} + 1\_{x \geq 0}\)</span></li>
+</ul>
+</section>
+<section id="activation-functions-1" class="level2">
+<h2 class="anchored" data-anchor-id="activation-functions-1">Activation functions</h2>
+<p><img src="activation_functions.png" class="img-fluid"></p>
+</section>
+<section id="topologies-feed-forward-1" class="level2">
+<h2 class="anchored" data-anchor-id="topologies-feed-forward-1">Topologies (feed forward 1)</h2>
+<ul>
+<li><p>Multilayer perceptron:</p>
+<p><span class="math display">\[A_0(\tau_1 (A_1 \tau_2 (A_2 (.... ) + B_2)) )+ B_1\]</span></p></li>
+</ul>
+<p>where the <span class="math inline">\(\tau_i\)</span> are activation functions, A the weights, B the biases.</p>
+<p><img src="multilayer_perceptron.png" class="img-fluid"></p>
+</section>
+<section id="topologies-feed-forward-2" class="level2">
+<h2 class="anchored" data-anchor-id="topologies-feed-forward-2">Topologies (feed forward 2)</h2>
+<ul>
+<li>Convolutional networks:
+<ul>
+<li>recognize/classify images</li>
+<li>used for features extraction in other algos</li>
+</ul></li>
+<li>Encoder</li>
+</ul>
+<p><img src="lenet5.png" class="img-fluid"></p>
+</section>
+<section id="topologies-others" class="level2">
+<h2 class="anchored" data-anchor-id="topologies-others">Topologies (others)</h2>
+<ul>
+<li>Recurrent neural network
+<ul>
+<li>have a memory</li>
+<li>useful for sequential data (speech, text)</li>
+</ul></li>
+</ul>
+<p><img src="Recurrent_neural_network_unfold.svg" class="img-fluid"></p>
+</section>
+<section id="training-a-neural-network-1" class="level2">
+<h2 class="anchored" data-anchor-id="training-a-neural-network-1">Training a neural network (1)</h2>
+<p>Two elements: - choose a network structure - specify an objective - optimize objective w.r.t. deep parameters (weights and biases) - test out of sample</p>
+</section>
+<section id="training-a-neural-network-2" class="level2">
+<h2 class="anchored" data-anchor-id="training-a-neural-network-2">Training a neural network (2)</h2>
+<ul>
+<li>Choose the right objective:</li>
+<li>regress data <span class="math inline">\(y_i\)</span> on input <span class="math inline">\(x_i\)</span>: <span class="math display">\[\sum_i (f(x_i;\theta)-y_i)^2\]</span>
+<ul>
+<li>possible regularization term to avoid overfitting</li>
+<li><span class="math inline">\(y_i\)</span> can be (0,1) for logistic regression</li>
+</ul></li>
+<li>encode data <span class="math inline">\(\sum_i (x_i - f(x_i;\theta))^2\)</span></li>
+</ul>
+</section>
+<section id="training-a-neural-network-3" class="level2">
+<h2 class="anchored" data-anchor-id="training-a-neural-network-3">Training a neural network (3)</h2>
+<p>Practical challenges: - difficulties in computing derivatives in a numerically stable way - computational intensity grows fast with number of layers - finding good network structure and hyper-parameters is hard</p>
+</section>
+<section id="the-deep-learning-technological-stack" class="level2">
+<h2 class="anchored" data-anchor-id="the-deep-learning-technological-stack">The deep learning technological stack</h2>
+<ul>
+<li>automatic differentiation (reverse accumulation)</li>
+<li>vectorization (operates on small batches at a less than proportional cost)
+<ul>
+<li>processors: SSE, AVX, …</li>
+<li>GPUs: cuda (1920 cores on gtx 1070)</li>
+</ul></li>
+<li>parallelization
+<ul>
+<li>scales to very big architectures</li>
+</ul></li>
+<li>software (+ scientific python):
+<ul>
+<li>tensorflow, theano, …</li>
+<li>scikit.learn, keras</li>
+</ul></li>
+</ul>
+</section>
+<section id="mental-pause" class="level2">
+<h2 class="anchored" data-anchor-id="mental-pause">Mental pause</h2>
+<p>“The Navy revealed the embryo of an electronic computer today that it expects will be able to walk, talk, see, write, reproduce itself an be conscious of its existence … Dr.&nbsp;Frank Rosenblatt, a research psychologist at the Cornell Aeronautical Laboratory, Buffalo, said Perceptrons might be fired to the planets as mechanical space explorers”</p>
+<p>https://www.youtube.com/watch?time_continue=83&amp;v=aygSMgK3BEM</p>
+</section>
+<section id="mental-pause-1" class="level2">
+<h2 class="anchored" data-anchor-id="mental-pause-1">Mental Pause</h2>
+<p>Applications of deeplearning:</p>
+<p>http://www.yaronhadad.com/deep-learning-most-amazing-applications/</p>
+</section>
+<section id="mental-pause-2" class="level2">
+<h2 class="anchored" data-anchor-id="mental-pause-2">Mental Pause</h2>
+<p>Go out and play !</p>
+</section>
+<section id="deep-learning-an-economic-model" class="level1">
+<h1>Deep learning an economic model</h1>
+<p>based on <em>Deep Learning for Solving Dynamic Economic Models</em> with Lilia and Serguei Maliar.</p>
+<section id="motivation-1" class="level2">
+<h2 class="anchored" data-anchor-id="motivation-1">Motivation (1)</h2>
+<p>Meta-question: - is RE (e.g.&nbsp;consumption savings) a complicated problem ? - must be simpler than go… - yet we (and computers) have a hard time solving RE problems - if a Neural network can solve it provided the right objective, it must be simple, right ?</p>
+</section>
+<section id="motivation-2" class="level2">
+<h2 class="anchored" data-anchor-id="motivation-2">Motivation (2)</h2>
+<ul>
+<li><p>using machine learning technology should provide fast solution</p>
+<ul>
+<li>allows easy vectorization/parallelization</li>
+</ul></li>
+<li><p>algorithm <em>might</em> be rather model independent</p></li>
+<li><p>NL could reduce intrinsic dimension of high-dimensional problems and make them tractable</p></li>
+</ul>
+</section>
+<section id="the-problem" class="level2">
+<h2 class="anchored" data-anchor-id="the-problem">The problem</h2>
+<section id="deterministic-neo-classical-model" class="level4">
+<h4 class="anchored" data-anchor-id="deterministic-neo-classical-model">Deterministic neo-classical model:</h4>
+<p>Controlled States: - <span class="math display">\[a\_t=\left(1-\rho\right)a\_{t-1}\]</span> - <span class="math display">\[k\_t=\left(1-\delta\right)k\_{t-1} + i\_{t-1}\]</span></p>
+<p>Objective: - <span class="math display">\[\max\_{i_t(a_t,k_t)} \sum\_t \beta^t U(c\_t)\]</span> - where <span class="math inline">\(c_t = k\_t^{\theta} - i\_t\)</span></p>
+</section>
+</section>
+<section id="euler-equation" class="level2">
+<h2 class="anchored" data-anchor-id="euler-equation">Euler equation</h2>
+<p><span class="math display">\[1 = \beta \frac{U^{\prime}(c\_{t+1})}{U^{\prime}(c\_{t})}\left[\left(1-\delta \right)+\theta k^{\theta-1}\right]\]</span></p>
+</section>
+<section id="loss-criterium" class="level2">
+<h2 class="anchored" data-anchor-id="loss-criterium">Loss criterium</h2>
+<ul>
+<li>Suppose: <span class="math display">\[i(a,k) = \varphi(a,k;\theta)\]</span></li>
+<li><span class="math inline">\(\varphi\)</span> can be any parameterized family of functions:
+<ul>
+<li>complete polynomials</li>
+<li>neural networks</li>
+</ul></li>
+<li>Rewrite Euler equation as: <span class="math display">\[R(a,k;\theta) = 0\]</span></li>
+<li>Loss criterium <span class="math display">\[\Xi(\theta) = \int_{a,k\in G} R(a,k;\theta)^2\]</span></li>
+</ul>
+</section>
+<section id="loss-criterium-2" class="level2">
+<h2 class="anchored" data-anchor-id="loss-criterium-2">Loss criterium 2</h2>
+<ul>
+<li>For any random distribution of <span class="math inline">\(a,k\)</span> consider:</li>
+</ul>
+<p><span class="math display">\[\Xi(\theta) = E\_{a,k} R(a,k;\theta)^2\]</span></p>
+<ul>
+<li>Given <span class="math inline">\(N_b\)</span> random values:</li>
+</ul>
+<p><span class="math display">\[\Omega\_{N\_b}(\theta) = \frac{1}{N\_b} \sum\_{a_n,k_n} R(a,k;\theta)^2\]</span></p>
+</section>
+<section id="loss-criterium-3" class="level2">
+<h2 class="anchored" data-anchor-id="loss-criterium-3">Loss criterium 3</h2>
+<ul>
+<li><p>Using tensorflow we get easily: <span class="math display">\[\nabla\_\theta \Omega\_{N\_b}(\theta)\]</span></p></li>
+<li><p>The gradient is not biased: <span class="math display">\[E\_{{a\_n},k\_{n}} \nabla\_\theta \Omega\_{N\_b}(\theta)= \nabla\_\theta \Xi(\theta)\]</span></p></li>
+</ul>
+</section>
+<section id="batch-vs-mini-batch" class="level2">
+<h2 class="anchored" data-anchor-id="batch-vs-mini-batch">Batch vs Mini-batch</h2>
+<p><img src="samples.png" class="img-fluid"></p>
+</section>
+<section id="training" class="level2">
+<h2 class="anchored" data-anchor-id="training">Training</h2>
+<p><img src="capital_results.png" class="img-fluid"> - Algorithm is variant of SGD: ADAM</p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<ul>
+<li><p>Convergence obtained relatively <em>fast</em>:</p>
+<ul>
+<li>1000 iterations but <span class="math inline">\(1000 N\_m\)</span> points visited vs <span class="math inline">\(1000 G\)</span> for time_iteration</li>
+</ul></li>
+<li><p>Extends to any number of dimensions</p></li>
+<li><p>Neural network can (in principle) account for non- differentiabilities</p></li>
+<li><p>Can be extended to stochastic case (see paper)</p></li>
+</ul>
+
+
+</section>
+</section>
 </div>
-<div id="exr-numpy" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 2</strong></span> Write a NumPy program to generate six random integers between 10 and 30.</p>
-</div>
-<div id="839193fa" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="exr-numpy" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 3</strong></span> Create a 3x3 matrix with values ranging from 0 to 8</p>
-</div>
-<div id="e54479ff" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="exr-numpy" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 4</strong></span> Create 2d array <span class="math inline">\(M\)</span> such of size 3*3 such that <span class="math inline">\(M_{ij} = i\times j\)</span></p>
-</div>
-<div id="2dab0747" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="exr-numpy" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 5</strong></span> Create 3 vectors of length 5 and create a matrix where each column is one of the vector.</p>
-</div>
-<div id="412181e8" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="exr-numpy" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 6</strong></span> Create 3 vectors of length 5 and create a matrix where each row is one of the vector.</p>
-</div>
-<div id="a1dd6b66" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="exr-numpy" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7</strong></span> Find indices of non-zero elements from <code>np.array([1,2,0,0,4,0])</code>. Replace them with -1.0</p>
-</div>
-<div id="1b1ad52e" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="exr-numpy" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 8</strong></span> Write a NumPy program to normalize a 3x3 random matrix. (Define norm <span class="math inline">\(|x|=\sqrt{\sum x_i^2}\)</span> and compute <span class="math inline">\(M/|M|\)</span>)</p>
-</div>
-<div id="be5681d0" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="exr-numpy" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 9</strong></span> Create 2d array <span class="math inline">\(M\)</span> such of size 3*3 such that <span class="math inline">\(M_{ij} = i\times j\)</span></p>
-</div>
-<div id="dc44ebc2" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="exr-numpy" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 10</strong></span> Take a random matrix <span class="math inline">\(A\)</span> of size <span class="math inline">\(N\times 2\)</span> (N=10) where each line represents a different 2d point. Compute the euclidean distance matrix such that <span class="math inline">\(E_{ij}\)</span> is the distance between point <span class="math inline">\(i\)</span> and point <span class="math inline">\(j\)</span>.</p>
-</div>
-<div id="1d43d605" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="exr-numpy" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 11</strong></span> Create A of size <span class="math inline">\(10\times 3\)</span>. Create matrix <span class="math inline">\(B\)</span> with the same column as <span class="math inline">\(A\)</span> reordered by sum of absolute values.</p>
 </div>
 </section>
-<section id="simulating-an-ar1" class="level2">
-<h2 class="anchored" data-anchor-id="simulating-an-ar1">Simulating an AR1</h2>
-<p>Take an AR1 process <span class="math inline">\(x_t = A \rho x_{t-1} + \epsilon_t\)</span> with <span class="math inline">\(\epsilon_t \sim \Sigma\)</span> where <span class="math inline">\(\Sigma\)</span> is a positive definite matrix.</p>
-<div id="exr-numpy" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 12</strong></span> Define 2x2 matrices <span class="math inline">\(A\)</span> and <span class="math inline">\(\Sigma\)</span>, the latter being symmetric positive definite</p>
-</div>
-<div id="39dbc424" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="exr-numpy" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 13</strong></span> Compute asymptotic variance using matrix algebra (there is a recursive formula)</p>
-</div>
-<div id="99ab2fc4" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="exr-numpy" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 14</strong></span> Simulate <span class="math inline">\(N\)</span> draws for <span class="math inline">\(T\)</span> periods and store the result in <code>sim</code>.</p>
-</div>
-<div id="26021884" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="exr-numpy" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 15</strong></span> Compute ergodic variance (bonus compute std of the variance estimate)</p>
-</div>
-<div id="8450d317" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="exr-numpy" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 16</strong></span> Plot a few simulations on the same graph</p>
-</div>
-<div id="3ae25b77" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="exr-numpy" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 17</strong></span> Plot asymptotic distribution (seaborn)</p>
-</div>
-<div id="cf3329b8" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="exr-numpy" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 18</strong></span> Bonus: write a faster simulation routine.</p>
-</div>
-<div id="18195683" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-
-
 </section>
 
 </main> <!-- /main -->

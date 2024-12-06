@@ -644,10 +644,7 @@ T_0(x_K) &amp; T_1(x_K) &amp;  \cdots &amp; T_K(x_K)
 <li><p>Define the <span class="math inline">\(N\)</span> discretized points (<span class="math inline">\(i\in[1,n]\)</span>): <span class="math inline">\(y_i = \underline{x} + \frac{i-1}{N-1}(\overline{x}-\underline{x})\)</span></p></li>
 <li><p>Define the transitions:</p></li>
 </ul>
-<p><span class="math display">\[\begin{eqnarray}
-\pi_{ij} &amp; = &amp; prob \left( y_{t+1}=y_j|y_t=y_i\right)\\
-         &amp; = &amp; prob \left( |y_{t+1}-x_j| = \inf_k |y_{t+1}-x_k| \left| y_t=y_i \right. \right)
-\end{eqnarray}\]</span></p>
+<p><span class="math display">\[\pi_{ij} = prob \left( y_{t+1}=y_j|y_t=y_i\right)\]</span> <span class="math display">\[\pi_{ij} = prob \left( |y_{t+1}-x_j| = \inf_k |y_{t+1}-x_k| \left| y_t=y_i \right. \right)\]</span></p>
 </section>
 <section id="ar1-tauchen-2" class="slide level2">
 <h2>AR1: Tauchen (2)</h2>
@@ -679,12 +676,14 @@ T_0(x_K) &amp; T_1(x_K) &amp;  \cdots &amp; T_K(x_K)
 <ul>
 <li>N = 2
 <ul>
-<li>choose <span class="math inline">\(y_1=-\psi\)</span>, <span class="math inline">\(y_2=\psi\)</span></li>
-<li>define transition matrix: <span class="math display">\[\Theta_2 = \begin{bmatrix}
-p &amp; 1-p\\\\
+<li><p>choose <span class="math inline">\(y_1=-\psi\)</span>, <span class="math inline">\(y_2=\psi\)</span></p></li>
+<li><p>define transition matrix: <span class="math display">\[
+\Theta_2 = \begin{bmatrix}
+p &amp; 1-p\\
 1-q &amp; q
-\end{bmatrix}\]</span></li>
-<li>choose <span class="math inline">\(p\)</span>, <span class="math inline">\(q\)</span> and <span class="math inline">\(\psi\)</span> to match some moments: <span class="math inline">\(E()\)</span>, <span class="math inline">\(Var()\)</span>, <span class="math inline">\(ACor()\)</span>
+\end{bmatrix}
+\]</span></p></li>
+<li><p>choose <span class="math inline">\(p\)</span>, <span class="math inline">\(q\)</span> and <span class="math inline">\(\psi\)</span> to match some moments: <span class="math inline">\(E()\)</span>, <span class="math inline">\(Var()\)</span>, <span class="math inline">\(ACor()\)</span></p>
 <ul>
 <li>they can be computed analytically for AR1 and for discretized version.</li>
 </ul></li>
@@ -805,14 +804,16 @@ q \begin{bmatrix}
 <li>on the plus side: rate <u>independent of the dimension of</u> <span class="math inline">\(\epsilon\)</span></li>
 </ul></li>
 </ul>
-<!-- ## Quantization using quantiles
-
-- *Equiprobable* discretization
-- Works for any distribution with pdf and cdf
-- Split the space into equal $N$ quantiles:
-  $$(I_i=[a_i,a_{i+1}])_{i=1:N}$$ such that $$prob(\epsilon \in I_i)=\frac{1}{N}$$
-- Choose the *nodes* as the median of each interval: $$prob(\epsilon\in[a_i,x_i]) = prob(\epsilon\in[x_i,a_{i+1}])$$
-- The quantization is $(1/N, x_i)_{i=1:N}$ -->
+</section>
+<section id="quantization-using-quantiles" class="slide level2">
+<h2>Quantization using quantiles</h2>
+<ul>
+<li><em>Equiprobable</em> discretization</li>
+<li>Works for any distribution with pdf and cdf</li>
+<li>Split the space into equal <span class="math inline">\(N\)</span> quantiles: <span class="math display">\[(I_i=[a_i,a_{i+1}])_{i=1:N}\]</span> such that <span class="math display">\[prob(\epsilon \in I_i)=\frac{1}{N}\]</span></li>
+<li>Choose the <em>nodes</em> as the median of each interval: <span class="math display">\[prob(\epsilon\in[a_i,x_i]) = prob(\epsilon\in[x_i,a_{i+1}])\]</span></li>
+<li>The quantization is <span class="math inline">\((1/N, x_i)_{i=1:N}\)</span></li>
+</ul>
 </section>
 <section id="quadrature-rule" class="slide level2">
 <h2>Quadrature rule</h2>

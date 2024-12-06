@@ -21,62 +21,368 @@
     "text": "Session 2: Solving DSGE Model with Deep Learning (3h)\nWriting DSGE Models with Python\n\nImporting Existing Models\nNonlinearities / Occasionally Binding Constraints\n\nLocal Solution\n\nExistence and Unicity\nPerturbation Solution\n\nGlobal Nonlinear Solution for Generic DSGE Models\nApplication: Zero Lower Bound Model"
   },
   {
-    "objectID": "exercises/methods.html",
-    "href": "exercises/methods.html",
-    "title": "Methods",
+    "objectID": "exercises/numeric.html",
+    "href": "exercises/numeric.html",
+    "title": "Numeric",
     "section": "",
-    "text": "Exercise 1 Consider the function \\(f(x,y)=1-(x-x_0)^2-0.5(y-y_0)^2\\) with \\(x_0=0.5\\) and \\(y_0=1.0\\). Check the documentatin for scipy.optimize. Use it to maximze function \\(f\\).\n\n\n# one needs to define $f$ as a function of a vector\n# f(v)=1-(v[0]-x_0)^2-0.5*(v[1]-y_0)^2$ \n\n\nConsider the function \\(g(x)=0.1+exp(-x)x(1-x)\\) over [0,2]. Choose the scipy function and find the root of \\(g\\).\n\n\n#\n\n\nConsider the function \\(h(x,y)=0.1+exp(-x)x(1-x)\\) over [0,2]. Choose the scipy function and find the root of \\(g\\). to find the root of \\(g\\)?\n\n\n#",
+    "text": "Selection from w3resources and rougier/numpy100\n\nExercise 1  \n\nWrite a NumPy program to generate five random numbers from the normal distribution.\n\n\n\n# code here\n\n\nExercise 2 Write a NumPy program to generate six random integers between 10 and 30.\n\n\n# code here\n\n\nExercise 3 Create a 3x3 matrix with values ranging from 0 to 8\n\n\n# code here\n\n\nExercise 4 Create 2d array \\(M\\) such of size 3*3 such that \\(M_{ij} = i\\times j\\)\n\n\n# code here\n\n\nExercise 5 Create 3 vectors of length 5 and create a matrix where each column is one of the vector.\n\n\n# code here\n\n\nExercise 6 Create 3 vectors of length 5 and create a matrix where each row is one of the vector.\n\n\n# code here\n\n\nExercise 7 Find indices of non-zero elements from np.array([1,2,0,0,4,0]). Replace them with -1.0\n\n\n# code here\n\n\nExercise 8 Write a NumPy program to normalize a 3x3 random matrix. (Define norm \\(|x|=\\sqrt{\\sum x_i^2}\\) and compute \\(M/|M|\\))\n\n\n# code here\n\n\nExercise 9 Create 2d array \\(M\\) such of size 3*3 such that \\(M_{ij} = i\\times j\\)\n\n\n# code here\n\n\nExercise 10 Take a random matrix \\(A\\) of size \\(N\\times 2\\) (N=10) where each line represents a different 2d point. Compute the euclidean distance matrix such that \\(E_{ij}\\) is the distance between point \\(i\\) and point \\(j\\).\n\n\n# code here\n\n\nExercise 11 Create A of size \\(10\\times 3\\). Create matrix \\(B\\) with the same column as \\(A\\) reordered by sum of absolute values.",
     "crumbs": [
       "Exercises",
-      "Methods"
+      "Numeric"
     ]
   },
   {
-    "objectID": "exercises/methods.html#optimization-and-root-finding",
-    "href": "exercises/methods.html#optimization-and-root-finding",
-    "title": "Methods",
+    "objectID": "exercises/numeric.html#using-numpy",
+    "href": "exercises/numeric.html#using-numpy",
+    "title": "Numeric",
     "section": "",
-    "text": "Exercise 1 Consider the function \\(f(x,y)=1-(x-x_0)^2-0.5(y-y_0)^2\\) with \\(x_0=0.5\\) and \\(y_0=1.0\\). Check the documentatin for scipy.optimize. Use it to maximze function \\(f\\).\n\n\n# one needs to define $f$ as a function of a vector\n# f(v)=1-(v[0]-x_0)^2-0.5*(v[1]-y_0)^2$ \n\n\nConsider the function \\(g(x)=0.1+exp(-x)x(1-x)\\) over [0,2]. Choose the scipy function and find the root of \\(g\\).\n\n\n#\n\n\nConsider the function \\(h(x,y)=0.1+exp(-x)x(1-x)\\) over [0,2]. Choose the scipy function and find the root of \\(g\\). to find the root of \\(g\\)?\n\n\n#",
+    "text": "Selection from w3resources and rougier/numpy100\n\nExercise 1  \n\nWrite a NumPy program to generate five random numbers from the normal distribution.\n\n\n\n# code here\n\n\nExercise 2 Write a NumPy program to generate six random integers between 10 and 30.\n\n\n# code here\n\n\nExercise 3 Create a 3x3 matrix with values ranging from 0 to 8\n\n\n# code here\n\n\nExercise 4 Create 2d array \\(M\\) such of size 3*3 such that \\(M_{ij} = i\\times j\\)\n\n\n# code here\n\n\nExercise 5 Create 3 vectors of length 5 and create a matrix where each column is one of the vector.\n\n\n# code here\n\n\nExercise 6 Create 3 vectors of length 5 and create a matrix where each row is one of the vector.\n\n\n# code here\n\n\nExercise 7 Find indices of non-zero elements from np.array([1,2,0,0,4,0]). Replace them with -1.0\n\n\n# code here\n\n\nExercise 8 Write a NumPy program to normalize a 3x3 random matrix. (Define norm \\(|x|=\\sqrt{\\sum x_i^2}\\) and compute \\(M/|M|\\))\n\n\n# code here\n\n\nExercise 9 Create 2d array \\(M\\) such of size 3*3 such that \\(M_{ij} = i\\times j\\)\n\n\n# code here\n\n\nExercise 10 Take a random matrix \\(A\\) of size \\(N\\times 2\\) (N=10) where each line represents a different 2d point. Compute the euclidean distance matrix such that \\(E_{ij}\\) is the distance between point \\(i\\) and point \\(j\\).\n\n\n# code here\n\n\nExercise 11 Create A of size \\(10\\times 3\\). Create matrix \\(B\\) with the same column as \\(A\\) reordered by sum of absolute values.",
     "crumbs": [
       "Exercises",
-      "Methods"
+      "Numeric"
     ]
   },
   {
-    "objectID": "exercises/methods.html#interpolation",
-    "href": "exercises/methods.html#interpolation",
-    "title": "Methods",
-    "section": "Interpolation",
-    "text": "Interpolation\nWe consider the function \\(f(x) = sinc(\\lambda x) = \\frac{sin(\\lambda x)}{x}\\). Let \\(I=(x_i)_{i=[1,10]}\\) be a regularly spaced interval between -2 and +2, containing 10 points. Call \\(Y=(y_i)=f(x_i)\\) the values of \\(f\\) on this interval. Let \\(T\\) be a test set with 1000 regularly spaced points between -2.5 and 2.5.\nThe goal is to compare several ways interpolate function f on \\(T\\).\n\nExercise 2 Define f, I, Y, T with numpy.\n\n\n# \n\n\nExercise 3 Construct a stepwise approximation using numpy indexing\n\n\n# \n\n\nExercise 4 Plot it\n\n\n# \n\n\nExercise 5 Construct a linear approximation using numpy\n\n\n#\n\n\nExercise 6 Use scipy.interpolate to interpolate the data linearly. Compare the various extrapolation options.\n\n\n#\n\n\nExercise 7 Use scipy.interpolate to interolate the data with cubic splines. Compare the various extrapolation options.\n\n\n#\n\n\nExercise 8 Plot the results\n\n\n#",
+    "objectID": "exercises/numeric.html#simulating-an-ar1",
+    "href": "exercises/numeric.html#simulating-an-ar1",
+    "title": "Numeric",
+    "section": "Simulating an AR1",
+    "text": "Simulating an AR1\nTake an AR1 process \\(x_t = A \\rho x_{t-1} + \\epsilon_t\\) with \\(\\epsilon_t \\sim \\Sigma\\) where \\(\\Sigma\\) is a positive definite matrix.\n\nExercise 12 Define 2x2 matrices \\(A\\) and \\(\\Sigma\\), the latter being symmetric positive definite\n\n\n# code here\n\n\nExercise 13 Compute asymptotic variance using matrix algebra (there is a recursive formula)\n\n\n# code here\n\n\nExercise 14 Simulate \\(N\\) draws for \\(T\\) periods and store the result in sim.\n\n\n# code here\n\n\nExercise 15 Compute ergodic variance (bonus compute std of the variance estimate)\n\n\n# code here\n\n\nExercise 16 Plot a few simulations on the same graph\n\n\n# code here\n\n\nExercise 17 Plot asymptotic distribution (seaborn)\n\n\n# code here\n\n\nExercise 18 Bonus: write a faster simulation routine.\n\n\n# code here",
     "crumbs": [
       "Exercises",
-      "Methods"
+      "Numeric"
     ]
   },
   {
-    "objectID": "exercises/methods.html#discretization",
-    "href": "exercises/methods.html#discretization",
-    "title": "Methods",
-    "section": "Discretization",
-    "text": "Discretization\n\nExercise 9 Consider the AR1 process \\(y_t = \\rho y_{t-1} + \\epsilon_t\\) where \\(\\rho=0.9\\) and \\(\\epsilon_t=0.01\\). Use the quantecon library to discretize \\((y_t)\\) as a discrete markov chain.\n\n\n#\n\n\nExercise 10 Suppose \\(\\epsilon\\) follows a normal law with standard deviation \\(σ = 0.05\\). Take γ = 40 and define \\(U(x)=(x^{-γ})/(-γ)\\) We want to compute \\(C(\\epsilon) = \\mathbb{E} [U(exp(\\epsilon)) ]\\).\n\nChoose \\(N&gt;0\\) and construct a 1d vector with \\(N\\) realizations of \\(\\epsilon\\). Use it to compute the expectation.\nEstimate the standard deviation of this expectation.\nUse gauss-hermite method from numpy to compute the same expectation.\nCompare both methods.",
-    "crumbs": [
-      "Exercises",
-      "Methods"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Computational Economics @ Bundesbank",
+    "objectID": "exercises/training_nl.html",
+    "href": "exercises/training_nl.html",
+    "title": "Training a Neural Network",
     "section": "",
-    "text": "My email: pwinant@escp.eu\nWebsite for this course: https://www.mosphere.fr/bbank_ce_2024"
+    "text": "Consider the following (pseudo)-function\n\nimport jax\nfrom jax import numpy as jnp\n\ndef mystery(key):\n    \n    key1, key2 = jax.random.split(key)\n    x = jax.random.uniform(-1,1)\n    epsilon = jax.random.normal(key2)*0.01 # random nmer\n    y = jnp.sin(x)/x + epsilon\n    return (x,y)\n\nThe goal is to learn a function representation using a finite (possibly big) number of draws from the function.\n\nExercise 1 Draw 100 different values and plot them.\n\n\nExercise 2 Create a neural network using library flax (with the linen API), to predict \\(y\\) from \\(x\\).\nInitialize it with random weights and plot the initial guess.\nWe will call \\(\\varphi(x;\\theta)\\) the prediction from the neural network for weights \\(\\theta\\).\n\n\n#\n\n\nExercise 3 Create an objective function \\(\\xi(key, theta, N)\\) for the empirical risk using a minibatch of size \\(N\\).\n\n\n#\n\n\nExercise 4 Compute the gradient of \\(\\xi\\) using jax.\n\n\nExercise 5 Train the neural network, either by hand, or by using Optax. Inspect the result.\n\n\n#"
   },
   {
-    "objectID": "index.html#tentative-schedule",
-    "href": "index.html#tentative-schedule",
-    "title": "Computational Economics @ Bundesbank",
-    "section": "Tentative schedule",
-    "text": "Tentative schedule\n\nIntroduction to computational economics\n\nnov 6\n\npython\n\nnov 7\ndec 5\n\nnumpy / matplotlib\nmethods: interpolation / quantization\nalgorithm: time-iteration\nexercise: solving the neoclassical model\n(introduction to dolo)\n\ndec 6\n\nneural networks and deeplearning\nintroduction to JAX (vectorization/differentiation,…)\nsolving model with deeplearning\nperturbation theory"
+    "objectID": "exercises/training_nl.html#learning-a-function",
+    "href": "exercises/training_nl.html#learning-a-function",
+    "title": "Training a Neural Network",
+    "section": "",
+    "text": "Consider the following (pseudo)-function\n\nimport jax\nfrom jax import numpy as jnp\n\ndef mystery(key):\n    \n    key1, key2 = jax.random.split(key)\n    x = jax.random.uniform(-1,1)\n    epsilon = jax.random.normal(key2)*0.01 # random nmer\n    y = jnp.sin(x)/x + epsilon\n    return (x,y)\n\nThe goal is to learn a function representation using a finite (possibly big) number of draws from the function.\n\nExercise 1 Draw 100 different values and plot them.\n\n\nExercise 2 Create a neural network using library flax (with the linen API), to predict \\(y\\) from \\(x\\).\nInitialize it with random weights and plot the initial guess.\nWe will call \\(\\varphi(x;\\theta)\\) the prediction from the neural network for weights \\(\\theta\\).\n\n\n#\n\n\nExercise 3 Create an objective function \\(\\xi(key, theta, N)\\) for the empirical risk using a minibatch of size \\(N\\).\n\n\n#\n\n\nExercise 4 Compute the gradient of \\(\\xi\\) using jax.\n\n\nExercise 5 Train the neural network, either by hand, or by using Optax. Inspect the result.\n\n\n#"
+  },
+  {
+    "objectID": "exercises/python.html",
+    "href": "exercises/python.html",
+    "title": "Python Basics",
+    "section": "",
+    "text": "(adapted from Quantecon)",
+    "crumbs": [
+      "Exercises",
+      "Python Basics"
+    ]
+  },
+  {
+    "objectID": "exercises/python.html#basics",
+    "href": "exercises/python.html#basics",
+    "title": "Python Basics",
+    "section": "Basics",
+    "text": "Basics\n\nExercise 1 Run the following code in the python interpreter:\ndef say_hello(name):\n    \"\"\"This function prints morning greetings\"\"\"\n\n    print(f\"Good morning {name}!\\n\")\n\n    # we can import libraries\n    import datetime\n    t = datetime.datetime.now()\n\n    # blocks are defined by indentation and colons\n    if (t.hour,t.min) &lt;= (9,15):\n        print(\"All good?\\n\")\n    else:\n        print(\"Time to get started?\\n\")\n\n\nsay_hello(\"Pablo\")\n\n\nExercise 2 What do you think the value of z is after running the code below?\n\nz = 3\nz = z + 4\nprint(\"z is\", z)\n\nz is 7\n\n\n\n\n# your response there\n\n\nExercise 3 Read about what the len function does (by writing len?).\nWhat will it produce if we give it the variable x?\nCheck whether you were right by running the code len(x).\n\n\n# your code here\n\n\nExercise 4 We can use our introspection skills to investigate a package’s contents.\nIn the cell below, use tab completion to find a function from the time module that will display the local time.\nUse time.FUNC_NAME? (where FUNC_NAME is replaced with the function you found) to see information about that function and then call the function.\nLook for something to do with the word local\n\n\nimport time\n# your code here\n\n\nExercise 5 The code below is invalid Python code (once uncommented)\n\n\n# x = 'What's wrong with this string'",
+    "crumbs": [
+      "Exercises",
+      "Python Basics"
+    ]
+  },
+  {
+    "objectID": "exercises/python.html#collections",
+    "href": "exercises/python.html#collections",
+    "title": "Python Basics",
+    "section": "Collections",
+    "text": "Collections\n\nExercise 6 In the first cell, try y.append(z).\nIn the second cell try y.extend(z).\nExplain the behavior.\nWhen you are trying to explain use y.append? and y.extend? to see a description of what these methods are supposed to do.\n\n\ny = [\"a\", \"b\", \"c\"]\nz = [1, 2, 3]\n# \n\n\ny = [\"a\", \"b\", \"c\"]\nz = [1, 2, 3]\n# \n\n\nExercise 7 Verify that tuples are indeed immutable by attempting the following:\n\nChanging the first element of t to be 100\n\nAppending a new element \"!!\" to the end of t (remember with a list x we would use x.append(\"!!\") to do this\n\nSorting t\n\nReversing t\n\n\n\nt = (1,2,3,4)\n\n\nExercise 8 Look at the World Factbook for Australia and create a dictionary with data containing the following types: float, string, integer, list, and dict. Choose any data you wish.\nTo confirm, you should have a dictionary that you identified via a key.\n\n\n# your code here\n\n\nExercise 9 Use Jupyter’s help facilities to learn how to use the pop method to remove the key \"irrigated_land\" (and its value) from the dict.\n\n\n# uncomment and use the Inspector or ?\n#china_data.pop()\n\n\nExercise 10 Explain what happens to the value you popped.\nExperiment with calling pop twice.\n\n\n# your code here",
+    "crumbs": [
+      "Exercises",
+      "Python Basics"
+    ]
+  },
+  {
+    "objectID": "exercises/python.html#control",
+    "href": "exercises/python.html#control",
+    "title": "Python Basics",
+    "section": "Control",
+    "text": "Control\n\nExercise 11 Run the following two variations on the code with only a single change in the indentation.\nAfter, modify the x to print 3 and then 2, 3 instead.\n\n\nx = 1\n\nif x &gt; 0:\n    print(\"1\")\n    print(\"2\")\nprint(\"3\")\n\n1\n2\n3\n\n\n\nx = 1\n\nif x &gt; 0:\n    print(\"1\")\nprint(\"2\") # changed the indentation\nprint(\"3\")\n\n1\n2\n3\n\n\n\nExercise 12 Write a for loop that uses the lists of cities and states below to print the same “{city} is in {state}” using a zip instead of an enumerate.\n\n\ncities = [\"Phoenix\", \"Austin\", \"San Diego\", \"New York\"]\nstates = [\"Arizona\", \"Texas\", \"California\", \"New York\"]\n\n\nfor i,c in enumerate(cities):\n    print(c, \" : \", states[i])\n\nPhoenix  :  Arizona\nAustin  :  Texas\nSan Diego  :  California\nNew York  :  New York\n\n\n\n# your code here",
+    "crumbs": [
+      "Exercises",
+      "Python Basics"
+    ]
+  },
+  {
+    "objectID": "slides/pres_JHU/slides.html",
+    "href": "slides/pres_JHU/slides.html",
+    "title": "Quick Introduction to deep learning",
+    "section": "",
+    "text": "General discussion:\n\nmachine learning / artificial intelligence\ntechnology / technology\n\nIntroduction to deep learning\n\nStochastic Gradient Descent\nNeural Networks\n\nPractical Application\nApplication to an economic model\n\n\n\n\n\nLots of data (consumers, regulators, flights, …)\nTraditionnel models (econometrics for instance) fail\n\ndata is heterogenous\ndoesn’t fit in the memory\ndoesn’t match a model…\n\nMany machine learning algorithms\nHardware developments: (GPU, online computing)\nSoftware stack: linux/git/python/scikit/tensorflow…\n\n\n\n\n\nDeep learning: hugely successful in many different areas:\n\na non-linear structure which self-organizes itself to reach a goal\ncompare with artificial intelligence (achieve a goal without being told how)\n\nChallenges: transferability, explainability\n\n\n\n\n\nReinforcement learning:\n\nsolve a dynamic problem by experimenting with it\nactions have a cost: tradeoff (exploiting/exploring)\nclose to economic RE formulation: \\(\\max \\beta^t r_t\\)\n\nSuccessful applications to:\n\ndriving, trajectory optimizations\ntic-tac-toe, backgammon\nchess, go ! (combined with deep-learning)"
+  },
+  {
+    "objectID": "slides/pres_JHU/slides.html#outline",
+    "href": "slides/pres_JHU/slides.html#outline",
+    "title": "Quick Introduction to deep learning",
+    "section": "",
+    "text": "General discussion:\n\nmachine learning / artificial intelligence\ntechnology / technology\n\nIntroduction to deep learning\n\nStochastic Gradient Descent\nNeural Networks\n\nPractical Application\nApplication to an economic model"
+  },
+  {
+    "objectID": "slides/pres_JHU/slides.html#we-are-in-the-big-data-era",
+    "href": "slides/pres_JHU/slides.html#we-are-in-the-big-data-era",
+    "title": "Quick Introduction to deep learning",
+    "section": "",
+    "text": "Lots of data (consumers, regulators, flights, …)\nTraditionnel models (econometrics for instance) fail\n\ndata is heterogenous\ndoesn’t fit in the memory\ndoesn’t match a model…\n\nMany machine learning algorithms\nHardware developments: (GPU, online computing)\nSoftware stack: linux/git/python/scikit/tensorflow…"
+  },
+  {
+    "objectID": "slides/pres_JHU/slides.html#what-about-deep-learning",
+    "href": "slides/pres_JHU/slides.html#what-about-deep-learning",
+    "title": "Quick Introduction to deep learning",
+    "section": "",
+    "text": "Deep learning: hugely successful in many different areas:\n\na non-linear structure which self-organizes itself to reach a goal\ncompare with artificial intelligence (achieve a goal without being told how)\n\nChallenges: transferability, explainability"
+  },
+  {
+    "objectID": "slides/pres_JHU/slides.html#another-step-towards-ai-reinforcement-learning",
+    "href": "slides/pres_JHU/slides.html#another-step-towards-ai-reinforcement-learning",
+    "title": "Quick Introduction to deep learning",
+    "section": "",
+    "text": "Reinforcement learning:\n\nsolve a dynamic problem by experimenting with it\nactions have a cost: tradeoff (exploiting/exploring)\nclose to economic RE formulation: \\(\\max \\beta^t r_t\\)\n\nSuccessful applications to:\n\ndriving, trajectory optimizations\ntic-tac-toe, backgammon\nchess, go ! (combined with deep-learning)"
+  },
+  {
+    "objectID": "slides/pres_JHU/slides.html#optimization",
+    "href": "slides/pres_JHU/slides.html#optimization",
+    "title": "Quick Introduction to deep learning",
+    "section": "Optimization",
+    "text": "Optimization\nCheck http://ruder.io/optimizing-gradient-descent/ for more details"
+  },
+  {
+    "objectID": "slides/pres_JHU/slides.html#gradient-descent",
+    "href": "slides/pres_JHU/slides.html#gradient-descent",
+    "title": "Quick Introduction to deep learning",
+    "section": "Gradient descent",
+    "text": "Gradient descent\nConsider the scalar function \\(\\Xi(\\theta)\\) where \\(\\theta\\) is a vector.\nDefine \\(\\nabla\\_{\\theta}=   \\begin{bmatrix} \\frac{\\partial}{\\partial \\theta_1} \\\\\\\\...\\\\\\\\\\frac{\\partial}{\\partial \\theta_n} \\end{bmatrix}\\)\n\nGradient descent: go to steepest slope\n\\(\\theta \\leftarrow \\theta - \\gamma \\nabla\\_{\\theta}\\Xi(\\theta)\\)"
+  },
+  {
+    "objectID": "slides/pres_JHU/slides.html#variants-of-gradient-descent",
+    "href": "slides/pres_JHU/slides.html#variants-of-gradient-descent",
+    "title": "Quick Introduction to deep learning",
+    "section": "Variants of Gradient Descent",
+    "text": "Variants of Gradient Descent\n\nMomentum: (ball goes down the hill, \\(\\gamma\\) is air-resistence)\n\\[v\\_t = \\gamma v\\_{t-1} + \\eta \\nabla_{\\theta} J(\\theta)\\] \\[\\theta \\leftarrow \\theta - v_t\\]\nNesterov Momentum: (slow down before going up…)\n\\[v\\_t = \\gamma v\\_{t-1} + \\eta \\nabla\\_{\\theta} J\\left(\\theta-\\gamma v\\_{t-1}\\right)\\] \\[\\theta \\leftarrow \\theta - v_t\\] —-"
+  },
+  {
+    "objectID": "slides/pres_JHU/slides.html#variants-of-gradient-descent-2",
+    "href": "slides/pres_JHU/slides.html#variants-of-gradient-descent-2",
+    "title": "Quick Introduction to deep learning",
+    "section": "Variants of Gradient Descent (2)",
+    "text": "Variants of Gradient Descent (2)\n\nLearning rate annealing\n\\[\\eta_t = \\eta_0 / ({1+\\kappa t})\\]\nParameter specific updates (ADAM)\n\\[m_t = \\beta\\_1 m\\_{t-1} + (1-\\beta_1) g\\_t\\] \\[v\\_t = \\beta\\_2  v\\_{t-1} + (1-\\beta\\_2) g\\_t^2\\]\n\\[\\theta_\\{t+1} \\leftarrow \\theta_t-\\frac{\\eta}{\\sqrt{\\frac{v_t}{1-\\beta_2^t}+\\epsilon}}\\frac{m_t}{1-\\beta_1^t}\\]\nsee AdaGrad, AdaMax, Rmsprop"
+  },
+  {
+    "objectID": "slides/pres_JHU/slides.html#problem-1-overshooting",
+    "href": "slides/pres_JHU/slides.html#problem-1-overshooting",
+    "title": "Quick Introduction to deep learning",
+    "section": "Problem 1: overshooting",
+    "text": "Problem 1: overshooting"
+  },
+  {
+    "objectID": "slides/pres_JHU/slides.html#problem-2-saddle-points",
+    "href": "slides/pres_JHU/slides.html#problem-2-saddle-points",
+    "title": "Quick Introduction to deep learning",
+    "section": "Problem 2: saddle points",
+    "text": "Problem 2: saddle points"
+  },
+  {
+    "objectID": "slides/pres_JHU/slides.html#stochastic-gradient-descent",
+    "href": "slides/pres_JHU/slides.html#stochastic-gradient-descent",
+    "title": "Quick Introduction to deep learning",
+    "section": "Stochastic gradient descent",
+    "text": "Stochastic gradient descent\n\nGiven \\(\\epsilon \\sim \\mathcal{D}\\), minimize \\[\\Xi(\\theta)=E J(\\theta,\\epsilon)\\]\nIdea: draw a random \\(\\epsilon_t\\) at each step and do: \\[\\theta\\leftarrow \\theta + \\gamma J(\\theta,\\epsilon_t)\\]\nIt works !\n\nReason: \\(\\nabla\\_{\\theta}\\Xi = E\\left[ \\nabla\\_{\\theta} J(\\theta,\\epsilon) \\right]\\)\n\\(\\gamma\\) small, the cumulative last steps (\\(\\sum\\_k \\gamma^k \\nabla\\_{\\theta} J(\\theta\\_{t-k},\\epsilon\\_{t-k})\\) ) are close to unbiased\nlogic extends to other GD algorithms"
+  },
+  {
+    "objectID": "slides/pres_JHU/slides.html#stochastic-gradient-descent-2",
+    "href": "slides/pres_JHU/slides.html#stochastic-gradient-descent-2",
+    "title": "Quick Introduction to deep learning",
+    "section": "Stochastic gradient descent (2)",
+    "text": "Stochastic gradient descent (2)\n\nCan escape local minima (with annealing)\nGradient is estimated from a random mini-batch \\((\\epsilon\\_1, ... \\epsilon\\_{N_m})\\)\n\\[\\theta\\leftarrow \\theta + \\gamma \\sum_{i=1:N_m} \\nabla J(\\theta,\\epsilon^i)\\]\nCommon case: dataset set finite \\((\\epsilon_1, ..., \\epsilon_N)\\)\n\nbatch gradient: full dataset\nmini-batch gradient: random (shuffled) \\((\\epsilon\\_i)\\_{i \\in 1:N_m}\\)\nstochastic gradient: one point"
+  },
+  {
+    "objectID": "slides/pres_JHU/slides.html#neural-networks",
+    "href": "slides/pres_JHU/slides.html#neural-networks",
+    "title": "Quick Introduction to deep learning",
+    "section": "Neural networks",
+    "text": "Neural networks\nhttp://cs231n.github.io/neural-networks-1/"
+  },
+  {
+    "objectID": "slides/pres_JHU/slides.html#clarifications",
+    "href": "slides/pres_JHU/slides.html#clarifications",
+    "title": "Quick Introduction to deep learning",
+    "section": "Clarifications:",
+    "text": "Clarifications:\n\nneural networks and neurons in our brains are two distinct concepts\nbrains do things in different ways (e.g. long range connections)\nNN are fast and their organization is not always inspired by the brain"
+  },
+  {
+    "objectID": "slides/pres_JHU/slides.html#the-perceptron",
+    "href": "slides/pres_JHU/slides.html#the-perceptron",
+    "title": "Quick Introduction to deep learning",
+    "section": "The Perceptron",
+    "text": "The Perceptron\nFirst neural neuron, the perception, invented by a psychologist, Dr Rosenblatt (1952):"
+  },
+  {
+    "objectID": "slides/pres_JHU/slides.html#modern-neural-model",
+    "href": "slides/pres_JHU/slides.html#modern-neural-model",
+    "title": "Quick Introduction to deep learning",
+    "section": "Modern neural model",
+    "text": "Modern neural model\nEvolution of the model: - arbitrary activation function \\(f\\)\n\n\n\n\n\n\n\nActivation functions\n\nheavyside function: \\(h(x)=1_{x \\geq 0}\\)\nsigmoid (logistic): \\(\\sigma(x)=\\frac{1}{1+e^{-x}}\\)\n\ncool fact: \\(\\sigma^\\prime(x)=\\sigma(x)(1-\\sigma(x))\\)\n\narctan\nrelu: \\(r(x)=x*1_{x \\geq 0}\\)\nleaky relu: \\(r(x)=\\kappa x 1\\_{x &lt; 0} + 1\\_{x \\geq 0}\\)\n\n\n\nActivation functions\n\n\n\nTopologies (feed forward 1)\n\nMultilayer perceptron:\n\\[A_0(\\tau_1 (A_1 \\tau_2 (A_2 (.... ) + B_2)) )+ B_1\\]\n\nwhere the \\(\\tau_i\\) are activation functions, A the weights, B the biases.\n\n\n\nTopologies (feed forward 2)\n\nConvolutional networks:\n\nrecognize/classify images\nused for features extraction in other algos\n\nEncoder\n\n\n\n\nTopologies (others)\n\nRecurrent neural network\n\nhave a memory\nuseful for sequential data (speech, text)\n\n\n\n\n\nTraining a neural network (1)\nTwo elements: - choose a network structure - specify an objective - optimize objective w.r.t. deep parameters (weights and biases) - test out of sample\n\n\nTraining a neural network (2)\n\nChoose the right objective:\nregress data \\(y_i\\) on input \\(x_i\\): \\[\\sum_i (f(x_i;\\theta)-y_i)^2\\]\n\npossible regularization term to avoid overfitting\n\\(y_i\\) can be (0,1) for logistic regression\n\nencode data \\(\\sum_i (x_i - f(x_i;\\theta))^2\\)\n\n\n\nTraining a neural network (3)\nPractical challenges: - difficulties in computing derivatives in a numerically stable way - computational intensity grows fast with number of layers - finding good network structure and hyper-parameters is hard\n\n\nThe deep learning technological stack\n\nautomatic differentiation (reverse accumulation)\nvectorization (operates on small batches at a less than proportional cost)\n\nprocessors: SSE, AVX, …\nGPUs: cuda (1920 cores on gtx 1070)\n\nparallelization\n\nscales to very big architectures\n\nsoftware (+ scientific python):\n\ntensorflow, theano, …\nscikit.learn, keras\n\n\n\n\nMental pause\n“The Navy revealed the embryo of an electronic computer today that it expects will be able to walk, talk, see, write, reproduce itself an be conscious of its existence … Dr. Frank Rosenblatt, a research psychologist at the Cornell Aeronautical Laboratory, Buffalo, said Perceptrons might be fired to the planets as mechanical space explorers”\nhttps://www.youtube.com/watch?time_continue=83&v=aygSMgK3BEM\n\n\nMental Pause\nApplications of deeplearning:\nhttp://www.yaronhadad.com/deep-learning-most-amazing-applications/\n\n\nMental Pause\nGo out and play !\n\n\nDeep learning an economic model\nbased on Deep Learning for Solving Dynamic Economic Models with Lilia and Serguei Maliar.\n\nMotivation (1)\nMeta-question: - is RE (e.g. consumption savings) a complicated problem ? - must be simpler than go… - yet we (and computers) have a hard time solving RE problems - if a Neural network can solve it provided the right objective, it must be simple, right ?\n\n\nMotivation (2)\n\nusing machine learning technology should provide fast solution\n\nallows easy vectorization/parallelization\n\nalgorithm might be rather model independent\nNL could reduce intrinsic dimension of high-dimensional problems and make them tractable\n\n\n\nThe problem\n\nDeterministic neo-classical model:\nControlled States: - \\[a\\_t=\\left(1-\\rho\\right)a\\_{t-1}\\] - \\[k\\_t=\\left(1-\\delta\\right)k\\_{t-1} + i\\_{t-1}\\]\nObjective: - \\[\\max\\_{i_t(a_t,k_t)} \\sum\\_t \\beta^t U(c\\_t)\\] - where \\(c_t = k\\_t^{\\theta} - i\\_t\\)\n\n\n\nEuler equation\n\\[1 = \\beta \\frac{U^{\\prime}(c\\_{t+1})}{U^{\\prime}(c\\_{t})}\\left[\\left(1-\\delta \\right)+\\theta k^{\\theta-1}\\right]\\]\n\n\nLoss criterium\n\nSuppose: \\[i(a,k) = \\varphi(a,k;\\theta)\\]\n\\(\\varphi\\) can be any parameterized family of functions:\n\ncomplete polynomials\nneural networks\n\nRewrite Euler equation as: \\[R(a,k;\\theta) = 0\\]\nLoss criterium \\[\\Xi(\\theta) = \\int_{a,k\\in G} R(a,k;\\theta)^2\\]\n\n\n\nLoss criterium 2\n\nFor any random distribution of \\(a,k\\) consider:\n\n\\[\\Xi(\\theta) = E\\_{a,k} R(a,k;\\theta)^2\\]\n\nGiven \\(N_b\\) random values:\n\n\\[\\Omega\\_{N\\_b}(\\theta) = \\frac{1}{N\\_b} \\sum\\_{a_n,k_n} R(a,k;\\theta)^2\\]\n\n\nLoss criterium 3\n\nUsing tensorflow we get easily: \\[\\nabla\\_\\theta \\Omega\\_{N\\_b}(\\theta)\\]\nThe gradient is not biased: \\[E\\_{{a\\_n},k\\_{n}} \\nabla\\_\\theta \\Omega\\_{N\\_b}(\\theta)= \\nabla\\_\\theta \\Xi(\\theta)\\]\n\n\n\nBatch vs Mini-batch\n\n\n\nTraining\n - Algorithm is variant of SGD: ADAM\n\n\nConclusion\n\nConvergence obtained relatively fast:\n\n1000 iterations but \\(1000 N\\_m\\) points visited vs \\(1000 G\\) for time_iteration\n\nExtends to any number of dimensions\nNeural network can (in principle) account for non- differentiabilities\nCan be extended to stochastic case (see paper)"
+  },
+  {
+    "objectID": "slides/pres_JHU/slides.html#activation-functions",
+    "href": "slides/pres_JHU/slides.html#activation-functions",
+    "title": "Quick Introduction to deep learning",
+    "section": "Activation functions",
+    "text": "Activation functions\n\nheavyside function: \\(h(x)=1_{x \\geq 0}\\)\nsigmoid (logistic): \\(\\sigma(x)=\\frac{1}{1+e^{-x}}\\)\n\ncool fact: \\(\\sigma^\\prime(x)=\\sigma(x)(1-\\sigma(x))\\)\n\narctan\nrelu: \\(r(x)=x*1_{x \\geq 0}\\)\nleaky relu: \\(r(x)=\\kappa x 1\\_{x &lt; 0} + 1\\_{x \\geq 0}\\)"
+  },
+  {
+    "objectID": "slides/pres_JHU/slides.html#activation-functions-1",
+    "href": "slides/pres_JHU/slides.html#activation-functions-1",
+    "title": "Quick Introduction to deep learning",
+    "section": "Activation functions",
+    "text": "Activation functions"
+  },
+  {
+    "objectID": "slides/pres_JHU/slides.html#topologies-feed-forward-1",
+    "href": "slides/pres_JHU/slides.html#topologies-feed-forward-1",
+    "title": "Quick Introduction to deep learning",
+    "section": "Topologies (feed forward 1)",
+    "text": "Topologies (feed forward 1)\n\nMultilayer perceptron:\n\\[A_0(\\tau_1 (A_1 \\tau_2 (A_2 (.... ) + B_2)) )+ B_1\\]\n\nwhere the \\(\\tau_i\\) are activation functions, A the weights, B the biases."
+  },
+  {
+    "objectID": "slides/pres_JHU/slides.html#topologies-feed-forward-2",
+    "href": "slides/pres_JHU/slides.html#topologies-feed-forward-2",
+    "title": "Quick Introduction to deep learning",
+    "section": "Topologies (feed forward 2)",
+    "text": "Topologies (feed forward 2)\n\nConvolutional networks:\n\nrecognize/classify images\nused for features extraction in other algos\n\nEncoder"
+  },
+  {
+    "objectID": "slides/pres_JHU/slides.html#topologies-others",
+    "href": "slides/pres_JHU/slides.html#topologies-others",
+    "title": "Quick Introduction to deep learning",
+    "section": "Topologies (others)",
+    "text": "Topologies (others)\n\nRecurrent neural network\n\nhave a memory\nuseful for sequential data (speech, text)"
+  },
+  {
+    "objectID": "slides/pres_JHU/slides.html#training-a-neural-network-1",
+    "href": "slides/pres_JHU/slides.html#training-a-neural-network-1",
+    "title": "Quick Introduction to deep learning",
+    "section": "Training a neural network (1)",
+    "text": "Training a neural network (1)\nTwo elements: - choose a network structure - specify an objective - optimize objective w.r.t. deep parameters (weights and biases) - test out of sample"
+  },
+  {
+    "objectID": "slides/pres_JHU/slides.html#training-a-neural-network-2",
+    "href": "slides/pres_JHU/slides.html#training-a-neural-network-2",
+    "title": "Quick Introduction to deep learning",
+    "section": "Training a neural network (2)",
+    "text": "Training a neural network (2)\n\nChoose the right objective:\nregress data \\(y_i\\) on input \\(x_i\\): \\[\\sum_i (f(x_i;\\theta)-y_i)^2\\]\n\npossible regularization term to avoid overfitting\n\\(y_i\\) can be (0,1) for logistic regression\n\nencode data \\(\\sum_i (x_i - f(x_i;\\theta))^2\\)"
+  },
+  {
+    "objectID": "slides/pres_JHU/slides.html#training-a-neural-network-3",
+    "href": "slides/pres_JHU/slides.html#training-a-neural-network-3",
+    "title": "Quick Introduction to deep learning",
+    "section": "Training a neural network (3)",
+    "text": "Training a neural network (3)\nPractical challenges: - difficulties in computing derivatives in a numerically stable way - computational intensity grows fast with number of layers - finding good network structure and hyper-parameters is hard"
+  },
+  {
+    "objectID": "slides/pres_JHU/slides.html#the-deep-learning-technological-stack",
+    "href": "slides/pres_JHU/slides.html#the-deep-learning-technological-stack",
+    "title": "Quick Introduction to deep learning",
+    "section": "The deep learning technological stack",
+    "text": "The deep learning technological stack\n\nautomatic differentiation (reverse accumulation)\nvectorization (operates on small batches at a less than proportional cost)\n\nprocessors: SSE, AVX, …\nGPUs: cuda (1920 cores on gtx 1070)\n\nparallelization\n\nscales to very big architectures\n\nsoftware (+ scientific python):\n\ntensorflow, theano, …\nscikit.learn, keras"
+  },
+  {
+    "objectID": "slides/pres_JHU/slides.html#mental-pause",
+    "href": "slides/pres_JHU/slides.html#mental-pause",
+    "title": "Quick Introduction to deep learning",
+    "section": "Mental pause",
+    "text": "Mental pause\n“The Navy revealed the embryo of an electronic computer today that it expects will be able to walk, talk, see, write, reproduce itself an be conscious of its existence … Dr. Frank Rosenblatt, a research psychologist at the Cornell Aeronautical Laboratory, Buffalo, said Perceptrons might be fired to the planets as mechanical space explorers”\nhttps://www.youtube.com/watch?time_continue=83&v=aygSMgK3BEM"
+  },
+  {
+    "objectID": "slides/pres_JHU/slides.html#mental-pause-1",
+    "href": "slides/pres_JHU/slides.html#mental-pause-1",
+    "title": "Quick Introduction to deep learning",
+    "section": "Mental Pause",
+    "text": "Mental Pause\nApplications of deeplearning:\nhttp://www.yaronhadad.com/deep-learning-most-amazing-applications/"
+  },
+  {
+    "objectID": "slides/pres_JHU/slides.html#mental-pause-2",
+    "href": "slides/pres_JHU/slides.html#mental-pause-2",
+    "title": "Quick Introduction to deep learning",
+    "section": "Mental Pause",
+    "text": "Mental Pause\nGo out and play !"
+  },
+  {
+    "objectID": "slides/pres_JHU/slides.html#motivation-1",
+    "href": "slides/pres_JHU/slides.html#motivation-1",
+    "title": "Quick Introduction to deep learning",
+    "section": "Motivation (1)",
+    "text": "Motivation (1)\nMeta-question: - is RE (e.g. consumption savings) a complicated problem ? - must be simpler than go… - yet we (and computers) have a hard time solving RE problems - if a Neural network can solve it provided the right objective, it must be simple, right ?"
+  },
+  {
+    "objectID": "slides/pres_JHU/slides.html#motivation-2",
+    "href": "slides/pres_JHU/slides.html#motivation-2",
+    "title": "Quick Introduction to deep learning",
+    "section": "Motivation (2)",
+    "text": "Motivation (2)\n\nusing machine learning technology should provide fast solution\n\nallows easy vectorization/parallelization\n\nalgorithm might be rather model independent\nNL could reduce intrinsic dimension of high-dimensional problems and make them tractable"
+  },
+  {
+    "objectID": "slides/pres_JHU/slides.html#the-problem",
+    "href": "slides/pres_JHU/slides.html#the-problem",
+    "title": "Quick Introduction to deep learning",
+    "section": "The problem",
+    "text": "The problem\n\nDeterministic neo-classical model:\nControlled States: - \\[a\\_t=\\left(1-\\rho\\right)a\\_{t-1}\\] - \\[k\\_t=\\left(1-\\delta\\right)k\\_{t-1} + i\\_{t-1}\\]\nObjective: - \\[\\max\\_{i_t(a_t,k_t)} \\sum\\_t \\beta^t U(c\\_t)\\] - where \\(c_t = k\\_t^{\\theta} - i\\_t\\)"
+  },
+  {
+    "objectID": "slides/pres_JHU/slides.html#euler-equation",
+    "href": "slides/pres_JHU/slides.html#euler-equation",
+    "title": "Quick Introduction to deep learning",
+    "section": "Euler equation",
+    "text": "Euler equation\n\\[1 = \\beta \\frac{U^{\\prime}(c\\_{t+1})}{U^{\\prime}(c\\_{t})}\\left[\\left(1-\\delta \\right)+\\theta k^{\\theta-1}\\right]\\]"
+  },
+  {
+    "objectID": "slides/pres_JHU/slides.html#loss-criterium",
+    "href": "slides/pres_JHU/slides.html#loss-criterium",
+    "title": "Quick Introduction to deep learning",
+    "section": "Loss criterium",
+    "text": "Loss criterium\n\nSuppose: \\[i(a,k) = \\varphi(a,k;\\theta)\\]\n\\(\\varphi\\) can be any parameterized family of functions:\n\ncomplete polynomials\nneural networks\n\nRewrite Euler equation as: \\[R(a,k;\\theta) = 0\\]\nLoss criterium \\[\\Xi(\\theta) = \\int_{a,k\\in G} R(a,k;\\theta)^2\\]"
+  },
+  {
+    "objectID": "slides/pres_JHU/slides.html#loss-criterium-2",
+    "href": "slides/pres_JHU/slides.html#loss-criterium-2",
+    "title": "Quick Introduction to deep learning",
+    "section": "Loss criterium 2",
+    "text": "Loss criterium 2\n\nFor any random distribution of \\(a,k\\) consider:\n\n\\[\\Xi(\\theta) = E\\_{a,k} R(a,k;\\theta)^2\\]\n\nGiven \\(N_b\\) random values:\n\n\\[\\Omega\\_{N\\_b}(\\theta) = \\frac{1}{N\\_b} \\sum\\_{a_n,k_n} R(a,k;\\theta)^2\\]"
+  },
+  {
+    "objectID": "slides/pres_JHU/slides.html#loss-criterium-3",
+    "href": "slides/pres_JHU/slides.html#loss-criterium-3",
+    "title": "Quick Introduction to deep learning",
+    "section": "Loss criterium 3",
+    "text": "Loss criterium 3\n\nUsing tensorflow we get easily: \\[\\nabla\\_\\theta \\Omega\\_{N\\_b}(\\theta)\\]\nThe gradient is not biased: \\[E\\_{{a\\_n},k\\_{n}} \\nabla\\_\\theta \\Omega\\_{N\\_b}(\\theta)= \\nabla\\_\\theta \\Xi(\\theta)\\]"
+  },
+  {
+    "objectID": "slides/pres_JHU/slides.html#batch-vs-mini-batch",
+    "href": "slides/pres_JHU/slides.html#batch-vs-mini-batch",
+    "title": "Quick Introduction to deep learning",
+    "section": "Batch vs Mini-batch",
+    "text": "Batch vs Mini-batch"
+  },
+  {
+    "objectID": "slides/pres_JHU/slides.html#training",
+    "href": "slides/pres_JHU/slides.html#training",
+    "title": "Quick Introduction to deep learning",
+    "section": "Training",
+    "text": "Training\n - Algorithm is variant of SGD: ADAM"
+  },
+  {
+    "objectID": "slides/pres_JHU/slides.html#conclusion",
+    "href": "slides/pres_JHU/slides.html#conclusion",
+    "title": "Quick Introduction to deep learning",
+    "section": "Conclusion",
+    "text": "Conclusion\n\nConvergence obtained relatively fast:\n\n1000 iterations but \\(1000 N\\_m\\) points visited vs \\(1000 G\\) for time_iteration\n\nExtends to any number of dimensions\nNeural network can (in principle) account for non- differentiabilities\nCan be extended to stochastic case (see paper)"
   },
   {
     "objectID": "slides/index.html",
@@ -84,6 +390,525 @@
     "title": "Ce_bb_2024",
     "section": "",
     "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+  },
+  {
+    "objectID": "slides/slides.html#outline",
+    "href": "slides/slides.html#outline",
+    "title": "Quick Introduction to deep learning",
+    "section": "Outline",
+    "text": "Outline\n\nGeneral discussion:\n\nmachine learning / artificial intelligence\ntechnology / technology\n\nIntroduction to deep learning\n\nStochastic Gradient Descent\nNeural Networks\n\nPractical Application\nApplication to an economic model"
+  },
+  {
+    "objectID": "slides/slides.html#we-are-in-the-big-data-era",
+    "href": "slides/slides.html#we-are-in-the-big-data-era",
+    "title": "Quick Introduction to deep learning",
+    "section": "We are in the big-data era",
+    "text": "We are in the big-data era\n\nLots of data (consumers, regulators, flights, …)\nTraditionnel models (econometrics for instance) fail\n\ndata is heterogenous\ndoesn’t fit in the memory\ndoesn’t match a model…\n\nMany machine learning algorithms\nHardware developments: (GPU, online computing)\nSoftware stack: linux/git/python/scikit/tensorflow…"
+  },
+  {
+    "objectID": "slides/slides.html#what-about-deep-learning",
+    "href": "slides/slides.html#what-about-deep-learning",
+    "title": "Quick Introduction to deep learning",
+    "section": "What about deep learning ?",
+    "text": "What about deep learning ?\n\nDeep learning: hugely successful in many different areas:\n\na non-linear structure which self-organizes itself to reach a goal\ncompare with artificial intelligence (achieve a goal without being told how)\n\nChallenges: transferability, explainability"
+  },
+  {
+    "objectID": "slides/slides.html#another-step-towards-ai-reinforcement-learning",
+    "href": "slides/slides.html#another-step-towards-ai-reinforcement-learning",
+    "title": "Quick Introduction to deep learning",
+    "section": "Another step towards AI: reinforcement learning",
+    "text": "Another step towards AI: reinforcement learning\n\nReinforcement learning:\n\nsolve a dynamic problem by experimenting with it\nactions have a cost: tradeoff (exploiting/exploring)\nclose to economic RE formulation: \\(\\max \\beta^t r_t\\)\n\nSuccessful applications to:\n\ndriving, trajectory optimizations\ntic-tac-toe, backgammon\nchess, go ! (combined with deep-learning)"
+  },
+  {
+    "objectID": "slides/slides.html#optimization",
+    "href": "slides/slides.html#optimization",
+    "title": "Quick Introduction to deep learning",
+    "section": "Optimization",
+    "text": "Optimization\nCheck http://ruder.io/optimizing-gradient-descent/ for more details"
+  },
+  {
+    "objectID": "slides/slides.html#gradient-descent",
+    "href": "slides/slides.html#gradient-descent",
+    "title": "Quick Introduction to deep learning",
+    "section": "Gradient descent",
+    "text": "Gradient descent\nConsider the scalar function \\(\\Xi(\\theta)\\) where \\(\\theta\\) is a vector.\nDefine \\(\\nabla_{\\theta}=   \\begin{bmatrix} \\frac{\\partial}{\\partial \\theta_1} \\\\\\\\...\\\\\\\\\\frac{\\partial}{\\partial \\theta_n} \\end{bmatrix}\\)\n\nGradient descent: go to steepest slope\n\\(\\theta \\leftarrow \\theta - \\gamma \\nabla_{\\theta}\\Xi(\\theta)\\)"
+  },
+  {
+    "objectID": "slides/slides.html#variants-of-gradient-descent",
+    "href": "slides/slides.html#variants-of-gradient-descent",
+    "title": "Quick Introduction to deep learning",
+    "section": "Variants of Gradient Descent",
+    "text": "Variants of Gradient Descent\n\nMomentum: (ball goes down the hill, \\(\\gamma\\) is air-resistence)\n\\[v_t = \\gamma v_{t-1} + \\eta \\nabla_{\\theta} J(\\theta)\\] \\[\\theta \\leftarrow \\theta - v_t\\]\nNesterov Momentum: (slow down before going up…)\n\\[v_t = \\gamma v_{t-1} + \\eta \\nabla_{\\theta} J\\left(\\theta-\\gamma v_{t-1}\\right)\\] \\[\\theta \\leftarrow \\theta - v_t\\] —-"
+  },
+  {
+    "objectID": "slides/slides.html#variants-of-gradient-descent-2",
+    "href": "slides/slides.html#variants-of-gradient-descent-2",
+    "title": "Quick Introduction to deep learning",
+    "section": "Variants of Gradient Descent (2)",
+    "text": "Variants of Gradient Descent (2)\n\nLearning rate annealing\n\\[\\eta_t = \\eta_0 / ({1+\\kappa t})\\]\nParameter specific updates (ADAM)\n\\[m_t = \\beta_1 m_{t-1} + (1-\\beta_1) g_t\\] \\[v_t = \\beta_2  v_{t-1} + (1-\\beta_2) g_t^2\\]\n\\[\\theta_\\{t+1} \\leftarrow \\theta_t-\\frac{\\eta}{\\sqrt{\\frac{v_t}{1-\\beta_2^t}+\\epsilon}}\\frac{m_t}{1-\\beta_1^t}\\]\nsee AdaGrad, AdaMax, Rmsprop"
+  },
+  {
+    "objectID": "slides/slides.html#problem-1-overshooting",
+    "href": "slides/slides.html#problem-1-overshooting",
+    "title": "Quick Introduction to deep learning",
+    "section": "Problem 1: overshooting",
+    "text": "Problem 1: overshooting"
+  },
+  {
+    "objectID": "slides/slides.html#problem-2-saddle-points",
+    "href": "slides/slides.html#problem-2-saddle-points",
+    "title": "Quick Introduction to deep learning",
+    "section": "Problem 2: saddle points",
+    "text": "Problem 2: saddle points"
+  },
+  {
+    "objectID": "slides/slides.html#stochastic-gradient-descent",
+    "href": "slides/slides.html#stochastic-gradient-descent",
+    "title": "Quick Introduction to deep learning",
+    "section": "Stochastic gradient descent",
+    "text": "Stochastic gradient descent\n\nGiven \\(\\epsilon \\sim \\mathcal{D}\\), minimize \\[\\Xi(\\theta)=E J(\\theta,\\epsilon)\\]\nIdea: draw a random \\(\\epsilon_t\\) at each step and do: \\[\\theta\\leftarrow \\theta + \\gamma J(\\theta,\\epsilon_t)\\]\nIt works !\n\nReason: \\(\\nabla_{\\theta}\\Xi = E\\left[ \\nabla_{\\theta} J(\\theta,\\epsilon) \\right]\\)\n\\(\\gamma\\) small, the cumulative last steps (\\(\\sum_k \\gamma^k \\nabla_{\\theta} J(\\theta_{t-k},\\epsilon_{t-k})\\) ) are close to unbiased\nlogic extends to other GD algorithms"
+  },
+  {
+    "objectID": "slides/slides.html#stochastic-gradient-descent-2",
+    "href": "slides/slides.html#stochastic-gradient-descent-2",
+    "title": "Quick Introduction to deep learning",
+    "section": "Stochastic gradient descent (2)",
+    "text": "Stochastic gradient descent (2)\n\nCan escape local minima (with annealing)\nGradient is estimated from a random mini-batch \\((\\epsilon_1, ... \\epsilon_{N_m})\\)\n\\[\\theta\\leftarrow \\theta + \\gamma \\sum_{i=1:N_m} \\nabla J(\\theta,\\epsilon^i)\\]\nCommon case: dataset set finite \\((\\epsilon_1, ..., \\epsilon_N)\\)\n\nbatch gradient: full dataset\nmini-batch gradient: random (shuffled) \\((\\epsilon_i)_{i \\in 1:N_m}\\)\nstochastic gradient: one point"
+  },
+  {
+    "objectID": "slides/slides.html#neural-networks",
+    "href": "slides/slides.html#neural-networks",
+    "title": "Quick Introduction to deep learning",
+    "section": "Neural networks",
+    "text": "Neural networks\nhttp://cs231n.github.io/neural-networks-1/"
+  },
+  {
+    "objectID": "slides/slides.html#clarifications",
+    "href": "slides/slides.html#clarifications",
+    "title": "Quick Introduction to deep learning",
+    "section": "Clarifications:",
+    "text": "Clarifications:\n\nneural networks and neurons in our brains are two distinct concepts\nbrains do things in different ways (e.g. long range connections)\nNN are fast and their organization is not always inspired by the brain"
+  },
+  {
+    "objectID": "slides/slides.html#the-perceptron",
+    "href": "slides/slides.html#the-perceptron",
+    "title": "Quick Introduction to deep learning",
+    "section": "The Perceptron",
+    "text": "The Perceptron\nFirst neural neuron, the perception, invented by a psychologist, Dr Rosenblatt (1952):"
+  },
+  {
+    "objectID": "slides/slides.html#modern-neural-model",
+    "href": "slides/slides.html#modern-neural-model",
+    "title": "Quick Introduction to deep learning",
+    "section": "Modern neural model",
+    "text": "Modern neural model\nEvolution of the model: - arbitrary activation function \\(f\\)"
+  },
+  {
+    "objectID": "slides/slides.html#activation-functions",
+    "href": "slides/slides.html#activation-functions",
+    "title": "Quick Introduction to deep learning",
+    "section": "Activation functions",
+    "text": "Activation functions\n\nheavyside function: \\(h(x)=1_{x \\geq 0}\\)\nsigmoid (logistic): \\(\\sigma(x)=\\frac{1}{1+e^{-x}}\\)\n\ncool fact: \\(\\sigma^\\prime(x)=\\sigma(x)(1-\\sigma(x))\\)\n\narctan\nrelu: \\(r(x)=x*1_{x \\geq 0}\\)\nleaky relu: \\(r(x)=\\kappa x 1_{x &lt; 0} + 1_{x \\geq 0}\\)"
+  },
+  {
+    "objectID": "slides/slides.html#activation-functions-1",
+    "href": "slides/slides.html#activation-functions-1",
+    "title": "Quick Introduction to deep learning",
+    "section": "Activation functions",
+    "text": "Activation functions"
+  },
+  {
+    "objectID": "slides/slides.html#topologies-feed-forward-1",
+    "href": "slides/slides.html#topologies-feed-forward-1",
+    "title": "Quick Introduction to deep learning",
+    "section": "Topologies (feed forward 1)",
+    "text": "Topologies (feed forward 1)\n\nMultilayer perceptron:\n\\[A_0(\\tau_1 (A_1 \\tau_2 (A_2 (.... ) + B_2)) )+ B_1\\]\n\nwhere the \\(\\tau_i\\) are activation functions, A the weights, B the biases."
+  },
+  {
+    "objectID": "slides/slides.html#topologies-feed-forward-2",
+    "href": "slides/slides.html#topologies-feed-forward-2",
+    "title": "Quick Introduction to deep learning",
+    "section": "Topologies (feed forward 2)",
+    "text": "Topologies (feed forward 2)\n\nConvolutional networks:\n\nrecognize/classify images\nused for features extraction in other algos\n\nEncoder"
+  },
+  {
+    "objectID": "slides/slides.html#topologies-others",
+    "href": "slides/slides.html#topologies-others",
+    "title": "Quick Introduction to deep learning",
+    "section": "Topologies (others)",
+    "text": "Topologies (others)\n\nRecurrent neural network\n\nhave a memory\nuseful for sequential data (speech, text)"
+  },
+  {
+    "objectID": "slides/slides.html#training-a-neural-network-1",
+    "href": "slides/slides.html#training-a-neural-network-1",
+    "title": "Quick Introduction to deep learning",
+    "section": "Training a neural network (1)",
+    "text": "Training a neural network (1)\nTwo elements:\n\nchoose a network structure\nspecify an objective\noptimize objective w.r.t. deep parameters (weights and biases)\ntest out of sample"
+  },
+  {
+    "objectID": "slides/slides.html#training-a-neural-network-2",
+    "href": "slides/slides.html#training-a-neural-network-2",
+    "title": "Quick Introduction to deep learning",
+    "section": "Training a neural network (2)",
+    "text": "Training a neural network (2)\n\nChoose the right objective:\nregress data \\(y_i\\) on input \\(x_i\\): \\[\\sum_i (f(x_i;\\theta)-y_i)^2\\]\n\npossible regularization term to avoid overfitting\n\\(y_i\\) can be (0,1) for logistic regression\n\nencode data \\(\\sum_i (x_i - f(x_i;\\theta))^2\\)"
+  },
+  {
+    "objectID": "slides/slides.html#training-a-neural-network-3",
+    "href": "slides/slides.html#training-a-neural-network-3",
+    "title": "Quick Introduction to deep learning",
+    "section": "Training a neural network (3)",
+    "text": "Training a neural network (3)\nPractical challenges:\n\ndifficulties in computing derivatives in a numerically stable way\ncomputational intensity grows fast with number of layers\nfinding good network structure and hyper-parameters is hard"
+  },
+  {
+    "objectID": "slides/slides.html#the-deep-learning-technological-stack",
+    "href": "slides/slides.html#the-deep-learning-technological-stack",
+    "title": "Quick Introduction to deep learning",
+    "section": "The deep learning technological stack",
+    "text": "The deep learning technological stack\n\nautomatic differentiation (reverse accumulation)\nvectorization (operates on small batches at a less than proportional cost)\n\nprocessors: SSE, AVX, …\nGPUs: cuda (1920 cores on gtx 1070)\n\nparallelization\n\nscales to very big architectures\n\nsoftware (+ scientific python):\n\ntensorflow, theano, …\nscikit.learn, keras"
+  },
+  {
+    "objectID": "slides/slides.html#mental-pause",
+    "href": "slides/slides.html#mental-pause",
+    "title": "Quick Introduction to deep learning",
+    "section": "Mental pause",
+    "text": "Mental pause\n“The Navy revealed the embryo of an electronic computer today that it expects will be able to walk, talk, see, write, reproduce itself an be conscious of its existence … Dr. Frank Rosenblatt, a research psychologist at the Cornell Aeronautical Laboratory, Buffalo, said Perceptrons might be fired to the planets as mechanical space explorers”\nhttps://www.youtube.com/watch?time_continue=83&v=aygSMgK3BEM"
+  },
+  {
+    "objectID": "slides/slides.html#mental-pause-1",
+    "href": "slides/slides.html#mental-pause-1",
+    "title": "Quick Introduction to deep learning",
+    "section": "Mental Pause",
+    "text": "Mental Pause\nApplications of deeplearning:\nhttp://www.yaronhadad.com/deep-learning-most-amazing-applications/"
+  },
+  {
+    "objectID": "slides/slides.html#mental-pause-2",
+    "href": "slides/slides.html#mental-pause-2",
+    "title": "Quick Introduction to deep learning",
+    "section": "Mental Pause",
+    "text": "Mental Pause\nGo out and play !"
+  },
+  {
+    "objectID": "slides/slides.html#motivation-1",
+    "href": "slides/slides.html#motivation-1",
+    "title": "Quick Introduction to deep learning",
+    "section": "Motivation (1)",
+    "text": "Motivation (1)\nMeta-question:\n\nis RE (e.g. consumption savings) a complicated problem ?\n\nmust be simpler than go…\nyet we (and computers) have a hard time solving RE problems\nif a Neural network can solve it provided the right objective, it must be simple, right ?"
+  },
+  {
+    "objectID": "slides/slides.html#motivation-2",
+    "href": "slides/slides.html#motivation-2",
+    "title": "Quick Introduction to deep learning",
+    "section": "Motivation (2)",
+    "text": "Motivation (2)\n\nusing machine learning technology should provide fast solution\n\nallows easy vectorization/parallelization\n\nalgorithm might be rather model independent\nNL could reduce intrinsic dimension of high-dimensional problems and make them tractable"
+  },
+  {
+    "objectID": "slides/slides.html#the-problem",
+    "href": "slides/slides.html#the-problem",
+    "title": "Quick Introduction to deep learning",
+    "section": "The problem",
+    "text": "The problem\nDeterministic neo-classical model:\nControlled States:\n\n\\[a_t=\\left(1-\\rho\\right)a_{t-1}\\]\n\\[k_t=\\left(1-\\delta\\right)k_{t-1} + i_{t-1}\\]\n\nObjective:\n\n\\[\\max_{i_t(a_t,k_t)} \\sum_t \\beta^t U(c_t)\\]\nwhere \\(c_t = k_t^{\\theta} - i_t\\)"
+  },
+  {
+    "objectID": "slides/slides.html#euler-equation",
+    "href": "slides/slides.html#euler-equation",
+    "title": "Quick Introduction to deep learning",
+    "section": "Euler equation",
+    "text": "Euler equation\n\\[1 = \\beta \\frac{U^{\\prime}(c_{t+1})}{U^{\\prime}(c_{t})}\\left[\\left(1-\\delta \\right)+\\theta k^{\\theta-1}\\right]\\]"
+  },
+  {
+    "objectID": "slides/slides.html#loss-criterium",
+    "href": "slides/slides.html#loss-criterium",
+    "title": "Quick Introduction to deep learning",
+    "section": "Loss criterium",
+    "text": "Loss criterium\n\nSuppose: \\[i(a,k) = \\varphi(a,k;\\theta)\\]\n\\(\\varphi\\) can be any parameterized family of functions:\n\ncomplete polynomials\nneural networks\n\nRewrite Euler equation as: \\[R(a,k;\\theta) = 0\\]\nLoss criterium \\[\\Xi(\\theta) = \\int_{a,k\\in G} R(a,k;\\theta)^2\\]"
+  },
+  {
+    "objectID": "slides/slides.html#loss-criterium-2",
+    "href": "slides/slides.html#loss-criterium-2",
+    "title": "Quick Introduction to deep learning",
+    "section": "Loss criterium 2",
+    "text": "Loss criterium 2\n\nFor any random distribution of \\(a,k\\) consider:\n\n\\[\\Xi(\\theta) = E_{a,k} R(a,k;\\theta)^2\\]\n\nGiven \\(N_b\\) random values:\n\n\\[\\Omega_{N_b}(\\theta) = \\frac{1}{N_b} \\sum_{a_n,k_n} R(a,k;\\theta)^2\\]"
+  },
+  {
+    "objectID": "slides/slides.html#loss-criterium-3",
+    "href": "slides/slides.html#loss-criterium-3",
+    "title": "Quick Introduction to deep learning",
+    "section": "Loss criterium 3",
+    "text": "Loss criterium 3\n\nUsing tensorflow we get easily: \\[\\nabla_\\theta \\Omega_{N_b}(\\theta)\\]\nThe gradient is not biased: \\[E_{{a_n},k_{n}} \\nabla_\\theta \\Omega_{N_b}(\\theta)= \\nabla_\\theta \\Xi(\\theta)\\]"
+  },
+  {
+    "objectID": "slides/slides.html#batch-vs-mini-batch",
+    "href": "slides/slides.html#batch-vs-mini-batch",
+    "title": "Quick Introduction to deep learning",
+    "section": "Batch vs Mini-batch",
+    "text": "Batch vs Mini-batch"
+  },
+  {
+    "objectID": "slides/slides.html#training",
+    "href": "slides/slides.html#training",
+    "title": "Quick Introduction to deep learning",
+    "section": "Training",
+    "text": "Training\n - Algorithm is variant of SGD: ADAM"
+  },
+  {
+    "objectID": "slides/slides.html#conclusion",
+    "href": "slides/slides.html#conclusion",
+    "title": "Quick Introduction to deep learning",
+    "section": "Conclusion",
+    "text": "Conclusion\n\nConvergence obtained relatively fast:\n\n1000 iterations but \\(1000 N_m\\) points visited vs \\(1000 G\\) for time_iteration\n\nExtends to any number of dimensions\nNeural network can (in principle) account for non- differentiabilities\nCan be extended to stochastic case (see paper)"
+  },
+  {
+    "objectID": "slides/deeplearning_models/slides.html#introduction-1",
+    "href": "slides/deeplearning_models/slides.html#introduction-1",
+    "title": "Deep Learning for Solving Dynamic Economic Models",
+    "section": "Introduction (1)",
+    "text": "Introduction (1)\n\nDeeplearning has many impressive applications\n\nreconstruct images/scenes, produce original Chopin music or BOE speeches, play Go…\n\nWorks in “you know more than you think applications”\n\nalgorithmically/mathematically complex\neasy to do by trained humans\n\nSolving a rational expectation model should be easy!\n\nright?",
+    "crumbs": [
+      "Slides",
+      "Deep Learning for Solving Dynamic Economic Models"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning_models/slides.html#introduction-2",
+    "href": "slides/deeplearning_models/slides.html#introduction-2",
+    "title": "Deep Learning for Solving Dynamic Economic Models",
+    "section": "Introduction (2)",
+    "text": "Introduction (2)\n\nResearch presented today:\n\nsolve a simple economic model by deeplearning\nshow that neural networks are flexible and scale well\n\nNot today:\n\nmany impressive application\nreinforcement learning\nbehavioral interpretation",
+    "crumbs": [
+      "Slides",
+      "Deep Learning for Solving Dynamic Economic Models"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning_models/slides.html#existing-approaches",
+    "href": "slides/deeplearning_models/slides.html#existing-approaches",
+    "title": "Deep Learning for Solving Dynamic Economic Models",
+    "section": "Existing approaches",
+    "text": "Existing approaches\n\nMachine learning as a statistical tool (see Susan Athey)\nApproximate policy rules in standard iteration algorithm:\n\nasset pricing with neural networks\nPEA + neural network + genetic algorithm (Duffy and McNelis, 1997!)\nPEA + neural network + backpropagation (Villa and Valaitis)\n\nDeep Reinforcement learning",
+    "crumbs": [
+      "Slides",
+      "Deep Learning for Solving Dynamic Economic Models"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning_models/slides.html#method",
+    "href": "slides/deeplearning_models/slides.html#method",
+    "title": "Deep Learning for Solving Dynamic Economic Models",
+    "section": "Method",
+    "text": "Method\n\nsetup a neural network (aka parameterize policy rule)\nchoose a suitable (scalar) objective measuring how well model is solved\ntrain neural network by minimizing objective\n\nstochastic gradient descent",
+    "crumbs": [
+      "Slides",
+      "Deep Learning for Solving Dynamic Economic Models"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning_models/slides.html#why-does-it-work-now",
+    "href": "slides/deeplearning_models/slides.html#why-does-it-work-now",
+    "title": "Deep Learning for Solving Dynamic Economic Models",
+    "section": "Why does it work now?",
+    "text": "Why does it work now?\n\ncomputational neural networks have been around for a while\n\nperceptron 1952\npopular in the 80s, less so in th 90s\nall the rage again (with deeper networks)\n\na new technological stack\n\nvectorization and parallel computing\n\nGPUS (1920 cores on gtx 1070!)\n\ncloud computing\nsoftware stack:\n\ngit, linux\ntheano, tensorflow",
+    "crumbs": [
+      "Slides",
+      "Deep Learning for Solving Dynamic Economic Models"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning_models/slides.html#model",
+    "href": "slides/deeplearning_models/slides.html#model",
+    "title": "Deep Learning for Solving Dynamic Economic Models",
+    "section": "Model",
+    "text": "Model\n\nVariant of neoclassical model: \\[k_t = \\left( 1-\\delta \\right) k_{t-1} + i_{t-1} \\color{\\red}{\\chi_t}\\] \\[c_t = \\color{\\red}{\\psi_t} + e^{\\color{\\red}{a_t}} k_t^{\\alpha} - i_t\\]\nExogenous processes:\n\n\\(m_t = \\tau(m_{t-1},\\epsilon_t) \\in R^p\\) with \\((\\epsilon_t)\\) i.i.d.\n\n(or any markov process)\n\n\\(\\begin{bmatrix}\n  \\color{\\red}{\\psi_t} & \\color{\\red}{a_t}& \\color{\\red}{\\chi_t}\n  \\end{bmatrix} = p(m_t)\\)\n\nComments:\n\nFlexible \\(\\ni\\) consumption/savings model\nIncrease dimension with specific processes\n\ndefault: \\(\\chi_t=1, \\psi_t=0\\), \\(a_t\\) is an \\(AR1\\)",
+    "crumbs": [
+      "Slides",
+      "Deep Learning for Solving Dynamic Economic Models"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning_models/slides.html#decision-rule",
+    "href": "slides/deeplearning_models/slides.html#decision-rule",
+    "title": "Deep Learning for Solving Dynamic Economic Models",
+    "section": "Decision Rule",
+    "text": "Decision Rule\n\nValue: \\[\\max_{i_t} E_0 \\beta^t U(c_t)\\] \\[0&lt;c_t\\leq\\color{\\red}{\\psi_t} + e^{\\color{\\red}{a_t}k_t^{\\alpha}}\\]\nTime-invariant policy: \\(i_t=\\varphi(m_t, k_t)\\)\nApproximate policy: \\(i_t=\\varphi(m_t, k_t;\\color{blue}{ \\theta})\\)\nParameterized family \\(\\varphi(..; \\color{blue}{ \\theta})\\):\n\ncomplete polynomials (\\(i_t\\approx\\sum_{|i|+j\\leq K}\\color{blue}{\\theta_{i,j}} m_t^i k_t^j\\))\nneural network",
+    "crumbs": [
+      "Slides",
+      "Deep Learning for Solving Dynamic Economic Models"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning_models/slides.html#neural-network",
+    "href": "slides/deeplearning_models/slides.html#neural-network",
+    "title": "Deep Learning for Solving Dynamic Economic Models",
+    "section": "Neural Network",
+    "text": "Neural Network\n\nMultilayer Perceptron\nOne neuron \\(n\\) takes input \\(x_1, ... x_{k_n}\\)\n\noutputs \\(\\tau(a_1 x_1 + ... + a_{k_n} x_{k_n} + b_n)\\) with \\(\\tau(u)\\) an activation function\n\nOne layer \\(n\\) of multilayer perceptron\n\n\\(\\tau(A_n X_n + B_n)\\)\nnumber of rows of \\(B_n\\) is width of layer",
+    "crumbs": [
+      "Slides",
+      "Deep Learning for Solving Dynamic Economic Models"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning_models/slides.html#neural-networks",
+    "href": "slides/deeplearning_models/slides.html#neural-networks",
+    "title": "Deep Learning for Solving Dynamic Economic Models",
+    "section": "Neural Networks",
+    "text": "Neural Networks\n\nWhole network:\n\n\\[i_t = A_3 \\tau(A_2 \\tau( A_1\n  \\begin{pmatrix} a_t \\\\ k_t  \\end{pmatrix} + B_1) + B_2) + B_3\\]\n\\(\\theta = ( (A_1, B_1), (A_2, B_2), ... )\\): to be trained\n\nNice properties:\n\nuniversal approximators\n\\(\\nabla_{\\theta} i_t\\) can be computed exactly.\nscales up linearly:\n\nreplace $\n\\[\\begin{pmatrix} a_t \\\\ k_t  \\end{pmatrix}\\]\n$ by \\(\\begin{pmatrix} a_t \\\\ \\chi_t, \\psi_t \\\\ k_t  \\end{pmatrix}\\), only \\(A_1, B_1\\) changes.\n\n\nWe use multilayer perceptron with 3 hidden layers with width 20 and relu activation function",
+    "crumbs": [
+      "Slides",
+      "Deep Learning for Solving Dynamic Economic Models"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning_models/slides.html#set-up-objective",
+    "href": "slides/deeplearning_models/slides.html#set-up-objective",
+    "title": "Deep Learning for Solving Dynamic Economic Models",
+    "section": "Set-up objective",
+    "text": "Set-up objective\n\nAlternatives we consider\n\nfit decision rule (not in this presentation)\nmaximize lifetime reward dynamics starting from initial state\nminimize error on state-space\n\nCareful what you wish for!\n\ndifferent objectives, different criteria\ncomputational efficiency, asymptotic precision\n\nMore objectives (trade-offs…):\n\nregularity\nmoment matching",
+    "crumbs": [
+      "Slides",
+      "Deep Learning for Solving Dynamic Economic Models"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning_models/slides.html#learning-lifetime-reward",
+    "href": "slides/deeplearning_models/slides.html#learning-lifetime-reward",
+    "title": "Deep Learning for Solving Dynamic Economic Models",
+    "section": "Learning lifetime reward",
+    "text": "Learning lifetime reward\n\nStochastic reward for \\(\\epsilon=(\\epsilon_0, \\cdots, \\epsilon_T)\\): \\[\\xi(\\epsilon; \\theta) = \\sum_{t \\geq 0}^T \\beta^t U(c_t)\\]\nObjective: \\(\\max_{\\theta}  \\Xi(\\theta) = E_{\\epsilon} \\xi\\left( \\epsilon; \\theta \\right)\\)\nCompute gradient: \\(\\nabla_{\\theta}V\\)\n\nback-in-time propagation\neasy with tensorflow:\n\nautomatic differentiation\nparallel computation is cheap (gpus, clusters)",
+    "crumbs": [
+      "Slides",
+      "Deep Learning for Solving Dynamic Economic Models"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning_models/slides.html#stochastic-gradient",
+    "href": "slides/deeplearning_models/slides.html#stochastic-gradient",
+    "title": "Deep Learning for Solving Dynamic Economic Models",
+    "section": "Stochastic Gradient",
+    "text": "Stochastic Gradient\n\nGoal: minimize theoretical risk \\(\\Xi(\\theta) = E_{\\epsilon} \\left[ \\xi(\\epsilon; \\theta) \\right]\\)\nGradient Descent: (learning rate \\(\\lambda\\)) \\[\\theta_{n+1} \\leftarrow \\left( 1-\\lambda \\right) \\theta_{n} - \\lambda \\nabla_{\\theta} \\color{red}{E_{\\epsilon} \\left[ \\xi(\\epsilon; \\theta) \\right]}\\]\nStochastic Gradient Descent: \\[\\theta_{n+1} \\leftarrow \\left(1-\\lambda_n\\right) \\theta_{n} - \\lambda_n \\color{red}{\\nabla_{\\theta}\\xi(\\epsilon; \\theta)}\\]\n\nunbiased: \\(\\nabla_{\\theta} E_{\\epsilon} \\left[ \\xi(\\epsilon; \\theta) \\right] = E_{\\epsilon} \\left[ \\nabla_{\\theta}  \\xi(\\epsilon; \\theta) \\right]\\)\nconverges with \\(\\lambda_n\\rightarrow 0\\) and \\(\\sum \\frac{1}{\\lambda_n}=\\infty\\)\n\nBatch Stochastic Gradient Descent: \\[\\theta_{n+1} \\leftarrow \\left(1-\\lambda_n\\right) \\theta_{n} - \\lambda_n \\color{red}{\\sum_{i=1}^N \\nabla_{\\theta}\\xi(\\epsilon_n; \\theta)} \\]",
+    "crumbs": [
+      "Slides",
+      "Deep Learning for Solving Dynamic Economic Models"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning_models/slides.html#maximizing-lifetime-expected-reward",
+    "href": "slides/deeplearning_models/slides.html#maximizing-lifetime-expected-reward",
+    "title": "Deep Learning for Solving Dynamic Economic Models",
+    "section": "Maximizing lifetime expected reward",
+    "text": "Maximizing lifetime expected reward\n\n\n\ncomplete polynomials (neoclassical)\n\nlearning rate \\(\\lambda=0.005\\), \\(N_{minibatches}=8\\)\ninitial capital \\(k_0 = \\frac{\\overline{k}}{2}\\)\ncomplete polynomials, order 3",
+    "crumbs": [
+      "Slides",
+      "Deep Learning for Solving Dynamic Economic Models"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning_models/slides.html#maximizing-consumption-savings",
+    "href": "slides/deeplearning_models/slides.html#maximizing-consumption-savings",
+    "title": "Deep Learning for Solving Dynamic Economic Models",
+    "section": "Maximizing consumption savings",
+    "text": "Maximizing consumption savings\n..",
+    "crumbs": [
+      "Slides",
+      "Deep Learning for Solving Dynamic Economic Models"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning_models/slides.html#using-euler-equations",
+    "href": "slides/deeplearning_models/slides.html#using-euler-equations",
+    "title": "Deep Learning for Solving Dynamic Economic Models",
+    "section": "Using Euler equations",
+    "text": "Using Euler equations\n\nOptimality conditions on a domain for states \\(\\mathcal{G}\\): \\[\\forall s \\in \\mathcal{G},  E_{\\epsilon} \\left[ \\Phi(s,\\epsilon;\\theta)\\right] = 0\\]\nSingle objective: \\[\\min_{\\theta}\\Xi\\left( \\theta \\right) ={\\int}_{s \\in \\mathcal{G}} \\left( E_{\\epsilon} \\Phi\\left(s,\\epsilon;\\theta\\right) \\right)^2\\]\nWith \\(s\\) uniformly distributed on \\(\\mathcal{G}\\), and \\(\\epsilon_1,\\epsilon_2\\) distributed as \\(\\epsilon\\): \\[\\Xi\\left( \\theta \\right) = E_{s} \\left[\\left(E_{\\epsilon_1} \\Phi\\left(s,\\epsilon_1;\\theta\\right)\\right) \\left( E_{\\epsilon_2}\\Phi\\left(s,\\epsilon_2;\\theta\\right)\\right)\\right]\\] \\[\\Xi\\left( \\theta \\right) = E_{s,\\epsilon_1,\\epsilon_2}\\left[ \\underbrace{ \\Phi\\left(s,\\epsilon_1;\\theta\\right) \\Phi\\left(s,\\epsilon_2;\\theta\\right)}_{\\xi(s,\\epsilon_1,\\epsilon_2;\\theta)}\\right]\\]\nSGD training is possible",
+    "crumbs": [
+      "Slides",
+      "Deep Learning for Solving Dynamic Economic Models"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning_models/slides.html#minimize-euler-equations-errors",
+    "href": "slides/deeplearning_models/slides.html#minimize-euler-equations-errors",
+    "title": "Deep Learning for Solving Dynamic Economic Models",
+    "section": "Minimize euler equations errors",
+    "text": "Minimize euler equations errors\n\n\nlearning rate \\(\\lambda=0.05\\), \\(N_{minibatches}=10\\)\ninitial capital \\(k_0 = \\frac{\\overline{k}}{2}\\)\ncomplete polynomials of order \\(3\\)",
+    "crumbs": [
+      "Slides",
+      "Deep Learning for Solving Dynamic Economic Models"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning_models/slides.html#comparison-with-value-training-cp",
+    "href": "slides/deeplearning_models/slides.html#comparison-with-value-training-cp",
+    "title": "Deep Learning for Solving Dynamic Economic Models",
+    "section": "Comparison with Value training (cp)",
+    "text": "Comparison with Value training (cp)\n\n\ncomplete polynomial",
+    "crumbs": [
+      "Slides",
+      "Deep Learning for Solving Dynamic Economic Models"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning_models/slides.html#minimize-euler-equations-neural-networks",
+    "href": "slides/deeplearning_models/slides.html#minimize-euler-equations-neural-networks",
+    "title": "Deep Learning for Solving Dynamic Economic Models",
+    "section": "Minimize euler equations (neural networks)",
+    "text": "Minimize euler equations (neural networks)\n\nADAM optimizer, \\(N_{minibatches}=64\\)\ninitial capital \\(k_0 = \\frac{\\overline{k}}{2}\\)\nneural network, three hidden layers, sigmoid, width 32",
+    "crumbs": [
+      "Slides",
+      "Deep Learning for Solving Dynamic Economic Models"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning_models/slides.html#comparison-with-value-training-nl",
+    "href": "slides/deeplearning_models/slides.html#comparison-with-value-training-nl",
+    "title": "Deep Learning for Solving Dynamic Economic Models",
+    "section": "Comparison with Value training (nl)",
+    "text": "Comparison with Value training (nl)\n\nComparaison Euler/Value\nneural networks",
+    "crumbs": [
+      "Slides",
+      "Deep Learning for Solving Dynamic Economic Models"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning_models/slides.html#scale-up",
+    "href": "slides/deeplearning_models/slides.html#scale-up",
+    "title": "Deep Learning for Solving Dynamic Economic Models",
+    "section": "Scale-up",
+    "text": "Scale-up\n\nhigher dimension world (for \\(l = a,\\chi,\\psi\\))\n\n\\(l_t = \\exp(\\hat{l}_t)\\exp(\\epsilon^l_t)\\), \\(\\hat{l}_t = \\rho_l \\hat{l}_{t-1}+ \\tau^l_t\\), \\((\\epsilon^l_t)\\) i.i.d.\n4 states \\(\\left(\\hat{a}_t,\\hat{\\chi}_t,\\hat{\\psi}_t,\\hat{k}_t\\right)\\)\n\ndoes dimension reduction work ?\n\ncompare learning with with full model and with \\(\\chi_t\\), \\(\\psi_t\\) muted: useless states should be eliminated\nsolve true 4 states model",
+    "crumbs": [
+      "Slides",
+      "Deep Learning for Solving Dynamic Economic Models"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning_models/slides.html#scale-up-2",
+    "href": "slides/deeplearning_models/slides.html#scale-up-2",
+    "title": "Deep Learning for Solving Dynamic Economic Models",
+    "section": "Scale-up (2)",
+    "text": "Scale-up (2)\n\nit works!\n\ntraining properties don’t depend on number of shocks (computational time)",
+    "crumbs": [
+      "Slides",
+      "Deep Learning for Solving Dynamic Economic Models"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning_models/slides.html#comments-of-the-method",
+    "href": "slides/deeplearning_models/slides.html#comments-of-the-method",
+    "title": "Deep Learning for Solving Dynamic Economic Models",
+    "section": "Comments of the method",
+    "text": "Comments of the method\n\nadvantages\n\nneural networks:\n\nflexible functional form (kinks)\nrobust to colinearity\nimplicit dimensionality reduction\n\ngeneric training method\nscales well\n\nlots of hyperparameters to be tuned:\n\nlearning method (SGD, ADAM, AdaGrad, RmsProp)\nneural network topology (activation functions, width)",
+    "crumbs": [
+      "Slides",
+      "Deep Learning for Solving Dynamic Economic Models"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning_models/slides.html#conclusion",
+    "href": "slides/deeplearning_models/slides.html#conclusion",
+    "title": "Deep Learning for Solving Dynamic Economic Models",
+    "section": "Conclusion",
+    "text": "Conclusion\n\nwhat are we doing ?\n\ndeep learning\nreinforcement learning\nartificial intelligence\n\nare economists complicating the matter at will?\nfuture work:\n\nmore complex problems, understand trade-offs\nfocus on performance\nbehavioral interpretation (rational innatention, sparse programing)",
+    "crumbs": [
+      "Slides",
+      "Deep Learning for Solving Dynamic Economic Models"
+    ]
   },
   {
     "objectID": "slides/python.html#why-python-3",
@@ -229,6 +1054,83 @@
     ]
   },
   {
+    "objectID": "handson/jax_intro.html",
+    "href": "handson/jax_intro.html",
+    "title": "An Introduction to JAX",
+    "section": "",
+    "text": "This notebook (adapted Quantecon) provides a short introduction to Google JAX.\n\n\nOne way to use JAX is as a plug-in NumPy replacement. Let’s look at the similarities and differences.\n\n\nThe following import is standard, replacing import numpy as np:\n\nimport jax\nimport jax.numpy as jnp\n\nNow we can use jnp in place of np for the usual array operations:\n\na = jnp.asarray((1.0, 3.2, -1.5))\n\n\nprint(a)\n\n[ 1.   3.2 -1.5]\n\n\n\nprint(jnp.sum(a))\n\n2.7\n\n\n\nprint(jnp.mean(a))\n\n0.90000004\n\n\n\nprint(jnp.dot(a, a))\n\n13.490001\n\n\nHowever, the array object a is not a NumPy array:\n\na\n\nArray([ 1. ,  3.2, -1.5], dtype=float32)\n\n\n\ntype(a)\n\njaxlib.xla_extension.ArrayImpl\n\n\nEven scalar-valued maps on arrays return JAX arrays.\n\njnp.sum(a)\n\nArray(2.7, dtype=float32)\n\n\nJAX arrays are also called “device arrays,” where term “device” refers to a hardware accelerator (GPU or TPU).\n(In the terminology of GPUs, the “host” is the machine that launches GPU operations, while the “device” is the GPU itself.)\nOperations on higher dimensional arrays are also similar to NumPy:\n\nA = jnp.ones((2, 2))\nB = jnp.identity(2)\nA @ B\n\nArray([[1., 1.],\n       [1., 1.]], dtype=float32)\n\n\n\nfrom jax.numpy import linalg\n\n\nlinalg.inv(B)   # Inverse of identity is identity\n\nArray([[1., 0.],\n       [0., 1.]], dtype=float32)\n\n\n\nlinalg.eigh(B)  # Computes eigenvalues and eigenvectors\n\nEighResult(eigenvalues=Array([1., 1.], dtype=float32), eigenvectors=Array([[1., 0.],\n       [0., 1.]], dtype=float32))\n\n\n\n\n\nOne difference between NumPy and JAX is that JAX currently uses 32 bit floats by default.\nThis is standard for GPU computing and can lead to significant speed gains with small loss of precision.\nHowever, for some calculations precision matters. In these cases 64 bit floats can be enforced via the command\n\njax.config.update(\"jax_enable_x64\", True)\n\nLet’s check this works:\n\njnp.ones(3)\n\nArray([1., 1., 1.], dtype=float64)\n\n\nAs a NumPy replacement, a more significant difference is that arrays are treated as immutable.\nFor example, with NumPy we can write\n\nimport numpy as np\na = np.linspace(0, 1, 3)\na\n\narray([0. , 0.5, 1. ])\n\n\nand then mutate the data in memory:\n\na[0] = 1\na\n\narray([1. , 0.5, 1. ])\n\n\nIn JAX this fails:\n\na = jnp.linspace(0, 1, 3)\na\n\nArray([0. , 0.5, 1. ], dtype=float64)\n\n\n\n# a[0] = 1\n\nIn line with immutability, JAX does not support inplace operations:\n\na = np.array((2, 1))\na.sort()\na\n\narray([1, 2])\n\n\n\na = jnp.array((2, 1))\na_new = a.sort()\na, a_new\n\n(Array([2, 1], dtype=int64), Array([1, 2], dtype=int64))\n\n\nThe designers of JAX chose to make arrays immutable because JAX uses a functional programming style. More on this below.\nNote that, while mutation is discouraged, it is in fact possible with at, as in\n\na = jnp.linspace(0, 1, 3)\nid(a)\n\n104379585977680\n\n\n\na\n\nArray([0. , 0.5, 1. ], dtype=float64)\n\n\n\na.at[0].set(1)\n\nArray([1. , 0.5, 1. ], dtype=float64)\n\n\nWe can check that the array is mutated by verifying its identity is unchanged:\n\nid(a)\n\n104379585977680\n\n\n\n\n\n\nRandom numbers are also a bit different in JAX, relative to NumPy. Typically, in JAX, the state of the random number generator needs to be controlled explicitly.\n\nimport jax.random as random\n\nFirst we produce a key, which seeds the random number generator.\n\nkey = random.PRNGKey(1)\n\n\ntype(key)\n\njaxlib.xla_extension.ArrayImpl\n\n\n\nprint(key)\n\n[0 1]\n\n\nNow we can use the key to generate some random numbers:\n\nx = random.normal(key, (3, 3))\nx\n\nArray([[-1.35247421, -0.2712502 , -0.02920518],\n       [ 0.34706456,  0.5464053 , -1.52325812],\n       [ 0.41677264, -0.59710138, -0.5678208 ]], dtype=float64)\n\n\nIf we use the same key again, we initialize at the same seed, so the random numbers are the same:\n\nrandom.normal(key, (3, 3))\n\nArray([[-1.35247421, -0.2712502 , -0.02920518],\n       [ 0.34706456,  0.5464053 , -1.52325812],\n       [ 0.41677264, -0.59710138, -0.5678208 ]], dtype=float64)\n\n\nTo produce a (quasi-) independent draw, best practice is to “split” the existing key:\n\nkey, subkey = random.split(key)\n\n\nrandom.normal(key, (3, 3))\n\nArray([[ 1.85374374, -0.37683949, -0.61276867],\n       [-1.91829718,  0.27219409,  0.54922246],\n       [ 0.40451442, -0.58726839, -0.63967753]], dtype=float64)\n\n\n\nrandom.normal(subkey, (3, 3))\n\nArray([[-0.4300635 ,  0.22778552,  0.57241269],\n       [-0.15969178,  0.46719192,  0.21165091],\n       [ 0.84118631,  1.18671326, -0.16607783]], dtype=float64)\n\n\nThe function below produces k (quasi-) independent random n x n matrices using this procedure.\n\ndef gen_random_matrices(key, n, k):\n    matrices = []\n    for _ in range(k):\n        key, subkey = random.split(key)\n        matrices.append(random.uniform(subkey, (n, n)))\n    return matrices\n\n\nmatrices = gen_random_matrices(key, 2, 2)\nfor A in matrices:\n    print(A)\n\n[[0.97440813 0.3838544 ]\n [0.9790686  0.99981046]]\n[[0.3473302  0.17157842]\n [0.89346686 0.01403153]]\n\n\nOne point to remember is that JAX expects tuples to describe array shapes, even for flat arrays. Hence, to get a one-dimensional array of normal random draws we use (len, ) for the shape, as in\n\nrandom.normal(key, (5, ))\n\nArray([-0.64377279,  0.76961857, -0.29809604,  0.47858776, -2.00591299],      dtype=float64)\n\n\n\n\n\nThe JAX just-in-time (JIT) compiler accelerates logic within functions by fusing linear algebra operations into a single optimized kernel that the host can launch on the GPU / TPU (or CPU if no accelerator is detected).\n\n\nTo see the JIT compiler in action, consider the following function.\n\ndef f(x):\n    a = 3*x + jnp.sin(x) + jnp.cos(x**2) - jnp.cos(2*x) - x**2 * 0.4 * x**1.5\n    return jnp.sum(a)\n\nLet’s build an array to call the function on.\n\nn = 50_000_000\nx = jnp.ones(n)\n\nHow long does the function take to execute?\n\n%time f(x).block_until_ready()\n\nCPU times: user 5.71 s, sys: 5.07 s, total: 10.8 s\nWall time: 3.32 s\n\n\nArray(2.19896006e+08, dtype=float64)\n\n\nHere, in order to measure actual speed, we use the `block_until_ready()` method \nto hold the interpreter until the results of the computation are returned from\nthe device. This is necessary because JAX uses asynchronous dispatch, which\nallows the Python interpreter to run ahead of GPU computations.\n\nThe code doesn’t run as fast as we might hope, given that it’s running on a GPU.\nBut if we run it a second time it becomes much faster:\n\n%time f(x).block_until_ready()\n\nCPU times: user 5.88 s, sys: 5.67 s, total: 11.5 s\nWall time: 3.24 s\n\n\nArray(2.19896006e+08, dtype=float64)\n\n\nThis is because the built in functions like jnp.cos are JIT compiled and the first run includes compile time.\nWhy would JAX want to JIT-compile built in functions like jnp.cos instead of just providing pre-compiled versions, like NumPy?\nThe reason is that the JIT compiler can specialize on the size of the array being used, which is helpful for parallelization.\nFor example, in running the code above, the JIT compiler produced a version of jnp.cos that is specialized to floating point arrays of size n = 50_000_000.\nWe can check this by calling f with a new array of different size.\n\nm = 50_000_001\ny = jnp.ones(m)\n\n\n%time f(y).block_until_ready()\n\nCPU times: user 6.21 s, sys: 5.49 s, total: 11.7 s\nWall time: 3.58 s\n\n\nArray(2.19896011e+08, dtype=float64)\n\n\nNotice that the execution time increases, because now new versions of the built-ins like jnp.cos are being compiled, specialized to the new array size.\nIf we run again, the code is dispatched to the correct compiled version and we get faster execution.\n\n%time f(y).block_until_ready()\n\nCPU times: user 5.93 s, sys: 5.43 s, total: 11.4 s\nWall time: 3.2 s\n\n\nArray(2.19896011e+08, dtype=float64)\n\n\nThe compiled versions for the previous array size are still available in memory too, and the following call is dispatched to the correct compiled code.\n\n%time f(x).block_until_ready()\n\nCPU times: user 5.53 s, sys: 5.28 s, total: 10.8 s\nWall time: 3.15 s\n\n\nArray(2.19896006e+08, dtype=float64)\n\n\n\n\n\nWe can do even better if we manually JIT-compile the outer function.\n\nf_jit = jax.jit(f)   # target for JIT compilation\n\nLet’s run once to compile it:\n\nf_jit(x)\n\nArray(2.19896006e+08, dtype=float64)\n\n\nAnd now let’s time it.\n\n%time f_jit(x).block_until_ready()\n\nCPU times: user 4.86 s, sys: 433 ms, total: 5.29 s\nWall time: 1.3 s\n\n\nArray(2.19896006e+08, dtype=float64)\n\n\nNote the speed gain.\nThis is because the array operations are fused and no intermediate arrays are created.\nIncidentally, a more common syntax when targetting a function for the JIT compiler is\n\n@jax.jit\ndef f(x):\n    a = 3*x + jnp.sin(x) + jnp.cos(x**2) - jnp.cos(2*x) - x**2 * 0.4 * x**1.5\n    return jnp.sum(a)\n\n\n\n\n\nFrom JAX’s documentation:\nWhen walking about the countryside of Italy, the people will not hesitate to tell you that JAX has “una anima di pura programmazione funzionale”.\nIn other words, JAX assumes a functional programming style.\nThe major implication is that JAX functions should be pure.\nA pure function will always return the same result if invoked with the same inputs.\nIn particular, a pure function has\n\nno dependence on global variables and\nno side effects\n\nJAX will not usually throw errors when compiling impure functions but execution becomes unpredictable.\nHere’s an illustration of this fact, using global variables:\n\na = 1  # global\n\n@jax.jit\ndef f(x):\n    return a + x\n\n\nx = jnp.ones(2)\n\n\nf(x)\n\nArray([2., 2.], dtype=float64)\n\n\nIn the code above, the global value a=1 is fused into the jitted function.\nEven if we change a, the output of f will not be affected — as long as the same compiled version is called.\n\na = 42\n\n\nf(x)\n\nArray([2., 2.], dtype=float64)\n\n\nChanging the dimension of the input triggers a fresh compilation of the function, at which time the change in the value of a takes effect:\n\nx = jnp.ones(3)\n\n\nf(x)\n\nArray([43., 43., 43.], dtype=float64)\n\n\nMoral of the story: write pure functions when using JAX!\n\n\n\nJAX can use automatic differentiation to compute gradients.\nThis can be extremely useful for optimization and solving nonlinear systems.\nWe will see significant applications later in this lecture series.\nFor now, here’s a very simple illustration involving the function\n\ndef f(x):\n    return (x**2) / 2\n\nLet’s take the derivative:\n\nf_prime = jax.grad(f)\n\n\nf_prime(10.0)\n\nArray(10., dtype=float64, weak_type=True)\n\n\nLet’s plot the function and derivative, noting that \\(f'(x) = x\\).\n\nimport matplotlib.pyplot as plt\n\nfig, ax = plt.subplots()\nx_grid = jnp.linspace(-4, 4, 200)\nax.plot(x_grid, f(x_grid), label=\"$f$\")\nax.plot(x_grid, [f_prime(x) for x in x_grid], label=\"$f'$\")\nax.legend(loc='upper center')\nplt.show()\n\n\n\n\n\n\n\n\nWe defer further exploration of automatic differentiation with JAX until {doc}autodiff.\n\n\n\nWriting fast JAX code requires shifting repetitive tasks from loops to array processing operations, so that the JAX compiler can easily understand the whole operation and generate more efficient machine code.\nThis procedure is called vectorization or array programming, and will be familiar to anyone who has used NumPy or MATLAB.\nIn most ways, vectorization is the same in JAX as it is in NumPy.\nBut there are also some differences, which we highlight here.\nAs a running example, consider the function\n\\[\n    f(x,y) = \\frac{\\cos(x^2 + y^2)}{1 + x^2 + y^2}\n\\]\nSuppose that we want to evaluate this function on a square grid of \\(x\\) and \\(y\\) points and then plot it.\nTo clarify, here is the slow for loop version.\n\n@jax.jit\ndef f(x, y):\n    return jnp.cos(x**2 + y**2) / (1 + x**2 + y**2)\n\nn = 80\nx = jnp.linspace(-2, 2, n)\ny = x\n\nz_loops = np.empty((n, n))\n\n\n%%time\nfor i in range(n):\n    for j in range(n):\n        z_loops[i, j] = f(x[i], y[j])\n\nCPU times: user 1.51 s, sys: 3.84 ms, total: 1.51 s\nWall time: 1.51 s\n\n\nEven for this very small grid, the run time is extremely slow.\n(Notice that we used a NumPy array for z_loops because we wanted to write to it.)\n\n\nOK, so how can we do the same operation in vectorized form?\nIf you are new to vectorization, you might guess that we can simply write\n\nz_bad = f(x, y)\n\nBut this gives us the wrong result because JAX doesn’t understand the nested for loop.\n\nz_bad.shape\n\n(80,)\n\n\nHere is what we actually wanted:\n\nz_loops.shape\n\n(80, 80)\n\n\nTo get the right shape and the correct nested for loop calculation, we can use a meshgrid operation designed for this purpose:\n\nx_mesh, y_mesh = jnp.meshgrid(x, y)\n\nNow we get what we want and the execution time is very fast.\n\n%%time\nz_mesh = f(x_mesh, y_mesh).block_until_ready()\n\nCPU times: user 42.8 ms, sys: 1.49 ms, total: 44.3 ms\nWall time: 42.8 ms\n\n\nLet’s run again to eliminate compile time.\n\n%%time\nz_mesh = f(x_mesh, y_mesh).block_until_ready()\n\nCPU times: user 543 μs, sys: 326 μs, total: 869 μs\nWall time: 582 μs\n\n\nLet’s confirm that we got the right answer.\n\njnp.allclose(z_mesh, z_loops)\n\nArray(True, dtype=bool)\n\n\nNow we can set up a serious grid and run the same calculation (on the larger grid) in a short amount of time.\n\nn = 6000\nx = jnp.linspace(-2, 2, n)\ny = x\nx_mesh, y_mesh = jnp.meshgrid(x, y)\n\n\n%%time\nz_mesh = f(x_mesh, y_mesh).block_until_ready()\n\nCPU times: user 844 ms, sys: 203 ms, total: 1.05 s\nWall time: 345 ms\n\n\nLet’s run again to get rid of compile time.\n\n%%time\nz_mesh = f(x_mesh, y_mesh).block_until_ready()\n\nCPU times: user 884 ms, sys: 208 ms, total: 1.09 s\nWall time: 307 ms\n\n\nBut there is one problem here: the mesh grids use a lot of memory.\n\nx_mesh.nbytes + y_mesh.nbytes\n\n576000000\n\n\nBy comparison, the flat array x is just\n\nx.nbytes  # and y is just a pointer to x\n\n48000\n\n\nThis extra memory usage can be a big problem in actual research calculations.\nSo let’s try a different approach using jax.vmap\n\n\nFirst we vectorize f in y.\n\nf_vec_y = jax.vmap(f, in_axes=(None, 0))  \n\nIn the line above, (None, 0) indicates that we are vectorizing in the second argument, which is y.\nNext, we vectorize in the first argument, which is x.\n\nf_vec = jax.vmap(f_vec_y, in_axes=(0, None))\n\nWith this construction, we can now call the function \\(f\\) on flat (low memory) arrays.\n\n%%time\nz_vmap = f_vec(x, y).block_until_ready()\n\nCPU times: user 956 ms, sys: 209 ms, total: 1.16 s\nWall time: 329 ms\n\n\nWe run it again to eliminate compile time.\n\n%%time\nz_vmap = f_vec(x, y).block_until_ready()\n\nCPU times: user 849 ms, sys: 219 ms, total: 1.07 s\nWall time: 329 ms\n\n\nThe execution time is essentially the same as the mesh operation but we are using much less memory.\nAnd we produce the correct answer:\n\njnp.allclose(z_vmap, z_mesh)\n\nArray(True, dtype=bool)",
+    "crumbs": [
+      "Hands-on",
+      "An Introduction to JAX"
+    ]
+  },
+  {
+    "objectID": "handson/jax_intro.html#jax-as-a-numpy-replacement",
+    "href": "handson/jax_intro.html#jax-as-a-numpy-replacement",
+    "title": "An Introduction to JAX",
+    "section": "",
+    "text": "One way to use JAX is as a plug-in NumPy replacement. Let’s look at the similarities and differences.\n\n\nThe following import is standard, replacing import numpy as np:\n\nimport jax\nimport jax.numpy as jnp\n\nNow we can use jnp in place of np for the usual array operations:\n\na = jnp.asarray((1.0, 3.2, -1.5))\n\n\nprint(a)\n\n[ 1.   3.2 -1.5]\n\n\n\nprint(jnp.sum(a))\n\n2.7\n\n\n\nprint(jnp.mean(a))\n\n0.90000004\n\n\n\nprint(jnp.dot(a, a))\n\n13.490001\n\n\nHowever, the array object a is not a NumPy array:\n\na\n\nArray([ 1. ,  3.2, -1.5], dtype=float32)\n\n\n\ntype(a)\n\njaxlib.xla_extension.ArrayImpl\n\n\nEven scalar-valued maps on arrays return JAX arrays.\n\njnp.sum(a)\n\nArray(2.7, dtype=float32)\n\n\nJAX arrays are also called “device arrays,” where term “device” refers to a hardware accelerator (GPU or TPU).\n(In the terminology of GPUs, the “host” is the machine that launches GPU operations, while the “device” is the GPU itself.)\nOperations on higher dimensional arrays are also similar to NumPy:\n\nA = jnp.ones((2, 2))\nB = jnp.identity(2)\nA @ B\n\nArray([[1., 1.],\n       [1., 1.]], dtype=float32)\n\n\n\nfrom jax.numpy import linalg\n\n\nlinalg.inv(B)   # Inverse of identity is identity\n\nArray([[1., 0.],\n       [0., 1.]], dtype=float32)\n\n\n\nlinalg.eigh(B)  # Computes eigenvalues and eigenvectors\n\nEighResult(eigenvalues=Array([1., 1.], dtype=float32), eigenvectors=Array([[1., 0.],\n       [0., 1.]], dtype=float32))\n\n\n\n\n\nOne difference between NumPy and JAX is that JAX currently uses 32 bit floats by default.\nThis is standard for GPU computing and can lead to significant speed gains with small loss of precision.\nHowever, for some calculations precision matters. In these cases 64 bit floats can be enforced via the command\n\njax.config.update(\"jax_enable_x64\", True)\n\nLet’s check this works:\n\njnp.ones(3)\n\nArray([1., 1., 1.], dtype=float64)\n\n\nAs a NumPy replacement, a more significant difference is that arrays are treated as immutable.\nFor example, with NumPy we can write\n\nimport numpy as np\na = np.linspace(0, 1, 3)\na\n\narray([0. , 0.5, 1. ])\n\n\nand then mutate the data in memory:\n\na[0] = 1\na\n\narray([1. , 0.5, 1. ])\n\n\nIn JAX this fails:\n\na = jnp.linspace(0, 1, 3)\na\n\nArray([0. , 0.5, 1. ], dtype=float64)\n\n\n\n# a[0] = 1\n\nIn line with immutability, JAX does not support inplace operations:\n\na = np.array((2, 1))\na.sort()\na\n\narray([1, 2])\n\n\n\na = jnp.array((2, 1))\na_new = a.sort()\na, a_new\n\n(Array([2, 1], dtype=int64), Array([1, 2], dtype=int64))\n\n\nThe designers of JAX chose to make arrays immutable because JAX uses a functional programming style. More on this below.\nNote that, while mutation is discouraged, it is in fact possible with at, as in\n\na = jnp.linspace(0, 1, 3)\nid(a)\n\n104379585977680\n\n\n\na\n\nArray([0. , 0.5, 1. ], dtype=float64)\n\n\n\na.at[0].set(1)\n\nArray([1. , 0.5, 1. ], dtype=float64)\n\n\nWe can check that the array is mutated by verifying its identity is unchanged:\n\nid(a)\n\n104379585977680",
+    "crumbs": [
+      "Hands-on",
+      "An Introduction to JAX"
+    ]
+  },
+  {
+    "objectID": "handson/jax_intro.html#random-numbers",
+    "href": "handson/jax_intro.html#random-numbers",
+    "title": "An Introduction to JAX",
+    "section": "",
+    "text": "Random numbers are also a bit different in JAX, relative to NumPy. Typically, in JAX, the state of the random number generator needs to be controlled explicitly.\n\nimport jax.random as random\n\nFirst we produce a key, which seeds the random number generator.\n\nkey = random.PRNGKey(1)\n\n\ntype(key)\n\njaxlib.xla_extension.ArrayImpl\n\n\n\nprint(key)\n\n[0 1]\n\n\nNow we can use the key to generate some random numbers:\n\nx = random.normal(key, (3, 3))\nx\n\nArray([[-1.35247421, -0.2712502 , -0.02920518],\n       [ 0.34706456,  0.5464053 , -1.52325812],\n       [ 0.41677264, -0.59710138, -0.5678208 ]], dtype=float64)\n\n\nIf we use the same key again, we initialize at the same seed, so the random numbers are the same:\n\nrandom.normal(key, (3, 3))\n\nArray([[-1.35247421, -0.2712502 , -0.02920518],\n       [ 0.34706456,  0.5464053 , -1.52325812],\n       [ 0.41677264, -0.59710138, -0.5678208 ]], dtype=float64)\n\n\nTo produce a (quasi-) independent draw, best practice is to “split” the existing key:\n\nkey, subkey = random.split(key)\n\n\nrandom.normal(key, (3, 3))\n\nArray([[ 1.85374374, -0.37683949, -0.61276867],\n       [-1.91829718,  0.27219409,  0.54922246],\n       [ 0.40451442, -0.58726839, -0.63967753]], dtype=float64)\n\n\n\nrandom.normal(subkey, (3, 3))\n\nArray([[-0.4300635 ,  0.22778552,  0.57241269],\n       [-0.15969178,  0.46719192,  0.21165091],\n       [ 0.84118631,  1.18671326, -0.16607783]], dtype=float64)\n\n\nThe function below produces k (quasi-) independent random n x n matrices using this procedure.\n\ndef gen_random_matrices(key, n, k):\n    matrices = []\n    for _ in range(k):\n        key, subkey = random.split(key)\n        matrices.append(random.uniform(subkey, (n, n)))\n    return matrices\n\n\nmatrices = gen_random_matrices(key, 2, 2)\nfor A in matrices:\n    print(A)\n\n[[0.97440813 0.3838544 ]\n [0.9790686  0.99981046]]\n[[0.3473302  0.17157842]\n [0.89346686 0.01403153]]\n\n\nOne point to remember is that JAX expects tuples to describe array shapes, even for flat arrays. Hence, to get a one-dimensional array of normal random draws we use (len, ) for the shape, as in\n\nrandom.normal(key, (5, ))\n\nArray([-0.64377279,  0.76961857, -0.29809604,  0.47858776, -2.00591299],      dtype=float64)",
+    "crumbs": [
+      "Hands-on",
+      "An Introduction to JAX"
+    ]
+  },
+  {
+    "objectID": "handson/jax_intro.html#jit-compilation",
+    "href": "handson/jax_intro.html#jit-compilation",
+    "title": "An Introduction to JAX",
+    "section": "",
+    "text": "The JAX just-in-time (JIT) compiler accelerates logic within functions by fusing linear algebra operations into a single optimized kernel that the host can launch on the GPU / TPU (or CPU if no accelerator is detected).\n\n\nTo see the JIT compiler in action, consider the following function.\n\ndef f(x):\n    a = 3*x + jnp.sin(x) + jnp.cos(x**2) - jnp.cos(2*x) - x**2 * 0.4 * x**1.5\n    return jnp.sum(a)\n\nLet’s build an array to call the function on.\n\nn = 50_000_000\nx = jnp.ones(n)\n\nHow long does the function take to execute?\n\n%time f(x).block_until_ready()\n\nCPU times: user 5.71 s, sys: 5.07 s, total: 10.8 s\nWall time: 3.32 s\n\n\nArray(2.19896006e+08, dtype=float64)\n\n\nHere, in order to measure actual speed, we use the `block_until_ready()` method \nto hold the interpreter until the results of the computation are returned from\nthe device. This is necessary because JAX uses asynchronous dispatch, which\nallows the Python interpreter to run ahead of GPU computations.\n\nThe code doesn’t run as fast as we might hope, given that it’s running on a GPU.\nBut if we run it a second time it becomes much faster:\n\n%time f(x).block_until_ready()\n\nCPU times: user 5.88 s, sys: 5.67 s, total: 11.5 s\nWall time: 3.24 s\n\n\nArray(2.19896006e+08, dtype=float64)\n\n\nThis is because the built in functions like jnp.cos are JIT compiled and the first run includes compile time.\nWhy would JAX want to JIT-compile built in functions like jnp.cos instead of just providing pre-compiled versions, like NumPy?\nThe reason is that the JIT compiler can specialize on the size of the array being used, which is helpful for parallelization.\nFor example, in running the code above, the JIT compiler produced a version of jnp.cos that is specialized to floating point arrays of size n = 50_000_000.\nWe can check this by calling f with a new array of different size.\n\nm = 50_000_001\ny = jnp.ones(m)\n\n\n%time f(y).block_until_ready()\n\nCPU times: user 6.21 s, sys: 5.49 s, total: 11.7 s\nWall time: 3.58 s\n\n\nArray(2.19896011e+08, dtype=float64)\n\n\nNotice that the execution time increases, because now new versions of the built-ins like jnp.cos are being compiled, specialized to the new array size.\nIf we run again, the code is dispatched to the correct compiled version and we get faster execution.\n\n%time f(y).block_until_ready()\n\nCPU times: user 5.93 s, sys: 5.43 s, total: 11.4 s\nWall time: 3.2 s\n\n\nArray(2.19896011e+08, dtype=float64)\n\n\nThe compiled versions for the previous array size are still available in memory too, and the following call is dispatched to the correct compiled code.\n\n%time f(x).block_until_ready()\n\nCPU times: user 5.53 s, sys: 5.28 s, total: 10.8 s\nWall time: 3.15 s\n\n\nArray(2.19896006e+08, dtype=float64)\n\n\n\n\n\nWe can do even better if we manually JIT-compile the outer function.\n\nf_jit = jax.jit(f)   # target for JIT compilation\n\nLet’s run once to compile it:\n\nf_jit(x)\n\nArray(2.19896006e+08, dtype=float64)\n\n\nAnd now let’s time it.\n\n%time f_jit(x).block_until_ready()\n\nCPU times: user 4.86 s, sys: 433 ms, total: 5.29 s\nWall time: 1.3 s\n\n\nArray(2.19896006e+08, dtype=float64)\n\n\nNote the speed gain.\nThis is because the array operations are fused and no intermediate arrays are created.\nIncidentally, a more common syntax when targetting a function for the JIT compiler is\n\n@jax.jit\ndef f(x):\n    a = 3*x + jnp.sin(x) + jnp.cos(x**2) - jnp.cos(2*x) - x**2 * 0.4 * x**1.5\n    return jnp.sum(a)",
+    "crumbs": [
+      "Hands-on",
+      "An Introduction to JAX"
+    ]
+  },
+  {
+    "objectID": "handson/jax_intro.html#functional-programming",
+    "href": "handson/jax_intro.html#functional-programming",
+    "title": "An Introduction to JAX",
+    "section": "",
+    "text": "From JAX’s documentation:\nWhen walking about the countryside of Italy, the people will not hesitate to tell you that JAX has “una anima di pura programmazione funzionale”.\nIn other words, JAX assumes a functional programming style.\nThe major implication is that JAX functions should be pure.\nA pure function will always return the same result if invoked with the same inputs.\nIn particular, a pure function has\n\nno dependence on global variables and\nno side effects\n\nJAX will not usually throw errors when compiling impure functions but execution becomes unpredictable.\nHere’s an illustration of this fact, using global variables:\n\na = 1  # global\n\n@jax.jit\ndef f(x):\n    return a + x\n\n\nx = jnp.ones(2)\n\n\nf(x)\n\nArray([2., 2.], dtype=float64)\n\n\nIn the code above, the global value a=1 is fused into the jitted function.\nEven if we change a, the output of f will not be affected — as long as the same compiled version is called.\n\na = 42\n\n\nf(x)\n\nArray([2., 2.], dtype=float64)\n\n\nChanging the dimension of the input triggers a fresh compilation of the function, at which time the change in the value of a takes effect:\n\nx = jnp.ones(3)\n\n\nf(x)\n\nArray([43., 43., 43.], dtype=float64)\n\n\nMoral of the story: write pure functions when using JAX!",
+    "crumbs": [
+      "Hands-on",
+      "An Introduction to JAX"
+    ]
+  },
+  {
+    "objectID": "handson/jax_intro.html#gradients",
+    "href": "handson/jax_intro.html#gradients",
+    "title": "An Introduction to JAX",
+    "section": "",
+    "text": "JAX can use automatic differentiation to compute gradients.\nThis can be extremely useful for optimization and solving nonlinear systems.\nWe will see significant applications later in this lecture series.\nFor now, here’s a very simple illustration involving the function\n\ndef f(x):\n    return (x**2) / 2\n\nLet’s take the derivative:\n\nf_prime = jax.grad(f)\n\n\nf_prime(10.0)\n\nArray(10., dtype=float64, weak_type=True)\n\n\nLet’s plot the function and derivative, noting that \\(f'(x) = x\\).\n\nimport matplotlib.pyplot as plt\n\nfig, ax = plt.subplots()\nx_grid = jnp.linspace(-4, 4, 200)\nax.plot(x_grid, f(x_grid), label=\"$f$\")\nax.plot(x_grid, [f_prime(x) for x in x_grid], label=\"$f'$\")\nax.legend(loc='upper center')\nplt.show()\n\n\n\n\n\n\n\n\nWe defer further exploration of automatic differentiation with JAX until {doc}autodiff.",
+    "crumbs": [
+      "Hands-on",
+      "An Introduction to JAX"
+    ]
+  },
+  {
+    "objectID": "handson/jax_intro.html#writing-vectorized-code",
+    "href": "handson/jax_intro.html#writing-vectorized-code",
+    "title": "An Introduction to JAX",
+    "section": "",
+    "text": "Writing fast JAX code requires shifting repetitive tasks from loops to array processing operations, so that the JAX compiler can easily understand the whole operation and generate more efficient machine code.\nThis procedure is called vectorization or array programming, and will be familiar to anyone who has used NumPy or MATLAB.\nIn most ways, vectorization is the same in JAX as it is in NumPy.\nBut there are also some differences, which we highlight here.\nAs a running example, consider the function\n\\[\n    f(x,y) = \\frac{\\cos(x^2 + y^2)}{1 + x^2 + y^2}\n\\]\nSuppose that we want to evaluate this function on a square grid of \\(x\\) and \\(y\\) points and then plot it.\nTo clarify, here is the slow for loop version.\n\n@jax.jit\ndef f(x, y):\n    return jnp.cos(x**2 + y**2) / (1 + x**2 + y**2)\n\nn = 80\nx = jnp.linspace(-2, 2, n)\ny = x\n\nz_loops = np.empty((n, n))\n\n\n%%time\nfor i in range(n):\n    for j in range(n):\n        z_loops[i, j] = f(x[i], y[j])\n\nCPU times: user 1.51 s, sys: 3.84 ms, total: 1.51 s\nWall time: 1.51 s\n\n\nEven for this very small grid, the run time is extremely slow.\n(Notice that we used a NumPy array for z_loops because we wanted to write to it.)\n\n\nOK, so how can we do the same operation in vectorized form?\nIf you are new to vectorization, you might guess that we can simply write\n\nz_bad = f(x, y)\n\nBut this gives us the wrong result because JAX doesn’t understand the nested for loop.\n\nz_bad.shape\n\n(80,)\n\n\nHere is what we actually wanted:\n\nz_loops.shape\n\n(80, 80)\n\n\nTo get the right shape and the correct nested for loop calculation, we can use a meshgrid operation designed for this purpose:\n\nx_mesh, y_mesh = jnp.meshgrid(x, y)\n\nNow we get what we want and the execution time is very fast.\n\n%%time\nz_mesh = f(x_mesh, y_mesh).block_until_ready()\n\nCPU times: user 42.8 ms, sys: 1.49 ms, total: 44.3 ms\nWall time: 42.8 ms\n\n\nLet’s run again to eliminate compile time.\n\n%%time\nz_mesh = f(x_mesh, y_mesh).block_until_ready()\n\nCPU times: user 543 μs, sys: 326 μs, total: 869 μs\nWall time: 582 μs\n\n\nLet’s confirm that we got the right answer.\n\njnp.allclose(z_mesh, z_loops)\n\nArray(True, dtype=bool)\n\n\nNow we can set up a serious grid and run the same calculation (on the larger grid) in a short amount of time.\n\nn = 6000\nx = jnp.linspace(-2, 2, n)\ny = x\nx_mesh, y_mesh = jnp.meshgrid(x, y)\n\n\n%%time\nz_mesh = f(x_mesh, y_mesh).block_until_ready()\n\nCPU times: user 844 ms, sys: 203 ms, total: 1.05 s\nWall time: 345 ms\n\n\nLet’s run again to get rid of compile time.\n\n%%time\nz_mesh = f(x_mesh, y_mesh).block_until_ready()\n\nCPU times: user 884 ms, sys: 208 ms, total: 1.09 s\nWall time: 307 ms\n\n\nBut there is one problem here: the mesh grids use a lot of memory.\n\nx_mesh.nbytes + y_mesh.nbytes\n\n576000000\n\n\nBy comparison, the flat array x is just\n\nx.nbytes  # and y is just a pointer to x\n\n48000\n\n\nThis extra memory usage can be a big problem in actual research calculations.\nSo let’s try a different approach using jax.vmap\n\n\nFirst we vectorize f in y.\n\nf_vec_y = jax.vmap(f, in_axes=(None, 0))  \n\nIn the line above, (None, 0) indicates that we are vectorizing in the second argument, which is y.\nNext, we vectorize in the first argument, which is x.\n\nf_vec = jax.vmap(f_vec_y, in_axes=(0, None))\n\nWith this construction, we can now call the function \\(f\\) on flat (low memory) arrays.\n\n%%time\nz_vmap = f_vec(x, y).block_until_ready()\n\nCPU times: user 956 ms, sys: 209 ms, total: 1.16 s\nWall time: 329 ms\n\n\nWe run it again to eliminate compile time.\n\n%%time\nz_vmap = f_vec(x, y).block_until_ready()\n\nCPU times: user 849 ms, sys: 219 ms, total: 1.07 s\nWall time: 329 ms\n\n\nThe execution time is essentially the same as the mesh operation but we are using much less memory.\nAnd we produce the correct answer:\n\njnp.allclose(z_vmap, z_mesh)\n\nArray(True, dtype=bool)",
+    "crumbs": [
+      "Hands-on",
+      "An Introduction to JAX"
+    ]
+  },
+  {
     "objectID": "handson/numeric_python.html",
     "href": "handson/numeric_python.html",
     "title": "Numeric Python",
@@ -266,7 +1168,7 @@
     "href": "handson/neoclassical.html",
     "title": "Neoclassical model with time iteration",
     "section": "",
-    "text": "Our goal consists in this tutorial will be to solve numerically the neoclassical model using the time-iteration algorithms in two ways: - with a naive iterative algorithm - with a vectorized one (using numpy)\nRemark: this tutorial uses typehints as a way to help structure the code. They can safely be ignored.\n\nfrom dataclasses import dataclass\nfrom math import exp, sqrt\nimport numpy as np\nfrom typing import Any, Tuple\nimport numpy.typing as npt\nVector = npt.NDArray[1]\nMatrix = npt.NDArray[2]\n\n\nThe neoclassical model\nThe representative agent maximizes intertemporal discounted utility of consumption \\[\\sum_{t\\geq0} \\beta^t U(c_t)\\] where \\(U(c_t)=\\frac{(c_t)^{1-\\gamma}}{1-\\gamma}\\).\nProduction is \\[y_t=exp(z_t) k_t^{\\alpha}\\] where \\(k_t\\) is the amount of capital and \\(z_t=\\rho z_{t-1} + \\epsilon_t\\) and AR1 process with \\((\\epsilon_t)\\) a normal innovation of standard deviation \\(\\sigma\\).\nThe law of motion for the capital depends on investment \\(i_t\\) and capital depreciation \\(\\delta\\):\n\\[k_t = (1-\\delta) k_{t-1} + i_{t-1}\\]\nThe first order condition corresponding to the optimization problem is:\n\\[\\beta E_t \\left[ \\frac{U^{\\prime}(c_{t+1}}{U^{\\prime}(c_t)})\\left( 1- \\delta + \\alpha exp(z_{t+1}) k_{t+1}^{\\alpha-1} \\right) \\right] =1\\]\n\nExercise 1 What are the states of the problems? the controls? the exogenous shocks?\n\n# your response here\n\n\n\nExercise 2 Define an object to represent the model calibration (you can use a dataclass).\n\n@dataclass\nclass Neoclassical:\n    pass\n    # modify the content here\nm = Neoclassical()\n\n\n\nExercise 3 Define a function to compute the steady-state controls and states.\n\ndef steady_state(m: Neoclassical) -&gt; Tuple[ Tuple[float, float], Tuple[float]]\n    # ...\n    # s = ... tuple of states\n    # x = ... tuple of controls\n    return (s,x)\n\n\n\n\nNaive solution\n\nExercise 4 Define a cartesian grid on productivity and capital:\n\ndef get_grid(m: Neoclassical, size: Tuple[int, int]) -&gt; Tuple[ Vector, Vector ca]\n    pass\n\ngrid = get_grid(model, (10,10))\n\n\n\nExercise 5 Define an initial guess representing the values of the controls on the grid\n\ndef initial_guess(m: Neoclassical, grid)-&gt;npt.NDArray[3]\n\n    # x0 = 3-dimensional array of size\n\nx0 = initial_guess(m, grid)\n\n\n\nExercise 6 Define a decision rule which interpolates the initial guess on any state\n\ndef phi(m: Neoclassical, s:: Tuple[float, float], x0::npt.NDArray[3])-&gt; Tuple[float]\n    pass\n\n\n\nExercise 7 Compute the euler residual, for a given realization of the exogenous shocks.\n\ndef f(m: RBC, s: Tuple[float,float], x:Tuple[float], E: Tuple[float], grid, theta):\n    ## grid is the discretized grid from before\n    ## theta contains the values of the controls on the grid\n    pass\n\n\n\nExercise 8 Compute the expected euler residuals, integrating over all possible realizations of the exogenous shocks.\n\ndef F(m: RBC, s: Tuple[float,float], x:Tuple[float], grid, theta, discr:Tuple[Vector, Vector]):\n    ## grid is the discretized grid from before\n    ## theta contains the values of the controls on the grid\n    ## discr contains the weights w,x of the gaussian quadrature\n    pass\n\n\n:::\n\nExercise 9 At the steady-state, find the optimal control, assuming future decisions are taken according to the initial guess.\n\n# find x such that F(m,s,x,grid,theta_0,discr) = 0\n\n\n\nExercise 10 Solve for the optimal controls over the whole grid, still assuming future decisions are taken according to the initial guess.\n\n# find x such that F(m,s,x,grid,theta_0,discr) = 0\n\n\n\nExercise 11 Implement the time iteration algorithm.\n\ndef time_iteration_0(m: Neoclassical, grid, discr, x0):\n    pass\n\n\n\nExercise 12 Time the result (and profile).\n\ndef time_iteration_0(m: Neoclassical, grid, discr, x0):\n    pass\n\n\n\n\nVectorization\nThere are at least two approaches to speed up the code, with the same algorithm: - avoid the interpretation cost by compiling the code (for instance using numba) - vectorize the operations over the whole grid\n\nExercise 13 Given \\(N\\) the number of points of the grid, create a matrix, representing the vector of all grid points. It should be an \\(N \\times 2\\) matrix.\n\n# grid_v = \n\n\n\nExercise 14 Rewrite the decision rule so that it can operate on a vector of states.\n\ndef phi_v(m: Neoclassical, s:: Matrix, x0::npt.NDArray[3])-&gt; Matrix\n    pass\n\n\n\nExercise 15 Rewrite the euler residual function so that it can operate on a vector of states with the corresponding vector of controls.\n\ndef f_v(m: RBC, s: Matrix, x:Matrix, E: Tuple[float], grid, theta)-&gt;Matrix:\n    ## grid is the discretized grid from before\n    ## theta contains the values of the controls on the grid\n    pass\n\n\n\nExercise 16 Rewrite the integrated euler residual function so that it can operate on a vector of states with the corresponding vector of controls.\n\ndef F_v(m: RBC, s: Matrix, x:Matrix, grid, theta)-&gt;Matrix:\n    ## grid is the discretized grid from before\n    ## theta contains the values of the controls on the grid\n    pass\n\n\n\nExercise 17 Compute the jacobian of \\(F_v\\) w.r.t \\(x\\).\n\n#\n\n\n\nExercise 18 Solve for the matrix x such that F_v(m, s, x:Matrix, grid, theta)=0\n\n#\n\n\n\nExercise 19 Implement the time iteration algorithm.\n\n#",
+    "text": "Our goal consists in this tutorial will be to solve numerically the neoclassical model using the time-iteration algorithms in two ways: - with a naive iterative algorithm - with a vectorized one (using numpy)\nRemark: this tutorial uses typehints as a way to help structure the code. They can safely be ignored.\n\nfrom dataclasses import dataclass\nfrom math import exp, sqrt\nimport numpy as np\nfrom typing import Any, Tuple\nimport numpy.typing as npt\nVector = npt.NDArray[1]\nMatrix = npt.NDArray[2]\n\n\nThe neoclassical model\nThe representative agent maximizes intertemporal discounted utility of consumption \\[\\sum_{t\\geq0} \\beta^t U(c_t)\\] where \\(U(c_t)=\\frac{(c_t)^{1-\\gamma}}{1-\\gamma}\\).\nProduction is \\[y_t=exp(z_t) k_t^{\\alpha}\\] where \\(k_t\\) is the amount of capital and \\(z_t=\\rho z_{t-1} + \\epsilon_t\\) and AR1 process with \\((\\epsilon_t)\\) a normal innovation of standard deviation \\(\\sigma\\).\nThe law of motion for the capital depends on investment \\(i_t\\) and capital depreciation \\(\\delta\\):\n\\[k_t = (1-\\delta) k_{t-1} + i_{t-1}\\]\nThe first order condition corresponding to the optimization problem is:\n\\[\\beta E_t \\left[ \\frac{U^{\\prime}(c_{t+1}}{U^{\\prime}(c_t)})\\left( 1- \\delta + \\alpha exp(z_{t+1}) k_{t+1}^{\\alpha-1} \\right) \\right] =1\\]\n\nExercise 1 What are the states of the problems? the controls? the exogenous shocks?\n\n\n# states: (z,k)\n# controls: (i,)  \n\n# everything else can be computed from it\n# auxiliary: (y,c)\n\n# shocks: (epsilon,)\n\n# paramaters: alpha,beta,gamma,delta,sigma,rho\n\n\nExercise 2 Define an object to represent the model calibration (you can use a dataclass).\n\n\n@dataclass\nclass Neoclassical:\n    \n    alpha = 0.3\n    beta = 0.96\n    gamma = 4.0\n    delta = 0.1\n    rho = 0.9\n    sigma = 0.01\n\nm = Neoclassical()\n\n\nExercise 3 Define a function to compute the steady-state controls and states.\n\n\ndef steady_state(m: Neoclassical) -&gt; Tuple[ Tuple[float, float], Tuple[float]]:\n    \n    z:float = 0.0\n    k:float = ((1/m.beta-(1-m.delta))/m.alpha)**(1/(m.alpha-1))\n    i = k*m.delta\n    s = (z,k) # tuple of states\n    x = (i,) #tuple of controls\n    return (s,x)\n\n\n\nNaive solution\n\nExercise 4 Define a cartesian grid on productivity and capital:\n\n\ndef get_grid(m: Neoclassical, size: Tuple[int, int]) -&gt; Tuple[ Vector, Vector]:\n    \n    s,x = steady_state(m)\n\n    sigma_e = m.sigma/sqrt(1-m.rho**2)\n    kbar = s[1] # steady state value of capital\n\n    zvec = np.linspace( -2*sigma_e, 2*sigma_e, size[0])\n    kvec = np.linspace(0.5*kbar,kbar*1.5,size[1])\n    return (zvec, kvec)\n\ngrid  = get_grid(m, (10,10))\n\n\nExercise 5 Define an initial guess representing the values of the controls on the grid\n\n\nN_1, N_2 = (10,10)\n\nx0 = np.zeros( (N_1, N_2, 1) )\nx0[:, :, 0] = x\nx0;\n\n\ndef initial_guess(m: Neoclassical, grid)-&gt;npt.NDArray[3]\n\n    # x0 = 3-dimensional array of size\n\nx0 = initial_guess(m, grid)\n\n\nExercise 6 Define a decision rule which interpolates the initial guess on any state\n\n\ndef phi(m: Neoclassical, s:: Tuple[float, float], x0::npt.NDArray[3])-&gt; Tuple[float]\n    pass\n\n\nExercise 7 Compute the euler residual, for a given realization of the exogenous shocks.\n\n\ndef f(m: RBC, s: Tuple[float,float], x:Tuple[float], E: Tuple[float], grid, theta):\n    ## grid is the discretized grid from before\n    ## theta contains the values of the controls on the grid\n    pass\n\n\nExercise 8 Compute the expected euler residuals, integrating over all possible realizations of the exogenous shocks.\n\n\ndef F(m: RBC, s: Tuple[float,float], x:Tuple[float], grid, theta, discr:Tuple[Vector, Vector]):\n    ## grid is the discretized grid from before\n    ## theta contains the values of the controls on the grid\n    ## discr contains the weights w,x of the gaussian quadrature\n    pass\n\n\nExercise 9 At the steady-state, find the optimal control, assuming future decisions are taken according to the initial guess.\n\n\n# find x such that F(m,s,x,grid,theta_0,discr) = 0\n\n\nExercise 10 Solve for the optimal controls over the whole grid, still assuming future decisions are taken according to the initial guess.\n\n\n# find x such that F(m,s,x,grid,theta_0,discr) = 0\n\n\nExercise 11 Implement the time iteration algorithm.\n\n\ndef time_iteration_0(m: Neoclassical, grid, discr, x0):\n    pass\n\n\nExercise 12 Time the result (and profile).\n\n\ndef time_iteration_0(m: Neoclassical, grid, discr, x0):\n    pass\n\n\n\nVectorization\nThere are at least two approaches to speed up the code, with the same algorithm: - avoid the interpretation cost by compiling the code (for instance using numba) - vectorize the operations over the whole grid\n\nExercise 13 Given \\(N\\) the number of points of the grid, create a matrix, representing the vector of all grid points. It should be an \\(N \\times 2\\) matrix.\n\n\n# grid_v = \n\n\nExercise 14 Rewrite the decision rule so that it can operate on a vector of states.\n\n\ndef phi_v(m: Neoclassical, s:: Matrix, x0::npt.NDArray[3])-&gt; Matrix\n    pass\n\n\nExercise 15 Rewrite the euler residual function so that it can operate on a vector of states with the corresponding vector of controls.\n\n\ndef f_v(m: RBC, s: Matrix, x:Matrix, E: Tuple[float], grid, theta)-&gt;Matrix:\n    ## grid is the discretized grid from before\n    ## theta contains the values of the controls on the grid\n    pass\n\n\nExercise 16 Rewrite the integrated euler residual function so that it can operate on a vector of states with the corresponding vector of controls.\n\n\ndef F_v(m: RBC, s: Matrix, x:Matrix, grid, theta)-&gt;Matrix:\n    ## grid is the discretized grid from before\n    ## theta contains the values of the controls on the grid\n    pass\n\n\nExercise 17 Compute the jacobian of \\(F_v\\) w.r.t \\(x\\).\n\n\n#\n\n\nExercise 18 Solve for the matrix x such that F_v(m, s, x:Matrix, grid, theta)=0\n\n\n#\n\n\nExercise 19 Implement the time iteration algorithm.\n\n\n#",
     "crumbs": [
       "Hands-on",
       "Neoclassical model with time iteration"
@@ -347,6 +1249,105 @@
     "crumbs": [
       "Hands-on",
       "Python: syntax review"
+    ]
+  },
+  {
+    "objectID": "handson/qe_notebook_jax.html",
+    "href": "handson/qe_notebook_jax.html",
+    "title": "Deep learning solution method with all-in-one expectation operator",
+    "section": "",
+    "text": "This is a JAX version using FLAX for neural networks and Optax for the optimization.\nSimilar code can be found for tensorflow and torch",
+    "crumbs": [
+      "Hands-on",
+      "Deep learning solution method with all-in-one expectation operator"
+    ]
+  },
+  {
+    "objectID": "handson/qe_notebook_jax.html#jax-and-libraries",
+    "href": "handson/qe_notebook_jax.html#jax-and-libraries",
+    "title": "Deep learning solution method with all-in-one expectation operator",
+    "section": "JAX and libraries",
+    "text": "JAX and libraries\nJAX\n\nimport jax\nfrom jax import numpy as jnp\nfrom typing import Any, Callable, Sequence\n\nThis notebook uses several libraries. A missing library x can be installed using pip install x\n\nimport numpy as np\n# from math import sqrt\nfrom matplotlib import pyplot as plt\nfrom tqdm import tqdm as tqdm         # tqdm is a nice library to visualize ongoing loops\nimport datetime\n# followint lines are used for indicative typing\nfrom typing import Tuple\nclass Vector: pass",
+    "crumbs": [
+      "Hands-on",
+      "Deep learning solution method with all-in-one expectation operator"
+    ]
+  },
+  {
+    "objectID": "handson/qe_notebook_jax.html#the-model",
+    "href": "handson/qe_notebook_jax.html#the-model",
+    "title": "Deep learning solution method with all-in-one expectation operator",
+    "section": "The model",
+    "text": "The model\nWe consider the following consumption-saving problem:\n\\[\\begin{gather*}\n\\underset{\\left\\{ c_{t},w_{t+1}\\right\\}_{t=0}^{\\infty }}{\\max }E_{0}\\left[\n\\sum_{t=0}^{\\infty }\\exp (\\delta_{t})\\beta ^{t}u\\left( {c_{t}}\\right)\\right]  \\\\\n\\text{s.t. }w_{t+1}=\\left( w_{t}-c_{t}\\right) \\overline{r}\\exp (r_{t})+\\exp\n(y_{t}), \\\\\nc_{t}\\leq w_{t},\n\\end{gather*}\\]\nwhere \\(c_{t}\\) is consumption; \\(w_{t}\\) is the beginning-of-period cash-on-hand; \\(\\beta \\in \\left[ 0,1\\right)\\) is a subjective discount factor; \\(\\overline{r}\\in \\left( 0,\\frac{1}{\\beta }\\right)\\) is a (gross) constant interest rate; and initial condition \\(\\left( z,w\\right)\\) is given. There is an occasionally binding inequality constraint: consumption \\(c_{t}\\) cannot exceed cash-on-hand \\(w_{t}\\). There are four different exogenous state variables, namely, shocks to the interest rate (\\(r_{t}\\)), discount factor (\\(\\delta_t\\)), transitory component of income \\(q_{t}\\) and permanent component of income \\(p_{t}\\). The total income is \\(y_{t}=p_{t}q_{t}\\). All exogenous variables follows AR(1) processes:\n\\[\\begin{gather*}\ny_{t+1} &=&\\rho_{y}y_{t}+\\sigma_{y}\\epsilon_{t}, \\\\\np_{t+1} &=&\\rho_{p}p_{t}+\\sigma_{p}\\epsilon_{t}, \\\\\nr_{t+1} &=&\\rho_{r}r_{t}+\\sigma_{r}\\epsilon_{t}, \\\\\n\\delta_{t+1} &=&\\rho_{\\delta }\\delta_{t}+\\sigma_{\\delta }\\epsilon_{t},\n\\end{gather*}\\]\nwhere \\(\\epsilon_t \\sim \\mathcal{N}\\left( 0,1\\right)\\). We assume the Cobb-Douglas utility function \\(u\\left( {c_{t}}\\right) =\\frac{1}{1-\\gamma }\\left( c_{t}^{1-\\gamma }-1\\right)\\). The model’s parameters are specified below.\n\n# Model parameters\n\nβ = 0.9 \nγ = 2.0 \n# σ = 0.1  \n# ρ = 0.9\nσ_r = 0.001\nρ_r = 0.2\nσ_p = 0.0001\nρ_p = 0.999\nσ_q = 0.001\nρ_q = 0.9\nσ_δ = 0.001\nρ_δ = 0.2\nrbar = 1.04",
+    "crumbs": [
+      "Hands-on",
+      "Deep learning solution method with all-in-one expectation operator"
+    ]
+  },
+  {
+    "objectID": "handson/qe_notebook_jax.html#stochastic-solution-domain",
+    "href": "handson/qe_notebook_jax.html#stochastic-solution-domain",
+    "title": "Deep learning solution method with all-in-one expectation operator",
+    "section": "Stochastic solution domain",
+    "text": "Stochastic solution domain\nWe solve the model on a random grid which is drawn from the following domain:\n\nfor AR1 processes, we take the ergodic distribution (recall that for an AR(1) process \\(z\\) with autocorrelation \\(\\rho\\) and conditional standard deviation \\(\\sigma\\), the ergodic distribution is normal with zero mean and standard deviation \\(\\sigma_z= \\frac{\\sigma}{\\sqrt{1-\\rho^2}}\\).\nfor available income we choose a uniform distribution between two finite bounds: \\(w\\in[w_{\\min}, w_{\\max}]\\).\n\n\n# Standard deviations for ergodic distributions of exogenous state variables\nσ_e_r = σ_r/(1-ρ_r**2)**0.5\nσ_e_p = σ_p/(1-ρ_p**2)**0.5\nσ_e_q = σ_q/(1-ρ_q**2)**0.5\nσ_e_δ = σ_δ/(1-ρ_δ**2)**0.5\n\n# bounds for available income\nwmin = 0.1\nwmax = 4.0",
+    "crumbs": [
+      "Hands-on",
+      "Deep learning solution method with all-in-one expectation operator"
+    ]
+  },
+  {
+    "objectID": "handson/qe_notebook_jax.html#kuhn-tucker-conditions",
+    "href": "handson/qe_notebook_jax.html#kuhn-tucker-conditions",
+    "title": "Deep learning solution method with all-in-one expectation operator",
+    "section": "Kuhn-Tucker conditions",
+    "text": "Kuhn-Tucker conditions\nIn the recursive form, the solution can be characterized by the Kuhn-Tucker (KT) conditions \\[\\begin{equation*}\na\\geq 0,\\quad b\\geq 0\\quad and\\quad ab=0,\n\\end{equation*}\\] where \\(a\\) is the share of income that goes to savings and \\(b\\) is the Lagrange multiplier \\[\\begin{gather*}\na &\\equiv &w-c , \\\\\nb &\\equiv &u^{\\prime }(c)-\\beta \\overline{r}E_{\\epsilon }\\left[ \\left.\nu^{\\prime }\\left( c^{\\prime }\\right) \\exp \\left( \\delta ^{\\prime }-\\delta\n+r^{\\prime }\\right) \\right\\vert \\epsilon \\right] .\n\\end{gather*}\\] (In the absence of borrowing constraint \\(b=0\\), the KT conditions lead to the familiar Euler equation).\nInequality constraints are not directly compatible with the deep learning framework developed in the paper, so we reformulate the KT conditions as a set of equations that hold with equality. We use a smooth representation of the KT conditions, called the Fischer-Burmeister (FB) function, which is differentiable \\[\\begin{equation*}\nFB\\left( a,b\\right) =a+b-\\sqrt{a^{2}+b^{2}}=0.\n\\end{equation*}\\] The restriction \\(FB\\left( a,b\\right) =0\\) is also equivalent to the KT conditions.\nFor numerical treatment, we rewrite the FB function in the following unit-free form \\[\\begin{equation*}\nFB\\left( 1-\\zeta ,1-h\\right) =(1-\\zeta)+(1-h)-\\sqrt{(1-\\zeta)^{2}+(1-h)^{2}}=0,\n\\end{equation*}\\] where \\(\\zeta\\) and \\(h\\) are respectively the consumption share and normalized Lagrange multiplier \\[\\begin{gather*}\n\\zeta  &\\equiv &\\frac{c}{w}, \\\\\nh &\\equiv &\\beta \\overline{r}E_{\\epsilon }\\left[ \\left. \\frac{u^{\\prime\n}\\left( c^{\\prime }\\right) }{u^{\\prime }(c)}\\exp \\left( \\delta ^{\\prime\n}-\\delta +r^{\\prime }\\right) \\right\\vert \\epsilon \\right] .\n\\end{gather*}\\] In particular, \\(\\zeta\\) belongs to the interval \\(\\left[0,1\\right]\\) which is a convenient domain for defining neural network. In turn, \\(h\\) is normalized to be around one: we will parameterize it with neural network in the way that ensures that it is nonnegative.\n\n# here are the Fisher Burmeister functions with JAX\nmin_FB = lambda a,b: a+b-jnp.sqrt(a**2+b**2)\nmax_FB = lambda a,b: -min_FB(-a,-b)",
+    "crumbs": [
+      "Hands-on",
+      "Deep learning solution method with all-in-one expectation operator"
+    ]
+  },
+  {
+    "objectID": "handson/qe_notebook_jax.html#parameterizing-decision-functions-with-neural-network",
+    "href": "handson/qe_notebook_jax.html#parameterizing-decision-functions-with-neural-network",
+    "title": "Deep learning solution method with all-in-one expectation operator",
+    "section": "Parameterizing decision functions with neural network",
+    "text": "Parameterizing decision functions with neural network\nThere are many different decision functions that we can approximate for characterizing the solution, including consumption, next-period income, etc. We chose to approximate the two functions that we defined earlier: the share of consumption, \\(\\zeta \\equiv \\frac{c}{w}\\), and the normalized Lagrange multiplier \\(h\\). Since the model is stationary, we look for a decision rule \\[\\begin{equation*}\n\\left(\n\\begin{matrix}\n\\zeta  \\\\\nh%\n\\end{matrix}%\n\\right) =\\varphi (s;\\theta ),\n\\end{equation*}\\] where \\(s=(r, \\delta, q, p, w)\\) is the 5-dimensional state space, and \\(\\varphi\\) is a function to be determined.\nA common approach in computational economics is to approximate an unknown function \\(\\varphi\\) using some flexible function family \\(\\varphi(...;\\theta)\\) parameterized by a vector of coefficients \\(\\theta\\), e.g., a polynomial family. Neural networks are just a special family of approximating functions. A distinctive feature of neural networks is that they have a nonlinear dependence of the approximation function on the coefficients \\(\\theta\\). TensorFlow contains a submodule keras, which makes it easy to build such a network. Below, we build the multilayer perceptrion: a 2 hidden layers 32x32x32x2 network with relu activation functions and linear outputs.\n\nimport flax\nfrom flax import nnx # old API\nfrom flax import linen as nn # new stateless API\n\n\nclass MLP(nn.Module):\n  \n  def __init__(self):\n    self.linear1 = nn.Dense(32)\n    self.linear2 = nn.Dense(32)\n    self.linear3 = nn.Dense(32)\n    self.linear4 = nn.Dense(2)\n\n  def __call__(self, x: jax.Array):\n    x = nnx.relu(self.linear1(x))\n    x = nnx.relu(self.linear2(x))\n    x = nnx.relu(self.linear3(x))\n    x = self.linear4(x)\n    return x\n  \n\n\nclass ExplicitMLP(nn.Module):\n  features: Sequence[int]\n\n  def setup(self):\n    # we automatically know what to do with lists, dicts of submodules\n    self.layers = [nn.Dense(feat) for feat in self.features]\n    # for single submodules, we would just write:\n    # self.layer1 = nn.Dense(feat1)\n\n  def __call__(self, inputs):\n    x = inputs\n    for i, lyr in enumerate(self.layers):\n      x = lyr(x)\n      if i != len(self.layers) - 1:\n        x = nn.relu(x)\n    return x\n\n\n# this creates a 3 layer perceptron with 32 neurons on each.\nmodel = ExplicitMLP(features=[32,32,32,2])\n\n\n# the following code initializes the neural network with random values\nkey1, key2 = jax.random.split(jax.random.PRNGKey(0), 2)\nx = jax.random.uniform(key1, (5,))\ntheta_0 = model.init(key2, x)\n# all the trainable parameters of the NN are stored in theta_0\n# it is a \"pytree\", that we will be able to use to compute gradients\n\n\n#  pretty print requres the library `treescope` to be installed\nnnx.display(model)\n\n     \n\n\nNext, we create the decision rule which takes as input 5 vectors of the same size \\(n\\) for the states \\(r\\), \\(\\delta\\), \\(q\\), \\(p\\), \\(w\\) and returns two vectors of size \\(n\\) for \\(\\zeta\\) and \\(h\\), respectively. We use different nonlinear transformation for the two decision functions:\n\\[\\begin{equation*}\n\\varphi(s;\\theta)=\\left(\\begin{matrix}\\frac{1}{1+e^{-nn(s;\\theta)}}\\\\\n\\exp(nn(s;\\theta))\\end{matrix}\\right)\n\\end{equation*}\\]\nwhere nn denotes neural network; the first and second elements in the vector function \\(\\varphi\\) are used to get \\(\\zeta\\in[0,1]\\) and \\(h&gt;0\\), respectively.\n\ndef dr(theta, r: Vector, p: Vector, q: Vector, δ: Vector, w: Vector)-&gt; Tuple[Vector, Vector]:\n\n    # we normalize exogenous state variables by their 2 standard deviations \n    # so that they are typically between -1 and 1 \n    r = r/σ_e_r/2\n    δ = δ/σ_e_δ/2\n    q = q/σ_e_q/2\n    p = p/σ_e_p/2\n    \n    # we normalze income to be between -1 and 1\n    w = (w-wmin)/(wmax-wmin)*2.0-1.0\n\n    # we prepare input to the perceptron\n    # s = tf.concat([_e[:,None] for _e in [r,p,q,δ,w]], axis=1) # equivalent to np.column_stack\n    \n    s = jnp.column_stack([r,p,q,δ,w])\n\n    x = model.apply(theta, s) # n x 2 matrix \n\n    # consumption share is always in [0,1]\n    ζ = jax.nn.sigmoid( x[:,0] )\n    \n    # expectation of marginal consumption is always positive\n    h = jnp.exp( x[:,1] )\n    \n    return (ζ, h)\n\nFinally, as an illustration, we plot the initial guess of decision rules against \\(w\\). Note that the coefficients of the perceptron are initialized with random values, so that each run will provide a different plot. Here, we are using TensorFlow in an eager mode, i.e., calculations are returned immediately, so that the library essentially behaves in the same way as numpy, and is in fact mostly compatible with it.\n\nwvec = jnp.linspace(wmin, wmax, 100)\n# r,p,q,δ are zero-mean\nζvec, hvec = dr(theta_0, wvec*0, wvec*0, wvec*0, wvec*0, wvec)\n\n\nplt.plot(wvec, wvec, linestyle='--', color='black')\nplt.plot(wvec, wvec*ζvec)\nplt.xlabel(\"$w_t$\")\nplt.ylabel(\"$c_t$\")\nplt.title(\"Initial Guess\")\nplt.grid()",
+    "crumbs": [
+      "Hands-on",
+      "Deep learning solution method with all-in-one expectation operator"
+    ]
+  },
+  {
+    "objectID": "handson/qe_notebook_jax.html#residuals-in-the-models-equations",
+    "href": "handson/qe_notebook_jax.html#residuals-in-the-models-equations",
+    "title": "Deep learning solution method with all-in-one expectation operator",
+    "section": "Residuals in the model’s equations",
+    "text": "Residuals in the model’s equations\nTo identify the unknown decision functions for \\(\\zeta\\) and \\(h\\), we use two modelp’s equations, namely, the definition of normalized Lagrange multiplier and the FB function representing the KT conditions, respectively: \\[\\begin{gather*}\nh=\\beta \\overline{r}E_{\\epsilon }\\left[ \\left. \\frac{u^{\\prime }\\left(\nc^{\\prime }\\right) }{u^{\\prime }(c)}\\exp \\left( \\delta ^{\\prime }-\\delta\n+r^{\\prime }\\right) \\right\\vert \\epsilon \\right] , \\\\\nFB\\left( 1-\\zeta ,1-h\\right) =0\n\\end{gather*}\\] where \\(\\epsilon=(\\epsilon_r,\\epsilon_\\delta,\\epsilon_q,\\epsilon_p)\\).\nWe do not need to include the definition \\(\\zeta = \\frac{c}{w}\\) because we will impose it to hold exactly in the solution by setting \\(c=w\\zeta\\) and \\(c^{\\prime}=w^{\\prime}\\zeta ^{\\prime}\\).\nWe next construct the residuals in the above two equations which we will minimize. For given vectors of next-period shocks \\(\\epsilon=(\\epsilon_r,\\epsilon_\\delta,\\epsilon_q,\\epsilon_p)\\), state \\(s=(r,\\delta ,q,p,w)\\) and next-period shocks, we define: \\[\\begin{equation*}\n\\begin{matrix}\nR_1(s,\\epsilon)=\\beta \\overline{r}\\left[ \\left. \\frac{u^{\\prime }\\left(\nc^{\\prime }\\right) }{u^{\\prime }(c)}\\exp \\left( \\delta ^{\\prime }-\\delta\n+r^{\\prime }\\right) \\right\\vert \\epsilon \\right] -h,\n\\\\\nR_2(s)=FB\\left( 1-\\zeta ,1-h\\right),\n\\end{matrix}\n\\end{equation*}\\] where the transition equation is \\(w^{\\prime }=\\left( w-c\\right) \\overline{r%\n}\\exp (r)+\\exp (y)\\).\n\ndef Residuals(theta, e_r: Vector, e_p: Vector, e_q: Vector, e_δ: Vector, r: Vector,  p: Vector, q: Vector, δ: Vector,  w: Vector):\n\n    # all inputs are expected to have the same size n\n    n = r.shape[0]\n\n    # arguments correspond to the values of the states today\n    ζ, h = dr(theta, r, p, q, δ, w)\n    c = ζ*w\n\n    # transitions of the exogenous processes\n    rnext = r*ρ_r + e_r\n    pnext = p*ρ_p + e_p\n    qnext = q*ρ_q + e_q\n    δnext = δ*ρ_δ + e_δ\n\n    # (epsilon = (rnext, δnext, pnext, qnext))\n    \n    # transition of endogenous states (next denotes variables at t+1)\n    wnext = jnp.exp(pnext)*jnp.exp(qnext) + (w-c)*rbar*jnp.exp(rnext)\n\n    ζnext, hnext = dr(theta, rnext, pnext,  qnext, δnext,  wnext)\n    cnext = ζnext*wnext\n\n\n    R1 = β*jnp.exp(δnext-δ)*(cnext/c)**(-γ)*rbar*jnp.exp(rnext) - h\n    R2 = min_FB(1-h,1-ζ)\n\n    return (R1, R2)",
+    "crumbs": [
+      "Hands-on",
+      "Deep learning solution method with all-in-one expectation operator"
+    ]
+  },
+  {
+    "objectID": "handson/qe_notebook_jax.html#the-expected-squared-sum-of-residuals",
+    "href": "handson/qe_notebook_jax.html#the-expected-squared-sum-of-residuals",
+    "title": "Deep learning solution method with all-in-one expectation operator",
+    "section": "The expected squared sum of residuals",
+    "text": "The expected squared sum of residuals\nWe construct the objective function for minimization as the squared sum of two residuals in the two model’s equations on a given 5-dimensional domain \\(s=(r,\\delta ,q,p,w)\\): \\[\\begin{equation*}\n\\Xi (\\theta )=E_{s}\\left[ \\left( E_{\\epsilon }\\left[ \\left.R_1(s,\\epsilon)\\right\\vert\n\\epsilon \\right] \\right) ^{2}+v\\left( R_2(s)\\right) ^{2}\\right] ,\n\\end{equation*}\\] where \\(v\\) is the exogenous relative weights of the two residuals in the objective function. We placed the first residual \\(R_1(s,\\epsilon)\\) under the expectation operator \\(E_{\\epsilon }\\) across next-period shocks $=( {r},{},{q},{p}) $ as is required by the definition of \\(h\\); the second residual \\(R_2(s)\\) does not include random variables\nand requires no expectation operator. The value of the objective function \\(\\Xi (\\theta )\\) depends on the coefficients $$ because these coefficients determine the choices via\n\\[\\begin{equation*}\n\\left(\n\\begin{matrix}\n\\zeta  \\\\\nh%\n\\end{matrix}%\n\\right) =\\varphi (s;\\theta ).\n\\end{equation*}\\] A shortcoming of the constructed objective function is that it requires a potentially costly evaluation of two nested expectation operators: for each random grid point \\(s=(r,\\delta ,q,p,w)\\), we need to construct a separate approximation of the expectation function $E_{}$ by considering a potentially large number of next period shocks $=( {r}, {},{q},{p}) \\(. In particular, if there are\\)n$ grid points and \\(J\\) next-period shocks, we have \\(n\\times J\\) function evaluations.",
+    "crumbs": [
+      "Hands-on",
+      "Deep learning solution method with all-in-one expectation operator"
+    ]
+  },
+  {
+    "objectID": "handson/qe_notebook_jax.html#all-in-one-expectation-function",
+    "href": "handson/qe_notebook_jax.html#all-in-one-expectation-function",
+    "title": "Deep learning solution method with all-in-one expectation operator",
+    "section": "All-in-one expectation function",
+    "text": "All-in-one expectation function\nWe now introduce a technique which we call an all-in-one expectation operator that makes it possible to merge the two expectation operators into a single one. This technique relies on a simple result from probability theory that says that for two random variables \\(a\\) and \\(b\\), which are independent and follow the same distribution, we have \\(E[a]^{2}=E[a]E[b]=E[ab]\\).\nTherefore, we replace \\(\\left( E_{\\epsilon }\\left[ \\left. R_1(s,\\epsilon)\\right\\vert\n\\epsilon \\right] \\right) ^{2}\\) by the product of two residuals constructed by using two uncorrelated random draws \\(\\epsilon _{1}\\) and \\(\\epsilon _{2}\\), and as a result, we can pull the expectation out of squares \\[\\begin{equation*}\nE_{\\epsilon _{1}}\\left[ \\left. R_1(s,\\epsilon_1)\\right\\vert \\epsilon _{1}\\right]\nE_{\\epsilon _{2}}\\left[ \\left. R_1(s,\\epsilon_2)\\right\\vert \\epsilon _{2}\\right]\n=E_{\\epsilon _{1},\\epsilon _{2}}\\left[ \\left( \\left. R_1(s,\\epsilon_1)\\right\\vert \\epsilon\n_{1}\\right) \\left( \\left. R_1(s,\\epsilon_2)\\right\\vert \\epsilon _{2}\\right) \\right].\n\\end{equation*}\\] With that result, we can re-write the objective function as just one expectation operator: \\[\\begin{equation*}\n\\Xi (\\theta )=E_{s,\\epsilon _{1}\\epsilon _{2}}\\left[ \\underset{\\xi (\\omega\n;\\theta )}{\\underbrace{\\left[ \\left( \\left. R_{1}\\left( s,\\epsilon\n_{1}\\right) \\right\\vert \\epsilon _{1}\\right) \\left( \\left. R_{1}\\left(\ns,\\epsilon _{2}\\right) \\right\\vert \\epsilon _{2}\\right) \\right] +v\\left(\nR_{2}\\left( s\\right) \\right) ^{2}}}\\right] \\equiv E_{\\omega }\\left[ \\xi\n(\\omega ;\\theta )\\right],\n\\end{equation*}\\] where \\(\\omega =(s,\\epsilon _{1},\\epsilon _{2})\\). Therefore, we wrote the objective function of the deep learning method as a single expectation operator $E_{}$ of a function \\(%\n\\xi (\\omega ;\\theta )\\) that depends on a vector-valued random variable $% $. We approximate \\(\\Xi (\\theta )\\) by using Monte Carlo simulation: \\[\\begin{equation*}\n\\Xi (\\theta )\\approx \\Xi ^{n}(\\theta )=\\frac{1}{n}\\sum_{i=1}^{n}\\xi (\\omega\n_{i};\\theta ),\n\\end{equation*}\\] i.e., we draw \\(n\\) random draws of \\(\\omega =(s,\\epsilon _{1},\\epsilon _{2})\\) and compute the average of the objective function.\n\ndef Ξ(n, theta, key): # objective function for DL training\n\n    keys = jax.random.split(key, 13)\n\n    # randomly drawing current states\n    r = jax.random.normal(keys[0], shape=(n,))*σ_e_r\n    p = jax.random.normal(keys[1], shape=(n,))*σ_e_p\n    q = jax.random.normal(keys[2], shape=(n,))*σ_e_q\n    δ = jax.random.normal(keys[3], shape=(n,))*σ_e_δ\n\n    w = jax.random.uniform(keys[4], shape=(n,), minval=wmin, maxval=wmax)\n \n    # randomly drawing 1st realization for shocks\n    e1_r = jax.random.normal(keys[5], shape=(n,))*σ_r\n    e1_p = jax.random.normal(keys[6], shape=(n,))*σ_p\n    e1_q = jax.random.normal(keys[7], shape=(n,))*σ_q\n    e1_δ = jax.random.normal(keys[8], shape=(n,))*σ_δ\n\n    # randomly drawing 2nd realization for shocks\n    e2_r = jax.random.normal(keys[9], shape=(n,))*σ_r\n    e2_p = jax.random.normal(keys[10], shape=(n,))*σ_p\n    e2_q = jax.random.normal(keys[11], shape=(n,))*σ_q\n    e2_δ = jax.random.normal(keys[12], shape=(n,))*σ_δ\n    \n    \n    # residuals for n random grid points under 2 realizations of shocks\n    R1_e1, R2_e1 = Residuals(theta, e1_r, e1_p, e1_q, e1_δ, r, p, q, δ, w)\n    R1_e2, R2_e2 = Residuals(theta, e2_r, e2_p, e2_q, e2_δ, r, p, q, δ, w)\n\n    # construct all-in-one expectation operator\n    R_squared = R1_e1*R1_e2 + R2_e1*R2_e2 \n    \n    # compute average across n random draws\n    return jnp.mean(R_squared)\n\nSo far, we have been using JAX in the eager execution mode as if it was numpy: result of each operation is computed immediately.\n\nn = 128\nkey = jax.random.key(13)\nv = Ξ(n, theta_0, key)\nv\n\nArray(0.32632732, dtype=float32)\n\n\nNote that the intermediate results are still stored as special JAX objects (tensors) and they can be converted to a regular value easily.\n\nfloat(v)\n\n0.3263273239135742",
+    "crumbs": [
+      "Hands-on",
+      "Deep learning solution method with all-in-one expectation operator"
     ]
   },
   {
@@ -691,7 +1692,7 @@
     "href": "slides/methods.html#ar1-tauchen",
     "title": "Methods",
     "section": "AR1: Tauchen",
-    "text": "AR1: Tauchen\n\nThe unconditional distribution of an AR1 is a normal law \\(\\mathcal{N}(0,\\frac{\\sigma}{\\sqrt{1-\\rho^2}})\\)\nChoose \\(m&gt;0\\), typically \\(m=3\\)\nBound the process: \\(\\underline{x} = -m \\frac{\\sigma}{\\sqrt{1-\\rho^2}}\\) and \\(\\overline{x} = m \\frac{\\sigma}{\\sqrt{1-\\rho^2}}\\)\nDefine the \\(N\\) discretized points (\\(i\\in[1,n]\\)): \\(y_i = \\underline{x} + \\frac{i-1}{N-1}(\\overline{x}-\\underline{x})\\)\nDefine the transitions:\n\n\\[\\begin{eqnarray}\n\\pi_{ij} & = & prob \\left( y_{t+1}=y_j|y_t=y_i\\right)\\\\\n         & = & prob \\left( |y_{t+1}-x_j| = \\inf_k |y_{t+1}-x_k| \\left| y_t=y_i \\right. \\right)\n\\end{eqnarray}\\]",
+    "text": "AR1: Tauchen\n\nThe unconditional distribution of an AR1 is a normal law \\(\\mathcal{N}(0,\\frac{\\sigma}{\\sqrt{1-\\rho^2}})\\)\nChoose \\(m&gt;0\\), typically \\(m=3\\)\nBound the process: \\(\\underline{x} = -m \\frac{\\sigma}{\\sqrt{1-\\rho^2}}\\) and \\(\\overline{x} = m \\frac{\\sigma}{\\sqrt{1-\\rho^2}}\\)\nDefine the \\(N\\) discretized points (\\(i\\in[1,n]\\)): \\(y_i = \\underline{x} + \\frac{i-1}{N-1}(\\overline{x}-\\underline{x})\\)\nDefine the transitions:\n\n\\[\\pi_{ij} = prob \\left( y_{t+1}=y_j|y_t=y_i\\right)\\] \\[\\pi_{ij} = prob \\left( |y_{t+1}-x_j| = \\inf_k |y_{t+1}-x_k| \\left| y_t=y_i \\right. \\right)\\]",
     "crumbs": [
       "Slides",
       "Methods"
@@ -724,7 +1725,7 @@
     "href": "slides/methods.html#rouvenhorst-method-1",
     "title": "Methods",
     "section": "Rouvenhorst method (1)",
-    "text": "Rouvenhorst method (1)\n\nN = 2\n\nchoose \\(y_1=-\\psi\\), \\(y_2=\\psi\\)\ndefine transition matrix: \\[\\Theta_2 = \\begin{bmatrix}\np & 1-p\\\\\\\\\n1-q & q\n\\end{bmatrix}\\]\nchoose \\(p\\), \\(q\\) and \\(\\psi\\) to match some moments: \\(E()\\), \\(Var()\\), \\(ACor()\\)\n\nthey can be computed analytically for AR1 and for discretized version.",
+    "text": "Rouvenhorst method (1)\n\nN = 2\n\nchoose \\(y_1=-\\psi\\), \\(y_2=\\psi\\)\ndefine transition matrix: \\[\n\\Theta_2 = \\begin{bmatrix}\np & 1-p\\\\\n1-q & q\n\\end{bmatrix}\n\\]\nchoose \\(p\\), \\(q\\) and \\(\\psi\\) to match some moments: \\(E()\\), \\(Var()\\), \\(ACor()\\)\n\nthey can be computed analytically for AR1 and for discretized version.",
     "crumbs": [
       "Slides",
       "Methods"
@@ -819,6 +1820,17 @@
     ]
   },
   {
+    "objectID": "slides/methods.html#quantization-using-quantiles",
+    "href": "slides/methods.html#quantization-using-quantiles",
+    "title": "Methods",
+    "section": "Quantization using quantiles",
+    "text": "Quantization using quantiles\n\nEquiprobable discretization\nWorks for any distribution with pdf and cdf\nSplit the space into equal \\(N\\) quantiles: \\[(I_i=[a_i,a_{i+1}])_{i=1:N}\\] such that \\[prob(\\epsilon \\in I_i)=\\frac{1}{N}\\]\nChoose the nodes as the median of each interval: \\[prob(\\epsilon\\in[a_i,x_i]) = prob(\\epsilon\\in[x_i,a_{i+1}])\\]\nThe quantization is \\((1/N, x_i)_{i=1:N}\\)",
+    "crumbs": [
+      "Slides",
+      "Methods"
+    ]
+  },
+  {
     "objectID": "slides/methods.html#quadrature-rule",
     "href": "slides/methods.html#quadrature-rule",
     "title": "Methods",
@@ -871,6 +1883,369 @@
     "crumbs": [
       "Slides",
       "Methods"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning.html#clarifications",
+    "href": "slides/deeplearning.html#clarifications",
+    "title": "Introduction to deeplearning",
+    "section": "Clarifications:",
+    "text": "Clarifications:\n\nneural networks and neurons in our brains are two distinct concepts\nbrains do things in different ways (e.g. long range connections)\nNN are fast and their organization is not always inspired by the brain",
+    "crumbs": [
+      "Slides",
+      "Introduction to deeplearning"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning.html#the-perceptron",
+    "href": "slides/deeplearning.html#the-perceptron",
+    "title": "Introduction to deeplearning",
+    "section": "The Perceptron",
+    "text": "The Perceptron\nFirst neural neuron, the perception, invented by a psychologist, Dr Rosenblatt (1952):",
+    "crumbs": [
+      "Slides",
+      "Introduction to deeplearning"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning.html#modern-neural-model",
+    "href": "slides/deeplearning.html#modern-neural-model",
+    "title": "Introduction to deeplearning",
+    "section": "Modern neural model",
+    "text": "Modern neural model\nEvolution of the model:\n\narbitrary activation function \\(f\\)",
+    "crumbs": [
+      "Slides",
+      "Introduction to deeplearning"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning.html#activation-functions",
+    "href": "slides/deeplearning.html#activation-functions",
+    "title": "Introduction to deeplearning",
+    "section": "Activation functions",
+    "text": "Activation functions\n\nheavyside function: \\(h(x)=1_{x \\geq 0}\\)\nsigmoid (logistic): \\(\\sigma(x)=\\frac{1}{1+e^{-x}}\\)\n\ncool fact: \\(\\sigma^\\prime(x)=\\sigma(x)(1-\\sigma(x))\\)\n\narctan\nrelu: \\(r(x)=x*1_{x \\geq 0}\\)\nleaky relu: \\(r(x)=\\kappa x 1_{x &lt; 0} + 1_{x \\geq 0}\\)",
+    "crumbs": [
+      "Slides",
+      "Introduction to deeplearning"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning.html#activation-functions-1",
+    "href": "slides/deeplearning.html#activation-functions-1",
+    "title": "Introduction to deeplearning",
+    "section": "Activation functions",
+    "text": "Activation functions",
+    "crumbs": [
+      "Slides",
+      "Introduction to deeplearning"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning.html#topologies-feed-forward-1",
+    "href": "slides/deeplearning.html#topologies-feed-forward-1",
+    "title": "Introduction to deeplearning",
+    "section": "Topologies (feed forward 1)",
+    "text": "Topologies (feed forward 1)\n\nMultilayer perceptron:\n\\[A_0(\\tau_1 (A_1 \\tau_2 (A_2 (.... ) + B_2)) )+ B_1\\]\n\nwhere the \\(\\tau_i\\) are activation functions, A the weights, B the biases.",
+    "crumbs": [
+      "Slides",
+      "Introduction to deeplearning"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning.html#topologies-feed-forward-2",
+    "href": "slides/deeplearning.html#topologies-feed-forward-2",
+    "title": "Introduction to deeplearning",
+    "section": "Topologies (feed forward 2)",
+    "text": "Topologies (feed forward 2)\n\nConvolutional networks:\n\nrecognize/classify images\nused for features extraction in other algos\n\nEncoder",
+    "crumbs": [
+      "Slides",
+      "Introduction to deeplearning"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning.html#topologies-others",
+    "href": "slides/deeplearning.html#topologies-others",
+    "title": "Introduction to deeplearning",
+    "section": "Topologies (others)",
+    "text": "Topologies (others)\n\nRecurrent neural network\n\nhave a memory\nuseful for sequential data (speech, text)",
+    "crumbs": [
+      "Slides",
+      "Introduction to deeplearning"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning.html#training-a-neural-network",
+    "href": "slides/deeplearning.html#training-a-neural-network",
+    "title": "Introduction to deeplearning",
+    "section": "Training a neural network",
+    "text": "Training a neural network\nOverall a neural network is a (very) nonlinear approximation function \\(f(x; \\theta)\\) which depends on a lot of deep parameters \\(\\theta\\).\nThey can be trained to perform a specific objective. For instance to fit some data \\((x_n,y_n)\\)\n\\[\\min_{\\theta} \\sum_i (f(x_i, \\theta) - y_i)^2\\]\nMore accurately if we have access to a random subset \\(\\epsilon\\in \\cal{D}\\) of the data (or the generating process), we want to perform\n\\[\\min_{\\theta} \\Xi(\\theta) = \\min_{\\theta} E_{\\epsilon} \\underbrace{\\sum_{(x_i,y_i)\\in D} (f(x_i, \\theta) - y_i)^2}_{\\xi(\\epsilon, \\theta)}\\]\n\\(\\xi(\\theta)\\) is called “empirical risk”, while \\(\\Xi(\\theta)\\) is called “theoretical risk”.\nThis is can be done for regression or classification tasks. Check tensor playground",
+    "crumbs": [
+      "Slides",
+      "Introduction to deeplearning"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning.html#why-does-it-work-now",
+    "href": "slides/deeplearning.html#why-does-it-work-now",
+    "title": "Introduction to deeplearning",
+    "section": "Why does it work now?",
+    "text": "Why does it work now?\n\ncomputational neural networks have been around for a while\n\nperceptron 1952\npopular in the 80s, less so in th 90s\nall the rage again (with deeper networks)\n\na new technological stack\n\nvectorization and parallel computing\n\nGPUS (1920 cores on gtx 1070!)\n\ncloud computing\nsoftware stack:\n\ngit, linux\ntheano, tensorflow, pytorch, jax…",
+    "crumbs": [
+      "Slides",
+      "Introduction to deeplearning"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning.html#optimization",
+    "href": "slides/deeplearning.html#optimization",
+    "title": "Introduction to deeplearning",
+    "section": "Optimization",
+    "text": "Optimization\nHow do we optimize the function \\(\\Xi(\\theta)\\) ?",
+    "crumbs": [
+      "Slides",
+      "Introduction to deeplearning"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning.html#gradient-descent",
+    "href": "slides/deeplearning.html#gradient-descent",
+    "title": "Introduction to deeplearning",
+    "section": "Gradient descent",
+    "text": "Gradient descent\nConsider the scalar function \\(\\Xi(\\theta)\\) where \\(\\theta\\) is a vector. How do we optimize it?\n\nDenote the gradient of the objective by:\n\\[\\nabla_{\\theta}=   \\begin{bmatrix} \\frac{\\partial}{\\partial \\theta_1} \\\\\\\\...\\\\\\\\\\frac{\\partial}{\\partial \\theta_n} \\end{bmatrix}\\]\nGradient descent: follow to steepest slope, apply a learning rate \\(\\gamma\\).\n\\[\\theta \\leftarrow \\theta - \\gamma \\nabla_{\\theta}\\Xi(\\theta)\\]",
+    "crumbs": [
+      "Slides",
+      "Introduction to deeplearning"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning.html#variants-of-gradient-descent",
+    "href": "slides/deeplearning.html#variants-of-gradient-descent",
+    "title": "Introduction to deeplearning",
+    "section": "Variants of Gradient Descent",
+    "text": "Variants of Gradient Descent\n\nMomentum: (ball goes down the hill, \\(\\gamma\\) is air-resistence)\n\\[v_t = \\gamma v_{t-1} + \\eta \\nabla_{\\theta} J(\\theta)\\] \\[\\theta \\leftarrow \\theta - v_t\\]\nNesterov Momentum: (slow down before going up…)\n\\[v_t = \\gamma v_{t-1} + \\eta \\nabla_{\\theta} J\\left(\\theta-\\gamma v_{t-1}\\right)\\] \\[\\theta \\leftarrow \\theta - v_t\\]",
+    "crumbs": [
+      "Slides",
+      "Introduction to deeplearning"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning.html#variants-of-gradient-descent-2",
+    "href": "slides/deeplearning.html#variants-of-gradient-descent-2",
+    "title": "Introduction to deeplearning",
+    "section": "Variants of Gradient Descent (2)",
+    "text": "Variants of Gradient Descent (2)\n\nLearning rate annealing\n\\[\\eta_t = \\eta_0 / ({1+\\kappa t})\\]\nParameter specific updates (ADAM)\n\\[m_t = \\beta_1 m_{t-1} + (1-\\beta_1) g_t\\] \\[v_t = \\beta_2  v_{t-1} + (1-\\beta_2) g_t^2\\]\n\\[\\theta_{t+1} \\leftarrow \\theta_t-\\frac{\\eta}{\\sqrt{\\frac{v_t}{1-\\beta_2^t}+\\epsilon}}\\frac{m_t}{1-\\beta_1^t}\\]\nsee AdaGrad, AdaMax, Rmsprop",
+    "crumbs": [
+      "Slides",
+      "Introduction to deeplearning"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning.html#problem-1-overshooting",
+    "href": "slides/deeplearning.html#problem-1-overshooting",
+    "title": "Introduction to deeplearning",
+    "section": "Problem 1: overshooting",
+    "text": "Problem 1: overshooting",
+    "crumbs": [
+      "Slides",
+      "Introduction to deeplearning"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning.html#problem-2-saddle-points",
+    "href": "slides/deeplearning.html#problem-2-saddle-points",
+    "title": "Introduction to deeplearning",
+    "section": "Problem 2: saddle points",
+    "text": "Problem 2: saddle points",
+    "crumbs": [
+      "Slides",
+      "Introduction to deeplearning"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning.html#problem-3-function-is-not-smooth",
+    "href": "slides/deeplearning.html#problem-3-function-is-not-smooth",
+    "title": "Introduction to deeplearning",
+    "section": "Problem 3: function is not smooth",
+    "text": "Problem 3: function is not smooth",
+    "crumbs": [
+      "Slides",
+      "Introduction to deeplearning"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning.html#stochastic-gradient-descent",
+    "href": "slides/deeplearning.html#stochastic-gradient-descent",
+    "title": "Introduction to deeplearning",
+    "section": "Stochastic gradient descent",
+    "text": "Stochastic gradient descent\n\nGiven \\(\\epsilon \\sim \\mathcal{D}\\), minimize \\[\\Xi(\\theta)=E J(\\theta,\\epsilon)\\]\nIdea: draw a random \\(\\epsilon_t\\) at each step and do: \\[\\theta\\leftarrow \\theta + \\gamma J(\\theta,\\epsilon_t)\\]\nIt works !1\n\nReason: \\(\\nabla_{\\theta}\\Xi = E\\left[ \\nabla_{\\theta} J(\\theta,\\epsilon) \\right]\\)\n\\(\\gamma\\) small, the cumulative last steps (\\(\\sum_k \\gamma^k \\nabla_{\\theta} J(\\theta_{t-k},\\epsilon_{t-k})\\) ) are close to unbiased\nlogic extends to other GD algorithms\n\n\nTheoretical results can be obtained if learning rate decreases with \\(\\gamma_n \\rightarrow 0\\) and \\(\\sum_n 1/\\gamma_n \\rightarrow \\infty\\). Typically one establish convergence “almost surely” to a local minimim in the general case or almost surely in the convex case.",
+    "crumbs": [
+      "Slides",
+      "Introduction to deeplearning"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning.html#stochastic-gradient-descent-2",
+    "href": "slides/deeplearning.html#stochastic-gradient-descent-2",
+    "title": "Introduction to deeplearning",
+    "section": "Stochastic gradient descent (2)",
+    "text": "Stochastic gradient descent (2)\n\nCan escape local minima (with annealing)\nGradient is estimated from a random mini-batch \\((\\epsilon_1, ... \\epsilon_{N_m})\\)\n\\[\\theta\\leftarrow \\theta + \\gamma \\sum_{i=1:N_m} \\nabla J(\\theta,\\epsilon^i)\\]\nCommon case: dataset set finite \\((\\epsilon_1, ..., \\epsilon_N)\\)\n\nbatch gradient: full dataset\nmini-batch gradient: random (shuffled) \\((\\epsilon_i)_{i \\in 1:N_m}\\)\nstochastic gradient: one point",
+    "crumbs": [
+      "Slides",
+      "Introduction to deeplearning"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning.html#introduction-1",
+    "href": "slides/deeplearning.html#introduction-1",
+    "title": "Introduction to deeplearning",
+    "section": "Introduction (1)",
+    "text": "Introduction (1)\n\nDeeplearning has many impressive applications\n\nreconstruct images/scenes, produce original Chopin music or BOE speeches, play Go…\n\nWorks in “you know more than you think applications”\n\nalgorithmically/mathematically complex\neasy to do by trained humans\n\nSolving a rational expectation model should be easy!\n\nright?",
+    "crumbs": [
+      "Slides",
+      "Introduction to deeplearning"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning.html#introduction-2",
+    "href": "slides/deeplearning.html#introduction-2",
+    "title": "Introduction to deeplearning",
+    "section": "Introduction (2)",
+    "text": "Introduction (2)\n\nWe offer a unified approach for casting three fundamental objects of economic dynamics -lifetime reward, Bellman equation, Euler equation- into deep learning objective function\nWe show how to solve economic models on random grids (stochastic optimization)\nWe introduce “all-in-one expectation operator” that merges all randomness into one operator\nWe use Google TensorFlow - the software that led to break-ground applications in data science; see code in https://notes.quantecon.org/submission\n\n\ntoday: I’ ll show th code with JAX ;)",
+    "crumbs": [
+      "Slides",
+      "Introduction to deeplearning"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning.html#how-can-we-solve-so-huge-models",
+    "href": "slides/deeplearning.html#how-can-we-solve-so-huge-models",
+    "title": "Introduction to deeplearning",
+    "section": "How can we solve so huge models?",
+    "text": "How can we solve so huge models?\n\nNeural network performs model reduction: It extracts information from many inputs and condenses it into a small set of hidden layers\nNeural network deals with ill conditioning: It learns to ignore redundant and collinear variables\nWe solve the high-dimensional Krusell-Smith model using stochastic simulation: We focus on the ergodic set in which the solution “lives”\nTaken together, these three features allow us to deal with a huge state space of 2,001 variables",
+    "crumbs": [
+      "Slides",
+      "Introduction to deeplearning"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning.html#method",
+    "href": "slides/deeplearning.html#method",
+    "title": "Introduction to deeplearning",
+    "section": "Method",
+    "text": "Method\n\nDefine the objective function \\(\\Xi_{n} (\\theta)=\\frac{1}{n} \\sum _{i=1}^{n} \\xi (x_{i};\\varphi ( \\cdot ;\\theta ))\\), where \\(\\{ x_{i} \\} _{i=1}^{n}\\) is the given set of features (data points).\nDefine a family of parametric functions \\(\\{ \\varphi ( \\cdot ;\\theta ) : \\theta \\in \\mathbb{R}^{d_{\\theta }}  \\}\\).\nTrain the machine, i.e., find \\(\\theta\\) that minimizes the objectives.\nCheck accuracy of the constructed approximation.\n\nWe are just left to frame the economic model as an objective for the empirical risk!",
+    "crumbs": [
+      "Slides",
+      "Introduction to deeplearning"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning.html#consumption-saving-problem-with-multiple-shocks",
+    "href": "slides/deeplearning.html#consumption-saving-problem-with-multiple-shocks",
+    "title": "Introduction to deeplearning",
+    "section": "Consumption-saving problem with multiple shocks",
+    "text": "Consumption-saving problem with multiple shocks\n\\[\\underset{ c_{t},w_{t+1} }{\\max}E_{0}[\\sum_{t=0}^{\\infty }\\beta ^{t}e^{\\color{\\red}\\chi_{\\color{\\red}t}}u( {c_{t}})]\\]\ns.t. \\(w_{t+1}=re^{\\color{\\red}\\varrho_{\\color{\\red}t}}( w_{t}-c_{t})+e^{\\color{\\red}y_{\\color{\\red}t}}e^{\\color{\\red}p_{\\color{\\red}t} }\\),\n\\(c_{t}\\leq w_{t}\\),\n\\(( z_{0},w_{0})\\) given.\n\n\\(c_{t}\\) = consumption; \\(w_{t}\\) = cash-on-hand; \\(r\\in ( 0,\\frac{1}{\\beta })\\).\neach \\(z_t\\in \\{ y_t,p_t,\\varrho_t ,\\chi_t \\}\\) follows an AR(1) process: \\(z_{t+1}=\\rho z_{t}+\\sigma\\epsilon_{t+1}\\).",
+    "crumbs": [
+      "Slides",
+      "Introduction to deeplearning"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning.html#optimality-conditions",
+    "href": "slides/deeplearning.html#optimality-conditions",
+    "title": "Introduction to deeplearning",
+    "section": "Optimality conditions",
+    "text": "Optimality conditions\n\nKuhn-Tucker conditions:\n\n\\(c-w\\leq 0\\), \\(h\\geq 0\\) and \\(( c-w) h=0\\), \\[h\\equiv u^{\\prime }(c)e^{\\chi -\\varrho }-\\beta rE[ u^{\\prime}( c^{\\prime }) e^{\\chi ^{\\prime }}] = \\text{Lagrange multiplier}\\]\n\nBellman equation:\n\n\\(V( z,w) =\\underset{c,w^{\\prime }}{\\max } \\\\\\{ u(c)+\\beta\nE_{\\epsilon }[ V( z^{\\prime },w^{\\prime }) ]  \\\\\\}\\)",
+    "crumbs": [
+      "Slides",
+      "Introduction to deeplearning"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning.html#objective-1-lifetime-reward-maximization",
+    "href": "slides/deeplearning.html#objective-1-lifetime-reward-maximization",
+    "title": "Introduction to deeplearning",
+    "section": "Objective 1: Lifetime reward maximization",
+    "text": "Objective 1: Lifetime reward maximization\n\nParameterize consumption function \\(c ( \\cdot ;\\theta )\\)\nConstruct the objective:\n\n\\[\\Xi (\\theta ) \\equiv E_{z_{0},w_{0},\\epsilon_{1},...,\\epsilon_{T} }[ \\sum_{t=0}^{T}\\beta ^{t}u( c(z_{t},w_{t};\\theta ) ) ]\\]\n\n\\(E_{z_{0},w_{0},\\epsilon_{1},...,\\epsilon_{T} }\\) has two types of randomness: a random state \\((z_{0},w_{0})\\) and random future shocks \\(\\left( \\epsilon_{1},...,\\epsilon_{T}\\right)\\)\nWe call \\(E_{ . }\\) all-in-one expectation operator: it summarizes all random variables in one place",
+    "crumbs": [
+      "Slides",
+      "Introduction to deeplearning"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning.html#objective-1-lifetime-reward-maximization-cont.",
+    "href": "slides/deeplearning.html#objective-1-lifetime-reward-maximization-cont.",
+    "title": "Introduction to deeplearning",
+    "section": "Objective 1: Lifetime reward maximization (cont.)",
+    "text": "Objective 1: Lifetime reward maximization (cont.)\n\nLifetime reward in the baseline model.",
+    "crumbs": [
+      "Slides",
+      "Introduction to deeplearning"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning.html#objective-2-euler-equation-method-with-kuhn-tucker-conditions",
+    "href": "slides/deeplearning.html#objective-2-euler-equation-method-with-kuhn-tucker-conditions",
+    "title": "Introduction to deeplearning",
+    "section": "Objective 2: Euler-equation method with Kuhn-Tucker conditions",
+    "text": "Objective 2: Euler-equation method with Kuhn-Tucker conditions\n\nFischer-Burmeister (FB) function:\n\n\\(\\Psi ^{FB}( a,b) =a+b-\\sqrt{a^{2}+b^{2}}=0\\)\nwith \\(a=c-w\\) and \\(b=u^{\\prime} (c)- \\beta re^{\\varrho_{t}}E_{\\epsilon }[ u^{\\prime }( c^{\\prime } ) ]\\)\nrepresents Kuhn-Tucker conditions \\(a\\geq 0\\), \\(b\\geq 0\\) and \\(ab=0\\) but differentiable\n\nObjective function:\n\nFor a random vector \\((z,w)\\) construct the expectation operator \\[\\Xi (\\theta ) \\equiv E_{(z,w)}[ \\Psi ^{FB}( c-w,u^{\\prime} (c)- \\beta re^{\\varrho_{t}}E_{\\epsilon }[ u^{\\prime }( c^{\\prime } ) ] ) ) ] ^{2}\\]\nNot all-in-one-expectation operator yet!",
+    "crumbs": [
+      "Slides",
+      "Introduction to deeplearning"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning.html#objective-2-euler-residual-minimization",
+    "href": "slides/deeplearning.html#objective-2-euler-residual-minimization",
+    "title": "Introduction to deeplearning",
+    "section": "Objective 2: Euler-residual minimization",
+    "text": "Objective 2: Euler-residual minimization\n\nEuler residuals in the baseline model.",
+    "crumbs": [
+      "Slides",
+      "Introduction to deeplearning"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning.html#consumption-decision-rule",
+    "href": "slides/deeplearning.html#consumption-decision-rule",
+    "title": "Introduction to deeplearning",
+    "section": "Consumption decision rule",
+    "text": "Consumption decision rule\n\nConsumption decision rule in the baseline model.",
+    "crumbs": [
+      "Slides",
+      "Introduction to deeplearning"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning.html#all-in-one-expectation-operators",
+    "href": "slides/deeplearning.html#all-in-one-expectation-operators",
+    "title": "Introduction to deeplearning",
+    "section": "All-in-one expectation operators",
+    "text": "All-in-one expectation operators\n\nIn lifetime-reward maximization,\n\n\\(E_{(z_{0},w_{0})}[ E_{( \\epsilon_{1},...,\\epsilon_{T})}u( \\cdot ) ] =E_{( z_{0},w_{0},\\epsilon_{1},...,\\epsilon_{T}) }[ u( \\cdot ) ]\\) because expectation operators are related linearly\n\nIn Euler-residual minimization, \\(E_{(z,w) }( E_{\\epsilon }[ f_{j}(z,w,\\epsilon )] )^{2}\\neq E_{(z,w)}E_{\\epsilon }[ f_{j}(z,w,\\epsilon )^{2}]\\), i.e., expectation operators cannot be naturally combined.\nAs a result, stochastic gradient is biased \\(E_{( z,w) }( E_{\\epsilon }[ \\nabla f_{j}(z,w,\\epsilon )] ) ^{2}\\neq \\nabla E_{(z,w) }( E_{\\epsilon }[ f_{j}(z,w,\\epsilon )] )^{2}\\).",
+    "crumbs": [
+      "Slides",
+      "Introduction to deeplearning"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning.html#a-little-trick",
+    "href": "slides/deeplearning.html#a-little-trick",
+    "title": "Introduction to deeplearning",
+    "section": "A little trick",
+    "text": "A little trick\n\nThere is a simple technique that allows us to combine the expectation functions \\(E_{(z,w)}[ \\cdot]\\) and \\(E_{\\epsilon }[ \\cdot ]\\) in a single expectation operator in the presence of squares.\nSpecifically, we use two independent random draws or two batches \\(\\epsilon_{1}\\) and \\(\\epsilon_{2}\\) for the two squared terms: \\[\\left(E_{ \\epsilon}[ f( \\epsilon) ]\\right)^ 2=E_{\\epsilon_{1}}[ f( \\epsilon_{1})] E_{\\epsilon_{2}}[ f( \\epsilon_{2})]=E_{( \\epsilon_{1,}\\epsilon_{2}) }[ f( \\epsilon_{1}) f(\\epsilon_{2}) ]\\]\nWith this method, the stochastic gradient descent method is unbiased.\n\n\\[E_{\\eta}[\\left(E_{ \\epsilon}[ f(\\eta, \\epsilon) ]\\right)^ 2]=E_{(\\eta, \\epsilon_{1,}\\epsilon_{2}) }[ f( \\eta, \\epsilon_{1}) f(\\eta, \\epsilon_{2}) ]\\]",
+    "crumbs": [
+      "Slides",
+      "Introduction to deeplearning"
+    ]
+  },
+  {
+    "objectID": "slides/deeplearning.html#comments-of-the-method",
+    "href": "slides/deeplearning.html#comments-of-the-method",
+    "title": "Introduction to deeplearning",
+    "section": "Comments of the method",
+    "text": "Comments of the method\n\nadvantages\n\nneural networks:\n\nflexible functional form (kinks)\nrobust to colinearity\nimplicit dimensionality reduction\n\ngeneric training method\nscales well\n\nlots of hyperparameters to be tuned:\n\nlearning method (SGD, ADAM, AdaGrad, RmsProp)\nneural network topology (activation functions, width)",
+    "crumbs": [
+      "Slides",
+      "Introduction to deeplearning"
     ]
   },
   {
@@ -1061,80 +2436,83 @@
     ]
   },
   {
-    "objectID": "exercises/python.html",
-    "href": "exercises/python.html",
-    "title": "Python Basics",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Computational Economics @ Bundesbank",
     "section": "",
-    "text": "(adapted from Quantecon)",
-    "crumbs": [
-      "Exercises",
-      "Python Basics"
-    ]
+    "text": "My email: pwinant@escp.eu\nWebsite for this course: https://www.mosphere.fr/bbank_ce_2024"
   },
   {
-    "objectID": "exercises/python.html#basics",
-    "href": "exercises/python.html#basics",
-    "title": "Python Basics",
-    "section": "Basics",
-    "text": "Basics\n\nExercise 1 Run the following code in the python interpreter:\ndef say_hello(name):\n    \"\"\"This function prints morning greetings\"\"\"\n\n    print(f\"Good morning {name}!\\n\")\n\n    # we can import libraries\n    import datetime\n    t = datetime.datetime.now()\n\n    # blocks are defined by indentation and colons\n    if (t.hour,t.min) &lt;= (9,15):\n        print(\"All good?\\n\")\n    else:\n        print(\"Time to get started?\\n\")\n\n\nsay_hello(\"Pablo\")\n\n\nExercise 2 What do you think the value of z is after running the code below?\n\nz = 3\nz = z + 4\nprint(\"z is\", z)\n\nz is 7\n\n\n\n\n# your response there\n\n\nExercise 3 Read about what the len function does (by writing len?).\nWhat will it produce if we give it the variable x?\nCheck whether you were right by running the code len(x).\n\n\n# your code here\n\n\nExercise 4 We can use our introspection skills to investigate a package’s contents.\nIn the cell below, use tab completion to find a function from the time module that will display the local time.\nUse time.FUNC_NAME? (where FUNC_NAME is replaced with the function you found) to see information about that function and then call the function.\nLook for something to do with the word local\n\n\nimport time\n# your code here\n\n\nExercise 5 The code below is invalid Python code (once uncommented)\n\n\n# x = 'What's wrong with this string'",
-    "crumbs": [
-      "Exercises",
-      "Python Basics"
-    ]
+    "objectID": "index.html#tentative-schedule",
+    "href": "index.html#tentative-schedule",
+    "title": "Computational Economics @ Bundesbank",
+    "section": "Tentative schedule",
+    "text": "Tentative schedule\n\nIntroduction to computational economics\n\nnov 6\n\npython\n\nnov 7\ndec 5\n\nnumpy / matplotlib\nmethods: interpolation / quantization\nalgorithm: time-iteration\nexercise: solving the neoclassical model\n(introduction to dolo)\n\ndec 6\n\nintroduction to JAX (vectorization/differentiation,…)\n\nvectorize\ndraw random numbers\ncreate a loop\n\nneural networks and deeplearning\nsolving model with deeplearning\n\nlifetime_reward: simple rule for consumption savings\nsolving euler equations: AiO operator\n\nperturbation theory"
   },
   {
-    "objectID": "exercises/python.html#collections",
-    "href": "exercises/python.html#collections",
-    "title": "Python Basics",
-    "section": "Collections",
-    "text": "Collections\n\nExercise 6 In the first cell, try y.append(z).\nIn the second cell try y.extend(z).\nExplain the behavior.\nWhen you are trying to explain use y.append? and y.extend? to see a description of what these methods are supposed to do.\n\n\ny = [\"a\", \"b\", \"c\"]\nz = [1, 2, 3]\n# \n\n\ny = [\"a\", \"b\", \"c\"]\nz = [1, 2, 3]\n# \n\n\nExercise 7 Verify that tuples are indeed immutable by attempting the following:\n\nChanging the first element of t to be 100\n\nAppending a new element \"!!\" to the end of t (remember with a list x we would use x.append(\"!!\") to do this\n\nSorting t\n\nReversing t\n\n\n\nt = (1,2,3,4)\n\n\nExercise 8 Look at the World Factbook for Australia and create a dictionary with data containing the following types: float, string, integer, list, and dict. Choose any data you wish.\nTo confirm, you should have a dictionary that you identified via a key.\n\n\n# your code here\n\n\nExercise 9 Use Jupyter’s help facilities to learn how to use the pop method to remove the key \"irrigated_land\" (and its value) from the dict.\n\n\n# uncomment and use the Inspector or ?\n#china_data.pop()\n\n\nExercise 10 Explain what happens to the value you popped.\nExperiment with calling pop twice.\n\n\n# your code here",
-    "crumbs": [
-      "Exercises",
-      "Python Basics"
-    ]
-  },
-  {
-    "objectID": "exercises/python.html#control",
-    "href": "exercises/python.html#control",
-    "title": "Python Basics",
-    "section": "Control",
-    "text": "Control\n\nExercise 11 Run the following two variations on the code with only a single change in the indentation.\nAfter, modify the x to print 3 and then 2, 3 instead.\n\n\nx = 1\n\nif x &gt; 0:\n    print(\"1\")\n    print(\"2\")\nprint(\"3\")\n\n1\n2\n3\n\n\n\nx = 1\n\nif x &gt; 0:\n    print(\"1\")\nprint(\"2\") # changed the indentation\nprint(\"3\")\n\n1\n2\n3\n\n\n\nExercise 12 Write a for loop that uses the lists of cities and states below to print the same “{city} is in {state}” using a zip instead of an enumerate.\n\n\ncities = [\"Phoenix\", \"Austin\", \"San Diego\", \"New York\"]\nstates = [\"Arizona\", \"Texas\", \"California\", \"New York\"]\n\n\nfor i,c in enumerate(cities):\n    print(c, \" : \", states[i])\n\nPhoenix  :  Arizona\nAustin  :  Texas\nSan Diego  :  California\nNew York  :  New York\n\n\n\n# your code here",
-    "crumbs": [
-      "Exercises",
-      "Python Basics"
-    ]
-  },
-  {
-    "objectID": "exercises/numeric.html",
-    "href": "exercises/numeric.html",
-    "title": "Numeric",
+    "objectID": "exercises/methods.html",
+    "href": "exercises/methods.html",
+    "title": "Methods",
     "section": "",
-    "text": "Selection from w3resources and rougier/numpy100\n\nExercise 1  \n\nWrite a NumPy program to generate five random numbers from the normal distribution.\n\n\n\n# code here\n\n\nExercise 2 Write a NumPy program to generate six random integers between 10 and 30.\n\n\n# code here\n\n\nExercise 3 Create a 3x3 matrix with values ranging from 0 to 8\n\n\n# code here\n\n\nExercise 4 Create 2d array \\(M\\) such of size 3*3 such that \\(M_{ij} = i\\times j\\)\n\n\n# code here\n\n\nExercise 5 Create 3 vectors of length 5 and create a matrix where each column is one of the vector.\n\n\n# code here\n\n\nExercise 6 Create 3 vectors of length 5 and create a matrix where each row is one of the vector.\n\n\n# code here\n\n\nExercise 7 Find indices of non-zero elements from np.array([1,2,0,0,4,0]). Replace them with -1.0\n\n\n# code here\n\n\nExercise 8 Write a NumPy program to normalize a 3x3 random matrix. (Define norm \\(|x|=\\sqrt{\\sum x_i^2}\\) and compute \\(M/|M|\\))\n\n\n# code here\n\n\nExercise 9 Create 2d array \\(M\\) such of size 3*3 such that \\(M_{ij} = i\\times j\\)\n\n\n# code here\n\n\nExercise 10 Take a random matrix \\(A\\) of size \\(N\\times 2\\) (N=10) where each line represents a different 2d point. Compute the euclidean distance matrix such that \\(E_{ij}\\) is the distance between point \\(i\\) and point \\(j\\).\n\n\n# code here\n\n\nExercise 11 Create A of size \\(10\\times 3\\). Create matrix \\(B\\) with the same column as \\(A\\) reordered by sum of absolute values.",
+    "text": "Exercise 1 Consider the function \\(f(x,y)=1-(x-x_0)^2-0.5(y-y_0)^2\\) with \\(x_0=0.5\\) and \\(y_0=1.0\\). Check the documentatin for scipy.optimize. Use it to maximze function \\(f\\).\n\n\n# one needs to define $f$ as a function of a vector\n# f(v)=1-(v[0]-x_0)^2-0.5*(v[1]-y_0)^2$ \n\n\nConsider the function \\(g(x)=0.1+exp(-x)x(1-x)\\) over [0,2]. Choose the scipy function and find the root of \\(g\\).\n\n\n#\n\n\nConsider the function \\(h(x,y)=0.1+exp(-x)x(1-x)\\) over [0,2]. Choose the scipy function and find the root of \\(g\\). to find the root of \\(g\\)?\n\n\n#",
     "crumbs": [
       "Exercises",
-      "Numeric"
+      "Methods"
     ]
   },
   {
-    "objectID": "exercises/numeric.html#using-numpy",
-    "href": "exercises/numeric.html#using-numpy",
-    "title": "Numeric",
+    "objectID": "exercises/methods.html#optimization-and-root-finding",
+    "href": "exercises/methods.html#optimization-and-root-finding",
+    "title": "Methods",
     "section": "",
-    "text": "Selection from w3resources and rougier/numpy100\n\nExercise 1  \n\nWrite a NumPy program to generate five random numbers from the normal distribution.\n\n\n\n# code here\n\n\nExercise 2 Write a NumPy program to generate six random integers between 10 and 30.\n\n\n# code here\n\n\nExercise 3 Create a 3x3 matrix with values ranging from 0 to 8\n\n\n# code here\n\n\nExercise 4 Create 2d array \\(M\\) such of size 3*3 such that \\(M_{ij} = i\\times j\\)\n\n\n# code here\n\n\nExercise 5 Create 3 vectors of length 5 and create a matrix where each column is one of the vector.\n\n\n# code here\n\n\nExercise 6 Create 3 vectors of length 5 and create a matrix where each row is one of the vector.\n\n\n# code here\n\n\nExercise 7 Find indices of non-zero elements from np.array([1,2,0,0,4,0]). Replace them with -1.0\n\n\n# code here\n\n\nExercise 8 Write a NumPy program to normalize a 3x3 random matrix. (Define norm \\(|x|=\\sqrt{\\sum x_i^2}\\) and compute \\(M/|M|\\))\n\n\n# code here\n\n\nExercise 9 Create 2d array \\(M\\) such of size 3*3 such that \\(M_{ij} = i\\times j\\)\n\n\n# code here\n\n\nExercise 10 Take a random matrix \\(A\\) of size \\(N\\times 2\\) (N=10) where each line represents a different 2d point. Compute the euclidean distance matrix such that \\(E_{ij}\\) is the distance between point \\(i\\) and point \\(j\\).\n\n\n# code here\n\n\nExercise 11 Create A of size \\(10\\times 3\\). Create matrix \\(B\\) with the same column as \\(A\\) reordered by sum of absolute values.",
+    "text": "Exercise 1 Consider the function \\(f(x,y)=1-(x-x_0)^2-0.5(y-y_0)^2\\) with \\(x_0=0.5\\) and \\(y_0=1.0\\). Check the documentatin for scipy.optimize. Use it to maximze function \\(f\\).\n\n\n# one needs to define $f$ as a function of a vector\n# f(v)=1-(v[0]-x_0)^2-0.5*(v[1]-y_0)^2$ \n\n\nConsider the function \\(g(x)=0.1+exp(-x)x(1-x)\\) over [0,2]. Choose the scipy function and find the root of \\(g\\).\n\n\n#\n\n\nConsider the function \\(h(x,y)=0.1+exp(-x)x(1-x)\\) over [0,2]. Choose the scipy function and find the root of \\(g\\). to find the root of \\(g\\)?\n\n\n#",
     "crumbs": [
       "Exercises",
-      "Numeric"
+      "Methods"
     ]
   },
   {
-    "objectID": "exercises/numeric.html#simulating-an-ar1",
-    "href": "exercises/numeric.html#simulating-an-ar1",
-    "title": "Numeric",
-    "section": "Simulating an AR1",
-    "text": "Simulating an AR1\nTake an AR1 process \\(x_t = A \\rho x_{t-1} + \\epsilon_t\\) with \\(\\epsilon_t \\sim \\Sigma\\) where \\(\\Sigma\\) is a positive definite matrix.\n\nExercise 12 Define 2x2 matrices \\(A\\) and \\(\\Sigma\\), the latter being symmetric positive definite\n\n\n# code here\n\n\nExercise 13 Compute asymptotic variance using matrix algebra (there is a recursive formula)\n\n\n# code here\n\n\nExercise 14 Simulate \\(N\\) draws for \\(T\\) periods and store the result in sim.\n\n\n# code here\n\n\nExercise 15 Compute ergodic variance (bonus compute std of the variance estimate)\n\n\n# code here\n\n\nExercise 16 Plot a few simulations on the same graph\n\n\n# code here\n\n\nExercise 17 Plot asymptotic distribution (seaborn)\n\n\n# code here\n\n\nExercise 18 Bonus: write a faster simulation routine.\n\n\n# code here",
+    "objectID": "exercises/methods.html#interpolation",
+    "href": "exercises/methods.html#interpolation",
+    "title": "Methods",
+    "section": "Interpolation",
+    "text": "Interpolation\nWe consider the function \\(f(x) = sinc(\\lambda x) = \\frac{sin(\\lambda x)}{x}\\). Let \\(I=(x_i)_{i=[1,10]}\\) be a regularly spaced interval between -2 and +2, containing 10 points. Call \\(Y=(y_i)=f(x_i)\\) the values of \\(f\\) on this interval. Let \\(T\\) be a test set with 1000 regularly spaced points between -2.5 and 2.5.\nThe goal is to compare several ways interpolate function f on \\(T\\).\n\nExercise 2 Define f, I, Y, T with numpy.\n\n\n# \n\n\nExercise 3 Construct a stepwise approximation using numpy indexing\n\n\n# \n\n\nExercise 4 Plot it\n\n\n# \n\n\nExercise 5 Construct a linear approximation using numpy\n\n\n#\n\n\nExercise 6 Use scipy.interpolate to interpolate the data linearly. Compare the various extrapolation options.\n\n\n#\n\n\nExercise 7 Use scipy.interpolate to interolate the data with cubic splines. Compare the various extrapolation options.\n\n\n#\n\n\nExercise 8 Plot the results\n\n\n#",
     "crumbs": [
       "Exercises",
-      "Numeric"
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "exercises/methods.html#discretization",
+    "href": "exercises/methods.html#discretization",
+    "title": "Methods",
+    "section": "Discretization",
+    "text": "Discretization\n\nExercise 9 Consider the AR1 process \\(y_t = \\rho y_{t-1} + \\epsilon_t\\) where \\(\\rho=0.9\\) and \\(\\epsilon_t=0.01\\). Use the quantecon library to discretize \\((y_t)\\) as a discrete markov chain.\n\n\n#\n\n\nExercise 10 Suppose \\(\\epsilon\\) follows a normal law with standard deviation \\(σ = 0.05\\). Take γ = 40 and define \\(U(x)=(x^{-γ})/(-γ)\\) We want to compute \\(C(\\epsilon) = \\mathbb{E} [U(exp(\\epsilon)) ]\\).\n\nChoose \\(N&gt;0\\) and construct a 1d vector with \\(N\\) realizations of \\(\\epsilon\\). Use it to compute the expectation.\nEstimate the standard deviation of this expectation.\nUse gauss-hermite method from numpy to compute the same expectation.\nCompare both methods.",
+    "crumbs": [
+      "Exercises",
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "exercises/lifetime_reward.html",
+    "href": "exercises/lifetime_reward.html",
+    "title": "Learning consumption rules",
+    "section": "",
+    "text": "This exercise is inspired from Individual learning about consumption by Todd Allen and Chris Carroll link and from Deep Learning for Solving Economic models by Maliar, Maliar and Winant link\nWe consider the following consumption saving problem. An agent receives random income \\(y_t = \\exp(\\epsilon_t)\\) where \\(\\epsilon_t\\sim \\mathcal{N}(\\sigma)\\) (\\(\\sigma\\) is the standard deviation.)\nConsumer starts the period with available income \\(w_t\\). The law of motion for available income is:\n\\[w_t = \\exp(\\epsilon_t) + (w_{t-1}-c_{t-1}) r\\]\nwhere consumption \\(c_t \\in ]0,w_t]\\) is chosen in each period in order to maximize:\n\\[E_t \\sum_{t=0}^T \\beta^t U(c_t)\\]\ngiven initial available income \\(w_0\\).\nIn the questions below, we will use the following calibration:\nThe theoretical solution to this problem is a concave function \\(\\varphi\\) such that \\(\\varphi(x)\\in ]0,x]\\) and \\(\\forall t,  c_t=\\varphi(w_t)\\). Qualitatively, agents accumulate savings, up to a certain point (a buffer stock), beyond which wealth is not increasing any more (in expectation).\nCarroll and Allen have noticed that the true solution can be approximated very well by a simple rule:\n\\[\\psi(x) = \\min(x, \\theta_0 + \\theta_1 (x - \\theta_0) )\\]\nThe main question they ask in the aforementioned paper is whether it is realistic that agents would learn good values of \\(\\theta_0\\) and \\(\\theta_1\\) by observing past experiences.\nWe would like to examine this result by learning the optimal rule using stochastic gradient descent.\nIn the whole notebook, we use JAX to perform the calculations.\nfrom jax import numpy as jnp\nclass Model:\n    pass\n# your code here\n# your code here\n# your code here\n# your code here\n# your code here",
+    "crumbs": [
+      "Exercises",
+      "Learning consumption rules"
+    ]
+  },
+  {
+    "objectID": "exercises/lifetime_reward.html#learning-to-save",
+    "href": "exercises/lifetime_reward.html#learning-to-save",
+    "title": "Learning consumption rules",
+    "section": "Learning to save",
+    "text": "Learning to save\nWe now focus on the number of steps it takes to optimize \\(\\theta_0\\), \\(\\theta_1\\).__\n\nExercise 7 Implement a function ∇(θ:Vector, T, N)::Vector which computes the gradient of the objective w.r.t. θ==[θ_0,θ_1]__\n\n\n# your code here\n\n\nExercise 8 Implement a gradient descent algorithm to maximize \\(\\Xi^N(\\theta_0, \\theta_1)\\) using learning rate \\(\\lambda \\in ]0,1]\\). Stop after a predefined number of iterations. Compare convergence speed for different values of \\(\\lambda\\) and plot them on the \\(\\theta_0, \\theta_1\\) plan. How many steps does it take to enter the 1% error zone? The 5% and the 10% error zone?\n\n\n# your code here\n\nEven for big N, the evaluated value of ∇ are stochastic, and always slightly inaccurate. In average, they are non-biased and the algorithm converges in expectation (it fluctuates around the maximum). This is called the stochastic gradient method.\n\nExercise 9 What are the values of \\(N\\) and \\(\\lambda\\) which minimize the number of iterations before reaching the target zones (at 1%, 2%, etc…)? How many simulations periods does it correspond to? Would you say it is realistic that consumers learn from their own experience?\n\n\n# your code here",
+    "crumbs": [
+      "Exercises",
+      "Learning consumption rules"
     ]
   }
 ]

@@ -1,0 +1,1612 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Deep learning solution method with all-in-one expectation operator – Ce_bb_2024</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-29e2c20b02301cfff04dc8050bf30c7e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-8ff3484ca9bbd6d5fb6ed573e258e126.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../handson/python_syntax.html">Hands-on</a></li><li class="breadcrumb-item"><a href="../handson/qe_notebook_jax.html">Deep learning solution method with all-in-one expectation operator</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Ce_bb_2024</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Slides</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides/python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides/methods.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Methods</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides/time_iteration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Time Iteration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides/deeplearning_models/slides.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deep Learning for Solving Dynamic Economic Models</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides/deeplearning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to deeplearning</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Hands-on</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../handson/python_syntax.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python: syntax review</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../handson/numeric_python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Numeric Python</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../handson/neoclassical.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Neoclassical model with time iteration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../handson/jax_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">An Introduction to JAX</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../handson/qe_notebook_jax.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Deep learning solution method with all-in-one expectation operator</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Exercises</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../exercises/python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python Basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../exercises/numeric.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Numeric</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../exercises/methods.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Methods</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../exercises/lifetime_reward.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning consumption rules</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#jax-and-libraries" id="toc-jax-and-libraries" class="nav-link active" data-scroll-target="#jax-and-libraries">JAX and libraries</a></li>
+  <li><a href="#the-model" id="toc-the-model" class="nav-link" data-scroll-target="#the-model">The model</a></li>
+  <li><a href="#stochastic-solution-domain" id="toc-stochastic-solution-domain" class="nav-link" data-scroll-target="#stochastic-solution-domain">Stochastic solution domain</a></li>
+  <li><a href="#kuhn-tucker-conditions" id="toc-kuhn-tucker-conditions" class="nav-link" data-scroll-target="#kuhn-tucker-conditions">Kuhn-Tucker conditions</a></li>
+  <li><a href="#parameterizing-decision-functions-with-neural-network" id="toc-parameterizing-decision-functions-with-neural-network" class="nav-link" data-scroll-target="#parameterizing-decision-functions-with-neural-network">Parameterizing decision functions with neural network</a></li>
+  <li><a href="#residuals-in-the-models-equations" id="toc-residuals-in-the-models-equations" class="nav-link" data-scroll-target="#residuals-in-the-models-equations">Residuals in the model’s equations</a></li>
+  <li><a href="#the-expected-squared-sum-of-residuals" id="toc-the-expected-squared-sum-of-residuals" class="nav-link" data-scroll-target="#the-expected-squared-sum-of-residuals">The expected squared sum of residuals</a></li>
+  <li><a href="#all-in-one-expectation-function" id="toc-all-in-one-expectation-function" class="nav-link" data-scroll-target="#all-in-one-expectation-function">All-in-one expectation function</a></li>
+  <li><a href="#model-training" id="toc-model-training" class="nav-link" data-scroll-target="#model-training">Model training</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="qe_notebook_jax.out.ipynb" download="qe_notebook_jax.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../handson/python_syntax.html">Hands-on</a></li><li class="breadcrumb-item"><a href="../handson/qe_notebook_jax.html">Deep learning solution method with all-in-one expectation operator</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Deep learning solution method with all-in-one expectation operator</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>This is a JAX version using FLAX for neural networks and Optax for the optimization.</p>
+<p>Similar code can be found for <a href="https://notes.quantecon.org/submission/5ddb3c926bad3800109084bf">tensorflow</a> and <a href="https://notes.quantecon.org/submission/65449f6b8f6a1a0016fc4544">torch</a></p>
+<ul>
+<li>This companian notebook illustrates a deep learning framework for solving dynamic economic models introduced by Maliar, Maliar and Winant (2018, 2019) in the paper “Will Artificial Intelligence Replace Computational Economists Any Time Soon?”.</li>
+<li>In the paper, we offer a unified approach for casting three fundamental objects of economic dynamics – lifetime reward, Bellman equation and Euler equation – into objective functions of the deep learning framework.</li>
+<li>In the notebook, we illustrate only one of the three approaches – the Euler residual minimization.</li>
+<li>We solve a cannonical consumption-saving problem with occasionally binding borrowing constraint and four exogenous stochastic shocks.</li>
+<li>We parameterize the agent’s decision function with a multilayer neural network, and we perform training using stochastic optimization, namely, in each iteration, we train the model on just one or few grid points that are randomly drawn from the state space (instead of using a conventional fixed grid with a potentially large number of grid points).</li>
+<li>Our objective function – the sum of squared residuals in the Euler equation – has two types of expectation operators, one is with respect to current state variables (which arises because grid points that are randomly drawn from the state space), and the other is with respect to future state variables (which arises because next-period shocks are randomly drawn from the given distributions).</li>
+<li>We construct all-in-one expectation method that merges the two expectation operators into one. Namely, we use two independent random draws for evaluating two terms of a squared residual – this method eliminates the correlation between the terms and pulls the expectation operator out of the square. Our all-in-one expectation operator allows for efficient parallel calculations and reduces greately the cost of training deep neural networks.</li>
+</ul>
+<section id="jax-and-libraries" class="level2">
+<h2 class="anchored" data-anchor-id="jax-and-libraries">JAX and libraries</h2>
+<p>JAX</p>
+<div id="cell-3" class="cell" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> jax</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> jax <span class="im">import</span> numpy <span class="im">as</span> jnp</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> typing <span class="im">import</span> Any, Callable, Sequence</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This notebook uses several libraries. A missing library x can be installed using <code>pip install x</code></p>
+<div id="cell-5" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># from math import sqrt</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tqdm <span class="im">import</span> tqdm <span class="im">as</span> tqdm         <span class="co"># tqdm is a nice library to visualize ongoing loops</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> datetime</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># followint lines are used for indicative typing</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> typing <span class="im">import</span> Tuple</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Vector: <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="the-model" class="level2">
+<h2 class="anchored" data-anchor-id="the-model">The model</h2>
+<p>We consider the following consumption-saving problem:</p>
+<p><span class="math display">\[\begin{gather*}
+\underset{\left\{ c_{t},w_{t+1}\right\}_{t=0}^{\infty }}{\max }E_{0}\left[
+\sum_{t=0}^{\infty }\exp (\delta_{t})\beta ^{t}u\left( {c_{t}}\right)\right]  \\
+\text{s.t. }w_{t+1}=\left( w_{t}-c_{t}\right) \overline{r}\exp (r_{t})+\exp
+(y_{t}), \\
+c_{t}\leq w_{t},
+\end{gather*}\]</span></p>
+<p>where <span class="math inline">\(c_{t}\)</span> is consumption; <span class="math inline">\(w_{t}\)</span> is the beginning-of-period cash-on-hand; <span class="math inline">\(\beta \in \left[ 0,1\right)\)</span> is a subjective discount factor; <span class="math inline">\(\overline{r}\in \left( 0,\frac{1}{\beta }\right)\)</span> is a (gross) constant interest rate; and initial condition <span class="math inline">\(\left( z,w\right)\)</span> is given. There is an occasionally binding inequality constraint: consumption <span class="math inline">\(c_{t}\)</span> cannot exceed cash-on-hand <span class="math inline">\(w_{t}\)</span>. There are four different exogenous state variables, namely, shocks to the interest rate (<span class="math inline">\(r_{t}\)</span>), discount factor (<span class="math inline">\(\delta_t\)</span>), transitory component of income <span class="math inline">\(q_{t}\)</span> and permanent component of income <span class="math inline">\(p_{t}\)</span>. The total income is <span class="math inline">\(y_{t}=p_{t}q_{t}\)</span>. All exogenous variables follows AR(1) processes:</p>
+<p><span class="math display">\[\begin{gather*}
+y_{t+1} &amp;=&amp;\rho_{y}y_{t}+\sigma_{y}\epsilon_{t}, \\
+p_{t+1} &amp;=&amp;\rho_{p}p_{t}+\sigma_{p}\epsilon_{t}, \\
+r_{t+1} &amp;=&amp;\rho_{r}r_{t}+\sigma_{r}\epsilon_{t}, \\
+\delta_{t+1} &amp;=&amp;\rho_{\delta }\delta_{t}+\sigma_{\delta }\epsilon_{t},
+\end{gather*}\]</span></p>
+<p>where <span class="math inline">\(\epsilon_t \sim \mathcal{N}\left( 0,1\right)\)</span>. We assume the Cobb-Douglas utility function <span class="math inline">\(u\left( {c_{t}}\right) =\frac{1}{1-\gamma }\left( c_{t}^{1-\gamma }-1\right)\)</span>. The model’s parameters are specified below.</p>
+<div id="cell-7" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model parameters</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>β <span class="op">=</span> <span class="fl">0.9</span> </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>γ <span class="op">=</span> <span class="fl">2.0</span> </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># σ = 0.1  </span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># ρ = 0.9</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>σ_r <span class="op">=</span> <span class="fl">0.001</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>ρ_r <span class="op">=</span> <span class="fl">0.2</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>σ_p <span class="op">=</span> <span class="fl">0.0001</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>ρ_p <span class="op">=</span> <span class="fl">0.999</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>σ_q <span class="op">=</span> <span class="fl">0.001</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>ρ_q <span class="op">=</span> <span class="fl">0.9</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>σ_δ <span class="op">=</span> <span class="fl">0.001</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>ρ_δ <span class="op">=</span> <span class="fl">0.2</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>rbar <span class="op">=</span> <span class="fl">1.04</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="stochastic-solution-domain" class="level2">
+<h2 class="anchored" data-anchor-id="stochastic-solution-domain">Stochastic solution domain</h2>
+<p>We solve the model on a random grid which is drawn from the following domain:</p>
+<ul>
+<li>for AR1 processes, we take the ergodic distribution (recall that for an AR(1) process <span class="math inline">\(z\)</span> with autocorrelation <span class="math inline">\(\rho\)</span> and conditional standard deviation <span class="math inline">\(\sigma\)</span>, the ergodic distribution is normal with zero mean and standard deviation <span class="math inline">\(\sigma_z= \frac{\sigma}{\sqrt{1-\rho^2}}\)</span>.</li>
+<li>for available income we choose a uniform distribution between two finite bounds: <span class="math inline">\(w\in[w_{\min}, w_{\max}]\)</span>.</li>
+</ul>
+<div id="cell-9" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Standard deviations for ergodic distributions of exogenous state variables</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>σ_e_r <span class="op">=</span> σ_r<span class="op">/</span>(<span class="dv">1</span><span class="op">-</span>ρ_r<span class="op">**</span><span class="dv">2</span>)<span class="op">**</span><span class="fl">0.5</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>σ_e_p <span class="op">=</span> σ_p<span class="op">/</span>(<span class="dv">1</span><span class="op">-</span>ρ_p<span class="op">**</span><span class="dv">2</span>)<span class="op">**</span><span class="fl">0.5</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>σ_e_q <span class="op">=</span> σ_q<span class="op">/</span>(<span class="dv">1</span><span class="op">-</span>ρ_q<span class="op">**</span><span class="dv">2</span>)<span class="op">**</span><span class="fl">0.5</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>σ_e_δ <span class="op">=</span> σ_δ<span class="op">/</span>(<span class="dv">1</span><span class="op">-</span>ρ_δ<span class="op">**</span><span class="dv">2</span>)<span class="op">**</span><span class="fl">0.5</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># bounds for available income</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>wmin <span class="op">=</span> <span class="fl">0.1</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>wmax <span class="op">=</span> <span class="fl">4.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="kuhn-tucker-conditions" class="level2">
+<h2 class="anchored" data-anchor-id="kuhn-tucker-conditions">Kuhn-Tucker conditions</h2>
+<p>In the recursive form, the solution can be characterized by the Kuhn-Tucker (KT) conditions <span class="math display">\[\begin{equation*}
+a\geq 0,\quad b\geq 0\quad and\quad ab=0,
+\end{equation*}\]</span> where <span class="math inline">\(a\)</span> is the share of income that goes to savings and <span class="math inline">\(b\)</span> is the Lagrange multiplier <span class="math display">\[\begin{gather*}
+a &amp;\equiv &amp;w-c , \\
+b &amp;\equiv &amp;u^{\prime }(c)-\beta \overline{r}E_{\epsilon }\left[ \left.
+u^{\prime }\left( c^{\prime }\right) \exp \left( \delta ^{\prime }-\delta
++r^{\prime }\right) \right\vert \epsilon \right] .
+\end{gather*}\]</span> (In the absence of borrowing constraint <span class="math inline">\(b=0\)</span>, the KT conditions lead to the familiar Euler equation).</p>
+<p>Inequality constraints are not directly compatible with the deep learning framework developed in the paper, so we reformulate the KT conditions as a set of equations that hold with equality. We use a smooth representation of the KT conditions, called the Fischer-Burmeister (FB) function, which is differentiable <span class="math display">\[\begin{equation*}
+FB\left( a,b\right) =a+b-\sqrt{a^{2}+b^{2}}=0.
+\end{equation*}\]</span> The restriction <span class="math inline">\(FB\left( a,b\right) =0\)</span> is also equivalent to the KT conditions.</p>
+<p>For numerical treatment, we rewrite the FB function in the following unit-free form <span class="math display">\[\begin{equation*}
+FB\left( 1-\zeta ,1-h\right) =(1-\zeta)+(1-h)-\sqrt{(1-\zeta)^{2}+(1-h)^{2}}=0,
+\end{equation*}\]</span> where <span class="math inline">\(\zeta\)</span> and <span class="math inline">\(h\)</span> are respectively the consumption share and normalized Lagrange multiplier <span class="math display">\[\begin{gather*}
+\zeta  &amp;\equiv &amp;\frac{c}{w}, \\
+h &amp;\equiv &amp;\beta \overline{r}E_{\epsilon }\left[ \left. \frac{u^{\prime
+}\left( c^{\prime }\right) }{u^{\prime }(c)}\exp \left( \delta ^{\prime
+}-\delta +r^{\prime }\right) \right\vert \epsilon \right] .
+\end{gather*}\]</span> In particular, <span class="math inline">\(\zeta\)</span> belongs to the interval <span class="math inline">\(\left[0,1\right]\)</span> which is a convenient domain for defining neural network. In turn, <span class="math inline">\(h\)</span> is normalized to be around one: we will parameterize it with neural network in the way that ensures that it is nonnegative.</p>
+<div id="cell-11" class="cell" data-execution_count="93">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># here are the Fisher Burmeister functions with JAX</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>min_FB <span class="op">=</span> <span class="kw">lambda</span> a,b: a<span class="op">+</span>b<span class="op">-</span>jnp.sqrt(a<span class="op">**</span><span class="dv">2</span><span class="op">+</span>b<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>max_FB <span class="op">=</span> <span class="kw">lambda</span> a,b: <span class="op">-</span>min_FB(<span class="op">-</span>a,<span class="op">-</span>b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="parameterizing-decision-functions-with-neural-network" class="level2">
+<h2 class="anchored" data-anchor-id="parameterizing-decision-functions-with-neural-network">Parameterizing decision functions with neural network</h2>
+<p>There are many different decision functions that we can approximate for characterizing the solution, including consumption, next-period income, etc. We chose to approximate the two functions that we defined earlier: the share of consumption, <span class="math inline">\(\zeta \equiv \frac{c}{w}\)</span>, and the normalized Lagrange multiplier <span class="math inline">\(h\)</span>. Since the model is stationary, we look for a decision rule <span class="math display">\[\begin{equation*}
+\left(
+\begin{matrix}
+\zeta  \\
+h%
+\end{matrix}%
+\right) =\varphi (s;\theta ),
+\end{equation*}\]</span> where <span class="math inline">\(s=(r, \delta, q, p, w)\)</span> is the 5-dimensional state space, and <span class="math inline">\(\varphi\)</span> is a function to be determined.</p>
+<p>A common approach in computational economics is to approximate an unknown function <span class="math inline">\(\varphi\)</span> using some flexible function family <span class="math inline">\(\varphi(...;\theta)\)</span> parameterized by a vector of coefficients <span class="math inline">\(\theta\)</span>, e.g., a polynomial family. Neural networks are just a special family of approximating functions. A distinctive feature of neural networks is that they have a nonlinear dependence of the approximation function on the coefficients <span class="math inline">\(\theta\)</span>. TensorFlow contains a submodule keras, which makes it easy to build such a network. Below, we build the multilayer perceptrion: a 2 hidden layers 32x32x32x2 network with relu activation functions and linear outputs.</p>
+<div id="cell-13" class="cell" data-execution_count="94">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> flax</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> flax <span class="im">import</span> nnx <span class="co"># old API</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> flax <span class="im">import</span> linen <span class="im">as</span> nn <span class="co"># new stateless API</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-14" class="cell" data-execution_count="95">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MLP(nn.Module):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.linear1 <span class="op">=</span> nn.Dense(<span class="dv">32</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.linear2 <span class="op">=</span> nn.Dense(<span class="dv">32</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.linear3 <span class="op">=</span> nn.Dense(<span class="dv">32</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.linear4 <span class="op">=</span> nn.Dense(<span class="dv">2</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">__call__</span>(<span class="va">self</span>, x: jax.Array):</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> nnx.relu(<span class="va">self</span>.linear1(x))</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> nnx.relu(<span class="va">self</span>.linear2(x))</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> nnx.relu(<span class="va">self</span>.linear3(x))</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> <span class="va">self</span>.linear4(x)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-15" class="cell" data-execution_count="96">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ExplicitMLP(nn.Module):</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  features: Sequence[<span class="bu">int</span>]</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> setup(<span class="va">self</span>):</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># we automatically know what to do with lists, dicts of submodules</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.layers <span class="op">=</span> [nn.Dense(feat) <span class="cf">for</span> feat <span class="kw">in</span> <span class="va">self</span>.features]</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># for single submodules, we would just write:</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># self.layer1 = nn.Dense(feat1)</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">__call__</span>(<span class="va">self</span>, inputs):</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> inputs</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, lyr <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="va">self</span>.layers):</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>      x <span class="op">=</span> lyr(x)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> i <span class="op">!=</span> <span class="bu">len</span>(<span class="va">self</span>.layers) <span class="op">-</span> <span class="dv">1</span>:</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> nn.relu(x)</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-16" class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this creates a 3 layer perceptron with 32 neurons on each.</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> ExplicitMLP(features<span class="op">=</span>[<span class="dv">32</span>,<span class="dv">32</span>,<span class="dv">32</span>,<span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-17" class="cell" data-execution_count="99">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the following code initializes the neural network with random values</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>key1, key2 <span class="op">=</span> jax.random.split(jax.random.PRNGKey(<span class="dv">0</span>), <span class="dv">2</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> jax.random.uniform(key1, (<span class="dv">5</span>,))</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>theta_0 <span class="op">=</span> model.init(key2, x)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># all the trainable parameters of the NN are stored in theta_0</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># it is a "pytree", that we will be able to use to compute gradients</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-18" class="cell" data-execution_count="52">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#  pretty print requres the library `treescope` to be installed</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>nnx.display(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<script> (()=>{ if (customElements.get('treescope-container') === undefined) { class TreescopeContainer extends HTMLElement { constructor() { super(); this.attachShadow({mode: "open"}); this.defns = {}; this.state = {}; } } customElements.define("treescope-container", TreescopeContainer); } if (customElements.get('treescope-run-here') === undefined) { class RunHere extends HTMLElement { constructor() { super() } connectedCallback() { const run = child => { const fn = new Function(child.textContent); child.textContent = ""; fn.call(this); this.remove(); }; const child = this.querySelector("script"); if (child) { run(child); } else { new MutationObserver(()=>{ run(this.querySelector("script")); }).observe(this, {childList: true}); } } } customElements.define("treescope-run-here", RunHere); } })(); </script> <treescope-container class="treescope_out_66c3cfcbda4149fba17153e7e1a5bd3d"></treescope-container> <treescope-run-here><script type="application/octet-stream"> const root = ( Array.from(document.getElementsByClassName( "treescope_out_66c3cfcbda4149fba17153e7e1a5bd3d")) .filter((elt) => !elt.dataset.setup) )[0]; root.dataset.setup = 1; const msg = document.createElement("span"); msg.style = "color: #cccccc; font-family: monospace;"; msg.textContent = "(Loading...)"; root.state.loadingMsg = msg; root.shadowRoot.appendChild(msg); root.state.chain = new Promise((resolve, reject) => { const observer = new IntersectionObserver((entries) => { for (const entry of entries) { if (entry.isIntersecting) { resolve(); observer.disconnect(); return; } } }, {rootMargin: "1000px"}); window.setTimeout(() => { observer.observe(root); }, 0); }); root.state.deferring = false; const _insertNode = (node) => { for (let oldScript of node.querySelectorAll("script")) { let newScript = document.createElement("script"); newScript.type = oldScript.type; newScript.textContent = oldScript.textContent; oldScript.parentNode.replaceChild(newScript, oldScript); } if (root.state.loadingMsg) { root.state.loadingMsg.remove(); root.state.loadingMsg = null; } root.shadowRoot.appendChild(node); }; root.defns.insertContent = ((contentNode, compressed) => { if (compressed) { root.state.deferring = true; } if (root.state.deferring) { root.state.chain = (async () => { await root.state.chain; if (compressed) { const encoded = contentNode.textContent; const blob = new Blob([ Uint8Array.from(atob(encoded), (m) => m.codePointAt(0)) ]); const reader = blob.stream().pipeThrough( new DecompressionStream("deflate") ).pipeThrough( new TextDecoderStream("utf-8") ).getReader(); const parts = []; while (true) { const step = await reader.read(); if (step.done) { break; } parts.push(step.value); } const tpl = document.createElement('template'); tpl.innerHTML = parts.join(""); _insertNode(tpl.content); } else { _insertNode(contentNode.content); } })(); } else { _insertNode(contentNode.content); } }); </script></treescope-run-here><div style="display:none"> <script type="application/octet-stream">eNrtWXtT4zgS/yoazx8kBzFJIAHCo84JeTGEV5iBYXcqq9iyLWLLRpZjwhbf/Vq28w4wM8vu3l5dqBqI1M+fulvdmoNAjBxypApOSKB7PulxzxPod+R7ARXUYxXEiYMFHZJ9ZHpM5EzsUmdUQa7HvMDHOqxHNhUkF3+pIJ/DikMDkYtF58TIh1XmMVjuY31gcS9kRk73HI9XEtZ9lH7rO0AA8qgh7AoyqQAyJggT+8jHhkGZlXOIKSqoqNtSCSM5m1DLhpWCWpJimMAUbJ6wpX/khjSgfepQAZbjUHgT2hxlglMWUD0X0CeS7KbmPh9sJvAcTODJ8ZCBTg5rgc6pL5D073AN+75DdSwR2/R0QaT3nGB37SiTyR4eAaCgLxDIICYL0CESNg1Ui4grQPvMM0gmq9peINR4H1wjAvV8wqTLmi6lSqZfvq3aaWFmOAS2Weg4+4kGFczseh6D1Uzk8UEWzdrg3cCS3JpbFlSXiz7hpsddzHSiMi/KZOPzBQWZpR2US5gO0FYxC3KoiTILVqsOYZaw0eEhykuSV03nRIScAe6IOAGZGmaHTFq2KDqwqSmkfTGB/OMZfl7QkIGoYoYXqZw8hCQQGqNufFwNjl2SSTDJShn7S4r8MLATGPdX+DhWcZi48YqX32+DtCI5SOFZlpNkZS/OHIhWX8qSK8QRG4gMIcDTk5TWxd/VARlJ0BWuSINSYlV3cBCcQnKmcjPKRGbPhTBUxsqfs4AnhH8c40cHm6sSwKBDFAs8VObLh4IE7oOn5PFQySuQulwsk3gMTAQwGGy9lgyrEchInrHvCiRjUsbiOtIDwXBaRhxAcV35mIePaYJbKQUL3T7hswR7u4VSWRKYnmPgPihkYMkLhfAZzZP1EhuB2qCB7+DRuOAtEqIj5OA+cSqVPoFcIjMW6PFnf6W+pOjlCrLqpcUxvz/VRVlcCvuOJ6vnizptb0j4smYD80FAsAXnw5a5K8wTmYUlGweZo1jm0UocYp6KbhN9QIxsFv0rO7VBsq5mGtPPWRhX7wpa+7VY6utrf6d580wvGln+C4yU5ygVhzyQB+h7cIcRvkIvDd5PbZwKsaJcnHXBSzH+Plqn7gnyKJa1qDTomZQHouexngz/Fan1WiqpxZLMppVHhf6w+cmJL5oovXIxt6DrSMyIE/r5D2qDkuaP+qEQcN2vKkDT7VVBqyBlgQqAhFZuNfGvpLBtKAud4FoHQ1RQ7KDuyO17ToDOQyH9NVAt4YTf/ggSIxeR/gC6upg9cKGi23BLQs/FBLBTHBBj0gt+JHn5s78c5gl33Kzl1T3iLnqZ5McKL1aXuymnGuGgp0MfB8BO+LEp5m6KcZ1+TecCz7zKWejREPNMLmdggXOYwcHG7UB2dlkqkT0Ox2wczbFYVAgQAcSggc15ofgxVyYWwMFQYnyYtyRWiT5Q1/e4wGxJdp97A8J6cmVajN5Gd4ZtBs/xMT+rsmMAw4yeDv2mwQlLTZ3v6EHmPOE7VdeZ1Ekv0rlU1bGjZ2DsgJ634D/GbZIaCCz5J/b+aZb0oZuBuptYYngCfJdWzIL3EGKHQRfZg/nLpI8gZC5NduM0gZYZczA4wpxB4vXGhX18FqaJ9cLWCkIfes7fJzMYT0cuWb1SkNKlXF6Ny+p00KvEYxrmOYtjg8KxZVBhq2QQawN5ENIWQXkwr6zbG0mIQ7MoC0a8hFKYl2xZqqzvU7bRUoEe+/OsRnYcuo6DfahSb3d6P17GX9aQ9HexjpiIPEI6Gy/SvIcdq1SkjiYE01lkFRTzzb46P2SgVyQsusrmxp7VhN+j7EU57zjpy+ELfdA4xyPV5J4LA50eunIYk6kYqEPswNSXyWbVwINxL05QObbJ32pymcqR7TuvU2UNwjU7GZIDmxAhJ2kSoVq325XedOWanIvjTZg6wWWddEdMz/z27/QK18m4VPz4dZ5UGKlJ4shd7KRrUfoos52H2hRwvYJC7mTk3VKR+5uRZ5rF/T7cXuXtDSO/1+xYWlWLP+1LTfPiv6pXEfzbamhaXXvtU3U1zRp4n4x2vVqLvmra9dfaidZpV2taw3pst05tEVQ7lFhbjePb4mm7/HXY9UN60SldF05u21dfOsObzpO4GDUatfUba3BNq8d5mx5fhid1o3mfb/U3zWHb8B8+le2HG0ovww5r2i3zs9A+l6tnfFtrtNmgXtY/hyFbvyo96MEgGpoNZ/Ph0ap7u1b/JGruFlraJtOuSqecnxSu1q2n/JWR107MgnW2U4ua90Ur743Cq50dt14oR63bvXPL8sn1YLRN2v2nkt7n502BNeuyfRYd42AUXIbt9u1NvRFpF5d++6vxeXNz3dq53rndEnnz08WDNiyBzFPtbEfrRJprPV1118O7LqnfPhbNsv50tn3VGpXCqvbpqXrvN/wt2rqs1fN34cV2d4eZ1dN6q9FxNbq+O6wXbVawd9b7X6Lb+6jFh8fNzzV2b9brllg/1+8cZ6e0VzuJqrv23nan0+xuNe80y22X7quXe+K6SVp79Wq13dw6travNr/qo77WhDP98mlTu2xijXRqjtZ6qp9bd8IqVy+s8/P2cXVAL0ukUb2tVRs6zfs293wGseHf1Y8LT4VB16yZwh59Yi0DN4KWmT9zm/WzctXQHr588bEIuneuYWC6VzSf9rY/0/uHsu/y8rn3tdalvOkOT5pb3ZvuVqNe1KuX5vV6y/H85nYjiErYeijv0jvSPXP8G1ZttYnR4SS8eWjW3MJNgw+63cdSsXxzE0QaWJRF8auYyKzFYb0mL63f4J9J9mPD8+HGnqZk/JanquorFBtJzn4DWa+/jtjx41LcVCX9HsiG8GA6yiRt1/zTH6TgtSfTF8jStkyuBVAepAjZZ8rmDEeYCsTwkFpYeFwFyX7fw9xQI04FuYaRLDOVBc6msqbvS9AqZJSZJlS+LIGWa+oS6FYz46fHJT5OXOgol1ifN1Axn8/HDQEUX+gNMvE4tVrvTKepTI2Tg+S4gsnHOAV9RA1MHShswkOS+ENc2aAFYNBNQTWmgBnBhmyU12exS1/J3ngfk033+IFs/kVmsX1Rjg6SG/qAMj9MbxolvpP73qOyUkh6fQPrZsw0r2/+hlXmNxd6RSlCbo9/1R/lDUdF5/Qic7CZGjbLv9SoK6/tK0cmwSLkJDh8GZJ3QeCXVdauTSeQNeSxmoypw7UfTKr4uTG7hibj0aGijr1SUHwFHioz0xPcopN9OfcuTniwHwcSFCob/k7xWziHP4T53Obso6dytFVMFWwsh8yk/1SO0Coz5ppD5a8F+pf8t7ewBpKfh/t7wf/fBLfwNriF/4P7k+AW3wa3+HeDW/wO1Db+65DdehvZrXdDNvn17Z8ZhH/ePfWT4bfYoyRPP4crQjT9Dz3l6Aym9X8W+olTL2Gf7L5veL56ALLt+16E/xGFQDr0Erpy732xzU6+GnR49B+mjWTl</script> <treescope-run-here><script type="application/octet-stream"> const root = ( Array.from(document.getElementsByClassName( "treescope_out_66c3cfcbda4149fba17153e7e1a5bd3d")) .filter((elt) => !elt.dataset['step0']) )[0]; root.dataset['step0'] = 1; root.defns.insertContent( this.parentNode.querySelector('script[type="application/octet-stream"]'), true ); this.parentNode.remove(); </script></treescope-run-here> </div>
+</div>
+</div>
+<p>Next, we create the decision rule which takes as input 5 vectors of the same size <span class="math inline">\(n\)</span> for the states <span class="math inline">\(r\)</span>, <span class="math inline">\(\delta\)</span>, <span class="math inline">\(q\)</span>, <span class="math inline">\(p\)</span>, <span class="math inline">\(w\)</span> and returns two vectors of size <span class="math inline">\(n\)</span> for <span class="math inline">\(\zeta\)</span> and <span class="math inline">\(h\)</span>, respectively. We use different nonlinear transformation for the two decision functions:</p>
+<p><span class="math display">\[\begin{equation*}
+\varphi(s;\theta)=\left(\begin{matrix}\frac{1}{1+e^{-nn(s;\theta)}}\\
+\exp(nn(s;\theta))\end{matrix}\right)
+\end{equation*}\]</span></p>
+<p>where nn denotes neural network; the first and second elements in the vector function <span class="math inline">\(\varphi\)</span> are used to get <span class="math inline">\(\zeta\in[0,1]\)</span> and <span class="math inline">\(h&gt;0\)</span>, respectively.</p>
+<div id="cell-20" class="cell" data-execution_count="53">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> dr(theta, r: Vector, p: Vector, q: Vector, δ: Vector, w: Vector)<span class="op">-&gt;</span> Tuple[Vector, Vector]:</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># we normalize exogenous state variables by their 2 standard deviations </span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># so that they are typically between -1 and 1 </span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> r<span class="op">/</span>σ_e_r<span class="op">/</span><span class="dv">2</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    δ <span class="op">=</span> δ<span class="op">/</span>σ_e_δ<span class="op">/</span><span class="dv">2</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    q <span class="op">=</span> q<span class="op">/</span>σ_e_q<span class="op">/</span><span class="dv">2</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> p<span class="op">/</span>σ_e_p<span class="op">/</span><span class="dv">2</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># we normalze income to be between -1 and 1</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> (w<span class="op">-</span>wmin)<span class="op">/</span>(wmax<span class="op">-</span>wmin)<span class="op">*</span><span class="fl">2.0</span><span class="op">-</span><span class="fl">1.0</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># we prepare input to the perceptron</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># s = tf.concat([_e[:,None] for _e in [r,p,q,δ,w]], axis=1) # equivalent to np.column_stack</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> jnp.column_stack([r,p,q,δ,w])</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> model.<span class="bu">apply</span>(theta, s) <span class="co"># n x 2 matrix </span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># consumption share is always in [0,1]</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    ζ <span class="op">=</span> jax.nn.sigmoid( x[:,<span class="dv">0</span>] )</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># expectation of marginal consumption is always positive</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> jnp.exp( x[:,<span class="dv">1</span>] )</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (ζ, h)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Finally, as an illustration, we plot the initial guess of decision rules against <span class="math inline">\(w\)</span>. Note that the coefficients of the perceptron are initialized with random values, so that each run will provide a different plot. Here, we are using TensorFlow in an eager mode, i.e., calculations are returned immediately, so that the library essentially behaves in the same way as numpy, and is in fact mostly compatible with it.</p>
+<div id="cell-22" class="cell" data-execution_count="57">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>wvec <span class="op">=</span> jnp.linspace(wmin, wmax, <span class="dv">100</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># r,p,q,δ are zero-mean</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>ζvec, hvec <span class="op">=</span> dr(theta_0, wvec<span class="op">*</span><span class="dv">0</span>, wvec<span class="op">*</span><span class="dv">0</span>, wvec<span class="op">*</span><span class="dv">0</span>, wvec<span class="op">*</span><span class="dv">0</span>, wvec)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-23" class="cell" data-execution_count="58">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>plt.plot(wvec, wvec, linestyle<span class="op">=</span><span class="st">'--'</span>, color<span class="op">=</span><span class="st">'black'</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>plt.plot(wvec, wvec<span class="op">*</span>ζvec)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"$w_t$"</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"$c_t$"</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Initial Guess"</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>plt.grid()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="qe_notebook_jax_files/figure-html/cell-15-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="residuals-in-the-models-equations" class="level2">
+<h2 class="anchored" data-anchor-id="residuals-in-the-models-equations">Residuals in the model’s equations</h2>
+<p>To identify the unknown decision functions for <span class="math inline">\(\zeta\)</span> and <span class="math inline">\(h\)</span>, we use two modelp’s equations, namely, the definition of normalized Lagrange multiplier and the FB function representing the KT conditions, respectively: <span class="math display">\[\begin{gather*}
+h=\beta \overline{r}E_{\epsilon }\left[ \left. \frac{u^{\prime }\left(
+c^{\prime }\right) }{u^{\prime }(c)}\exp \left( \delta ^{\prime }-\delta
++r^{\prime }\right) \right\vert \epsilon \right] , \\
+FB\left( 1-\zeta ,1-h\right) =0
+\end{gather*}\]</span> where <span class="math inline">\(\epsilon=(\epsilon_r,\epsilon_\delta,\epsilon_q,\epsilon_p)\)</span>.</p>
+<p>We do not need to include the definition <span class="math inline">\(\zeta = \frac{c}{w}\)</span> because we will impose it to hold exactly in the solution by setting <span class="math inline">\(c=w\zeta\)</span> and <span class="math inline">\(c^{\prime}=w^{\prime}\zeta ^{\prime}\)</span>.</p>
+<p>We next construct the residuals in the above two equations which we will minimize. For given vectors of next-period shocks <span class="math inline">\(\epsilon=(\epsilon_r,\epsilon_\delta,\epsilon_q,\epsilon_p)\)</span>, state <span class="math inline">\(s=(r,\delta ,q,p,w)\)</span> and next-period shocks, we define: <span class="math display">\[\begin{equation*}
+\begin{matrix}
+R_1(s,\epsilon)=\beta \overline{r}\left[ \left. \frac{u^{\prime }\left(
+c^{\prime }\right) }{u^{\prime }(c)}\exp \left( \delta ^{\prime }-\delta
++r^{\prime }\right) \right\vert \epsilon \right] -h,
+\\
+R_2(s)=FB\left( 1-\zeta ,1-h\right),
+\end{matrix}
+\end{equation*}\]</span> where the transition equation is <span class="math inline">\(w^{\prime }=\left( w-c\right) \overline{r%
+}\exp (r)+\exp (y)\)</span>.</p>
+<div id="cell-25" class="cell" data-execution_count="60">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Residuals(theta, e_r: Vector, e_p: Vector, e_q: Vector, e_δ: Vector, r: Vector,  p: Vector, q: Vector, δ: Vector,  w: Vector):</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># all inputs are expected to have the same size n</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> r.shape[<span class="dv">0</span>]</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># arguments correspond to the values of the states today</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    ζ, h <span class="op">=</span> dr(theta, r, p, q, δ, w)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    c <span class="op">=</span> ζ<span class="op">*</span>w</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># transitions of the exogenous processes</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    rnext <span class="op">=</span> r<span class="op">*</span>ρ_r <span class="op">+</span> e_r</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    pnext <span class="op">=</span> p<span class="op">*</span>ρ_p <span class="op">+</span> e_p</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    qnext <span class="op">=</span> q<span class="op">*</span>ρ_q <span class="op">+</span> e_q</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    δnext <span class="op">=</span> δ<span class="op">*</span>ρ_δ <span class="op">+</span> e_δ</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># (epsilon = (rnext, δnext, pnext, qnext))</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># transition of endogenous states (next denotes variables at t+1)</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>    wnext <span class="op">=</span> jnp.exp(pnext)<span class="op">*</span>jnp.exp(qnext) <span class="op">+</span> (w<span class="op">-</span>c)<span class="op">*</span>rbar<span class="op">*</span>jnp.exp(rnext)</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>    ζnext, hnext <span class="op">=</span> dr(theta, rnext, pnext,  qnext, δnext,  wnext)</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>    cnext <span class="op">=</span> ζnext<span class="op">*</span>wnext</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>    R1 <span class="op">=</span> β<span class="op">*</span>jnp.exp(δnext<span class="op">-</span>δ)<span class="op">*</span>(cnext<span class="op">/</span>c)<span class="op">**</span>(<span class="op">-</span>γ)<span class="op">*</span>rbar<span class="op">*</span>jnp.exp(rnext) <span class="op">-</span> h</span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>    R2 <span class="op">=</span> min_FB(<span class="dv">1</span><span class="op">-</span>h,<span class="dv">1</span><span class="op">-</span>ζ)</span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (R1, R2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="the-expected-squared-sum-of-residuals" class="level2">
+<h2 class="anchored" data-anchor-id="the-expected-squared-sum-of-residuals">The expected squared sum of residuals</h2>
+<p>We construct the objective function for minimization as the squared sum of two residuals in the two model’s equations on a given 5-dimensional domain <span class="math inline">\(s=(r,\delta ,q,p,w)\)</span>: <span class="math display">\[\begin{equation*}
+\Xi (\theta )=E_{s}\left[ \left( E_{\epsilon }\left[ \left.R_1(s,\epsilon)\right\vert
+\epsilon \right] \right) ^{2}+v\left( R_2(s)\right) ^{2}\right] ,
+\end{equation*}\]</span> where <span class="math inline">\(v\)</span> is the exogenous relative weights of the two residuals in the objective function. We placed the first residual <span class="math inline">\(R_1(s,\epsilon)\)</span> under the expectation operator <span class="math inline">\(E_{\epsilon }\)</span> across next-period shocks $=( <em>{r},</em>{},<em>{q},</em>{p}) $ as is required by the definition of <span class="math inline">\(h\)</span>; the second residual <span class="math inline">\(R_2(s)\)</span> does not include random variables<br>
+and requires no expectation operator. The value of the objective function <span class="math inline">\(\Xi (\theta )\)</span> depends on the coefficients $$ because these coefficients determine the choices via<br>
+<span class="math display">\[\begin{equation*}
+\left(
+\begin{matrix}
+\zeta  \\
+h%
+\end{matrix}%
+\right) =\varphi (s;\theta ).
+\end{equation*}\]</span> A shortcoming of the constructed objective function is that it requires a potentially costly evaluation of two nested expectation operators: for each random grid point <span class="math inline">\(s=(r,\delta ,q,p,w)\)</span>, we need to construct a separate approximation of the expectation function $E_{}$ by considering a potentially large number of next period shocks $=( <em>{r}, </em>{},<em>{q},</em>{p}) <span class="math inline">\(. In particular, if there are\)</span>n$ grid points and <span class="math inline">\(J\)</span> next-period shocks, we have <span class="math inline">\(n\times J\)</span> function evaluations.</p>
+</section>
+<section id="all-in-one-expectation-function" class="level2">
+<h2 class="anchored" data-anchor-id="all-in-one-expectation-function">All-in-one expectation function</h2>
+<p>We now introduce a technique which we call an all-in-one expectation operator that makes it possible to merge the two expectation operators into a single one. This technique relies on a simple result from probability theory that says that for two random variables <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>, which are independent and follow the same distribution, we have <span class="math inline">\(E[a]^{2}=E[a]E[b]=E[ab]\)</span>.</p>
+<p>Therefore, we replace <span class="math inline">\(\left( E_{\epsilon }\left[ \left. R_1(s,\epsilon)\right\vert
+\epsilon \right] \right) ^{2}\)</span> by the product of two residuals constructed by using two uncorrelated random draws <span class="math inline">\(\epsilon _{1}\)</span> and <span class="math inline">\(\epsilon _{2}\)</span>, and as a result, we can pull the expectation out of squares <span class="math display">\[\begin{equation*}
+E_{\epsilon _{1}}\left[ \left. R_1(s,\epsilon_1)\right\vert \epsilon _{1}\right]
+E_{\epsilon _{2}}\left[ \left. R_1(s,\epsilon_2)\right\vert \epsilon _{2}\right]
+=E_{\epsilon _{1},\epsilon _{2}}\left[ \left( \left. R_1(s,\epsilon_1)\right\vert \epsilon
+_{1}\right) \left( \left. R_1(s,\epsilon_2)\right\vert \epsilon _{2}\right) \right].
+\end{equation*}\]</span> With that result, we can re-write the objective function as just one expectation operator: <span class="math display">\[\begin{equation*}
+\Xi (\theta )=E_{s,\epsilon _{1}\epsilon _{2}}\left[ \underset{\xi (\omega
+;\theta )}{\underbrace{\left[ \left( \left. R_{1}\left( s,\epsilon
+_{1}\right) \right\vert \epsilon _{1}\right) \left( \left. R_{1}\left(
+s,\epsilon _{2}\right) \right\vert \epsilon _{2}\right) \right] +v\left(
+R_{2}\left( s\right) \right) ^{2}}}\right] \equiv E_{\omega }\left[ \xi
+(\omega ;\theta )\right],
+\end{equation*}\]</span> where <span class="math inline">\(\omega =(s,\epsilon _{1},\epsilon _{2})\)</span>. Therefore, we wrote the objective function of the deep learning method as a single expectation operator $E_{}$ of a function <span class="math inline">\(%
+\xi (\omega ;\theta )\)</span> that depends on a vector-valued random variable $% $. We approximate <span class="math inline">\(\Xi (\theta )\)</span> by using Monte Carlo simulation: <span class="math display">\[\begin{equation*}
+\Xi (\theta )\approx \Xi ^{n}(\theta )=\frac{1}{n}\sum_{i=1}^{n}\xi (\omega
+_{i};\theta ),
+\end{equation*}\]</span> i.e., we draw <span class="math inline">\(n\)</span> random draws of <span class="math inline">\(\omega =(s,\epsilon _{1},\epsilon _{2})\)</span> and compute the average of the objective function.</p>
+<div id="cell-28" class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Ξ(n, theta, key): <span class="co"># objective function for DL training</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    keys <span class="op">=</span> jax.random.split(key, <span class="dv">13</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># randomly drawing current states</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> jax.random.normal(keys[<span class="dv">0</span>], shape<span class="op">=</span>(n,))<span class="op">*</span>σ_e_r</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> jax.random.normal(keys[<span class="dv">1</span>], shape<span class="op">=</span>(n,))<span class="op">*</span>σ_e_p</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    q <span class="op">=</span> jax.random.normal(keys[<span class="dv">2</span>], shape<span class="op">=</span>(n,))<span class="op">*</span>σ_e_q</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    δ <span class="op">=</span> jax.random.normal(keys[<span class="dv">3</span>], shape<span class="op">=</span>(n,))<span class="op">*</span>σ_e_δ</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> jax.random.uniform(keys[<span class="dv">4</span>], shape<span class="op">=</span>(n,), minval<span class="op">=</span>wmin, maxval<span class="op">=</span>wmax)</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># randomly drawing 1st realization for shocks</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    e1_r <span class="op">=</span> jax.random.normal(keys[<span class="dv">5</span>], shape<span class="op">=</span>(n,))<span class="op">*</span>σ_r</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>    e1_p <span class="op">=</span> jax.random.normal(keys[<span class="dv">6</span>], shape<span class="op">=</span>(n,))<span class="op">*</span>σ_p</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>    e1_q <span class="op">=</span> jax.random.normal(keys[<span class="dv">7</span>], shape<span class="op">=</span>(n,))<span class="op">*</span>σ_q</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>    e1_δ <span class="op">=</span> jax.random.normal(keys[<span class="dv">8</span>], shape<span class="op">=</span>(n,))<span class="op">*</span>σ_δ</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># randomly drawing 2nd realization for shocks</span></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>    e2_r <span class="op">=</span> jax.random.normal(keys[<span class="dv">9</span>], shape<span class="op">=</span>(n,))<span class="op">*</span>σ_r</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>    e2_p <span class="op">=</span> jax.random.normal(keys[<span class="dv">10</span>], shape<span class="op">=</span>(n,))<span class="op">*</span>σ_p</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>    e2_q <span class="op">=</span> jax.random.normal(keys[<span class="dv">11</span>], shape<span class="op">=</span>(n,))<span class="op">*</span>σ_q</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>    e2_δ <span class="op">=</span> jax.random.normal(keys[<span class="dv">12</span>], shape<span class="op">=</span>(n,))<span class="op">*</span>σ_δ</span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># residuals for n random grid points under 2 realizations of shocks</span></span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>    R1_e1, R2_e1 <span class="op">=</span> Residuals(theta, e1_r, e1_p, e1_q, e1_δ, r, p, q, δ, w)</span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>    R1_e2, R2_e2 <span class="op">=</span> Residuals(theta, e2_r, e2_p, e2_q, e2_δ, r, p, q, δ, w)</span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># construct all-in-one expectation operator</span></span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>    R_squared <span class="op">=</span> R1_e1<span class="op">*</span>R1_e2 <span class="op">+</span> R2_e1<span class="op">*</span>R2_e2 </span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># compute average across n random draws</span></span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> jnp.mean(R_squared)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>So far, we have been using JAX in the eager execution mode as if it was numpy: result of each operation is computed immediately.</p>
+<div id="cell-30" class="cell" data-execution_count="63">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">128</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>key <span class="op">=</span> jax.random.key(<span class="dv">13</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> Ξ(n, theta_0, key)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>v</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="63">
+<pre><code>Array(0.32632732, dtype=float32)</code></pre>
+</div>
+</div>
+<p>Note that the intermediate results are still stored as special JAX objects (tensors) and they can be converted to a regular value easily.</p>
+<div id="cell-32" class="cell" data-execution_count="64">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">float</span>(v)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="64">
+<pre><code>0.3263273239135742</code></pre>
+</div>
+</div>
+</section>
+<section id="model-training" class="level1">
+<h1>Model training</h1>
+<p>We are now ready to perform minimization of the objective <span class="math inline">\(\Xi_n\)</span>, hence to solve (or to train) the model using stochastic optimization - the stochastic gradient descent method, and in particular, its version called Adam.</p>
+<p>Now it is time to choose an optimizer. In TensorFlow, the optimizer object is in charge of performing the optimization steps, given the computed gradient. For the stochastic gradient descent, the updating rule would be: <span class="math display">\[\theta \leftarrow \theta(1-\lambda) - \lambda\nabla_{\theta} \Xi_n(\theta)\]</span> where <span class="math inline">\(\lambda\)</span> is a learning rate. For Adam, the learning rate evolves over time and can be specific to each coefficient.</p>
+<div id="cell-35" class="cell" data-execution_count="69">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> optax</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-36" class="cell" data-execution_count="72">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> optax.adam(<span class="fl">1e-3</span>) </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>opt_state <span class="op">=</span> optimizer.init(theta_0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-37" class="cell" data-execution_count="77">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="at">@nnx.jit</span>  <span class="co"># Automatic state management</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> train_step(theta, opt_state, key):</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  n <span class="op">=</span> <span class="dv">128</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> loss_fn(theta):</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Ξ(n, theta, key)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  loss, grads <span class="op">=</span> nnx.value_and_grad(loss_fn)(theta)</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  updates, opt_state <span class="op">=</span> optimizer.update(grads, opt_state)</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  theta <span class="op">=</span> optax.apply_updates(theta, updates)</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> theta, opt_state, loss</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-38" class="cell" data-execution_count="80">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>key <span class="op">=</span> jax.random.key(<span class="dv">0</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>train_step(theta_0, opt_state, key)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="80">
+<pre><code>({'params': {'layers_0': {'bias': Array([-0.00099999,  0.00099999, -0.00099999, -0.00099999, -0.00099999,
+           -0.00099999,  0.00099998, -0.00099999, -0.00099999, -0.00099999,
+            0.00099999, -0.00099999, -0.00099984,  0.00099999, -0.00099999,
+           -0.00099998,  0.00099999, -0.00099999,  0.00099999,  0.00099999,
+            0.00099999,  0.00099999, -0.00099999,  0.00099999,  0.00099999,
+            0.00099999,  0.00099999, -0.00099999, -0.00099999, -0.00099999,
+            0.00099999, -0.00099999], dtype=float32),
+    'kernel': Array([[ 2.90576994e-01,  6.10086501e-01,  4.28756237e-01,
+            -6.69481903e-02,  6.00531399e-01, -7.30138049e-02,
+             3.16190541e-01, -5.10465145e-01, -3.16770405e-01,
+            -8.65175277e-02,  6.08206876e-02,  4.35658604e-01,
+             6.39521599e-01,  3.28503340e-01, -6.03019536e-01,
+            -4.87558842e-01,  3.27692926e-01, -1.23124393e-02,
+            -5.09673655e-01,  2.97018766e-01,  8.52716088e-01,
+             5.77055328e-02,  1.13907695e-01,  3.45427603e-01,
+             1.42134741e-01,  6.63150027e-02, -4.24780965e-01,
+             2.87633657e-01,  3.57178450e-02, -2.30897903e-01,
+             2.34282553e-01, -6.76139295e-01],
+           [ 6.84976161e-01,  2.80706763e-01,  2.75065601e-01,
+             7.58876741e-01,  3.25741947e-01,  5.62200487e-01,
+            -6.11043572e-01, -4.06330407e-01, -2.17019260e-01,
+            -2.87477553e-01,  3.14743549e-01,  3.64510477e-01,
+            -2.45555520e-01, -8.65781844e-01,  5.64136386e-01,
+             3.47741902e-01,  3.65129709e-01, -5.10530844e-02,
+             3.61090273e-01,  3.68901372e-01,  8.07801709e-02,
+            -1.71740338e-01,  1.92454919e-01,  6.00643098e-01,
+             9.06348228e-01, -5.07585049e-01,  3.98297489e-01,
+             5.67231953e-01, -2.12654546e-01, -3.02104354e-01,
+            -4.91601378e-01,  2.59259045e-01],
+           [-7.29679987e-02, -6.03428967e-02, -7.13421583e-01,
+             6.31961450e-02, -4.33356732e-01,  2.13028073e-01,
+            -2.37776294e-01,  1.90861136e-01,  1.89057350e-01,
+             1.45647347e-01,  2.09887996e-01, -5.14245212e-01,
+             1.68102026e-01, -3.63973260e-01, -9.45541978e-01,
+             2.85150886e-01, -5.58416307e-01,  5.52608013e-01,
+            -9.17331278e-01,  2.00041890e-01, -8.91367197e-01,
+             9.32728723e-02,  1.70245662e-01,  7.86572993e-01,
+             9.49022267e-03, -7.22944260e-01, -3.39623481e-01,
+             3.47313643e-01, -8.22086930e-01,  9.17533457e-01,
+             7.73751438e-01, -9.76893067e-01],
+           [-6.76029742e-01,  2.18309313e-01, -2.10780114e-01,
+            -1.93245322e-01, -7.26927578e-01,  1.16271481e-01,
+            -8.94776106e-01, -8.66588131e-02, -7.42582202e-01,
+             3.74925017e-01,  4.08008397e-01,  6.59836829e-01,
+             3.55684847e-01,  5.77436876e-04, -1.15606077e-01,
+            -3.29018146e-01,  9.37580168e-01, -3.51309687e-01,
+            -6.93765223e-01,  1.44256074e-02,  3.86868238e-01,
+             1.40711576e-01,  3.38916570e-01,  8.79223228e-01,
+             6.65049374e-01, -5.01968622e-01,  3.28865111e-01,
+             1.78459436e-01,  5.09950519e-01,  1.65947109e-01,
+             2.92391419e-01, -2.44030878e-01],
+           [-9.68230963e-01,  5.36674522e-02,  9.87019122e-01,
+             1.68127075e-01,  1.37939543e-01, -4.18502063e-01,
+            -1.87593296e-01,  1.63010642e-01,  9.11239088e-01,
+             5.49989194e-03,  5.18459380e-02,  1.88091546e-01,
+            -2.45355919e-01,  4.55460101e-01,  5.99510789e-01,
+             1.32816464e-01,  1.54927792e-02, -1.01026252e-01,
+            -5.66997886e-01, -1.33938938e-01, -6.94246829e-01,
+             3.93039316e-01,  4.63874102e-01,  9.67177689e-01,
+             2.69299001e-01, -7.11216509e-01,  4.26159799e-01,
+             2.96553403e-01,  2.37350658e-01,  4.29906458e-01,
+             1.98319793e-01,  1.69716746e-01]], dtype=float32)},
+   'layers_1': {'bias': Array([-0.00099999,  0.00099999,  0.00099999, -0.00099999, -0.00099999,
+           -0.00099999, -0.00099999, -0.00099999,  0.00099999,  0.00099998,
+            0.00099999, -0.00099999, -0.00099999, -0.00099857, -0.00099999,
+            0.00099999,  0.00099999,  0.00099999,  0.00099999, -0.00099999,
+            0.00099999, -0.00099999,  0.00099999, -0.00099999, -0.00099999,
+           -0.00099999, -0.00099999,  0.00099999,  0.00099998, -0.00099999,
+           -0.00099999, -0.00099999], dtype=float32),
+    'kernel': Array([[ 0.08028451, -0.12694463, -0.16517161, ..., -0.09011469,
+             0.11818608,  0.27721205],
+           [ 0.27888992,  0.17136027, -0.08418229, ..., -0.00655951,
+             0.21156475, -0.09107073],
+           [ 0.05083922,  0.24567221, -0.1615431 , ..., -0.09922998,
+             0.31926593, -0.21564198],
+           ...,
+           [-0.29852524,  0.2161529 , -0.07271834, ..., -0.19646876,
+            -0.36503586,  0.01950573],
+           [-0.3862267 ,  0.17947868,  0.25355363, ..., -0.19096345,
+             0.26527345, -0.2222944 ],
+           [ 0.04879192, -0.23138039,  0.14187574, ...,  0.23447008,
+            -0.07781439, -0.01152448]], dtype=float32)},
+   'layers_2': {'bias': Array([ 0.00099999, -0.00099998, -0.00099999, -0.00099992,  0.00099999,
+           -0.00099999,  0.00099999, -0.00099999,  0.00099999, -0.00099999,
+            0.00099999,  0.00099998,  0.00099999,  0.00099999,  0.00099999,
+            0.00099999, -0.00099999, -0.00099999, -0.00099999,  0.00099999,
+           -0.00099999, -0.00099996,  0.00099999, -0.00099999,  0.00099999,
+           -0.00099999, -0.00099999, -0.00099999, -0.00099999,  0.00099999,
+           -0.00099999,  0.00099999], dtype=float32),
+    'kernel': Array([[ 0.10576341, -0.34913623,  0.29568854, ..., -0.04602984,
+             0.0526979 ,  0.2529758 ],
+           [-0.09528456, -0.00379137,  0.1706552 , ...,  0.08860844,
+            -0.29843187,  0.35976106],
+           [-0.34404194,  0.16272418,  0.27824655, ..., -0.07253396,
+             0.24329141,  0.21488856],
+           ...,
+           [ 0.08721483,  0.064231  ,  0.05546777, ...,  0.3064761 ,
+            -0.09369519, -0.062145  ],
+           [ 0.24008322, -0.20132665,  0.01569657, ..., -0.34995735,
+             0.2803042 , -0.36960876],
+           [-0.0707825 ,  0.17653075, -0.20318094, ..., -0.02054866,
+            -0.09215975, -0.09089494]], dtype=float32)},
+   'layers_3': {'bias': Array([-0.00099999,  0.00099999], dtype=float32),
+    'kernel': Array([[ 0.03813289,  0.3262104 ],
+           [ 0.01450743, -0.09098117],
+           [-0.09283216, -0.19298944],
+           [ 0.05055879,  0.0760477 ],
+           [-0.02906282, -0.03922855],
+           [ 0.10332084, -0.30678308],
+           [ 0.09477834, -0.03677274],
+           [ 0.09960643,  0.03413736],
+           [-0.12843114,  0.09858599],
+           [ 0.1468802 , -0.19938262],
+           [ 0.06454647, -0.1418309 ],
+           [ 0.04126251,  0.15201563],
+           [-0.00320409,  0.21408913],
+           [-0.00145276,  0.19818756],
+           [-0.14545786,  0.11385514],
+           [-0.1748309 , -0.12620309],
+           [ 0.09987191,  0.32951805],
+           [ 0.18455799, -0.1477907 ],
+           [-0.09346157,  0.22150539],
+           [-0.11167234,  0.1914164 ],
+           [ 0.21227238, -0.07227054],
+           [-0.15438405, -0.04312037],
+           [-0.16902089, -0.09351698],
+           [ 0.02293933, -0.24821205],
+           [-0.24305552, -0.17213082],
+           [ 0.11003602, -0.13708307],
+           [ 0.00808613,  0.1649792 ],
+           [ 0.09057406,  0.24668163],
+           [ 0.2624336 ,  0.03973389],
+           [-0.02355043,  0.11765958],
+           [-0.14609647, -0.02810595],
+           [-0.37713435,  0.3332066 ]], dtype=float32)}}},
+ (ScaleByAdamState(count=Array(1, dtype=int32), mu={'params': {'layers_0': {'bias': Array([ 1.1610985e-03, -1.5785731e-04,  2.9649958e-03,  2.9601741e-03,
+          2.8981618e-03,  1.0022663e-03, -8.4839645e-05,  2.3535339e-04,
+          3.3552491e-03,  1.8098004e-03, -1.8397158e-04,  4.7317237e-04,
+          6.3268235e-06, -5.6343043e-04,  9.8007196e-04,  8.0950929e-05,
+         -1.7672547e-03,  1.2257324e-03, -1.8255651e-03, -1.2666672e-04,
+         -2.8531157e-04, -1.9631609e-03,  3.8738374e-03, -2.3737669e-03,
+         -1.2869043e-04, -1.0109490e-03, -1.1227505e-03,  1.6362248e-04,
+          3.6036670e-03,  6.9978397e-04, -1.7915590e-03,  1.0418568e-03],      dtype=float32), 'kernel': Array([[-7.22040058e-05,  1.53594647e-05,  4.88708145e-04,
+           3.81832011e-04,  2.44939147e-04,  7.24025522e-05,
+           1.91746021e-05, -3.65896180e-04,  4.68772283e-04,
+          -2.86479073e-04, -6.03974797e-04, -1.05120962e-04,
+           5.23376744e-04, -5.21233778e-05, -2.85338210e-05,
+          -1.54001929e-04, -4.31772409e-04,  1.92119958e-04,
+           4.48981737e-04,  6.65668413e-05, -3.48771602e-04,
+          -2.65865034e-04, -9.65117011e-04,  2.05182936e-04,
+          -3.70165071e-04,  5.66115545e-04, -1.90343679e-04,
+          -1.66096026e-04,  1.25824439e-03, -3.88119544e-04,
+           1.23154517e-04, -2.31026916e-05],
+         [ 4.89163038e-04,  4.30099026e-04, -3.59542115e-04,
+           8.37585831e-04, -1.15018839e-03,  4.47002851e-04,
+          -3.33322998e-04,  4.87879806e-05, -1.26437040e-03,
+          -8.74701247e-04, -4.39809461e-04, -3.96147283e-04,
+           1.05112194e-05, -1.92536376e-04,  6.39478618e-04,
+          -1.40724645e-03, -3.34347133e-05, -5.75745478e-04,
+          -4.65678604e-04, -1.30364482e-04, -6.80483819e-04,
+           2.56998406e-04, -1.13183330e-03, -1.65190315e-04,
+           5.56039799e-04, -5.53953112e-04, -4.17023519e-04,
+           7.57486676e-04, -1.81320662e-04, -5.73505880e-04,
+           1.44192786e-03,  4.81695781e-04],
+         [-1.84322547e-04, -5.15859982e-04, -3.12794691e-05,
+           1.13297392e-04, -1.14132185e-03, -5.04481257e-04,
+           4.48633742e-04,  2.50354147e-04, -3.31092830e-04,
+           7.02189049e-04,  1.35901838e-03,  1.13535920e-04,
+          -2.36838925e-04,  5.98770566e-04, -2.06489800e-04,
+           4.85669647e-04, -6.40846964e-04, -5.36502910e-07,
+          -2.46419921e-04, -2.87929899e-04,  2.02413416e-04,
+          -1.11356378e-03,  1.30795396e-03, -9.17787838e-04,
+           1.81943411e-04,  4.64540208e-05,  2.59571098e-04,
+          -1.09689114e-04, -5.12986910e-04,  3.27766611e-04,
+           5.07674231e-05, -4.51540167e-04],
+         [-3.38606886e-04, -3.74235271e-04, -4.08214139e-04,
+           1.98496462e-04, -3.65170126e-04, -3.60432787e-05,
+           5.31398167e-04, -2.00321927e-04, -5.22572547e-04,
+          -2.60606321e-04,  3.95079369e-05,  3.82340717e-04,
+           3.65417509e-04, -4.23041085e-04,  3.13076489e-05,
+           3.85260035e-04, -6.96144940e-04, -7.64470024e-04,
+           3.17804588e-05,  1.94342676e-04, -5.21539594e-04,
+          -6.39488630e-04,  2.79110518e-05, -1.96026507e-04,
+          -1.47102997e-04,  8.18498447e-05, -2.09077290e-04,
+          -3.35045537e-04,  2.58326560e-04, -5.16871165e-04,
+           6.66958396e-04,  2.24193049e-04],
+         [-4.55799105e-04,  6.42167171e-04,  2.36004754e-03,
+           1.87339063e-03,  3.88074457e-03, -1.70167710e-03,
+          -9.45172564e-04,  1.92673950e-04,  2.81658070e-03,
+           1.60764612e-03, -1.53058820e-04,  4.01552621e-04,
+           1.49758591e-03, -2.64901348e-04, -9.67555170e-05,
+           3.35702789e-03, -9.82270925e-04, -4.29103122e-04,
+           2.42639706e-03, -6.55521522e-04, -9.43374995e-04,
+          -1.63675961e-03,  3.65826651e-03, -9.61459649e-04,
+          -8.60977627e-04,  8.98521044e-04, -1.24521830e-04,
+          -1.36669993e-03,  3.74836219e-03,  4.47296450e-04,
+          -1.75623130e-03,  3.16293852e-04]], dtype=float32)}, 'layers_1': {'bias': Array([ 1.0255214e-03, -2.0362840e-03, -4.6704831e-03,  4.4729817e-03,
+          3.2943015e-03,  2.6577737e-03,  2.3363237e-03,  6.7542531e-03,
+         -5.9329282e-04, -7.7578079e-05, -1.5448554e-03,  9.1128610e-04,
+          6.4605579e-04,  7.0342213e-07,  7.5439591e-04, -2.8273363e-03,
+         -2.1360037e-03, -2.1754436e-03, -6.2120723e-04,  2.5825717e-03,
+         -2.8127461e-04,  7.0564332e-03, -5.4446945e-04,  2.5121489e-04,
+          3.1463255e-04,  3.0527969e-03,  9.9508220e-04, -5.3122948e-04,
+         -7.9325378e-05,  6.5192883e-04,  5.7174778e-03,  2.3097948e-04],      dtype=float32), 'kernel': Array([[ 1.0503993e-03,  3.9738232e-05,  2.8346429e-04, ...,
+           8.5744448e-04,  2.8173157e-04, -1.5256075e-04],
+         [ 2.4183821e-04, -2.4427386e-04, -5.0296017e-04, ...,
+           2.1326010e-05,  1.1824876e-03,  2.9672485e-05],
+         [ 4.4852535e-05, -4.9904658e-04, -2.8696582e-03, ...,
+          -1.1081108e-04,  5.4301843e-03,  1.6569405e-05],
+         ...,
+         [ 2.7600136e-05, -2.1624111e-03, -4.6251896e-03, ...,
+          -1.0869467e-04,  2.0260345e-03,  1.5028972e-04],
+         [ 9.7452021e-06, -1.8290546e-03, -3.3254796e-03, ...,
+          -5.5117353e-06,  1.5754321e-03,  1.7556715e-04],
+         [ 4.3369923e-04,  3.3957639e-04, -9.9846933e-05, ...,
+           1.3955538e-04,  1.8552553e-03, -1.1987293e-04]], dtype=float32)}, 'layers_2': {'bias': Array([-1.2515523e-03,  9.4605588e-05,  8.7047758e-04,  1.2853253e-05,
+         -7.8638457e-04,  9.1755635e-04, -1.8248356e-04,  4.0158913e-03,
+         -5.0827409e-03,  2.6649197e-03, -4.5236843e-04, -8.4423693e-05,
+         -9.7720500e-04, -4.0328754e-03, -8.6924451e-04, -4.2095929e-03,
+          2.6289381e-03,  1.2718819e-02,  3.5727357e-03, -1.3274018e-03,
+          8.4424550e-03,  3.4554581e-05, -1.8476043e-03,  2.4248667e-03,
+         -2.6244877e-03,  9.2934016e-03,  2.6777852e-04,  1.8664794e-03,
+          5.3464342e-03, -2.5525538e-03,  8.3061279e-04, -5.1819882e-03],      dtype=float32), 'kernel': Array([[-5.44577051e-06, -1.16713905e-04, -4.60018055e-05, ...,
+          -2.07722383e-06, -6.18789854e-05,  0.00000000e+00],
+         [-7.93998261e-05,  8.10572121e-04,  1.16737283e-04, ...,
+          -1.37552246e-03, -9.94031434e-05, -3.22121009e-03],
+         [-2.99077074e-05,  1.45133687e-04,  1.73992361e-04, ...,
+          -3.99418845e-04,  1.41460710e-04, -1.18847191e-03],
+         ...,
+         [-2.86212617e-06, -7.18753363e-05,  2.16050721e-05, ...,
+           1.00128946e-05,  2.50659414e-05,  0.00000000e+00],
+         [-1.23733815e-04,  3.44732165e-04,  6.87081047e-05, ...,
+          -3.21938569e-04, -3.72476963e-04, -2.26426317e-04],
+         [ 6.95327108e-05, -7.37207418e-04, -3.55845841e-04, ...,
+           4.78942791e-04,  2.77428306e-04, -1.90869061e-04]],      dtype=float32)}, 'layers_3': {'bias': Array([ 0.03821038, -0.0021883 ], dtype=float32), 'kernel': Array([[-2.6561948e-04, -1.5825863e-04],
+         [ 1.6285888e-03,  3.1668716e-03],
+         [ 1.1754618e-02, -7.2308085e-03],
+         [ 7.0295879e-05, -5.7438105e-05],
+         [ 2.2995721e-03,  2.2321659e-04],
+         [ 2.5063131e-03, -7.7126548e-04],
+         [-4.9139035e-04,  2.3996318e-04],
+         [ 5.9992881e-03,  2.4026118e-03],
+         [ 1.5737275e-02, -4.9939486e-03],
+         [ 7.3223113e-04,  8.2112610e-04],
+         [ 7.9026948e-05, -1.1065897e-04],
+         [ 3.5669398e-03, -1.7953629e-03],
+         [ 4.7534253e-04, -2.5701150e-04],
+         [ 3.2956884e-03, -2.1264318e-03],
+         [-1.0909732e-04, -2.9557533e-04],
+         [ 7.5665565e-04,  1.7545104e-03],
+         [ 5.7965749e-06,  2.5743348e-04],
+         [ 1.5159343e-02, -8.6595742e-03],
+         [ 3.0127642e-04,  4.7625061e-03],
+         [ 7.8693795e-04, -1.9948711e-04],
+         [ 9.5352484e-03, -8.2871935e-04],
+         [-7.4921467e-05, -1.4751834e-05],
+         [ 2.4629110e-03, -1.4924033e-03],
+         [ 1.1348184e-02, -2.9163870e-03],
+         [-9.0055820e-04,  2.7288923e-03],
+         [ 1.3366594e-02, -7.8389449e-03],
+         [ 3.1334923e-03,  2.4801695e-03],
+         [ 5.7053089e-04,  9.5921865e-04],
+         [ 6.9548823e-03, -9.8553218e-04],
+         [ 1.2823996e-02, -7.0596025e-03],
+         [-3.7141773e-04,  5.0441641e-04],
+         [ 6.0272624e-04, -3.1126576e-04]], dtype=float32)}}}, nu={'params': {'layers_0': {'bias': Array([1.3481497e-07, 2.4918934e-09, 8.7912008e-07, 8.7626307e-07,
+         8.3993416e-07, 1.0045377e-07, 7.1977657e-10, 5.5391216e-09,
+         1.1257696e-06, 3.2753778e-07, 3.3845542e-09, 2.2389209e-08,
+         4.0028697e-12, 3.1745383e-08, 9.6054094e-08, 6.5530537e-10,
+         3.1231889e-07, 1.5024199e-07, 3.3326882e-07, 1.6044457e-09,
+         8.1402689e-09, 3.8540011e-07, 1.5006617e-06, 5.6347682e-07,
+         1.6561229e-09, 1.0220179e-07, 1.2605686e-07, 2.6772318e-09,
+         1.2986416e-06, 4.8969763e-08, 3.2096838e-07, 1.0854656e-07],      dtype=float32), 'kernel': Array([[5.2134186e-10, 2.3591318e-11, 2.3883565e-08, 1.4579569e-08,
+          5.9995187e-09, 5.2421301e-10, 3.6766538e-11, 1.3388002e-08,
+          2.1974746e-08, 8.2070262e-09, 3.6478557e-08, 1.1050418e-09,
+          2.7392323e-08, 2.7168467e-10, 8.1417893e-11, 2.3716595e-09,
+          1.8642742e-08, 3.6910077e-09, 2.0158460e-08, 4.4311446e-10,
+          1.2164163e-08, 7.0684218e-09, 9.3145090e-08, 4.2100039e-09,
+          1.3702218e-08, 3.2048685e-08, 3.6230714e-09, 2.7587890e-09,
+          1.5831789e-07, 1.5063678e-08, 1.5167034e-09, 5.3373434e-11],
+         [2.3928049e-08, 1.8498518e-08, 1.2927053e-08, 7.0154996e-08,
+          1.3229335e-07, 1.9981156e-08, 1.1110421e-08, 2.3802671e-10,
+          1.5986326e-07, 7.6510226e-08, 1.9343236e-08, 1.5693269e-08,
+          1.1048574e-11, 3.7070256e-09, 4.0893287e-08, 1.9803427e-07,
+          1.1178801e-10, 3.3148286e-08, 2.1685658e-08, 1.6994900e-09,
+          4.6305825e-08, 6.6048176e-09, 1.2810466e-07, 2.7287841e-09,
+          3.0918024e-08, 3.0686405e-08, 1.7390862e-08, 5.7378603e-08,
+          3.2877183e-09, 3.2890902e-08, 2.0791559e-07, 2.3203082e-08],
+         [3.3974801e-09, 2.6611151e-08, 9.7840534e-11, 1.2836300e-09,
+          1.3026157e-07, 2.5450133e-08, 2.0127224e-08, 6.2677192e-09,
+          1.0962247e-08, 4.9306948e-08, 1.8469309e-07, 1.2890405e-09,
+          5.6092673e-09, 3.5852622e-08, 4.2638035e-09, 2.3587500e-08,
+          4.1068486e-08, 2.8783538e-14, 6.0722782e-09, 8.2903631e-09,
+          4.0971191e-09, 1.2400244e-07, 1.7107435e-07, 8.4233463e-08,
+          3.3103404e-09, 2.1579760e-10, 6.7377162e-09, 1.2031701e-09,
+          2.6315558e-08, 1.0743095e-08, 2.5773314e-10, 2.0388851e-08],
+         [1.1465462e-08, 1.4005203e-08, 1.6663879e-08, 3.9400847e-09,
+          1.3334922e-08, 1.2991179e-10, 2.8238398e-08, 4.0128874e-09,
+          2.7308207e-08, 6.7915655e-09, 1.5608771e-10, 1.4618443e-08,
+          1.3352995e-08, 1.7896376e-08, 9.8016886e-11, 1.4842530e-08,
+          4.8461779e-08, 5.8441440e-08, 1.0099976e-10, 3.7769081e-09,
+          2.7200354e-08, 4.0894570e-08, 7.7902677e-11, 3.8426391e-09,
+          2.1639293e-09, 6.6993971e-10, 4.3713313e-09, 1.1225552e-08,
+          6.6732611e-09, 2.6715583e-08, 4.4483347e-08, 5.0262523e-09],
+         [2.0775284e-08, 4.1237872e-08, 5.5698240e-07, 3.5095923e-07,
+          1.5060178e-06, 2.8957049e-07, 8.9335124e-08, 3.7123251e-09,
+          7.9331267e-07, 2.5845259e-07, 2.3427003e-09, 1.6124453e-08,
+          2.2427635e-07, 7.0172725e-09, 9.3616304e-10, 1.1269638e-06,
+          9.6485628e-08, 1.8412948e-08, 5.8874031e-07, 4.2970846e-08,
+          8.8995648e-08, 2.6789820e-07, 1.3382914e-06, 9.2440466e-08,
+          7.4128252e-08, 8.0734004e-08, 1.5505685e-09, 1.8678686e-07,
+          1.4050220e-06, 2.0007411e-08, 3.0843484e-07, 1.0004181e-08]],      dtype=float32)}, 'layers_1': {'bias': Array([1.0516942e-07, 4.1464523e-07, 2.1813410e-06, 2.0007565e-06,
+         1.0852422e-06, 7.0637611e-07, 5.4584086e-07, 4.5619936e-06,
+         3.5199637e-08, 6.0183580e-10, 2.3865783e-07, 8.3044242e-08,
+         4.1738808e-08, 4.9480270e-14, 5.6911318e-08, 7.9938309e-07,
+         4.5625117e-07, 4.7325543e-07, 3.8589839e-08, 6.6696771e-07,
+         7.9115399e-09, 4.9793248e-06, 2.9644697e-08, 6.3108923e-09,
+         9.8993649e-09, 9.3195683e-07, 9.9018870e-08, 2.8220477e-08,
+         6.2925154e-10, 4.2501121e-08, 3.2689552e-06, 5.3351523e-09],      dtype=float32), 'kernel': Array([[1.10333865e-07, 1.57912697e-10, 8.03520184e-09, ...,
+          7.35211074e-08, 7.93726684e-09, 2.32747843e-09],
+         [5.84857229e-09, 5.96697181e-09, 2.52968917e-08, ...,
+          4.54798699e-11, 1.39827705e-07, 8.80456333e-11],
+         [2.01175007e-10, 2.49047503e-08, 8.23493849e-07, ...,
+          1.22790955e-09, 2.94869028e-06, 2.74545178e-11],
+         ...,
+         [7.61767455e-11, 4.67602177e-07, 2.13923772e-06, ...,
+          1.18145316e-09, 4.10481618e-07, 2.25870012e-09],
+         [9.49689719e-12, 3.34544097e-07, 1.10588144e-06, ...,
+          3.03792256e-12, 2.48198660e-07, 3.08238279e-09],
+         [1.88095033e-08, 1.15312124e-08, 9.96940974e-10, ...,
+          1.94757055e-09, 3.44197218e-07, 1.43695189e-09]], dtype=float32)}, 'layers_2': {'bias': Array([1.5663831e-07, 8.9502172e-10, 7.5773130e-08, 1.6520611e-11,
+         6.1840069e-08, 8.4190965e-08, 3.3300254e-09, 1.6127383e-06,
+         2.5834258e-06, 7.1017979e-07, 2.0463721e-08, 7.1273604e-10,
+         9.5492950e-08, 1.6264083e-06, 7.5558603e-08, 1.7720673e-06,
+         6.9113162e-07, 1.6176837e-05, 1.2764440e-06, 1.7619958e-07,
+         7.1275049e-06, 1.1940192e-10, 3.4136417e-07, 5.8799782e-07,
+         6.8879359e-07, 8.6367309e-06, 7.1705339e-09, 3.4837456e-07,
+         2.8584361e-06, 6.5155302e-07, 6.8991767e-08, 2.6852999e-06],      dtype=float32), 'kernel': Array([[2.96564184e-12, 1.36221356e-09, 2.11616613e-10, ...,
+          4.31485847e-13, 3.82900850e-10, 0.00000000e+00],
+         [6.30433206e-10, 6.57027215e-08, 1.36275935e-09, ...,
+          1.89206204e-07, 9.88098492e-10, 1.03761943e-06],
+         [8.94471025e-11, 2.10637841e-09, 3.02733416e-09, ...,
+          1.59535407e-08, 2.00111305e-09, 1.41246559e-07],
+         ...,
+         [8.19176649e-13, 5.16606369e-10, 4.66779150e-11, ...,
+          1.00258057e-11, 6.28301508e-11, 0.00000000e+00],
+         [1.53100554e-09, 1.18840280e-08, 4.72080375e-10, ...,
+          1.03644444e-08, 1.38739100e-08, 5.12688780e-09],
+         [4.83479867e-10, 5.43474812e-08, 1.26626265e-08, ...,
+          2.29386199e-08, 7.69664688e-09, 3.64309982e-09]], dtype=float32)}, 'layers_3': {'bias': Array([1.4600332e-04, 4.7886562e-07], dtype=float32), 'kernel': Array([[7.05537140e-09, 2.50457921e-09],
+         [2.65230113e-07, 1.00290754e-06],
+         [1.38171054e-05, 5.22845949e-06],
+         [4.94151053e-10, 3.29913596e-10],
+         [5.28803241e-07, 4.98256414e-09],
+         [6.28160592e-07, 5.94850462e-08],
+         [2.41464466e-08, 5.75823300e-09],
+         [3.59914588e-06, 5.77254355e-07],
+         [2.47661810e-05, 2.49395248e-06],
+         [5.36162474e-08, 6.74248071e-08],
+         [6.24525820e-10, 1.22454080e-09],
+         [1.27230601e-06, 3.22332795e-07],
+         [2.25950529e-08, 6.60549171e-09],
+         [1.08615620e-06, 4.52171236e-07],
+         [1.19022248e-09, 8.73647821e-09],
+         [5.72527767e-08, 3.07830675e-07],
+         [3.36002840e-12, 6.62720057e-09],
+         [2.29805701e-05, 7.49882292e-06],
+         [9.07674913e-09, 2.26814655e-06],
+         [6.19271390e-08, 3.97951050e-09],
+         [9.09209666e-06, 6.86775792e-08],
+         [5.61322655e-10, 2.17616619e-11],
+         [6.06593005e-07, 2.22726769e-07],
+         [1.28781294e-05, 8.50531421e-07],
+         [8.11005094e-08, 7.44685281e-07],
+         [1.78665832e-05, 6.14490546e-06],
+         [9.81877406e-07, 6.15124065e-07],
+         [3.25505489e-08, 9.20100476e-08],
+         [4.83703934e-06, 9.71273693e-08],
+         [1.64454887e-05, 4.98379904e-06],
+         [1.37951135e-08, 2.54435939e-08],
+         [3.63278900e-08, 9.68863656e-09]], dtype=float32)}}}),
+  EmptyState()),
+ Array(0.26343495, dtype=float32))</code></pre>
+</div>
+</div>
+<p>We repeat the training_step K times with the following function (each training step is called an epoch).</p>
+<div id="cell-40" class="cell" data-execution_count="88">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> train_me(K, key, theta_0, opt_state):</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    theta <span class="op">=</span> theta_0</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    key, key_ <span class="op">=</span> jax.random.split(key)</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    vals <span class="op">=</span> []</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k <span class="kw">in</span> tqdm(<span class="bu">range</span>(K)):</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>        theta, opt_state, val <span class="op">=</span> train_step(theta, opt_state, key)</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>        vals.append(<span class="bu">float</span>(val))</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>        key, key_ <span class="op">=</span> jax.random.split(key)</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> vals, theta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-41" class="cell" data-execution_count="89">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># with writer.as_default():</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>key0 <span class="op">=</span> jax.random.key(<span class="dv">43</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>results, theta <span class="op">=</span> train_me(<span class="dv">50000</span>, key0, theta_0, opt_state)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>100%|██████████| 50000/50000 [01:01&lt;00:00, 814.70it/s]</code></pre>
+</div>
+</div>
+<p>On a modern cpu, optimization should be done within few minutes. It would be dramatically faster on hardware adapted to deep-learning. To see how the training has performed, we can plot the empirical errors against the number of epochs.</p>
+<div id="cell-43" class="cell" data-execution_count="90">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>plt.plot(np.sqrt( results) )</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>plt.xscale(<span class="st">'log'</span>)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>plt.yscale(<span class="st">'log'</span>)</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>plt.grid()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="qe_notebook_jax_files/figure-html/cell-26-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In the training graph, one can see that errors are decreasing until they reach <span class="math inline">\(2*10^{-3}\)</span> on average (the errors are volatile both because they depend on a specific random draw and because only two such random draws are used to approximate the expectation function). The numbers in the graph represent the mean of the squared residuals. We show the constructed decision rule below.</p>
+<div id="cell-45" class="cell" data-execution_count="91">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>wvec <span class="op">=</span> np.linspace(wmin, wmax, <span class="dv">100</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>ζvec, hvec <span class="op">=</span> dr(theta, wvec<span class="op">*</span><span class="dv">0</span>, wvec<span class="op">*</span><span class="dv">0</span>, wvec<span class="op">*</span><span class="dv">0</span>, wvec<span class="op">*</span><span class="dv">0</span>, wvec)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Multidimensional Consumption-Savings (decision rule)"</span>)</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>plt.plot(wvec, wvec, linestyle<span class="op">=</span><span class="st">'--'</span>, color<span class="op">=</span><span class="st">'black'</span>)</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>plt.plot(wvec, wvec<span class="op">*</span>ζvec)</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"$w_t$"</span>)</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"$c_t$"</span>)</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>plt.grid()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="qe_notebook_jax_files/figure-html/cell-27-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/albop\.github\.io\/bbank_ce_2024\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

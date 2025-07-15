@@ -1,0 +1,5 @@
+JAX:
+
+- explain tracing compiler
+- vectorization
+

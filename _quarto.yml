@@ -14,25 +14,34 @@ website:
             # - slides/interpolation.qmd
             # - slides/optimization.qmd
             # - slides/discretization.qmd
-            - slides/solution.qmd
-            - slides/vfi.qmd
-            - slides/ti.qmd
-            - slides/dolo.qmd
+            # - slides/solution.qmd
+            # - slides/vfi.qmd
+            - slides/time_iteration.qmd
+              #            - slides/deeplearning_models/slides.qmd
+            - slides/deeplearning.qmd
+            # - slides/dolo.qmd
+
             
         - section: "Hands-on"
           contents:
             - handson/python_syntax.qmd
             - handson/numeric_python.qmd
+            - handson/neoclassical.qmd
+            - handson/jax_intro.qmd
+            - handson/qe_notebook_jax.ipynb
+
         - section: "Exercises"
           contents:
             - exercises/python.qmd
             - exercises/numeric.qmd
-            # - exercises/numpy.qmd
-            # - exercises/methods.qmd
-            # - exercises/solution.qmd
-            # - exercises/vfi.qmd
-            # - exercises/ti.qmd
-            # - exercises/dolo.qmd
+            - exercises/methods.qmd
+            - exercises/lifetime_reward.qmd
+        - section: "Correction"
+          contents:
+            - corrections/python.ipynb
+            - corrections/numeric.ipynb
+            - corrections/methods.ipynb
+            - corrections/neoclassical.ipynb
 
 format:
   html:

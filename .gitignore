@@ -4,3 +4,7 @@ bak/*
 *.html
 slides/*_files/*
 syllabus_files/*
+/.quarto/
+*-checkpoint.ipynb
+handson/*ipynb
+*slides_files/

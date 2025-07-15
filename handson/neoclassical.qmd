@@ -1,0 +1,320 @@
+---
+title: "Neoclassical model with time iteration"
+format:
+    html: default
+    ipynb: default
+execute:
+  eval: false
+jupyter: python3
+---
+
+
+Our goal consists in this tutorial will be to solve numerically the neoclassical model using the time-iteration algorithms in two ways:
+- with a naive iterative algorithm
+- with a vectorized one (using numpy)
+
+Remark: this tutorial uses typehints as a way to help structure the code. They can safely be ignored.
+
+```{python}
+from dataclasses import dataclass
+from math import exp, sqrt
+import numpy as np
+from typing import Any, Tuple
+import numpy.typing as npt
+Vector = npt.NDArray[1]
+Matrix = npt.NDArray[2]
+```
+
+### The neoclassical model
+
+The representative agent maximizes intertemporal discounted utility of consumption $$\sum_{t\geq0} \beta^t U(c_t)$$ where $U(c_t)=\frac{(c_t)^{1-\gamma}}{1-\gamma}$.
+
+Production is $$y_t=exp(z_t) k_t^{\alpha}$$ where $k_t$ is the amount of capital and $z_t=\rho z_{t-1} + \epsilon_t$ and AR1 process with $(\epsilon_t)$ a normal innovation of standard deviation $\sigma$.
+
+The law of motion for the capital depends on investment $i_t$ and capital depreciation $\delta$:
+
+$$k_t = (1-\delta) k_{t-1} + i_{t-1}$$
+
+The first order condition corresponding to the optimization problem is:
+
+$$\beta E_t \left[ \frac{U^{\prime}(c_{t+1}}{U^{\prime}(c_t)})\left( 1- \delta + \alpha exp(z_{t+1}) k_{t+1}^{\alpha-1} \right) \right] =1$$
+
+::: {#exr-python-main}
+
+What are the states of the problems? the controls? the exogenous shocks?
+
+:::
+
+```{python}
+# states: (z,k)
+# controls: (i,)  
+
+# everything else can be computed from it
+# auxiliary: (y,c)
+
+# shocks: (epsilon,)
+
+# paramaters: alpha,beta,gamma,delta,sigma,rho
+```
+
+::: {#exr-python-main}
+
+Define an object to represent the model calibration (you can use a dataclass).
+
+:::
+
+```{python}
+@dataclass
+class Neoclassical:
+    
+    alpha = 0.3
+    beta = 0.96
+    gamma = 4.0
+    delta = 0.1
+    rho = 0.9
+    sigma = 0.01
+
+m = Neoclassical()
+```
+
+::: {#exr-python-main}
+
+Define a function to compute the steady-state controls and states.
+
+:::
+
+```{python}
+def steady_state(m: Neoclassical) -> Tuple[ Tuple[float, float], Tuple[float]]:
+    
+    z:float = 0.0
+    k:float = ((1/m.beta-(1-m.delta))/m.alpha)**(1/(m.alpha-1))
+    i = k*m.delta
+    s = (z,k) # tuple of states
+    x = (i,) #tuple of controls
+    return (s,x)
+```
+
+### Naive solution
+
+::: {#exr-python-main}
+
+Define a cartesian grid on productivity and capital:
+
+:::
+
+```{python}
+def get_grid(m: Neoclassical, size: Tuple[int, int]) -> Tuple[ Vector, Vector]:
+    
+    s,x = steady_state(m)
+
+    sigma_e = m.sigma/sqrt(1-m.rho**2)
+    kbar = s[1] # steady state value of capital
+
+    zvec = np.linspace( -2*sigma_e, 2*sigma_e, size[0])
+    kvec = np.linspace(0.5*kbar,kbar*1.5,size[1])
+    return (zvec, kvec)
+
+grid  = get_grid(m, (10,10))
+```
+
+
+::: {#exr-python-main}
+
+Define an initial guess representing the values of the controls on the grid
+
+:::
+
+```{python}
+N_1, N_2 = (10,10)
+
+s, x
+
+x0 = np.zeros( (N_1, N_2, 1) )
+x0[:, :, 0] = x
+x0;
+```
+
+```{python}
+def initial_guess(m: Neoclassical, grid)->npt.NDArray[3]
+
+    # x0 = 3-dimensional array of size
+
+x0 = initial_guess(m, grid)
+```
+
+::: {#exr-python-main}
+
+Define a decision rule which interpolates the initial guess on any state
+
+:::
+
+```{python}
+def phi(m: Neoclassical, s:: Tuple[float, float], x0::npt.NDArray[3])-> Tuple[float]
+    pass
+```
+
+::: {#exr-python-main}
+
+Compute the euler residual, for a given realization of the exogenous shocks.
+
+:::
+
+```{python}
+def f(m: RBC, s: Tuple[float,float], x:Tuple[float], E: Tuple[float], grid, theta):
+    ## grid is the discretized grid from before
+    ## theta contains the values of the controls on the grid
+    pass
+```
+
+::: {#exr-python-main}
+
+Compute the expected euler residuals, integrating over all possible realizations of the exogenous shocks.
+
+:::
+
+```{python}
+def F(m: RBC, s: Tuple[float,float], x:Tuple[float], grid, theta, discr:Tuple[Vector, Vector]):
+    ## grid is the discretized grid from before
+    ## theta contains the values of the controls on the grid
+    ## discr contains the weights w,x of the gaussian quadrature
+    pass
+```
+
+
+::: {#exr-python-main}
+
+At the steady-state, find the optimal control, assuming future decisions are taken according to the initial guess.
+
+:::
+
+```{python}
+
+# find x such that F(m,s,x,grid,theta_0,discr) = 0
+
+```
+
+
+::: {#exr-python-main}
+
+Solve for the optimal controls over the whole grid, still assuming future decisions are taken according to the initial guess.
+
+:::
+
+```{python}
+
+# find x such that F(m,s,x,grid,theta_0,discr) = 0
+
+```
+
+::: {#exr-python-main}
+
+Implement the time iteration algorithm.
+
+:::
+
+```{python}
+
+def time_iteration_0(m: Neoclassical, grid, discr, x0):
+    pass
+```
+
+::: {#exr-python-main}
+
+Time the result (and profile).
+
+:::
+
+```{python}
+
+def time_iteration_0(m: Neoclassical, grid, discr, x0):
+    pass
+```
+
+
+### Vectorization
+
+There are at least two approaches to speed up the code, with the same algorithm:
+- avoid the interpretation cost by compiling the code (for instance using numba)
+- vectorize the operations over the whole grid
+
+
+
+::: {#exr-python-main}
+
+Given $N$ the number of points of the grid, create a matrix, representing the vector of all grid points. It should be an $N \times 2$ matrix.
+
+:::
+
+```{python}
+# grid_v = 
+```
+
+
+::: {#exr-python-main}
+
+Rewrite the decision rule so that it can operate on a vector of states.
+
+:::
+
+```{python}
+def phi_v(m: Neoclassical, s:: Matrix, x0::npt.NDArray[3])-> Matrix
+    pass
+```
+
+
+::: {#exr-python-main}
+
+Rewrite the euler residual function so that it can operate on a vector of states with the corresponding vector of controls.
+
+:::
+
+```{python}
+def f_v(m: RBC, s: Matrix, x:Matrix, E: Tuple[float], grid, theta)->Matrix:
+    ## grid is the discretized grid from before
+    ## theta contains the values of the controls on the grid
+    pass
+```
+
+::: {#exr-python-main}
+
+Rewrite the integrated euler residual function so that it can operate on a vector of states with the corresponding vector of controls.
+
+:::
+
+```{python}
+def F_v(m: RBC, s: Matrix, x:Matrix, grid, theta)->Matrix:
+    ## grid is the discretized grid from before
+    ## theta contains the values of the controls on the grid
+    pass
+```
+
+::: {#exr-python-main}
+
+Compute the jacobian of $F_v$ w.r.t $x$.
+
+:::
+
+```{python}
+#
+```
+
+
+::: {#exr-python-main}
+
+Solve for the matrix `x` such that `F_v(m, s, x:Matrix, grid, theta)=0`
+
+:::
+
+```{python}
+#
+```
+
+::: {#exr-python-main}
+
+Implement the time iteration algorithm.
+
+:::
+
+```{python}
+#
+```

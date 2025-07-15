@@ -1,4 +1,3 @@
-
 ## Approximation
 
 Define two continuous sets $X\in R^p$, $Y \in R^q$.
@@ -140,36 +139,22 @@ $$B_{i,k+1}(x) = \frac{x-x_i}{x_{i+k}-x_i}B_{i,k}(x) + \frac{x_{i+k+1}-x}{x_{i+k
 
 ## In practice: Interpolations
 
-```julia
-f(x) = log(x)
-xs = 1:0.2:5
-A = [f(x) for x in xs]
+```python
+import numpy as np
+from scipy.interpolate import RegularGridInterpolator
+f = lambda x: np.log(x)
+xs = np.linspace(1, 5, 10)
+A = f(xs)
 
 # linear interpolation
-interp_linear = LinearInterpolation(xs, A)
-interp_linear(1.3) # interpolate
+interp_linear = RegularGridInterpolator((xs,), A)
+interp_linear([1.3]) # interpolate
 
 # cubic spline interpolation
-interp_cubic = CubicSplineInterpolation(xs, A)
-interp_cubic(1.3) # interpolate
+interp_cubic = RegularGridInterpolator((xs,), A, method="cubic")
+interp_cubic([1.3]) # interpolate
 ```
 
-
-## In practice: Interpolations (2)
-
-Note that in  $y_i = \sum_n c_n B_{n,k} (x_i)$, $y_i$ and $c_n$ could perfectly well be vectors. If we use a Vector type which implements all operations (`zeros`, `*`, ...) we can interpolate them with the same operations
-
-```julia
-using StaticArrays
-
-f(x) = SVector(log(x), exp(x))
-xs = 1:0.2:5
-A = [f(x) for x in xs]
-
-# linear interpolation
-interp_linear = LinearInterpolation(xs, A)
-interp_linear(1.3) # returns a 2d SVector
-```
 
 ## Mental break: matrix conditioning
 
@@ -322,9 +307,19 @@ $f(x_1, ... x_d ; \theta) = \sum_{i_1=1}^{N_1} ... \sum_{i_d=1}^{N_d} \theta_{i_
 
 ## Delaunay and sparse grid
 
+::: {.columns}
+
+:::: {.column}
+
 ![Delaunay Tessellation](graphs/delaunary.png)
 
+::::
+:::: {.column}
+
 ![Sparse Grid](graphs/sparse_grid.png)
+
+::::
+:::
 
 ## Python libraries
 

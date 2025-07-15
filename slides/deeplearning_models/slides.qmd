@@ -1,0 +1,270 @@
+---
+title: Deep Learning for Solving Dynamic Economic Models
+format: revealjs
+---
+
+## Introduction (1)
+
+- Deeplearning has many impressive applications
+    - reconstruct images/scenes, produce original Chopin music or BOE speeches, play Go...
+
+- Works in "you know more than you think applications"
+    - algorithmically/mathematically complex
+    - easy to do by trained humans
+
+- Solving a rational expectation model should be easy!
+    - right?
+
+## Introduction (2)
+
+- Research presented today:
+    - solve a simple economic model by deeplearning
+    - show that neural networks are flexible and scale well
+
+- Not today:
+    - many impressive application
+    - reinforcement learning
+    - behavioral interpretation
+
+
+## Existing approaches
+
+- Machine learning as a statistical tool (see Susan Athey)
+- Approximate policy rules in standard iteration algorithm:
+    - asset pricing with neural networks
+    - PEA + neural network + genetic algorithm (Duffy and McNelis, 1997!)
+    - PEA + neural network + backpropagation (Villa and Valaitis)
+- Deep Reinforcement learning
+
+
+## Method
+
+
+- setup a neural network (aka parameterize policy rule)
+- choose a suitable (scalar) objective measuring how well model is solved
+- train neural network by minimizing objective
+    - stochastic gradient descent
+
+
+## Why does it work now?
+
+- computational neural networks have been around for a while
+    - perceptron 1952
+    - popular in the 80s, less so in th 90s
+    - all the rage again (with deeper networks)
+- a new technological stack
+    - vectorization and parallel computing
+        - GPUS (1920 cores on gtx 1070!)
+    - cloud computing
+    - software stack:
+        - git, linux
+        - theano, tensorflow
+
+
+## Model
+
+- Variant of neoclassical model:
+    $$k_t = \left( 1-\delta \right) k_{t-1} + i_{t-1} \color{\red}{\chi_t}$$
+    $$c_t = \color{\red}{\psi_t} + e^{\color{\red}{a_t}} k_t^{\alpha} - i_t$$
+- Exogenous processes:
+    - $m_t = \tau(m_{t-1},\epsilon_t) \in R^p$ with $(\epsilon_t)$ i.i.d.
+        - (or any markov process)
+    - $\begin{bmatrix}
+        \color{\red}{\psi_t} & \color{\red}{a_t}& \color{\red}{\chi_t}
+        \end{bmatrix} = p(m_t)$
+- Comments:
+    - Flexible $\ni$ consumption/savings model
+    - Increase dimension with specific processes
+        - default: $\chi_t=1, \psi_t=0$, $a_t$ is an $AR1$
+
+
+
+## Decision Rule
+
+- Value: $$\max_{i_t} E_0 \beta^t U(c_t)$$
+$$0<c_t\leq\color{\red}{\psi_t} + e^{\color{\red}{a_t}k_t^{\alpha}}$$
+- Time-invariant policy:  $i_t=\varphi(m_t, k_t)$
+- Approximate policy: $i_t=\varphi(m_t, k_t;\color{blue}{ \theta})$
+
+- Parameterized family $\varphi(..; \color{blue}{ \theta})$:
+    - complete polynomials ($i_t\approx\sum_{|i|+j\leq K}\color{blue}{\theta_{i,j}} m_t^i k_t^j$)
+    - neural network
+
+## Neural Network
+
+![Multilayer Perceptron](multilayer_perceptron.png)
+
+- One neuron $n$ takes input $x_1, ... x_{k_n}$
+    - outputs $\tau(a_1 x_1 + ... + a_{k_n} x_{k_n} + b_n)$ with $\tau(u)$ an activation function
+- One layer $n$ of *multilayer perceptron*
+    - $\tau(A_n X_n + B_n)$
+    - number of rows of $B_n$ is width of layer
+
+## Neural Networks
+
+- Whole network:
+    - $$i_t = A_3 \tau(A_2 \tau( A_1
+        \begin{pmatrix} a_t \\ k_t  \end{pmatrix} + B_1) + B_2) + B_3$$
+    - $\theta = ( (A_1, B_1), (A_2, B_2), ... )$: to be trained
+
+- Nice properties:
+    - universal approximators
+    - $\nabla_{\theta} i_t$ can be computed exactly.
+    - scales up *linearly*:
+        - replace   $ \begin{pmatrix} a_t \\ k_t  \end{pmatrix}$ by $\begin{pmatrix} a_t \\ \chi_t, \psi_t \\ k_t  \end{pmatrix}$, only $A_1, B_1$ changes.
+
+- We use multilayer perceptron with 3 hidden layers with width 20 and relu activation function
+
+## Set-up objective
+
+
+- Alternatives we consider
+    - fit decision rule (not in this presentation)
+    - maximize lifetime reward dynamics starting from initial state
+    - minimize error on state-space
+- Careful what you wish for!
+    - different objectives, different criteria
+    - computational efficiency, asymptotic precision
+- More objectives (trade-offs...):
+    - regularity
+    - moment matching
+
+
+## Learning  lifetime reward
+
+- Stochastic reward for $\epsilon=(\epsilon_0, \cdots, \epsilon_T)$: $$\xi(\epsilon; \theta) = \sum_{t \geq 0}^T \beta^t U(c_t)$$
+
+- Objective: $\max_{\theta}  \Xi(\theta) = E_{\epsilon} \xi\left( \epsilon; \theta \right)$
+
+- Compute gradient: $\nabla_{\theta}V$
+    - back-in-time propagation
+    - easy with tensorflow:
+        - automatic differentiation
+        - parallel computation is cheap (gpus, clusters)
+
+
+## Stochastic Gradient
+
+- Goal: minimize theoretical risk $\Xi(\theta) = E_{\epsilon} \left[ \xi(\epsilon; \theta) \right]$
+
+- *Gradient Descent*: (learning rate $\lambda$) $$\theta_{n+1} \leftarrow \left( 1-\lambda \right) \theta_{n} - \lambda \nabla_{\theta} \color{red}{E_{\epsilon} \left[ \xi(\epsilon; \theta) \right]}$$
+
+- *Stochastic Gradient Descent*: $$\theta_{n+1} \leftarrow \left(1-\lambda_n\right) \theta_{n} - \lambda_n \color{red}{\nabla_{\theta}\xi(\epsilon; \theta)}$$
+    - unbiased: $\nabla_{\theta} E_{\epsilon} \left[ \xi(\epsilon; \theta) \right] = E_{\epsilon} \left[ \nabla_{\theta}  \xi(\epsilon; \theta) \right]$
+    - converges with $\lambda_n\rightarrow 0$ and $\sum \frac{1}{\lambda_n}=\infty$
+
+- *Batch Stochastic Gradient Descent*: $$\theta_{n+1} \leftarrow \left(1-\lambda_n\right) \theta_{n} - \lambda_n \color{red}{\sum_{i=1}^N \nabla_{\theta}\xi(\epsilon_n; \theta)} $$
+
+## Maximizing  lifetime expected reward
+
+<!-- ![Training with Euler](/home/pablo/Downloads/) -->
+
+<!-- <video>
+  <source data-src="learning_cp_V.mp4" type="video/mp4" />
+</video> -->
+
+- complete polynomials (neoclassical)
+
+    - learning rate $\lambda=0.005$, $N_{minibatches}=8$
+    - initial capital $k_0 = \frac{\overline{k}}{2}$
+    - complete polynomials, order 3
+
+## Maximizing consumption savings
+
+..
+
+
+
+## Using Euler equations
+
+- Optimality conditions on a domain for states $\mathcal{G}$:
+$$\forall s \in \mathcal{G},  E_{\epsilon} \left[ \Phi(s,\epsilon;\theta)\right] = 0$$
+- Single objective: $$\min_{\theta}\Xi\left( \theta \right) ={\int}_{s \in \mathcal{G}} \left( E_{\epsilon} \Phi\left(s,\epsilon;\theta\right) \right)^2$$
+
+- With $s$ uniformly distributed on $\mathcal{G}$, and $\epsilon_1,\epsilon_2$ distributed as $\epsilon$:
+$$\Xi\left( \theta \right) = E_{s} \left[\left(E_{\epsilon_1} \Phi\left(s,\epsilon_1;\theta\right)\right) \left( E_{\epsilon_2}\Phi\left(s,\epsilon_2;\theta\right)\right)\right]$$
+ $$\Xi\left( \theta \right) = E_{s,\epsilon_1,\epsilon_2}\left[ \underbrace{ \Phi\left(s,\epsilon_1;\theta\right) \Phi\left(s,\epsilon_2;\theta\right)}_{\xi(s,\epsilon_1,\epsilon_2;\theta)}\right]$$
+- SGD training is possible
+
+
+## Minimize euler equations errors
+<!-- 
+<video>
+  <source data-src="learning_cp_E.mp4" type="video/mp4" />
+</video> -->
+
+
+- learning rate $\lambda=0.05$, $N_{minibatches}=10$
+- initial capital $k_0 = \frac{\overline{k}}{2}$
+- complete polynomials of order $3$
+
+
+## Comparison with Value training (cp)
+
+<!-- ![Comparaison Euler/Value](learning_E_cp.png) -->
+
+- complete polynomial
+
+
+## Minimize euler equations (neural networks)
+
+
+- ADAM optimizer, $N_{minibatches}=64$
+- initial capital $k_0 = \frac{\overline{k}}{2}$
+- neural network, three hidden layers, sigmoid, width 32
+
+
+## Comparison with Value training (nl)
+
+![Comparaison Euler/Value](learning_E_nl.png)
+
+- neural networks
+
+
+# The promises of Neural networks
+
+## Scale-up
+
+- higher dimension world (for $l = a,\chi,\psi$)
+    - $l_t = \exp(\hat{l}_t)\exp(\epsilon^l_t)$, $\hat{l}_t = \rho_l \hat{l}_{t-1}+ \tau^l_t$, $(\epsilon^l_t)$ i.i.d.
+    - 4 states $\left(\hat{a}_t,\hat{\chi}_t,\hat{\psi}_t,\hat{k}_t\right)$
+
+- does dimension reduction work ?
+    - compare learning with with full model and with $\chi_t$, $\psi_t$ *muted*: useless states should be eliminated
+    - solve true 4 states model
+
+## Scale-up (2)
+
+
+- it works!
+    - training properties don't depend on number of shocks (computational time)
+
+
+## Comments of the method
+
+- advantages
+    - neural networks:
+        - flexible functional form (kinks)
+        - robust to colinearity
+        - implicit dimensionality reduction
+    - generic training method
+    - scales well
+- lots of hyperparameters to be tuned:
+    - learning method (SGD, ADAM, AdaGrad,  RmsProp)
+    - neural network topology (activation functions, width)
+
+
+## Conclusion
+
+
+- what are we doing ?
+    - deep learning
+    - reinforcement learning
+    - artificial intelligence
+
+- are economists complicating the matter at will?
+
+- future work:
+    - more complex problems, understand trade-offs
+    - focus on performance
+    - behavioral interpretation (rational innatention, sparse programing)

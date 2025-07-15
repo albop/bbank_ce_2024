@@ -2,17 +2,30 @@
 title: "Computational Economics @ Bundesbank"
 ---
 
+
 My email: `pwinant@escp.eu`
+
+Website for this course: [https://www.mosphere.fr/bbank_ce_2024](https://www.mosphere.fr/bbank_ce_2024)
 
 ## Tentative schedule
 
 - Introduction to computational economics
     - nov 6
         - python
+    - ~~nov 7~~
+    - dec 5
         - numpy / matplotlib
-        - interpolation / quantization
-    - nov 7
-        - solution methods: value-function iteration / time-iteration
-        - introduction to dolo
-
-- Introduction to Deep-Learning
+        - methods: interpolation / quantization
+        - algorithm: time-iteration
+        - exercise: solving the neoclassical model
+        - (introduction to dolo)
+    - dec 6
+        - introduction to JAX (vectorization/differentiation,...)
+            - vectorize
+            - draw random numbers
+            - create a loop
+        - neural networks and deeplearning
+        - solving model with deeplearning
+            - lifetime_reward: simple rule for consumption savings
+            - solving euler equations: AiO operator
+        - ~~perturbation theory~~

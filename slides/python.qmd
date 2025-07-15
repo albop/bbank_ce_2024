@@ -2,7 +2,10 @@
 title: "Python"
 author: "Pablo Winant"
 subtitle: "Computational Economics @ Bundesbank"
-format: 
+format:   
+    # html: default
+    # beamer:
+    #     aspectratio: 169
     revealjs:
         code-line-numbers: true
         syntax-definitions: 
@@ -11,7 +14,7 @@ format:
         height: 1080
 ---
 
-# Why Python?
+# Why Python???
 
 . . .
 
@@ -24,8 +27,11 @@ Python:
 - is popular
 - is free and opensource
 - has many many libraries
+- vibrant community
+- lots of online resources
 
-## Why Python? (2)
+
+## Why Python? (3)
 
 Historically, python was a glue language used to interoperate many low-level/system languages.
 
@@ -85,7 +91,7 @@ say_hello("Pablo")
 ::::
 :::: {.column}
 
-![MicroBits](graphs/microbits.webp)
+<!-- ![MicroBits](graphs/microbits.webp) -->
 
 - Windows
 

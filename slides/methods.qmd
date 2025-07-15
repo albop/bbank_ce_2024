@@ -3,11 +3,23 @@ title: "Methods"
 author: "Pablo Winant"
 subtitle: "Computational Economics @ Bundesbank"
 format:
+  
   revealjs:
     html-math-method: mathjax
     navigation-mode: grid
     width: 1920
     height: 1080
+  # beamer:
+  #     aspectratio: 169
+      # mainfont: "EB Garamond"
+      # sansfont: "Open Sans"
+      # monofont: "Roboto Mono"
+    # revealjs:
+    #     code-line-numbers: true
+    #     syntax-definitions: 
+    #         - mojo.xml
+    #     width: 1920
+    #     height: 1080
 ---
 
 # Introduction

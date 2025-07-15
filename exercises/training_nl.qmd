@@ -1,0 +1,76 @@
+---
+title: Training a Neural Network
+format: 
+    html: default
+    ipynb: default
+---
+
+## Learning a function
+
+
+Consider the following (pseudo)-function
+
+```{python}
+import jax
+from jax import numpy as jnp
+
+def mystery(key):
+    
+    key1, key2 = jax.random.split(key)
+    x = jax.random.uniform(-1,1)
+    epsilon = jax.random.normal(key2)*0.01 # random nmer
+    y = jnp.sin(x)/x + epsilon
+    return (x,y)
+
+```
+
+The goal is to learn a function representation using a finite (possibly big) number of draws from the function.
+
+:::{#exr-plot}
+
+Draw 100 different values and plot them.
+
+:::
+
+
+:::{#exr-1d-root}
+
+Create a neural network using library flax (with the linen API), to predict $y$ from $x$.
+
+Initialize it with random weights and plot the initial guess.
+
+We will call $\varphi(x;\theta)$ the prediction from the neural network for weights $\theta$.
+
+:::
+
+```{python}
+#
+```
+
+:::{#exr-2d-root}
+
+Create an objective function $\xi(key, theta, N)$ for the empirical risk using a minibatch of size $N$.
+
+:::
+
+```{python}
+#
+```
+
+:::{#exr-2d-root}
+
+Compute the gradient of $\xi$ using jax.
+
+:::
+
+
+:::{#exr-2d-root}
+
+Train the neural network, either by hand, or by using Optax. Inspect the result.
+
+:::
+
+```{python}
+#
+```
+

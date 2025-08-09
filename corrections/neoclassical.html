@@ -1,0 +1,2890 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.40">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Neoclassical model with time iteration – Ce_bb_2024</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-944fc646c7e2aa292c8c646e2ff00dcc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@*/dist/embed-amd.js" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../corrections/python.html">Correction</a></li><li class="breadcrumb-item"><a href="../corrections/neoclassical.html">Neoclassical model with time iteration</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Ce_bb_2024</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Slides</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides/python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides/methods.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Methods</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides/time_iteration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Time Iteration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides/deeplearning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to deeplearning</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Hands-on</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../handson/python_syntax.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python: syntax review</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../handson/numeric_python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Numeric Python</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../handson/neoclassical.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Neoclassical model with time iteration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../handson/jax_intro.ipynb" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">An Introduction to JAX</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../handson/qe_notebook_jax.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deep learning solution method with all-in-one expectation operator</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Exercises</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../exercises/python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python Basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../exercises/numeric.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Numeric</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../exercises/methods.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Methods</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../exercises/lifetime_reward.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning consumption rules</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Correction</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../corrections/python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python Basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../corrections/numeric.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Numeric</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../corrections/methods.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Methods</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../corrections/neoclassical.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Neoclassical model with time iteration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../corrections/lifetime_reward.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning consumption rules</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-neoclassical-model" id="toc-the-neoclassical-model" class="nav-link active" data-scroll-target="#the-neoclassical-model">The neoclassical model</a></li>
+  <li><a href="#naive-solution" id="toc-naive-solution" class="nav-link" data-scroll-target="#naive-solution">Naive solution</a></li>
+  <li><a href="#vectorization" id="toc-vectorization" class="nav-link" data-scroll-target="#vectorization">Vectorization</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="neoclassical.out.ipynb" download="neoclassical.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../corrections/python.html">Correction</a></li><li class="breadcrumb-item"><a href="../corrections/neoclassical.html">Neoclassical model with time iteration</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Neoclassical model with time iteration</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Our goal in this tutorial will be to solve numerically the neoclassical model using the time-iteration algorithms in two ways:</p>
+<ul>
+<li>with a naive iterative algorithm</li>
+<li>with a vectorized one (using numpy)</li>
+</ul>
+<p>Remark: this tutorial uses typehints as a way to help structure the code. They can safely be ignored.</p>
+<div id="d3975a55" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> exp, sqrt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> typing <span class="im">import</span> Any, Tuple</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy.typing <span class="im">as</span> npt</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>Vector <span class="op">=</span> npt.NDArray[<span class="dv">1</span>]</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>Matrix <span class="op">=</span> npt.NDArray[<span class="dv">2</span>]</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>Tensor3 <span class="op">=</span> npt.NDArray[<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="the-neoclassical-model" class="level3">
+<h3 class="anchored" data-anchor-id="the-neoclassical-model">The neoclassical model</h3>
+<p>The representative agent maximizes intertemporal discounted utility of consumption <span class="math display">\[\sum_{t\geq0} \beta^t U(c_t)\]</span> where <span class="math inline">\(U(c_t)=\frac{(c_t)^{1-\gamma}}{1-\gamma}\)</span>.</p>
+<p>Production is <span class="math display">\[y_t=exp(z_t) k_t^{\alpha}\]</span> where <span class="math inline">\(k_t\)</span> is the amount of capital and <span class="math inline">\(z_t=\rho z_{t-1} + \epsilon_t\)</span> and AR1 process with <span class="math inline">\((\epsilon_t)\)</span> a normal innovation of standard deviation <span class="math inline">\(\sigma\)</span>.</p>
+<p>The law of motion for the capital depends on investment <span class="math inline">\(i_t\)</span> and capital depreciation <span class="math inline">\(\delta\)</span>:</p>
+<p><span class="math display">\[k_t = (1-\delta) k_{t-1} + i_{t-1}\]</span></p>
+<p>The first order condition corresponding to the optimization problem is:</p>
+<p><span class="math display">\[E_t \left[ \beta  \underbrace{ \frac{U^{\prime}(c_{t+1})}{U^{\prime}(c_t)})\left( 1- \delta + \alpha exp(z_{t+1}) k_{t+1}^{\alpha-1} \right)  -1 }_{f}\right] =0\]</span></p>
+<p><span class="theorem-title"><strong>Exercise 1</strong></span> What are the states of the problems? the controls? the exogenous shocks?</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your response here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="0dc573d9" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># states: (z,k)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># controls: (i,)  </span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># everything else can be computed from it</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># auxiliary: (y,c)</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># shocks: (epsilon,)</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># paramaters: alpha,beta,gamma,delta,sigma,rho</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><span class="theorem-title"><strong>Exercise 2</strong></span> Define an object to represent the model calibration (you can use a dataclass).</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="at">@dataclass</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Neoclassical:</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># modify the content here</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> Neoclassical()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="5fc1abc2" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="at">@dataclass</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Neoclassical:</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    alpha <span class="op">=</span> <span class="fl">0.3</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    beta <span class="op">=</span> <span class="fl">0.96</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    gamma <span class="op">=</span> <span class="fl">4.0</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    delta <span class="op">=</span> <span class="fl">0.1</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    rho <span class="op">=</span> <span class="fl">0.9</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    sigma <span class="op">=</span> <span class="fl">0.01</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># def __getitem__(self, name):</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">#     return self.__getattribute__(name)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="29b459e7" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> Neoclassical()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="f949dc18" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>m.alpha</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>0.3</code></pre>
+</div>
+</div>
+<p><span class="theorem-title"><strong>Exercise 3</strong></span> Define a function to compute the steady-state controls and states.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> steady_state(m: Neoclassical) <span class="op">-&gt;</span> Tuple[ Tuple[<span class="bu">float</span>, <span class="bu">float</span>], Tuple[<span class="bu">float</span>]]</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ...</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># s = ... tuple of states</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># x = ... tuple of controls</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (s,x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="dbb1a0e6" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> steady_state(m: Neoclassical) <span class="op">-&gt;</span> Tuple[ Tuple[<span class="bu">float</span>, <span class="bu">float</span>], Tuple[<span class="bu">float</span>]]:</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    z:<span class="bu">float</span> <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    k:<span class="bu">float</span> <span class="op">=</span> ((<span class="dv">1</span><span class="op">/</span>m.beta<span class="op">-</span>(<span class="dv">1</span><span class="op">-</span>m.delta))<span class="op">/</span>m.alpha)<span class="op">**</span>(<span class="dv">1</span><span class="op">/</span>(m.alpha<span class="op">-</span><span class="dv">1</span>))</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> k<span class="op">*</span>m.delta</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> (z,k) <span class="co"># tuple of states</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> (i,) <span class="co">#tuple of controls</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (s,x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cccc368b" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>s,x <span class="op">=</span> steady_state(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="bc51ce63" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<pre><code>(0.29208221499640713,)</code></pre>
+</div>
+</div>
+</section>
+<section id="naive-solution" class="level3">
+<h3 class="anchored" data-anchor-id="naive-solution">Naive solution</h3>
+<p><span class="theorem-title"><strong>Exercise 4</strong></span> Define a cartesian grid on productivity and capital:</p>
+<div id="f7cd2e4f" class="cell" data-editable="true" data-slideshow="{&quot;slide_type&quot;:&quot;&quot;}" data-tags="[]" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_grid(m: Neoclassical, size: Tuple[<span class="bu">int</span>, <span class="bu">int</span>]) <span class="op">-&gt;</span> Tuple[ Vector, Vector]:</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    s,x <span class="op">=</span> steady_state(m)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    sigma_e <span class="op">=</span> m.sigma<span class="op">/</span>sqrt(<span class="dv">1</span><span class="op">-</span>m.rho<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    kbar <span class="op">=</span> s[<span class="dv">1</span>] <span class="co"># steady state value of capital</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    zvec <span class="op">=</span> np.linspace( <span class="op">-</span><span class="dv">2</span><span class="op">*</span>sigma_e, <span class="dv">2</span><span class="op">*</span>sigma_e, size[<span class="dv">0</span>])</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    kvec <span class="op">=</span> np.linspace(<span class="fl">0.5</span><span class="op">*</span>kbar,kbar<span class="op">*</span><span class="fl">1.5</span>,size[<span class="dv">1</span>])</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (zvec, kvec)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>grid  <span class="op">=</span> get_grid(m, (<span class="dv">10</span>,<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="41684a63" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>grid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<pre><code>(array([-0.04588315, -0.03568689, -0.02549064, -0.01529438, -0.00509813,
+         0.00509813,  0.01529438,  0.02549064,  0.03568689,  0.04588315]),
+ array([1.46041107, 1.78494687, 2.10948266, 2.43401846, 2.75855425,
+        3.08309005, 3.40762584, 3.73216164, 4.05669743, 4.38123322]))</code></pre>
+</div>
+</div>
+<p><span class="theorem-title"><strong>Exercise 5</strong></span> Define an initial guess representing the values of the controls on the grid</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> initial_guess(m: Neoclassical, grid)<span class="op">-&gt;</span>npt.NDArray[<span class="dv">3</span>]</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># x0 = 3-dimensional array of size</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>x0 <span class="op">=</span> initial_guess(m, grid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="c691cc7c" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>N_1, N_2 <span class="op">=</span> (<span class="dv">10</span>,<span class="dv">10</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>x0 <span class="op">=</span> np.zeros( (N_1, N_2, <span class="dv">1</span>) )</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>x0[:, :, <span class="dv">0</span>] <span class="op">=</span> x</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>x0<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="2bc5f7f7" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> initial_guess(m: Neoclassical, grid)<span class="op">-&gt;</span>npt.NDArray[<span class="dv">3</span>]:</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    s,x <span class="op">=</span> steady_state(m)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    N_1 <span class="op">=</span> <span class="bu">len</span>(grid[<span class="dv">0</span>])</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    N_2 <span class="op">=</span> <span class="bu">len</span>(grid[<span class="dv">1</span>])</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    x0 <span class="op">=</span> np.zeros( (N_1, N_2, <span class="dv">1</span>) )</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    x0[:, :, <span class="dv">0</span>] <span class="op">=</span> x</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x0<span class="op">;</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># x0 = 3-dimensional array of size</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>x0 <span class="op">=</span> initial_guess(m, grid)</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>x0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<pre><code>array([[[0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221]],
+
+       [[0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221]],
+
+       [[0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221]],
+
+       [[0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221]],
+
+       [[0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221]],
+
+       [[0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221]],
+
+       [[0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221]],
+
+       [[0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221]],
+
+       [[0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221]],
+
+       [[0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221],
+        [0.29208221]]])</code></pre>
+</div>
+</div>
+<p><span class="theorem-title"><strong>Exercise 6</strong></span> Define a decision rule which interpolates the initial guess on any state</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> phi(m: Neoclassical, s:: Tuple[<span class="bu">float</span>, <span class="bu">float</span>], x0::npt.NDArray[<span class="dv">3</span>])<span class="op">-&gt;</span> Tuple[<span class="bu">float</span>]</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="aa7dc71a" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.interpolate <span class="im">import</span> RegularGridInterpolator</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>RegularGridInterpolator(grid, x0)([<span class="fl">0.001</span>, <span class="fl">2.0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<pre><code>array([[0.29208221]])</code></pre>
+</div>
+</div>
+<div id="c98bd74c" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> phi(grid, s, x0):</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> RegularGridInterpolator(grid, x0)(s)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="359f3f18" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>phi(grid,[<span class="fl">0.01</span>, <span class="dv">2</span>], x0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
+<pre><code>array([[0.29208221]])</code></pre>
+</div>
+</div>
+<div id="8b9e4ed8-04b7-4556-acc0-3f7c667cb3c7" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Note that with the same decision rule, it is possible to interpolate at many differenc state at once</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co"># instead of one vector ([0.01, 2]), just pass a matrix, where each row corresponds to a state to interpolate at </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="8f671643-11dc-4d76-9b06-46b45856b83e" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>phi(</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    grid,</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    np.array([</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>        [<span class="fl">0.01</span>, <span class="fl">2.2</span>],</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>        [<span class="fl">0.02</span>, <span class="fl">2.4</span>]</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    ]),</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>    x0</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="co"># The result is also a matrix, with each line corresponding to a vector of controls</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="22">
+<pre><code>array([[0.29208221],
+       [0.29208221]])</code></pre>
+</div>
+</div>
+<p><span class="theorem-title"><strong>Exercise 7</strong></span> Compute the euler residual, for a given realization of the exogenous shocks.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(m: NeoClassical, s: Tuple[<span class="bu">float</span>,<span class="bu">float</span>], x:Tuple[<span class="bu">float</span>], E: Tuple[<span class="bu">float</span>], grid, theta):</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">## grid is the discretized grid from before</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">## theta contains the values of the controls on the grid</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="6406aa88" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(m: Neoclassical, s: Tuple[<span class="bu">float</span>,<span class="bu">float</span>], x:Tuple[<span class="bu">float</span>], E: Tuple[<span class="bu">float</span>], grid, theta):</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">## grid is the discretized grid from before</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">## theta contains the values of the controls on the grid</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># extract some values</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> s[<span class="dv">0</span>]</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>    k <span class="op">=</span> s[<span class="dv">1</span>]</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># z,k  = s # (equivalent)</span></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> x[<span class="dv">0</span>]</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>    Epsilon <span class="op">=</span> E[<span class="dv">0</span>]</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">### Coputing auxiliary variables</span></span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> exp(z)<span class="op">*</span>k<span class="op">**</span>m.alpha</span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>    c <span class="op">=</span> y <span class="op">-</span> i</span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">### computing the transitions</span></span>
+<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># upper case for variables tomorrow</span></span>
+<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a>    Z <span class="op">=</span> (<span class="dv">1</span><span class="op">-</span>m.rho)<span class="op">*</span>z <span class="op">+</span> Epsilon</span>
+<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a>    K <span class="op">=</span> (<span class="dv">1</span><span class="op">-</span>m.delta)<span class="op">*</span>k <span class="op">+</span> i</span>
+<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># state tomorrow</span></span>
+<span id="cb31-26"><a href="#cb31-26" aria-hidden="true" tabindex="-1"></a>    S <span class="op">=</span> (Z,K)</span>
+<span id="cb31-27"><a href="#cb31-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-28"><a href="#cb31-28" aria-hidden="true" tabindex="-1"></a>    <span class="co">#compute controls tomorrow</span></span>
+<span id="cb31-29"><a href="#cb31-29" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> phi(grid,S,theta)</span>
+<span id="cb31-30"><a href="#cb31-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-31"><a href="#cb31-31" aria-hidden="true" tabindex="-1"></a>    I <span class="op">=</span> X[<span class="dv">0</span>]</span>
+<span id="cb31-32"><a href="#cb31-32" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb31-33"><a href="#cb31-33" aria-hidden="true" tabindex="-1"></a>    <span class="co">### Coputing auxiliary variables</span></span>
+<span id="cb31-34"><a href="#cb31-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-35"><a href="#cb31-35" aria-hidden="true" tabindex="-1"></a>    Y <span class="op">=</span> exp(Z)<span class="op">*</span>K<span class="op">**</span>m.alpha</span>
+<span id="cb31-36"><a href="#cb31-36" aria-hidden="true" tabindex="-1"></a>    C <span class="op">=</span> Y <span class="op">-</span> I</span>
+<span id="cb31-37"><a href="#cb31-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-38"><a href="#cb31-38" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> m.beta<span class="op">*</span>(C<span class="op">/</span>c)<span class="op">**</span>(<span class="op">-</span>m.gamma)<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>m.delta<span class="op">+</span>m.alpha<span class="op">*</span>Y<span class="op">/</span>K) <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb31-39"><a href="#cb31-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-40"><a href="#cb31-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> r</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="56cf40b2" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>f(m, s, x, (<span class="fl">0.0</span>,), grid, x0) <span class="co"># 0 consistent with the steady-state</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="24">
+<pre><code>0.0</code></pre>
+</div>
+</div>
+<p><span class="theorem-title"><strong>Exercise 8</strong></span> Compute the expected euler residuals, integrating over all possible realizations of the exogenous shocks.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> F(m: RBC, s: Tuple[<span class="bu">float</span>,<span class="bu">float</span>], x:Tuple[<span class="bu">float</span>], grid, theta, discr:Tuple[Vector, Vector]):</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">## grid is the discretized grid from before</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">## theta contains the values of the controls on the grid</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">## discr contains the weights w,x of the gaussian quadrature</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>:::</p>
+<div id="6284b533" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute the gauss-hermite quadratures</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numpy.polynomial.hermite_e <span class="im">import</span> hermegauss</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>nodes, weights <span class="op">=</span> hermegauss(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="d22c309d" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>nodes <span class="op">=</span> nodes<span class="op">*</span>m.sigma</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="23b2163d" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> pi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="375634e4" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> F(m: Neoclassical, s: Tuple[<span class="bu">float</span>,<span class="bu">float</span>], x:Tuple[<span class="bu">float</span>], grid, theta, discr:Tuple[Vector, Vector]):</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">## grid is the discretized grid from before</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">## theta contains the values of the controls on the grid</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">## discr contains the weights w,x of the gaussian quadrature</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>    nodes, w <span class="op">=</span> discr</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(w)):</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>        E <span class="op">=</span> (nodes[i],)</span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>        r <span class="op">+=</span> w[i]<span class="op">*</span>f(m, s, x, E, grid, theta)</span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> r <span class="op">/</span> <span class="dv">2</span><span class="op">/</span>pi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="a80c7338" class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>F(m, s, x, grid, x0, (nodes, weights))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="29">
+<pre><code>0.000516479436097674</code></pre>
+</div>
+</div>
+<p><span class="theorem-title"><strong>Exercise 9</strong></span> At the steady-state, find the optimal control, assuming future decisions are taken according to the initial guess.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># find x such that F(m,s,x,grid,theta_0,discr) = 0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="069633bd" class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> root</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>sol <span class="op">=</span> root(<span class="kw">lambda</span> u: F(m, s, u, grid, x0, (nodes, weights)), x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="70f010a3" class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>sol</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="31">
+<pre><code> message: The solution converged.
+ success: True
+  status: 1
+     fun: 2.234256836783291e-16
+       x: [ 2.924e-01]
+  method: hybr
+    nfev: 7
+    fjac: [[-1.000e+00]]
+       r: [ 1.689e+00]
+     qtf: [-1.462e-10]</code></pre>
+</div>
+</div>
+<div id="4122925c" class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>sol.x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="32">
+<pre><code>array([0.29238782])</code></pre>
+</div>
+</div>
+<p><span class="theorem-title"><strong>Exercise 10</strong></span> Solve for the optimal controls over the whole grid, still assuming future decisions are taken according to the initial guess.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># find x such that F(m,s,x,grid,theta_0,discr) = 0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="a852454a" class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute optimal controls for the whole grid</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="co"># store the results in x1</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> x0.copy()</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="co"># iterate over z grid</span></span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i,z) <span class="kw">in</span> <span class="bu">enumerate</span>(grid[<span class="dv">0</span>]):</span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># iterate over k grid</span></span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (j,k) <span class="kw">in</span> <span class="bu">enumerate</span>(grid[<span class="dv">1</span>]):</span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a>        s <span class="op">=</span> (z,k)</span>
+<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a>        x_ <span class="op">=</span> x0[i,j,:] <span class="co"># initial guess (a vector, same as x0[i,j,:]</span></span>
+<span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-14"><a href="#cb48-14" aria-hidden="true" tabindex="-1"></a>        sol <span class="op">=</span> root(<span class="kw">lambda</span> u: F(m, s, u, grid, x0, (nodes, weights)), x)</span>
+<span id="cb48-15"><a href="#cb48-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-16"><a href="#cb48-16" aria-hidden="true" tabindex="-1"></a>        x1[i,j,:] <span class="op">=</span> sol.x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><span class="theorem-title"><strong>Exercise 11</strong></span> Implement the time iteration algorithm.</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> time_iteration_0(m: Neoclassical, grid, discr, x0):</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="6acf7246" class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tqdm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="dd05914d-014f-48c9-8751-fb3b4f8d801b" class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tqdm.notebook <span class="im">import</span> tqdm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="c8ff826f" class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> time_iteration(m: Neoclassical, grid, discr, x0, T<span class="op">=</span><span class="dv">100</span>, tol_η<span class="op">=</span><span class="fl">1e-9</span>):</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>    η_0 <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> t <span class="kw">in</span> tqdm(<span class="bu">range</span>(T)):</span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>        x1 <span class="op">=</span> x0.copy()</span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a>        <span class="co">#### solve for optimal controls on the grid</span></span>
+<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a>        <span class="co"># iterate over z grid</span></span>
+<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> (i,z) <span class="kw">in</span> <span class="bu">enumerate</span>(grid[<span class="dv">0</span>]):</span>
+<span id="cb52-14"><a href="#cb52-14" aria-hidden="true" tabindex="-1"></a>            <span class="co"># iterate over k grid</span></span>
+<span id="cb52-15"><a href="#cb52-15" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> (j,k) <span class="kw">in</span> <span class="bu">enumerate</span>(grid[<span class="dv">1</span>]):</span>
+<span id="cb52-16"><a href="#cb52-16" aria-hidden="true" tabindex="-1"></a>                </span>
+<span id="cb52-17"><a href="#cb52-17" aria-hidden="true" tabindex="-1"></a>                s <span class="op">=</span> (z,k)</span>
+<span id="cb52-18"><a href="#cb52-18" aria-hidden="true" tabindex="-1"></a>                x_ <span class="op">=</span> x0[i,j,:] <span class="co"># initial guess</span></span>
+<span id="cb52-19"><a href="#cb52-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-20"><a href="#cb52-20" aria-hidden="true" tabindex="-1"></a>                sol <span class="op">=</span> root(<span class="kw">lambda</span> u: F(m, s, u, grid, x0, (nodes, weights)), x)</span>
+<span id="cb52-21"><a href="#cb52-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-22"><a href="#cb52-22" aria-hidden="true" tabindex="-1"></a>                x1[i,j,:] <span class="op">=</span> sol.x</span>
+<span id="cb52-23"><a href="#cb52-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-24"><a href="#cb52-24" aria-hidden="true" tabindex="-1"></a>        <span class="co">####</span></span>
+<span id="cb52-25"><a href="#cb52-25" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb52-26"><a href="#cb52-26" aria-hidden="true" tabindex="-1"></a>        <span class="co"># compute successive approximation</span></span>
+<span id="cb52-27"><a href="#cb52-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-28"><a href="#cb52-28" aria-hidden="true" tabindex="-1"></a>        η <span class="op">=</span> <span class="bu">abs</span>(x1 <span class="op">-</span> x0).<span class="bu">max</span>()</span>
+<span id="cb52-29"><a href="#cb52-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-30"><a href="#cb52-30" aria-hidden="true" tabindex="-1"></a>        lam <span class="op">=</span> η<span class="op">/</span>η_0</span>
+<span id="cb52-31"><a href="#cb52-31" aria-hidden="true" tabindex="-1"></a>        η_0 <span class="op">=</span> η</span>
+<span id="cb52-32"><a href="#cb52-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-33"><a href="#cb52-33" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(t, η, lam)</span>
+<span id="cb52-34"><a href="#cb52-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-35"><a href="#cb52-35" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> η <span class="op">&lt;</span> tol_η:</span>
+<span id="cb52-36"><a href="#cb52-36" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> x1</span>
+<span id="cb52-37"><a href="#cb52-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-38"><a href="#cb52-38" aria-hidden="true" tabindex="-1"></a>        <span class="co"># new guess x1 has been computed</span></span>
+<span id="cb52-39"><a href="#cb52-39" aria-hidden="true" tabindex="-1"></a>        <span class="co"># it becomes the desicion rule tomorrow</span></span>
+<span id="cb52-40"><a href="#cb52-40" aria-hidden="true" tabindex="-1"></a>        x0 <span class="op">=</span> x1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="4bc1b155" class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>sol_0 <span class="op">=</span> time_iteration(m, grid, (nodes, weights), x0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"98f176eaa58c4cb4bc767b2d1cba2392","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0 0.06486986070327466 0.06486986070327466
+1 0.013682471767716559 0.21092186139110763
+2 0.007885248417782598 0.5763029189205154
+3 0.005600051869293132 0.7101934615863271
+4 0.004146448587327267 0.7404303895939902
+5 0.003118157361899604 0.7520067586101477
+6 0.0023690151568057094 0.759748428912673
+7 0.0018145128836273283 0.7659355316552507
+8 0.0013992317113427077 0.7711335223729872
+9 0.001179997908225372 0.8433184430140179
+10 0.0009952766943504 0.8434563209075693
+11 0.0008391434661446096 0.8431258070322888
+12 0.0007071880227255689 0.842749841066747
+13 0.0005956878172918012 0.8423330120834973
+14 0.0005014981279138908 0.8418807861370597
+15 0.0004219599808663044 0.8413989153290649
+16 0.0003548232149503394 0.8408930491983388
+17 0.00029818224990529885 0.8403684915233972
+18 0.000250422416285756 0.839830058178476
+19 0.0002101750274467462 0.8392820042392544
+20 0.00017627967994282567 0.8387279977279466
+21 0.0001477525374767863 0.8381711240042423
+22 0.00012375958056864977 0.8376139095959275
+23 0.0001035939912359396 0.8370583575020742
+24 8.665699403376248e-05 0.8365059884255024
+25 7.244159738384326e-05 0.8359578842028521
+26 6.051877756674262e-05 0.8354147306563977
+27 5.0525726886463396e-05 0.8348768583559297
+28 4.2155851216696405e-05 0.8343442799234738
+29 3.515025374134506e-05 0.8338167235826879
+30 2.929048366073772e-05 0.8332936620108987
+31 2.439236311391202e-05 0.832774337100095
+32 2.0300733968192652e-05 0.8322577797562495
+33 1.688498983498654e-05 0.8317428257245316
+34 1.4035278462942724e-05 0.8312281262888845
+35 1.1659276427322673e-05 0.8307121556659245
+36 9.679452159405688e-06 0.8301932130816103
+37 8.030745473841527e-06 0.8296694215320767
+38 6.658602035802819e-06 0.8291387216157978
+39 5.517310067593151e-06 0.8285988617320837
+40 4.568594160425654e-06 0.8280473825932062
+41 3.780427595467817e-06 0.8274815977779029
+42 3.126030170608196e-06 0.8268985694517339
+43 2.5830233338353104e-06 0.8262950748593578
+44 2.1327186016661948e-06 0.8256675709156306
+45 1.759518749089306e-06 0.8250121453972761
+46 1.4504143475146947e-06 0.8243244627347119
+47 1.1945608171526345e-06 0.8235996970103965
+48 9.82923400505431e-07 0.8228324471987418
+49 8.079793970550142e-07 0.8220166460983038
+50 6.634685909001625e-07 0.8211454318246532
+51 5.441842440001565e-07 0.8202110114388886
+52 4.457981672700839e-07 0.8192044738251475
+53 3.647144240503941e-07 0.818115575224952
+54 2.979470522523897e-07 0.8169324616873972
+55 2.430179260048959e-07 0.8156413166962176
+56 1.97871498852642e-07 0.8142259384135128
+57 1.6080366865844908e-07 0.8126671581853336
+58 1.304024693782324e-07 0.8109421287844523
+59 1.0549864665199138e-07 0.8090233808839349
+60 8.51244872923651e-08 0.8068775287057989
+61 6.847955280608886e-08 0.8044636153976679
+62 5.490216598014186e-08 0.8017307901470442
+63 4.3845697017541596e-08 0.7986150679993319
+64 3.4858856079456046e-08 0.7950348255499249
+65 2.7569316329856264e-08 0.7908841376497191
+66 2.167011992071366e-08 0.7860231157508228
+67 1.690838996593058e-08 0.7802628701546077
+68 1.3075968863240917e-08 0.7733420443689926
+69 1.0001656058911124e-08 0.7648883355043554
+70 7.544774194290227e-09 0.7543524942120059
+71 6.338538832695306e-09 0.8401230665713254
+72 5.499929150998284e-09 0.8676966878594599
+73 4.778501316859973e-09 0.8688296131946781
+74 4.1569779007932794e-09 0.869933400693273
+75 3.6207527531750827e-09 0.8710060143654196
+76 3.1593596627743636e-09 0.8725698433851585
+77 2.785519093162492e-09 0.8816720444915768
+78 2.459322190340174e-09 0.8828954704984716
+79 2.1725847787479324e-09 0.8834079517037253
+80 1.9203295620329186e-09 0.8838916579078726
+81 1.6985449990958301e-09 0.8845070308128253
+82 1.520061576609777e-09 0.8949198151470443
+83 1.360651424864301e-09 0.895129148582907
+84 1.2175115915447066e-09 0.8948005119431159
+85 1.0890616186642887e-09 0.8944979466540864
+86 9.738615469601086e-10 0.8942207954720959</code></pre>
+</div>
+</div>
+<p><span class="theorem-title"><strong>Exercise 12</strong></span> Time the result (and profile).</p>
+<div id="0e82b34c-2708-40d7-8786-19a3e1649c93" class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simple timing can obtained using the jupyter magic command %time</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="616309fe-161c-4a2e-b0d3-e78ae4967191" class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>time time_iteration(m, grid, (nodes, weights), x0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"69187852613d44beb10d952f37a5498f","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0 0.06486986070327466 0.06486986070327466
+1 0.013682471767716559 0.21092186139110763
+2 0.007885248417782598 0.5763029189205154
+3 0.005600051869293132 0.7101934615863271
+4 0.004146448587327267 0.7404303895939902
+5 0.003118157361899604 0.7520067586101477
+6 0.0023690151568057094 0.759748428912673
+7 0.0018145128836273283 0.7659355316552507
+8 0.0013992317113427077 0.7711335223729872
+9 0.001179997908225372 0.8433184430140179
+10 0.0009952766943504 0.8434563209075693
+11 0.0008391434661446096 0.8431258070322888
+12 0.0007071880227255689 0.842749841066747
+13 0.0005956878172918012 0.8423330120834973
+14 0.0005014981279138908 0.8418807861370597
+15 0.0004219599808663044 0.8413989153290649
+16 0.0003548232149503394 0.8408930491983388
+17 0.00029818224990529885 0.8403684915233972
+18 0.000250422416285756 0.839830058178476
+19 0.0002101750274467462 0.8392820042392544
+20 0.00017627967994282567 0.8387279977279466
+21 0.0001477525374767863 0.8381711240042423
+22 0.00012375958056864977 0.8376139095959275
+23 0.0001035939912359396 0.8370583575020742
+24 8.665699403376248e-05 0.8365059884255024
+25 7.244159738384326e-05 0.8359578842028521
+26 6.051877756674262e-05 0.8354147306563977
+27 5.0525726886463396e-05 0.8348768583559297
+28 4.2155851216696405e-05 0.8343442799234738
+29 3.515025374134506e-05 0.8338167235826879
+30 2.929048366073772e-05 0.8332936620108987
+31 2.439236311391202e-05 0.832774337100095
+32 2.0300733968192652e-05 0.8322577797562495
+33 1.688498983498654e-05 0.8317428257245316
+34 1.4035278462942724e-05 0.8312281262888845
+35 1.1659276427322673e-05 0.8307121556659245
+36 9.679452159405688e-06 0.8301932130816103
+37 8.030745473841527e-06 0.8296694215320767
+38 6.658602035802819e-06 0.8291387216157978
+39 5.517310067593151e-06 0.8285988617320837
+40 4.568594160425654e-06 0.8280473825932062
+41 3.780427595467817e-06 0.8274815977779029
+42 3.126030170608196e-06 0.8268985694517339
+43 2.5830233338353104e-06 0.8262950748593578
+44 2.1327186016661948e-06 0.8256675709156306
+45 1.759518749089306e-06 0.8250121453972761
+46 1.4504143475146947e-06 0.8243244627347119
+47 1.1945608171526345e-06 0.8235996970103965
+48 9.82923400505431e-07 0.8228324471987418
+49 8.079793970550142e-07 0.8220166460983038
+50 6.634685909001625e-07 0.8211454318246532
+51 5.441842440001565e-07 0.8202110114388886
+52 4.457981672700839e-07 0.8192044738251475
+53 3.647144240503941e-07 0.818115575224952
+54 2.979470522523897e-07 0.8169324616873972
+55 2.430179260048959e-07 0.8156413166962176
+56 1.97871498852642e-07 0.8142259384135128
+57 1.6080366865844908e-07 0.8126671581853336
+58 1.304024693782324e-07 0.8109421287844523
+59 1.0549864665199138e-07 0.8090233808839349
+60 8.51244872923651e-08 0.8068775287057989
+61 6.847955280608886e-08 0.8044636153976679
+62 5.490216598014186e-08 0.8017307901470442
+63 4.3845697017541596e-08 0.7986150679993319
+64 3.4858856079456046e-08 0.7950348255499249
+65 2.7569316329856264e-08 0.7908841376497191
+66 2.167011992071366e-08 0.7860231157508228
+67 1.690838996593058e-08 0.7802628701546077
+68 1.3075968863240917e-08 0.7733420443689926
+69 1.0001656058911124e-08 0.7648883355043554
+70 7.544774194290227e-09 0.7543524942120059
+71 6.338538832695306e-09 0.8401230665713254
+72 5.499929150998284e-09 0.8676966878594599
+73 4.778501316859973e-09 0.8688296131946781
+74 4.1569779007932794e-09 0.869933400693273
+75 3.6207527531750827e-09 0.8710060143654196
+76 3.1593596627743636e-09 0.8725698433851585
+77 2.785519093162492e-09 0.8816720444915768
+78 2.459322190340174e-09 0.8828954704984716
+79 2.1725847787479324e-09 0.8834079517037253
+80 1.9203295620329186e-09 0.8838916579078726
+81 1.6985449990958301e-09 0.8845070308128253
+82 1.520061576609777e-09 0.8949198151470443
+83 1.360651424864301e-09 0.895129148582907
+84 1.2175115915447066e-09 0.8948005119431159
+85 1.0890616186642887e-09 0.8944979466540864
+86 9.738615469601086e-10 0.8942207954720959
+CPU times: user 49 s, sys: 208 ms, total: 49.2 s
+Wall time: 48.9 s</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="39">
+<pre><code>array([[[0.19583622],
+        [0.2076613 ],
+        [0.21768851],
+        [0.22633985],
+        [0.23396406],
+        [0.24072713],
+        [0.24680396],
+        [0.2523479 ],
+        [0.25745886],
+        [0.26220283]],
+
+       [[0.20490056],
+        [0.21748788],
+        [0.22818253],
+        [0.23746723],
+        [0.24562589],
+        [0.2528781 ],
+        [0.25940874],
+        [0.26537834],
+        [0.27088947],
+        [0.27601117]],
+
+       [[0.21406612],
+        [0.22742242],
+        [0.23879048],
+        [0.24869653],
+        [0.2574127 ],
+        [0.2651586 ],
+        [0.27214709],
+        [0.2785463 ],
+        [0.28446136],
+        [0.28996436]],
+
+       [[0.22333449],
+        [0.23746658],
+        [0.24951411],
+        [0.26002677],
+        [0.26932633],
+        [0.27757057],
+        [0.28502102],
+        [0.29185385],
+        [0.29817666],
+        [0.30406457]],
+
+       [[0.23270796],
+        [0.24762282],
+        [0.26035601],
+        [0.27148088],
+        [0.28135277],
+        [0.29011697],
+        [0.29803358],
+        [0.30530415],
+        [0.3120386 ],
+        [0.31831512]],
+
+       [[0.24218617],
+        [0.25789069],
+        [0.27131566],
+        [0.2830583 ],
+        [0.29348803],
+        [0.30279716],
+        [0.31118405],
+        [0.31889643],
+        [0.32604638],
+        [0.33271517]],
+
+       [[0.25177031],
+        [0.26827144],
+        [0.28239438],
+        [0.29476039],
+        [0.30575318],
+        [0.31559467],
+        [0.32447394],
+        [0.33263222],
+        [0.34020156],
+        [0.34726632]],
+
+       [[0.26146323],
+        [0.27876812],
+        [0.29359538],
+        [0.3065905 ],
+        [0.3181517 ],
+        [0.32851664],
+        [0.33790702],
+        [0.34651543],
+        [0.35450817],
+        [0.3619727 ]],
+
+       [[0.27126501],
+        [0.28938077],
+        [0.30491867],
+        [0.31854864],
+        [0.33068357],
+        [0.34157664],
+        [0.3514631 ],
+        [0.36054596],
+        [0.3689661 ],
+        [0.37683418]],
+
+       [[0.2811765 ],
+        [0.30011027],
+        [0.31636514],
+        [0.33063571],
+        [0.34334973],
+        [0.35477566],
+        [0.3651574 ],
+        [0.37472245],
+        [0.38357635],
+        [0.39185178]]])</code></pre>
+</div>
+</div>
+<div id="adfb0c22-d955-4a25-83e7-2797b481af82" class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># one can also profile performance using %prun</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="co"># to sort the results by cumulative time add optiton =s time</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="0d0a73d5-a82e-4767-ad70-a9a5a5fc5a35" class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>prun <span class="op">-</span>s time time_iteration(m, grid, (nodes, weights), x0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"1f71d0d3ef74428886ef6a8384784fbd","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0 0.06486986070327466 0.06486986070327466
+1 0.013682471767716559 0.21092186139110763
+2 0.007885248417782598 0.5763029189205154
+3 0.005600051869293132 0.7101934615863271
+4 0.004146448587327267 0.7404303895939902
+5 0.003118157361899604 0.7520067586101477
+6 0.0023690151568057094 0.759748428912673
+7 0.0018145128836273283 0.7659355316552507
+8 0.0013992317113427077 0.7711335223729872
+9 0.001179997908225372 0.8433184430140179
+10 0.0009952766943504 0.8434563209075693
+11 0.0008391434661446096 0.8431258070322888
+12 0.0007071880227255689 0.842749841066747
+13 0.0005956878172918012 0.8423330120834973
+14 0.0005014981279138908 0.8418807861370597
+15 0.0004219599808663044 0.8413989153290649
+16 0.0003548232149503394 0.8408930491983388
+17 0.00029818224990529885 0.8403684915233972
+18 0.000250422416285756 0.839830058178476
+19 0.0002101750274467462 0.8392820042392544
+20 0.00017627967994282567 0.8387279977279466
+21 0.0001477525374767863 0.8381711240042423
+22 0.00012375958056864977 0.8376139095959275
+23 0.0001035939912359396 0.8370583575020742
+24 8.665699403376248e-05 0.8365059884255024
+25 7.244159738384326e-05 0.8359578842028521
+26 6.051877756674262e-05 0.8354147306563977
+27 5.0525726886463396e-05 0.8348768583559297
+28 4.2155851216696405e-05 0.8343442799234738
+29 3.515025374134506e-05 0.8338167235826879
+30 2.929048366073772e-05 0.8332936620108987
+31 2.439236311391202e-05 0.832774337100095
+32 2.0300733968192652e-05 0.8322577797562495
+33 1.688498983498654e-05 0.8317428257245316
+34 1.4035278462942724e-05 0.8312281262888845
+35 1.1659276427322673e-05 0.8307121556659245
+36 9.679452159405688e-06 0.8301932130816103
+37 8.030745473841527e-06 0.8296694215320767
+38 6.658602035802819e-06 0.8291387216157978
+39 5.517310067593151e-06 0.8285988617320837
+40 4.568594160425654e-06 0.8280473825932062
+41 3.780427595467817e-06 0.8274815977779029
+42 3.126030170608196e-06 0.8268985694517339
+43 2.5830233338353104e-06 0.8262950748593578
+44 2.1327186016661948e-06 0.8256675709156306
+45 1.759518749089306e-06 0.8250121453972761
+46 1.4504143475146947e-06 0.8243244627347119
+47 1.1945608171526345e-06 0.8235996970103965
+48 9.82923400505431e-07 0.8228324471987418
+49 8.079793970550142e-07 0.8220166460983038
+50 6.634685909001625e-07 0.8211454318246532
+51 5.441842440001565e-07 0.8202110114388886
+52 4.457981672700839e-07 0.8192044738251475
+53 3.647144240503941e-07 0.818115575224952
+54 2.979470522523897e-07 0.8169324616873972
+55 2.430179260048959e-07 0.8156413166962176
+56 1.97871498852642e-07 0.8142259384135128
+57 1.6080366865844908e-07 0.8126671581853336
+58 1.304024693782324e-07 0.8109421287844523
+59 1.0549864665199138e-07 0.8090233808839349
+60 8.51244872923651e-08 0.8068775287057989
+61 6.847955280608886e-08 0.8044636153976679
+62 5.490216598014186e-08 0.8017307901470442
+63 4.3845697017541596e-08 0.7986150679993319
+64 3.4858856079456046e-08 0.7950348255499249
+65 2.7569316329856264e-08 0.7908841376497191
+66 2.167011992071366e-08 0.7860231157508228
+67 1.690838996593058e-08 0.7802628701546077
+68 1.3075968863240917e-08 0.7733420443689926
+69 1.0001656058911124e-08 0.7648883355043554
+70 7.544774194290227e-09 0.7543524942120059
+71 6.338538832695306e-09 0.8401230665713254
+72 5.499929150998284e-09 0.8676966878594599
+73 4.778501316859973e-09 0.8688296131946781
+74 4.1569779007932794e-09 0.869933400693273
+75 3.6207527531750827e-09 0.8710060143654196
+76 3.1593596627743636e-09 0.8725698433851585
+77 2.785519093162492e-09 0.8816720444915768
+78 2.459322190340174e-09 0.8828954704984716
+79 2.1725847787479324e-09 0.8834079517037253
+80 1.9203295620329186e-09 0.8838916579078726
+81 1.6985449990958301e-09 0.8845070308128253
+82 1.520061576609777e-09 0.8949198151470443
+83 1.360651424864301e-09 0.895129148582907
+84 1.2175115915447066e-09 0.8948005119431159
+85 1.0890616186642887e-09 0.8944979466540864
+86 9.738615469601086e-10 0.8942207954720959
+ </code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre><code>         48154860 function calls (48153260 primitive calls) in 57.165 seconds
+
+   Ordered by: internal time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+   395395    9.731    0.000   13.683    0.000 _rgi.py:477(_evaluate_linear)
+   395395    8.105    0.000   18.303    0.000 _rgi.py:450(_prepare_xi)
+  3163247    3.561    0.000    3.561    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+  3163160    3.550    0.000    8.674    0.000 fromnumeric.py:71(_wrapreduction)
+   395395    3.377    0.000    5.318    0.000 _rgi.py:589(_find_indices)
+   395395    2.683    0.000   41.877    0.000 _rgi.py:342(__call__)
+   395395    2.533    0.000    5.731    0.000 _rgi.py:18(_check_points)
+   395395    1.696    0.000    1.696    0.000 _rgi.py:482(&lt;listcomp&gt;)
+   395395    1.649    0.000   55.600    0.000 1113891109.py:1(f)
+  2372370    1.591    0.000    7.755    0.000 fromnumeric.py:2421(all)
+   395395    1.510    0.000    1.805    0.000 numeric.py:67(zeros_like)
+  3163160    1.254    0.000    1.254    0.000 fromnumeric.py:72(&lt;dictcomp&gt;)
+   395395    1.194    0.000    1.194    0.000 _rgi.py:483(&lt;listcomp&gt;)
+  2767765    1.184    0.000    1.184    0.000 {built-in method numpy.array}
+   395395    1.141    0.000   11.047    0.000 _rgi.py:274(__init__)
+   395395    0.866    0.000    1.145    0.000 _rgi.py:332(_check_fill_value)
+   395395    0.859    0.000   53.783    0.000 3797127914.py:1(phi)
+   395395    0.851    0.000    1.072    0.000 _rgi.py:40(_check_dimensionality)
+   395395    0.825    0.000    2.834    0.000 stride_tricks.py:480(broadcast_arrays)
+    79079    0.710    0.000   56.320    0.001 3878759790.py:1(F)
+   395395    0.688    0.000    0.730    0.000 stride_tricks.py:416(_broadcast_shape)
+  3962650    0.662    0.000    0.662    0.000 {built-in method numpy.asarray}
+   790790    0.630    0.000    3.139    0.000 fromnumeric.py:2322(any)
+   404095    0.491    0.000    1.103    0.000 numerictypes.py:357(issubdtype)
+   395395    0.483    0.000    1.764    0.000 _rgi.py:321(_check_values)
+   808190    0.416    0.000    0.576    0.000 numerictypes.py:283(issubclass_)
+   799490    0.410    0.000    0.410    0.000 {method 'reshape' of 'numpy.ndarray' objects}
+  2372370    0.354    0.000    0.354    0.000 fromnumeric.py:2416(_all_dispatcher)
+   395395    0.349    0.000    0.693    0.000 stride_tricks.py:538(&lt;listcomp&gt;)
+  2867384    0.331    0.000    0.331    0.000 {built-in method builtins.len}
+  1979421    0.317    0.000    0.317    0.000 {built-in method builtins.hasattr}
+  3164314    0.309    0.000    0.309    0.000 {method 'items' of 'dict' objects}
+  1186185    0.308    0.000    0.308    0.000 stride_tricks.py:542(&lt;genexpr&gt;)
+   395395    0.278    0.000    0.586    0.000 {built-in method builtins.all}
+  1212285    0.196    0.000    0.196    0.000 {built-in method builtins.issubclass}
+   395395    0.194    0.000    1.266    0.000 _rgi.py:315(_check_dimensionality)
+   395395    0.180    0.000    0.180    0.000 {built-in method numpy.zeros}
+     8700    0.171    0.000   50.293    0.006 {built-in method scipy.optimize._minpack._hybrd}
+   790790    0.168    0.000    0.168    0.000 {built-in method math.exp}
+   790790    0.138    0.000    0.138    0.000 fromnumeric.py:2317(_any_dispatcher)
+   790790    0.129    0.000    0.129    0.000 multiarray.py:85(empty_like)
+     8700    0.115    0.000   56.929    0.007 _minpack_py.py:193(_root_hybr)
+   800377    0.109    0.000    0.109    0.000 {method 'append' of 'list' objects}
+   790790    0.101    0.000    0.101    0.000 {built-in method numpy.ascontiguousarray}
+    79079    0.083    0.000   56.482    0.001 _root.py:202(_wrapped_fun)
+    79079    0.080    0.000   56.400    0.001 2564152356.py:20(&lt;lambda&gt;)
+   395395    0.074    0.000    0.074    0.000 multiarray.py:503(can_cast)
+        1    0.064    0.064   57.165   57.165 2564152356.py:1(time_iteration)
+   395395    0.063    0.000    0.063    0.000 numeric.py:63(_zeros_like_dispatcher)
+   395395    0.059    0.000    0.059    0.000 multiarray.py:1080(copyto)
+   395395    0.054    0.000    0.054    0.000 stride_tricks.py:476(_broadcast_arrays_dispatcher)
+     8700    0.054    0.000    6.479    0.001 _minpack_py.py:21(_check_func)
+     8700    0.053    0.000   56.988    0.007 _root.py:25(root)
+     8700    0.020    0.000    0.032    0.000 shape_base.py:23(atleast_1d)
+     8700    0.008    0.000    0.008    0.000 {method 'flatten' of 'numpy.ndarray' objects}
+     9152    0.008    0.000    0.008    0.000 {method 'update' of 'dict' objects}
+     8700    0.006    0.000    0.010    0.000 getlimits.py:484(__new__)
+10116/9490    0.006    0.000    0.021    0.000 traitlets.py:676(__get__)
+     1096    0.006    0.000    0.010    0.000 encoder.py:205(iterencode)
+9310/8899    0.006    0.000    0.015    0.000 traitlets.py:629(get)
+    17400    0.005    0.000    0.005    0.000 fromnumeric.py:1980(shape)
+     8700    0.005    0.000    0.005    0.000 {built-in method numpy.asanyarray}
+     8700    0.005    0.000    0.005    0.000 _util.py:864(__getattr__)
+     8715    0.005    0.000    0.005    0.000 {method 'pop' of 'dict' objects}
+    25228    0.004    0.000    0.004    0.000 {built-in method builtins.isinstance}
+      375    0.004    0.000    0.004    0.000 {method 'acquire' of '_thread.lock' objects}
+      522    0.004    0.000    0.010    0.000 iostream.py:655(write)
+      365    0.004    0.000    0.004    0.000 socket.py:626(send)
+    10444    0.004    0.000    0.004    0.000 {method 'get' of 'dict' objects}
+       90    0.003    0.000    0.005    0.000 std.py:464(format_meter)
+    17400    0.003    0.000    0.003    0.000 fromnumeric.py:1976(_shape_dispatcher)
+      274    0.003    0.000    0.041    0.000 session.py:754(send)
+     8738    0.003    0.000    0.003    0.000 {method 'lower' of 'str' objects}
+     8700    0.002    0.000    0.002    0.000 _optimize.py:172(_check_unknown_options)
+      548    0.002    0.000    0.002    0.000 {method 'isoformat' of 'datetime.datetime' objects}
+      273    0.002    0.000    0.046    0.000 comm.py:24(publish_msg)
+      274    0.002    0.000    0.025    0.000 session.py:690(serialize)
+     1096    0.002    0.000    0.015    0.000 __init__.py:183(dumps)
+     9056    0.002    0.000    0.002    0.000 {built-in method builtins.callable}
+     1096    0.002    0.000    0.012    0.000 encoder.py:183(encode)
+      276    0.002    0.000    0.057    0.000 widget.py:691(notify_change)
+       89    0.002    0.000    0.071    0.001 notebook.py:139(display)
+    19679    0.002    0.000    0.002    0.000 typing.py:2287(cast)
+      365    0.002    0.000    0.008    0.000 iostream.py:259(schedule)
+      803    0.001    0.000    0.003    0.000 traitlets.py:1942(trait_metadata)
+     1096    0.001    0.000    0.017    0.000 session.py:92(json_packer)
+  273/266    0.001    0.000    0.012    0.000 widget.py:589(get_state)
+     8700    0.001    0.000    0.001    0.000 shape_base.py:19(_atleast_1d_dispatcher)
+      284    0.001    0.000    0.002    0.000 traitlets.py:1911(traits)
+       87    0.001    0.000    0.011    0.000 {built-in method builtins.print}
+      274    0.001    0.000    0.005    0.000 session.py:675(sign)
+2192/1741    0.001    0.000    0.010    0.000 {built-in method builtins.getattr}
+       86    0.001    0.000    0.071    0.001 std.py:1198(update)
+      138    0.001    0.000    0.003    0.000 ipkernel.py:775(_clean_thread_parent_frames)
+      262    0.001    0.000    0.050    0.000 widget.py:570(send_state)
+      362    0.001    0.000    0.001    0.000 {built-in method now}
+      340    0.001    0.000    0.001    0.000 traitlets.py:1527(_notify_observers)
+  357/351    0.001    0.000    0.003    0.000 traitlets.py:718(_validate)
+      274    0.001    0.000    0.006    0.000 session.py:649(msg)
+  278/273    0.001    0.000    0.001    0.000 widget.py:87(_separate_buffers)
+      548    0.001    0.000    0.004    0.000 jsonutil.py:107(json_default)
+      367    0.001    0.000    0.002    0.000 threading.py:1192(is_alive)
+      273    0.001    0.000    0.002    0.000 kernelbase.py:655(get_parent)
+      524    0.001    0.000    0.001    0.000 std.py:231(__call__)
+      178    0.001    0.000    0.001    0.000 std.py:400(format_interval)
+      287    0.001    0.000    0.061    0.000 traitlets.py:689(set)
+      283    0.001    0.000    0.002    0.000 traitlets.py:727(_cross_validate)
+       90    0.001    0.000    0.002    0.000 std.py:1446(format_dict)
+     1705    0.001    0.000    0.001    0.000 {method 'replace' of 'str' objects}
+      274    0.001    0.000    0.001    0.000 hmac.py:122(copy)
+      274    0.001    0.000    0.001    0.000 session.py:600(msg_id)
+      262    0.001    0.000    0.045    0.000 widget.py:822(_send)
+      274    0.001    0.000    0.001    0.000 {method 'hexdigest' of '_hashlib.HMAC' objects}
+      274    0.001    0.000    0.001    0.000 {method 'copy' of '_hashlib.HMAC' objects}
+       87    0.001    0.000    0.001    0.000 {method 'copy' of 'numpy.ndarray' objects}
+      274    0.001    0.000    0.004    0.000 session.py:645(msg_header)
+       69    0.001    0.000    0.001    0.000 threading.py:1501(enumerate)
+       88    0.001    0.000    0.072    0.001 std.py:1160(__iter__)
+       90    0.001    0.000    0.002    0.000 notebook.py:192(colour)
+     1096    0.001    0.000    0.001    0.000 encoder.py:105(__init__)
+      274    0.001    0.000    0.057    0.000 traitlets.py:1512(_notify_trait)
+      274    0.001    0.000    0.004    0.000 iostream.py:343(send_multipart)
+       89    0.001    0.000    0.001    0.000 {method 'split' of 're.Pattern' objects}
+      365    0.001    0.000    0.001    0.000 iostream.py:138(_event_pipe)
+       69    0.001    0.000    0.001    0.000 ipkernel.py:790(&lt;setcomp&gt;)
+     1382    0.000    0.000    0.000    0.000 {method 'encode' of 'str' objects}
+     1096    0.000    0.000    0.000    0.000 {method 'update' of '_hashlib.HMAC' objects}
+      262    0.000    0.000    0.002    0.000 widget.py:739(_should_send_property)
+      274    0.000    0.000    0.001    0.000 session.py:854(&lt;listcomp&gt;)
+      522    0.000    0.000    0.001    0.000 iostream.py:550(_is_master_process)
+     1070    0.000    0.000    0.000    0.000 {built-in method posix.getpid}
+      625    0.000    0.000    0.000    0.000 threading.py:1168(ident)
+       89    0.000    0.000    0.001    0.000 std.py:102(acquire)
+     1096    0.000    0.000    0.001    0.000 hmac.py:117(update)
+       86    0.000    0.000    0.070    0.001 std.py:1325(refresh)
+      522    0.000    0.000    0.000    0.000 iostream.py:505(parent_header)
+      274    0.000    0.000    0.001    0.000 session.py:272(msg_header)
+       89    0.000    0.000    0.000    0.000 std.py:106(release)
+      367    0.000    0.000    0.001    0.000 threading.py:1125(_wait_for_tstate_lock)
+      522    0.000    0.000    0.004    0.000 iostream.py:577(_schedule_flush)
+      284    0.000    0.000    0.061    0.000 traitlets.py:708(__set__)
+      273    0.000    0.000    0.002    0.000 widget.py:132(_remove_buffers)
+      103    0.000    0.000    0.000    0.000 {method 'format' of 'str' objects}
+    64/22    0.000    0.000    0.009    0.000 traitlets.py:1885(trait_defaults)
+      275    0.000    0.000    0.000    0.000 threading.py:1453(current_thread)
+      262    0.000    0.000    0.043    0.000 base_comm.py:143(send)
+      570    0.000    0.000    0.000    0.000 {method 'copy' of 'dict' objects}
+      274    0.000    0.000    0.004    0.000 iostream.py:271(send_multipart)
+       90    0.000    0.000    0.000    0.000 {built-in method builtins.abs}
+      548    0.000    0.000    0.000    0.000 jsonutil.py:38(_ensure_tzinfo)
+      274    0.000    0.000    0.001    0.000 hmac.py:161(hexdigest)
+      547    0.000    0.000    0.000    0.000 jsonutil.py:77(json_clean)
+       94    0.000    0.000    0.000    0.000 traitlets.py:2807(validate)
+      274    0.000    0.000    0.000    0.000 {built-in method builtins.locals}
+      178    0.000    0.000    0.000    0.000 __init__.py:12(escape)
+       89    0.000    0.000    0.001    0.000 __init__.py:198(split)
+      276    0.000    0.000    0.002    0.000 traitlets.py:1523(notify_change)
+       86    0.000    0.000    0.072    0.001 notebook.py:260(update)
+      274    0.000    0.000    0.000    0.000 configurable.py:597(initialized)
+      274    0.000    0.000    0.000    0.000 session.py:281(extract_header)
+       89    0.000    0.000    0.000    0.000 __init__.py:272(_compile)
+      274    0.000    0.000    0.000    0.000 {built-in method builtins.max}
+      102    0.000    0.000    0.002    0.000 traitlets.py:1238(__call__)
+      274    0.000    0.000    0.001    0.000 session.py:198(utcnow)
+       87    0.000    0.000    0.001    0.000 {method 'max' of 'numpy.ndarray' objects}
+      591    0.000    0.000    0.000    0.000 {method '__exit__' of '_thread.RLock' objects}
+     1096    0.000    0.000    0.000    0.000 {method 'join' of 'str' objects}
+       12    0.000    0.000    0.001    0.000 formatters.py:399(lookup_by_type)
+       11    0.000    0.000    0.000    0.000 inspect.py:3059(_bind)
+      522    0.000    0.000    0.000    0.000 {method 'write' of '_io.StringIO' objects}
+       89    0.000    0.000    0.000    0.000 widget_float.py:33(_validate_value)
+      120    0.000    0.000    0.000    0.000 formatters.py:555(_in_deferred_types)
+      178    0.000    0.000    0.000    0.000 traitlets.py:2936(validate)
+       88    0.000    0.000    0.073    0.001 notebook.py:247(__iter__)
+       64    0.000    0.000    0.000    0.000 traitlets.py:1873(_get_trait_default_generator)
+      273    0.000    0.000    0.000    0.000 threading.py:1152(name)
+      368    0.000    0.000    0.000    0.000 threading.py:575(is_set)
+      570    0.000    0.000    0.000    0.000 {method 'extend' of 'list' objects}
+      345    0.000    0.000    0.000    0.000 traitlets.py:225(__call__)
+        1    0.000    0.000    0.022    0.022 notebook.py:202(__init__)
+     11/4    0.000    0.000    0.011    0.003 widget.py:522(open)
+      275    0.000    0.000    0.000    0.000 tz.py:74(utcoffset)
+       87    0.000    0.000    0.001    0.000 _methods.py:39(_amax)
+       11    0.000    0.000    0.000    0.000 uuid.py:139(__init__)
+       11    0.000    0.000    0.004    0.000 base_comm.py:36(__init__)
+       89    0.000    0.000    0.000    0.000 {method 'acquire' of '_multiprocessing.SemLock' objects}
+      286    0.000    0.000    0.000    0.000 {built-in method __new__ of type object at 0x63e58f135060}
+      522    0.000    0.000    0.000    0.000 {method 'get' of '_contextvars.ContextVar' objects}
+      349    0.000    0.000    0.000    0.000 {built-in method time.time}
+      357    0.000    0.000    0.000    0.000 {built-in method builtins.divmod}
+     11/4    0.000    0.000    0.012    0.003 widget.py:500(__init__)
+      275    0.000    0.000    0.000    0.000 {built-in method _thread.get_ident}
+      533    0.000    0.000    0.000    0.000 widget.py:792(_trait_to_json)
+        1    0.000    0.000   57.165   57.165 {built-in method builtins.exec}
+    53/18    0.000    0.000    0.008    0.000 traitlets.py:591(default)
+      345    0.000    0.000    0.000    0.000 traitlets.py:222(__init__)
+       11    0.000    0.000    0.000    0.000 traitlets.py:1337(__init__)
+       90    0.000    0.000    0.000    0.000 utils.py:108(__init__)
+       89    0.000    0.000    0.000    0.000 {method 'release' of '_multiprocessing.SemLock' objects}
+       94    0.000    0.000    0.000    0.000 traitlets.py:2558(_validate_bounds)
+      367    0.000    0.000    0.000    0.000 {method 'append' of 'collections.deque' objects}
+       11    0.000    0.000    0.000    0.000 traitlets.py:1295(setup_instance)
+       17    0.000    0.000    0.000    0.000 traitlets.py:3474(validate)
+       11    0.000    0.000    0.000    0.000 traitlets.py:1280(__new__)
+        1    0.000    0.000    0.000    0.000 std.py:952(__init__)
+       11    0.000    0.000    0.004    0.000 base_comm.py:92(open)
+      274    0.000    0.000    0.000    0.000 hmac.py:139(_current)
+       11    0.000    0.000    0.000    0.000 uuid.py:721(uuid4)
+       11    0.000    0.000    0.000    0.000 inspect.py:2822(args)
+       11    0.000    0.000    0.001    0.000 decorator.py:199(fix)
+       11    0.000    0.000    0.000    0.000 {built-in method posix.urandom}
+        2    0.000    0.000    0.004    0.002 iostream.py:592(flush)
+       11    0.000    0.000    0.000    0.000 traitlets.py:1323(setup_instance)
+        1    0.000    0.000    0.005    0.005 zmqshell.py:81(publish)
+       11    0.000    0.000    0.000    0.000 widget.py:537(_comm_changed)
+       11    0.000    0.000    0.001    0.000 formatters.py:222(catch_format_error)
+       11    0.000    0.000    0.001    0.000 widget.py:488(_default_keys)
+       33    0.000    0.000    0.000    0.000 traitlets.py:2304(validate)
+        1    0.000    0.000    0.012    0.012 notebook.py:94(status_printer)
+      138    0.000    0.000    0.000    0.000 {method 'values' of 'dict' objects}
+       12    0.000    0.000    0.001    0.000 formatters.py:376(lookup)
+       11    0.000    0.000    0.000    0.000 inspect.py:2875(apply_defaults)
+       11    0.000    0.000    0.004    0.000 ipkernel.py:48(_create_comm)
+        5    0.000    0.000    0.000    0.000 traitlets.py:3271(validate)
+      276    0.000    0.000    0.000    0.000 {method 'keys' of 'dict' objects}
+       11    0.000    0.000    0.002    0.000 decorator.py:229(fun)
+       89    0.000    0.000    0.000    0.000 {method 'acquire' of '_thread.RLock' objects}
+        1    0.000    0.000    0.000    0.000 notebook.py:80(__repr__)
+        1    0.000    0.000    0.002    0.002 formatters.py:93(format)
+       11    0.000    0.000    0.000    0.000 traitlets.py:3624(validate_elements)
+        1    0.000    0.000    0.000    0.000 std.py:153(__init__)
+        2    0.000    0.000    0.004    0.002 threading.py:295(wait)
+        1    0.000    0.000    0.007    0.007 display_functions.py:105(display)
+       70    0.000    0.000    0.000    0.000 traitlets.py:1824(has_trait)
+       11    0.000    0.000    0.000    0.000 inspect.py:2845(kwargs)
+       11    0.000    0.000    0.000    0.000 traitlets.py:194(parse_notifier_name)
+       11    0.000    0.000    0.000    0.000 comm.py:7(requires_ipykernel_shim)
+       11    0.000    0.000    0.004    0.000 comm.py:27(create_comm)
+       11    0.000    0.000    0.000    0.000 inspect.py:3190(bind)
+       11    0.000    0.000    0.000    0.000 traitlets.py:1641(observe)
+        2    0.000    0.000    0.000    0.000 threading.py:243(__init__)
+       11    0.000    0.000    0.000    0.000 widget.py:490(&lt;listcomp&gt;)
+        7    0.000    0.000    0.008    0.001 trait_types.py:408(make_dynamic_default)
+        2    0.000    0.000    0.004    0.002 threading.py:611(wait)
+        9    0.000    0.000    0.001    0.000 formatters.py:333(__call__)
+     11/8    0.000    0.000    0.000    0.000 widget.py:48(_widget_to_json)
+        1    0.000    0.000    0.005    0.005 display_functions.py:45(publish_display_data)
+       11    0.000    0.000    0.000    0.000 uuid.py:334(hex)
+       17    0.000    0.000    0.000    0.000 traitlets.py:3486(validate_elements)
+       32    0.000    0.000    0.000    0.000 widget.py:547(model_id)
+       89    0.000    0.000    0.000    0.000 {method 'release' of '_thread.RLock' objects}
+        1    0.000    0.000    0.000    0.000 std.py:663(__new__)
+       11    0.000    0.000    0.000    0.000 traitlets.py:1570(_add_notifiers)
+       11    0.000    0.000    0.000    0.000 dir2.py:54(get_real_method)
+        1    0.000    0.000    0.000    0.000 utils.py:333(_screen_shape_linux)
+        1    0.000    0.000    0.000    0.000 {built-in method fcntl.ioctl}
+       30    0.000    0.000    0.000    0.000 traitlets.py:2322(instance_init)
+      124    0.000    0.000    0.000    0.000 inspect.py:2734(kind)
+        1    0.000    0.000    0.004    0.004 zmqshell.py:64(_flush_streams)
+       30    0.000    0.000    0.000    0.000 traitlets.py:2327(_resolve_classes)
+       11    0.000    0.000    0.000    0.000 traitlets.py:1256(instance_init)
+       33    0.000    0.000    0.000    0.000 traitlets.py:1245(__get__)
+       66    0.000    0.000    0.000    0.000 {built-in method builtins.next}
+        3    0.000    0.000    0.000    0.000 traitlets.py:3997(validate)
+        7    0.000    0.000    0.000    0.000 traitlets.py:2331(make_dynamic_default)
+       11    0.000    0.000    0.000    0.000 base_comm.py:224(register_comm)
+        2    0.000    0.000    0.000    0.000 threading.py:562(__init__)
+        1    0.000    0.000    0.000    0.000 formatters.py:910(__call__)
+        3    0.000    0.000    0.010    0.003 widget_description.py:30(__init__)
+        2    0.000    0.000    0.000    0.000 notebook.py:197(colour)
+        1    0.000    0.000    0.000    0.000 std.py:679(_get_free_pos)
+        7    0.000    0.000    0.000    0.000 trait_types.py:402(validate)
+        1    0.000    0.000   57.165   57.165 &lt;string&gt;:1(&lt;module&gt;)
+        2    0.000    0.000    0.000    0.000 threading.py:274(__exit__)
+       13    0.000    0.000    0.000    0.000 configurable.py:553(instance)
+        2    0.000    0.000    0.000    0.000 _weakrefset.py:63(__iter__)
+        1    0.000    0.000    0.000    0.000 utils.py:273(_is_ascii)
+        4    0.000    0.000    0.005    0.001 widget_layout.py:80(__init__)
+        2    0.000    0.000    0.000    0.000 {built-in method fromtimestamp}
+        1    0.000    0.000    0.000    0.000 utils.py:213(__init__)
+       44    0.000    0.000    0.000    0.000 inspect.py:3015(parameters)
+        2    0.000    0.000    0.000    0.000 threading.py:283(_acquire_restore)
+        1    0.000    0.000    0.000    0.000 formatters.py:956(__call__)
+       33    0.000    0.000    0.000    0.000 {method 'items' of 'mappingproxy' objects}
+        1    0.000    0.000    0.000    0.000 notebook.py:71(_json_)
+        1    0.000    0.000    0.000    0.000 std.py:186(__format__)
+       47    0.000    0.000    0.000    0.000 inspect.py:2722(name)
+        3    0.000    0.000    0.000    0.000 traitlets.py:1264(instance_init)
+       12    0.000    0.000    0.000    0.000 pretty.py:322(_get_mro)
+        1    0.000    0.000    0.000    0.000 functools.py:393(__get__)
+        3    0.000    0.000    0.000    0.000 {built-in method builtins.setattr}
+       12    0.000    0.000    0.000    0.000 formatters.py:276(_get_type)
+       11    0.000    0.000    0.000    0.000 {method 'count' of 'list' objects}
+        3    0.000    0.000    0.000    0.000 traitlets.py:1711(_register_validator)
+        1    0.000    0.000    0.000    0.000 notebook.py:272(close)
+       11    0.000    0.000    0.000    0.000 inspect.py:292(isclass)
+        1    0.000    0.000    0.000    0.000 _weakrefset.py:85(add)
+        1    0.000    0.000    0.000    0.000 utils.py:266(_supports_unicode)
+        1    0.000    0.000    0.004    0.004 widget_float.py:23(__init__)
+        3    0.000    0.000    0.000    0.000 traitlets.py:1759(set_trait)
+        1    0.000    0.000    0.000    0.000 _weakrefset.py:27(__exit__)
+       11    0.000    0.000    0.000    0.000 widget.py:361(_call_widget_constructed)
+        1    0.000    0.000    0.000    0.000 widget.py:802(_repr_mimebundle_)
+       11    0.000    0.000    0.000    0.000 {built-in method from_bytes}
+        3    0.000    0.000    0.000    0.000 traitlets.py:4003(validate_elements)
+        1    0.000    0.000    0.000    0.000 std.py:686(_decr_instances)
+       11    0.000    0.000    0.000    0.000 base_comm.py:165(on_msg)
+       11    0.000    0.000    0.000    0.000 {method 'values' of 'mappingproxy' objects}
+       11    0.000    0.000    0.000    0.000 inspect.py:2814(__init__)
+       22    0.000    0.000    0.000    0.000 {built-in method builtins.iter}
+        2    0.000    0.000    0.006    0.003 widget_string.py:64(__init__)
+        1    0.000    0.000    0.000    0.000 std.py:1265(close)
+        1    0.000    0.000    0.000    0.000 std.py:682(&lt;setcomp&gt;)
+        1    0.000    0.000    0.000    0.000 _weakrefset.py:53(_commit_removals)
+       11    0.000    0.000    0.000    0.000 ipkernel.py:58(_get_comm_manager)
+        1    0.000    0.000    0.000    0.000 zmqshell.py:74(_hooks)
+        1    0.000    0.000    0.000    0.000 {built-in method builtins.repr}
+       14    0.000    0.000    0.000    0.000 {built-in method builtins.id}
+        2    0.000    0.000    0.000    0.000 threading.py:271(__enter__)
+        3    0.000    0.000    0.000    0.000 std.py:110(__enter__)
+       22    0.000    0.000    0.000    0.000 traitlets.py:469(instance_init)
+        2    0.000    0.000    0.000    0.000 {method 'remove' of 'set' objects}
+        2    0.000    0.000    0.000    0.000 utils.py:187(disable_on_exception)
+        1    0.000    0.000    0.000    0.000 displaypub.py:45(_validate_data)
+        3    0.000    0.000    0.000    0.000 std.py:113(__exit__)
+        4    0.000    0.000    0.000    0.000 {built-in method _thread.allocate_lock}
+        1    0.000    0.000    0.000    0.000 formatters.py:947(_check_return)
+        3    0.000    0.000    0.000    0.000 utils.py:152(wrapper_setattr)
+        2    0.000    0.000    0.000    0.000 std.py:1157(__hash__)
+        1    0.000    0.000    0.000    0.000 utils.py:156(__init__)
+        2    0.000    0.000    0.000    0.000 {method 'add' of 'set' objects}
+        1    0.000    0.000    0.000    0.000 widget_float.py:41(_validate_min)
+        1    0.000    0.000    0.000    0.000 widget.py:52(&lt;listcomp&gt;)
+        2    0.000    0.000    0.000    0.000 threading.py:280(_release_save)
+       10    0.000    0.000    0.000    0.000 formatters.py:361(_check_return)
+        1    0.000    0.000    0.000    0.000 _monitor.py:94(report)
+        1    0.000    0.000    0.000    0.000 std.py:760(get_lock)
+        1    0.000    0.000    0.002    0.002 widget_box.py:62(__init__)
+       11    0.000    0.000    0.000    0.000 {built-in method builtins.ord}
+        1    0.000    0.000    0.000    0.000 _weakrefset.py:110(remove)
+        1    0.000    0.000    0.000    0.000 utils.py:252(_is_utf)
+        3    0.000    0.000    0.000    0.000 {built-in method _weakref.proxy}
+        2    0.000    0.000    0.000    0.000 threading.py:286(_is_owned)
+        3    0.000    0.000    0.000    0.000 std.py:226(__init__)
+        1    0.000    0.000    0.000    0.000 _weakrefset.py:21(__enter__)
+        1    0.000    0.000    0.000    0.000 widget_float.py:51(_validate_max)
+        2    0.000    0.000    0.000    0.000 utils.py:222(__eq__)
+        2    0.000    0.000    0.000    0.000 utils.py:139(__getattr__)
+        1    0.000    0.000    0.000    0.000 std.py:167(colour)
+        1    0.000    0.000    0.000    0.000 iostream.py:364(fileno)
+        2    0.000    0.000    0.000    0.000 {method '__enter__' of '_thread.lock' objects}
+        1    0.000    0.000    0.000    0.000 {method 'difference' of 'set' objects}
+        1    0.000    0.000    0.000    0.000 utils.py:125(__eq__)
+        2    0.000    0.000    0.000    0.000 {method '__exit__' of '_thread.lock' objects}
+        1    0.000    0.000    0.000    0.000 _weakrefset.py:17(__init__)
+        2    0.000    0.000    0.000    0.000 std.py:1153(_comparable)
+        1    0.000    0.000    0.000    0.000 {method 'pop' of 'list' objects}
+        1    0.000    0.000    0.000    0.000 {built-in method builtins.min}
+        1    0.000    0.000    0.000    0.000 utils.py:112(__format__)
+        2    0.000    0.000    0.000    0.000 {method 'release' of '_thread.lock' objects}
+        1    0.000    0.000    0.000    0.000 utils.py:282(_screen_shape_wrapper)
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+        1    0.000    0.000    0.000    0.000 std.py:163(colour)
+        1    0.000    0.000    0.000    0.000 jsonutil.py:52(encode_images)
+        1    0.000    0.000    0.000    0.000 formatters.py:833(_check_return)
+        1    0.000    0.000    0.000    0.000 traitlets.py:1347(ignore)</code></pre>
+</div>
+</div>
+<p>We can see that most of the time is spent in the interpolation method.</p>
+</section>
+<section id="vectorization" class="level3">
+<h3 class="anchored" data-anchor-id="vectorization">Vectorization</h3>
+<p>There are at least two approaches to speed up the code, with the same algorithm: - avoid the interpretation cost by compiling the code (for instance using numba) - vectorize the operations over the whole grid Here we will vectorize using numpy</p>
+<p><span class="theorem-title"><strong>Exercise 13</strong></span> Given <span class="math inline">\(N\)</span> the number of points of the grid, create a matrix, representing the vector of all grid points. It should be an <span class="math inline">\(N \times 2\)</span> matrix.</p>
+<div id="7ab46752-d129-4709-8a27-fd9a979c257c" class="cell" data-execution_count="57">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>a,b <span class="op">=</span> get_grid(m, (<span class="dv">10</span>,<span class="dv">10</span>)) <span class="co"># these are the point along eang dimension</span></span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="co"># we enumerate all 2 dimenstional grid points</span></span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="co"># note that in C/python last index varies faster</span></span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a><span class="co"># the last expression is a double comprehension of tuples (e1,e2)</span></span>
+<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a><span class="co"># we want to create arrays</span></span>
+<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a>_vec_grid <span class="op">=</span> np.concatenate(</span>
+<span id="cb63-7"><a href="#cb63-7" aria-hidden="true" tabindex="-1"></a>                [</span>
+<span id="cb63-8"><a href="#cb63-8" aria-hidden="true" tabindex="-1"></a>                    np.concatenate(</span>
+<span id="cb63-9"><a href="#cb63-9" aria-hidden="true" tabindex="-1"></a>                        [np.array([e1, e2])[<span class="va">None</span>,:] <span class="cf">for</span> e2 <span class="kw">in</span> b]</span>
+<span id="cb63-10"><a href="#cb63-10" aria-hidden="true" tabindex="-1"></a>                        , axis<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb63-11"><a href="#cb63-11" aria-hidden="true" tabindex="-1"></a>                    )</span>
+<span id="cb63-12"><a href="#cb63-12" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> e1 <span class="kw">in</span> a]</span>
+<span id="cb63-13"><a href="#cb63-13" aria-hidden="true" tabindex="-1"></a>                , axis<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb63-14"><a href="#cb63-14" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb63-15"><a href="#cb63-15" aria-hidden="true" tabindex="-1"></a>_vec_grid  <span class="co"># this is hwat we want but we can get a quicker version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="57">
+<pre><code>array([[-0.04588315,  1.46041107],
+       [-0.04588315,  1.78494687],
+       [-0.04588315,  2.10948266],
+       [-0.04588315,  2.43401846],
+       [-0.04588315,  2.75855425],
+       [-0.04588315,  3.08309005],
+       [-0.04588315,  3.40762584],
+       [-0.04588315,  3.73216164],
+       [-0.04588315,  4.05669743],
+       [-0.04588315,  4.38123322],
+       [-0.03568689,  1.46041107],
+       [-0.03568689,  1.78494687],
+       [-0.03568689,  2.10948266],
+       [-0.03568689,  2.43401846],
+       [-0.03568689,  2.75855425],
+       [-0.03568689,  3.08309005],
+       [-0.03568689,  3.40762584],
+       [-0.03568689,  3.73216164],
+       [-0.03568689,  4.05669743],
+       [-0.03568689,  4.38123322],
+       [-0.02549064,  1.46041107],
+       [-0.02549064,  1.78494687],
+       [-0.02549064,  2.10948266],
+       [-0.02549064,  2.43401846],
+       [-0.02549064,  2.75855425],
+       [-0.02549064,  3.08309005],
+       [-0.02549064,  3.40762584],
+       [-0.02549064,  3.73216164],
+       [-0.02549064,  4.05669743],
+       [-0.02549064,  4.38123322],
+       [-0.01529438,  1.46041107],
+       [-0.01529438,  1.78494687],
+       [-0.01529438,  2.10948266],
+       [-0.01529438,  2.43401846],
+       [-0.01529438,  2.75855425],
+       [-0.01529438,  3.08309005],
+       [-0.01529438,  3.40762584],
+       [-0.01529438,  3.73216164],
+       [-0.01529438,  4.05669743],
+       [-0.01529438,  4.38123322],
+       [-0.00509813,  1.46041107],
+       [-0.00509813,  1.78494687],
+       [-0.00509813,  2.10948266],
+       [-0.00509813,  2.43401846],
+       [-0.00509813,  2.75855425],
+       [-0.00509813,  3.08309005],
+       [-0.00509813,  3.40762584],
+       [-0.00509813,  3.73216164],
+       [-0.00509813,  4.05669743],
+       [-0.00509813,  4.38123322],
+       [ 0.00509813,  1.46041107],
+       [ 0.00509813,  1.78494687],
+       [ 0.00509813,  2.10948266],
+       [ 0.00509813,  2.43401846],
+       [ 0.00509813,  2.75855425],
+       [ 0.00509813,  3.08309005],
+       [ 0.00509813,  3.40762584],
+       [ 0.00509813,  3.73216164],
+       [ 0.00509813,  4.05669743],
+       [ 0.00509813,  4.38123322],
+       [ 0.01529438,  1.46041107],
+       [ 0.01529438,  1.78494687],
+       [ 0.01529438,  2.10948266],
+       [ 0.01529438,  2.43401846],
+       [ 0.01529438,  2.75855425],
+       [ 0.01529438,  3.08309005],
+       [ 0.01529438,  3.40762584],
+       [ 0.01529438,  3.73216164],
+       [ 0.01529438,  4.05669743],
+       [ 0.01529438,  4.38123322],
+       [ 0.02549064,  1.46041107],
+       [ 0.02549064,  1.78494687],
+       [ 0.02549064,  2.10948266],
+       [ 0.02549064,  2.43401846],
+       [ 0.02549064,  2.75855425],
+       [ 0.02549064,  3.08309005],
+       [ 0.02549064,  3.40762584],
+       [ 0.02549064,  3.73216164],
+       [ 0.02549064,  4.05669743],
+       [ 0.02549064,  4.38123322],
+       [ 0.03568689,  1.46041107],
+       [ 0.03568689,  1.78494687],
+       [ 0.03568689,  2.10948266],
+       [ 0.03568689,  2.43401846],
+       [ 0.03568689,  2.75855425],
+       [ 0.03568689,  3.08309005],
+       [ 0.03568689,  3.40762584],
+       [ 0.03568689,  3.73216164],
+       [ 0.03568689,  4.05669743],
+       [ 0.03568689,  4.38123322],
+       [ 0.04588315,  1.46041107],
+       [ 0.04588315,  1.78494687],
+       [ 0.04588315,  2.10948266],
+       [ 0.04588315,  2.43401846],
+       [ 0.04588315,  2.75855425],
+       [ 0.04588315,  3.08309005],
+       [ 0.04588315,  3.40762584],
+       [ 0.04588315,  3.73216164],
+       [ 0.04588315,  4.05669743],
+       [ 0.04588315,  4.38123322]])</code></pre>
+</div>
+</div>
+<div id="7fe39d07-d396-484e-8fac-b806aa2c4daa" class="cell" data-execution_count="58">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># we can obtain the same using the meshgrid function</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>np.meshgrid(a,b, indexing<span class="op">=</span><span class="st">"ij"</span>) <span class="co"># returns the first and second coumns that we constructed by hand</span></span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a><span class="co"># the option indexing ensures that second column varies faster (to comply with python conventions)</span></span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a><span class="co"># the last step consists in concatenating the two columns</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="58">
+<pre><code>[array([[-0.04588315, -0.04588315, -0.04588315, -0.04588315, -0.04588315,
+         -0.04588315, -0.04588315, -0.04588315, -0.04588315, -0.04588315],
+        [-0.03568689, -0.03568689, -0.03568689, -0.03568689, -0.03568689,
+         -0.03568689, -0.03568689, -0.03568689, -0.03568689, -0.03568689],
+        [-0.02549064, -0.02549064, -0.02549064, -0.02549064, -0.02549064,
+         -0.02549064, -0.02549064, -0.02549064, -0.02549064, -0.02549064],
+        [-0.01529438, -0.01529438, -0.01529438, -0.01529438, -0.01529438,
+         -0.01529438, -0.01529438, -0.01529438, -0.01529438, -0.01529438],
+        [-0.00509813, -0.00509813, -0.00509813, -0.00509813, -0.00509813,
+         -0.00509813, -0.00509813, -0.00509813, -0.00509813, -0.00509813],
+        [ 0.00509813,  0.00509813,  0.00509813,  0.00509813,  0.00509813,
+          0.00509813,  0.00509813,  0.00509813,  0.00509813,  0.00509813],
+        [ 0.01529438,  0.01529438,  0.01529438,  0.01529438,  0.01529438,
+          0.01529438,  0.01529438,  0.01529438,  0.01529438,  0.01529438],
+        [ 0.02549064,  0.02549064,  0.02549064,  0.02549064,  0.02549064,
+          0.02549064,  0.02549064,  0.02549064,  0.02549064,  0.02549064],
+        [ 0.03568689,  0.03568689,  0.03568689,  0.03568689,  0.03568689,
+          0.03568689,  0.03568689,  0.03568689,  0.03568689,  0.03568689],
+        [ 0.04588315,  0.04588315,  0.04588315,  0.04588315,  0.04588315,
+          0.04588315,  0.04588315,  0.04588315,  0.04588315,  0.04588315]]),
+ array([[1.46041107, 1.78494687, 2.10948266, 2.43401846, 2.75855425,
+         3.08309005, 3.40762584, 3.73216164, 4.05669743, 4.38123322],
+        [1.46041107, 1.78494687, 2.10948266, 2.43401846, 2.75855425,
+         3.08309005, 3.40762584, 3.73216164, 4.05669743, 4.38123322],
+        [1.46041107, 1.78494687, 2.10948266, 2.43401846, 2.75855425,
+         3.08309005, 3.40762584, 3.73216164, 4.05669743, 4.38123322],
+        [1.46041107, 1.78494687, 2.10948266, 2.43401846, 2.75855425,
+         3.08309005, 3.40762584, 3.73216164, 4.05669743, 4.38123322],
+        [1.46041107, 1.78494687, 2.10948266, 2.43401846, 2.75855425,
+         3.08309005, 3.40762584, 3.73216164, 4.05669743, 4.38123322],
+        [1.46041107, 1.78494687, 2.10948266, 2.43401846, 2.75855425,
+         3.08309005, 3.40762584, 3.73216164, 4.05669743, 4.38123322],
+        [1.46041107, 1.78494687, 2.10948266, 2.43401846, 2.75855425,
+         3.08309005, 3.40762584, 3.73216164, 4.05669743, 4.38123322],
+        [1.46041107, 1.78494687, 2.10948266, 2.43401846, 2.75855425,
+         3.08309005, 3.40762584, 3.73216164, 4.05669743, 4.38123322],
+        [1.46041107, 1.78494687, 2.10948266, 2.43401846, 2.75855425,
+         3.08309005, 3.40762584, 3.73216164, 4.05669743, 4.38123322],
+        [1.46041107, 1.78494687, 2.10948266, 2.43401846, 2.75855425,
+         3.08309005, 3.40762584, 3.73216164, 4.05669743, 4.38123322]])]</code></pre>
+</div>
+</div>
+<div id="79f7ebfe-f58f-4d63-a147-2d61bcb9e35e" class="cell" data-execution_count="59">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_vectorized_grid(m: Neoclassical, size: Tuple[<span class="bu">int</span>, <span class="bu">int</span>]) <span class="op">-&gt;</span> Tuple[ Vector, Vector]:</span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>    s1, s2 <span class="op">=</span> get_grid(m, size)</span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>    c1, c2 <span class="op">=</span> np.meshgrid(s1,s2,indexing<span class="op">=</span><span class="st">"ij"</span>)</span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the ravel function converts matrices c1 and c2 into vectors</span></span>
+<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> np.column_stack([c1.ravel(),c2.ravel()])</span>
+<span id="cb67-6"><a href="#cb67-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="ab098391-7c91-458e-9502-8ffa5c355672" class="cell" data-execution_count="60">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> get_vectorized_grid(m, (<span class="dv">10</span>,<span class="dv">10</span>))</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="60">
+<pre><code>array([[-0.04588315,  1.46041107],
+       [-0.04588315,  1.78494687],
+       [-0.04588315,  2.10948266],
+       [-0.04588315,  2.43401846],
+       [-0.04588315,  2.75855425],
+       [-0.04588315,  3.08309005],
+       [-0.04588315,  3.40762584],
+       [-0.04588315,  3.73216164],
+       [-0.04588315,  4.05669743],
+       [-0.04588315,  4.38123322],
+       [-0.03568689,  1.46041107],
+       [-0.03568689,  1.78494687],
+       [-0.03568689,  2.10948266],
+       [-0.03568689,  2.43401846],
+       [-0.03568689,  2.75855425],
+       [-0.03568689,  3.08309005],
+       [-0.03568689,  3.40762584],
+       [-0.03568689,  3.73216164],
+       [-0.03568689,  4.05669743],
+       [-0.03568689,  4.38123322],
+       [-0.02549064,  1.46041107],
+       [-0.02549064,  1.78494687],
+       [-0.02549064,  2.10948266],
+       [-0.02549064,  2.43401846],
+       [-0.02549064,  2.75855425],
+       [-0.02549064,  3.08309005],
+       [-0.02549064,  3.40762584],
+       [-0.02549064,  3.73216164],
+       [-0.02549064,  4.05669743],
+       [-0.02549064,  4.38123322],
+       [-0.01529438,  1.46041107],
+       [-0.01529438,  1.78494687],
+       [-0.01529438,  2.10948266],
+       [-0.01529438,  2.43401846],
+       [-0.01529438,  2.75855425],
+       [-0.01529438,  3.08309005],
+       [-0.01529438,  3.40762584],
+       [-0.01529438,  3.73216164],
+       [-0.01529438,  4.05669743],
+       [-0.01529438,  4.38123322],
+       [-0.00509813,  1.46041107],
+       [-0.00509813,  1.78494687],
+       [-0.00509813,  2.10948266],
+       [-0.00509813,  2.43401846],
+       [-0.00509813,  2.75855425],
+       [-0.00509813,  3.08309005],
+       [-0.00509813,  3.40762584],
+       [-0.00509813,  3.73216164],
+       [-0.00509813,  4.05669743],
+       [-0.00509813,  4.38123322],
+       [ 0.00509813,  1.46041107],
+       [ 0.00509813,  1.78494687],
+       [ 0.00509813,  2.10948266],
+       [ 0.00509813,  2.43401846],
+       [ 0.00509813,  2.75855425],
+       [ 0.00509813,  3.08309005],
+       [ 0.00509813,  3.40762584],
+       [ 0.00509813,  3.73216164],
+       [ 0.00509813,  4.05669743],
+       [ 0.00509813,  4.38123322],
+       [ 0.01529438,  1.46041107],
+       [ 0.01529438,  1.78494687],
+       [ 0.01529438,  2.10948266],
+       [ 0.01529438,  2.43401846],
+       [ 0.01529438,  2.75855425],
+       [ 0.01529438,  3.08309005],
+       [ 0.01529438,  3.40762584],
+       [ 0.01529438,  3.73216164],
+       [ 0.01529438,  4.05669743],
+       [ 0.01529438,  4.38123322],
+       [ 0.02549064,  1.46041107],
+       [ 0.02549064,  1.78494687],
+       [ 0.02549064,  2.10948266],
+       [ 0.02549064,  2.43401846],
+       [ 0.02549064,  2.75855425],
+       [ 0.02549064,  3.08309005],
+       [ 0.02549064,  3.40762584],
+       [ 0.02549064,  3.73216164],
+       [ 0.02549064,  4.05669743],
+       [ 0.02549064,  4.38123322],
+       [ 0.03568689,  1.46041107],
+       [ 0.03568689,  1.78494687],
+       [ 0.03568689,  2.10948266],
+       [ 0.03568689,  2.43401846],
+       [ 0.03568689,  2.75855425],
+       [ 0.03568689,  3.08309005],
+       [ 0.03568689,  3.40762584],
+       [ 0.03568689,  3.73216164],
+       [ 0.03568689,  4.05669743],
+       [ 0.03568689,  4.38123322],
+       [ 0.04588315,  1.46041107],
+       [ 0.04588315,  1.78494687],
+       [ 0.04588315,  2.10948266],
+       [ 0.04588315,  2.43401846],
+       [ 0.04588315,  2.75855425],
+       [ 0.04588315,  3.08309005],
+       [ 0.04588315,  3.40762584],
+       [ 0.04588315,  3.73216164],
+       [ 0.04588315,  4.05669743],
+       [ 0.04588315,  4.38123322]])</code></pre>
+</div>
+</div>
+<p><span class="theorem-title"><strong>Exercise 14</strong></span> Rewrite the decision rule so that it can operate on a vector of states.</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> phi_v(m: Neoclassical, s:: Matrix, x0::npt.NDArray[<span class="dv">3</span>])<span class="op">-&gt;</span> Matrix</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="99e0c9ea-63c0-4bcf-8ef6-06dd337c1211" class="cell" data-execution_count="61">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co"># there is nothing to do here as the original definition of phi also works for vectorized evaluation</span></span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>phi(grid, s, x0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="61">
+<pre><code>array([[0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221],
+       [0.29208221]])</code></pre>
+</div>
+</div>
+<p><span class="theorem-title"><strong>Exercise 15</strong></span> Rewrite the euler residual function so that it can operate on a vector of states with the corresponding vector of controls.</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f_v(m: RBC, s: Matrix, x:Matrix, E: Tuple[<span class="bu">float</span>], grid, theta)<span class="op">-&gt;</span>Matrix:</span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">## grid is the discretized grid from before</span></span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">## theta contains the values of the controls on the grid</span></span>
+<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="59664924-43dd-4b81-b080-814283a0b712" class="cell" data-execution_count="62">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># we will need  to transform the 3d array representing the controls into a matrix</span></span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="co"># where each line corresponds to a single vector value</span></span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>n_x <span class="op">=</span> <span class="dv">1</span> <span class="co"># number of controls</span></span>
+<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a>xx0 <span class="op">=</span> x0.reshape( (<span class="op">-</span><span class="dv">1</span>, n_x) )  <span class="co"># creates a matrix with one column per control variable</span></span>
+<span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a>                               <span class="co"># the -1 is replaced automatically by the right number</span></span>
+<span id="cb74-6"><a href="#cb74-6" aria-hidden="true" tabindex="-1"></a>xx0.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="62">
+<pre><code>(100, 1)</code></pre>
+</div>
+</div>
+<div id="1d94d76d-70a4-44d4-8fde-a47c284d1f39" class="cell" data-execution_count="93">
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Note that we used above the function exp from math.exp</span></span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a><span class="co"># instead we need to use numpy.exp, which can be vectorized</span></span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f_v(m: Neoclassical, s: Matrix, x: Matrix , E: Tuple[<span class="bu">float</span>], grid, theta:Tensor3):</span>
+<span id="cb76-5"><a href="#cb76-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-6"><a href="#cb76-6" aria-hidden="true" tabindex="-1"></a>    <span class="im">from</span> numpy <span class="im">import</span> exp</span>
+<span id="cb76-7"><a href="#cb76-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-8"><a href="#cb76-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># tis is mostly identical to the non-vectorized version</span></span>
+<span id="cb76-9"><a href="#cb76-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># except that variables appearing in the formulas will</span></span>
+<span id="cb76-10"><a href="#cb76-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># represent vectors</span></span>
+<span id="cb76-11"><a href="#cb76-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb76-12"><a href="#cb76-12" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> s[:,<span class="dv">0</span>] <span class="co"># first column states are productivity shocks</span></span>
+<span id="cb76-13"><a href="#cb76-13" aria-hidden="true" tabindex="-1"></a>    k <span class="op">=</span> s[:,<span class="dv">1</span>] <span class="co"># second column states is capital</span></span>
+<span id="cb76-14"><a href="#cb76-14" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> x[:,<span class="dv">0</span>]</span>
+<span id="cb76-15"><a href="#cb76-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-16"><a href="#cb76-16" aria-hidden="true" tabindex="-1"></a>    Epsilon <span class="op">=</span> E[<span class="dv">0</span>]</span>
+<span id="cb76-17"><a href="#cb76-17" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb76-18"><a href="#cb76-18" aria-hidden="true" tabindex="-1"></a>    <span class="co">### Coputing auxiliary variables</span></span>
+<span id="cb76-19"><a href="#cb76-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-20"><a href="#cb76-20" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> exp(z)<span class="op">*</span>k<span class="op">**</span>m.alpha</span>
+<span id="cb76-21"><a href="#cb76-21" aria-hidden="true" tabindex="-1"></a>    c <span class="op">=</span> y <span class="op">-</span> i</span>
+<span id="cb76-22"><a href="#cb76-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-23"><a href="#cb76-23" aria-hidden="true" tabindex="-1"></a>    <span class="co">### computing the transitions</span></span>
+<span id="cb76-24"><a href="#cb76-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-25"><a href="#cb76-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># upper case for variables tomorrow</span></span>
+<span id="cb76-26"><a href="#cb76-26" aria-hidden="true" tabindex="-1"></a>    Z <span class="op">=</span> (<span class="dv">1</span><span class="op">-</span>m.rho)<span class="op">*</span>z <span class="op">+</span> Epsilon</span>
+<span id="cb76-27"><a href="#cb76-27" aria-hidden="true" tabindex="-1"></a>    K <span class="op">=</span> (<span class="dv">1</span><span class="op">-</span>m.delta)<span class="op">*</span>k <span class="op">+</span> i</span>
+<span id="cb76-28"><a href="#cb76-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-29"><a href="#cb76-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># state tomorrow (as a Matrix)</span></span>
+<span id="cb76-30"><a href="#cb76-30" aria-hidden="true" tabindex="-1"></a>    S <span class="op">=</span> np.column_stack([Z,K])</span>
+<span id="cb76-31"><a href="#cb76-31" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb76-32"><a href="#cb76-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-33"><a href="#cb76-33" aria-hidden="true" tabindex="-1"></a>    <span class="co">#compute controls tomorrow</span></span>
+<span id="cb76-34"><a href="#cb76-34" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> phi(grid,S,theta)</span>
+<span id="cb76-35"><a href="#cb76-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-36"><a href="#cb76-36" aria-hidden="true" tabindex="-1"></a>    I <span class="op">=</span> X[:,<span class="dv">0</span>]</span>
+<span id="cb76-37"><a href="#cb76-37" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb76-38"><a href="#cb76-38" aria-hidden="true" tabindex="-1"></a>    <span class="co">### Coputing auxiliary variables</span></span>
+<span id="cb76-39"><a href="#cb76-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-40"><a href="#cb76-40" aria-hidden="true" tabindex="-1"></a>    Y <span class="op">=</span> exp(Z)<span class="op">*</span>K<span class="op">**</span>m.alpha</span>
+<span id="cb76-41"><a href="#cb76-41" aria-hidden="true" tabindex="-1"></a>    C <span class="op">=</span> Y <span class="op">-</span> I</span>
+<span id="cb76-42"><a href="#cb76-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-43"><a href="#cb76-43" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> m.beta<span class="op">*</span>(C<span class="op">/</span>c)<span class="op">**</span>(<span class="op">-</span>m.gamma)<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>m.delta<span class="op">+</span>m.alpha<span class="op">*</span>Y<span class="op">/</span>K) <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb76-44"><a href="#cb76-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-45"><a href="#cb76-45" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> r  <span class="co"># the function returns a vector</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><span class="theorem-title"><strong>Exercise 16</strong></span> Rewrite the integrated euler residual function so that it can operate on a vector of states with the corresponding vector of controls.</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> F_v(m: RBC, s: Matrix, x:Matrix, grid, theta)<span class="op">-&gt;</span>Matrix:</span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">## grid is the discretized grid from before</span></span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">## theta contains the values of the controls on the grid</span></span>
+<span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="d95cb294-82e8-4287-b215-759934ffd830" class="cell" data-execution_count="94">
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> F_v(m: Neoclassical, s: Matrix, x: Matrix, grid, theta: Tensor3, discr:Tuple[Vector, Vector]):</span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">## grid is the discretized grid from before</span></span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">## theta contains the values of the controls on the grid</span></span>
+<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">## discr contains the weights w,x of the gaussian quadrature</span></span>
+<span id="cb78-5"><a href="#cb78-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-6"><a href="#cb78-6" aria-hidden="true" tabindex="-1"></a>    nodes, w <span class="op">=</span> discr</span>
+<span id="cb78-7"><a href="#cb78-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-8"><a href="#cb78-8" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> <span class="fl">0.0</span> <span class="co"># this will be promoted to a vector</span></span>
+<span id="cb78-9"><a href="#cb78-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-10"><a href="#cb78-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(w)):</span>
+<span id="cb78-11"><a href="#cb78-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-12"><a href="#cb78-12" aria-hidden="true" tabindex="-1"></a>        E <span class="op">=</span> (nodes[i],)</span>
+<span id="cb78-13"><a href="#cb78-13" aria-hidden="true" tabindex="-1"></a>        r <span class="op">+=</span> w[i]<span class="op">*</span>f_v(m, s, x, E, grid, theta)</span>
+<span id="cb78-14"><a href="#cb78-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-15"><a href="#cb78-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> r<span class="op">/</span><span class="dv">2</span><span class="op">/</span>pi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="20078f28-712f-4df2-9b7f-2f0954abb2ea" class="cell" data-execution_count="95">
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>time res_0 <span class="op">=</span> np.array([F(m, s[i,:], xx0[i,:], grid, x0, (nodes, weights)) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(s.shape[<span class="dv">0</span>])])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>CPU times: user 52 ms, sys: 1 ms, total: 53 ms
+Wall time: 51.2 ms</code></pre>
+</div>
+</div>
+<div id="355a490b-f229-42c9-a3b1-e16eb41780f9" class="cell" data-execution_count="96">
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>time res <span class="op">=</span> F_v(m, s, xx0, grid, x0, (nodes, weights))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>CPU times: user 2.5 ms, sys: 4 μs, total: 2.5 ms
+Wall time: 2.12 ms</code></pre>
+</div>
+</div>
+<div id="055f5c43-42b6-4b6e-9c46-bc8eb7c67d66" class="cell" data-execution_count="97">
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>sol_0.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="97">
+<pre><code>(10, 10, 1)</code></pre>
+</div>
+</div>
+<div id="fc914b8a-56a1-42e2-9778-4262e5ade1d9" class="cell" data-execution_count="98">
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if we evaluate this residual function on the solution from before,</span></span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a><span class="co"># it should be 0</span></span>
+<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>time F_v(m, s, sol_0.reshape((<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)), grid, sol_0, (nodes, weights))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>CPU times: user 3.14 ms, sys: 996 μs, total: 4.13 ms
+Wall time: 3.31 ms</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="98">
+<pre><code>array([-1.03890389e-09, -1.15716371e-09, -1.25262862e-09, -1.32501321e-09,
+       -1.37561768e-09, -1.39889951e-09, -1.37365386e-09, -1.31144695e-09,
+       -1.22134639e-09, -1.10713930e-09, -1.04302791e-09, -1.16071630e-09,
+       -1.25548479e-09, -1.32793257e-09, -1.37770060e-09, -1.39972129e-09,
+       -1.37195567e-09, -1.30794718e-09, -1.21625611e-09, -1.10054014e-09,
+       -1.04715927e-09, -1.16429654e-09, -1.25835967e-09, -1.33045863e-09,
+       -1.37978110e-09, -1.40054201e-09, -1.37023440e-09, -1.30440606e-09,
+       -1.21111428e-09, -1.09387710e-09, -1.05133491e-09, -1.16790399e-09,
+       -1.26126811e-09, -1.33250903e-09, -1.38186072e-09, -1.40136277e-09,
+       -1.36848914e-09, -1.30082483e-09, -1.20592152e-09, -1.08714301e-09,
+       -1.05554758e-09, -1.17154205e-09, -1.26417394e-09, -1.33457294e-09,
+       -1.38325973e-09, -1.40218482e-09, -1.36672356e-09, -1.29717948e-09,
+       -1.20067622e-09, -1.08035784e-09, -1.05979352e-09, -1.17520843e-09,
+       -1.26711125e-09, -1.33663577e-09, -1.38398801e-09, -1.40300735e-09,
+       -1.36493370e-09, -1.29354217e-09, -1.19537880e-09, -1.07350084e-09,
+       -1.06407245e-09, -1.17889892e-09, -1.27005355e-09, -1.33871282e-09,
+       -1.38470993e-09, -1.40234176e-09, -1.36311998e-09, -1.28983921e-09,
+       -1.19002748e-09, -1.06657617e-09, -1.06839089e-09, -1.18262275e-09,
+       -1.27305037e-09, -1.34079209e-09, -1.38544997e-09, -1.40054227e-09,
+       -1.36128528e-09, -1.28609165e-09, -1.18460799e-09, -1.05958989e-09,
+       -1.07274222e-09, -1.18637619e-09, -1.27605426e-09, -1.34287889e-09,
+       -1.38620325e-09, -1.39872057e-09, -1.35790179e-09, -1.28231154e-09,
+       -1.17916645e-09, -1.05253475e-09, -1.07712893e-09, -1.19015230e-09,
+       -1.27907899e-09, -1.34497019e-09, -1.38696034e-09, -1.39687742e-09,
+       -1.35411322e-09, -1.27830595e-09, -1.17365434e-09, -1.04541232e-09])</code></pre>
+</div>
+</div>
+<p><span class="theorem-title"><strong>Exercise 17</strong></span> Compute the jacobian of <span class="math inline">\(F_v\)</span> w.r.t <span class="math inline">\(x\)</span>.</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="b0621da4-2f3a-4773-8022-c9960ea66e51" class="cell" data-execution_count="99">
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="co"># let's define epsilon&gt;0 (should be about sqrt(machine epsilon)</span></span>
+<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a>epsilon <span class="op">=</span> <span class="fl">1e-8</span></span>
+<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-4"><a href="#cb89-4" aria-hidden="true" tabindex="-1"></a><span class="co"># it is important to realize that controls at a state s_1 have no effect on the residuals</span></span>
+<span id="cb89-5"><a href="#cb89-5" aria-hidden="true" tabindex="-1"></a><span class="co"># computed at residuals s_2</span></span>
+<span id="cb89-6"><a href="#cb89-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-7"><a href="#cb89-7" aria-hidden="true" tabindex="-1"></a><span class="co"># For this reason we can compute at the same time the effect of small changes to a given control</span></span>
+<span id="cb89-8"><a href="#cb89-8" aria-hidden="true" tabindex="-1"></a><span class="co"># at all the grid points at once</span></span>
+<span id="cb89-9"><a href="#cb89-9" aria-hidden="true" tabindex="-1"></a>d_F <span class="op">=</span> (F_v(m, s, xx0<span class="op">+</span>epsilon, grid, x0, (nodes, weights)) <span class="op">-</span> F_v(m, s, xx0, grid, x0, (nodes, weights)))<span class="op">/</span>epsilon</span>
+<span id="cb89-10"><a href="#cb89-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-11"><a href="#cb89-11" aria-hidden="true" tabindex="-1"></a><span class="co"># d_F represents a diagonal matrix</span></span>
+<span id="cb89-12"><a href="#cb89-12" aria-hidden="true" tabindex="-1"></a>jac <span class="op">=</span> np.diag(d_F)</span>
+<span id="cb89-13"><a href="#cb89-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-14"><a href="#cb89-14" aria-hidden="true" tabindex="-1"></a>jac</span>
+<span id="cb89-15"><a href="#cb89-15" aria-hidden="true" tabindex="-1"></a><span class="co"># remarks</span></span>
+<span id="cb89-16"><a href="#cb89-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. if there were many controls instead of just one, the jacobian would be block-diagonal</span></span>
+<span id="cb89-17"><a href="#cb89-17" aria-hidden="true" tabindex="-1"></a><span class="co"># and we would need to compute the finite differences for each of the control</span></span>
+<span id="cb89-18"><a href="#cb89-18" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. here we create a full matrix to stay compatible with the solver from scipy. If we </span></span>
+<span id="cb89-19"><a href="#cb89-19" aria-hidden="true" tabindex="-1"></a><span class="co"># wanted to aim for higher performances, we could instead use a sparse matrix, or a special</span></span>
+<span id="cb89-20"><a href="#cb89-20" aria-hidden="true" tabindex="-1"></a><span class="co"># type for block diagonal matrices</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="99">
+<pre><code>array([[-1.82067776,  0.        ,  0.        , ...,  0.        ,
+         0.        ,  0.        ],
+       [ 0.        , -1.71392406,  0.        , ...,  0.        ,
+         0.        ,  0.        ],
+       [ 0.        ,  0.        , -1.62105178, ...,  0.        ,
+         0.        ,  0.        ],
+       ...,
+       [ 0.        ,  0.        ,  0.        , ..., -1.78882391,
+         0.        ,  0.        ],
+       [ 0.        ,  0.        ,  0.        , ...,  0.        ,
+        -1.72699388,  0.        ],
+       [ 0.        ,  0.        ,  0.        , ...,  0.        ,
+         0.        , -1.67168722]])</code></pre>
+</div>
+</div>
+<p><span class="theorem-title"><strong>Exercise 18</strong></span> Solve for the matrix <code>x</code> such that <code>F_v(m, s, x:Matrix, grid, theta)=0</code></p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="2dd3b349-6c63-4784-a412-7463dc1a62f4" class="cell" data-execution_count="100">
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the function scipy.optimize.root can solve nonlinear systems</span></span>
+<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="co"># it can use the jacobian we supply if we define a special function</span></span>
+<span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a><span class="co"># that returns it alongside the residuals</span></span>
+<span id="cb92-4"><a href="#cb92-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb92-5"><a href="#cb92-5" aria-hidden="true" tabindex="-1"></a><span class="co"># let's define epsilon&gt;0 (should be about sqrt(machine epsilon)</span></span>
+<span id="cb92-6"><a href="#cb92-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb92-7"><a href="#cb92-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> F_D(m, s, xx0, grid, x0, e, epsilon<span class="op">=</span><span class="fl">1e-8</span>):</span>
+<span id="cb92-8"><a href="#cb92-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb92-9"><a href="#cb92-9" aria-hidden="true" tabindex="-1"></a>    (nodes, weights) <span class="op">=</span> e</span>
+<span id="cb92-10"><a href="#cb92-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb92-11"><a href="#cb92-11" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> F_v(m, s, xx0, grid, x0, (nodes, weights))</span>
+<span id="cb92-12"><a href="#cb92-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb92-13"><a href="#cb92-13" aria-hidden="true" tabindex="-1"></a>    d_F_1 <span class="op">=</span> (F_v(m, s, xx0<span class="op">+</span>epsilon, grid, x0, (nodes, weights)) <span class="op">-</span> r)<span class="op">/</span>epsilon</span>
+<span id="cb92-14"><a href="#cb92-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb92-15"><a href="#cb92-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># d_F represents a diagonal matrix</span></span>
+<span id="cb92-16"><a href="#cb92-16" aria-hidden="true" tabindex="-1"></a>    jac <span class="op">=</span> np.diag(d_F_1)</span>
+<span id="cb92-17"><a href="#cb92-17" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb92-18"><a href="#cb92-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> r, jac</span>
+<span id="cb92-19"><a href="#cb92-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb92-20"><a href="#cb92-20" aria-hidden="true" tabindex="-1"></a>x1, x2 <span class="op">=</span> F_D(m, s, xx0, grid, x0, (nodes, weights))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="563a42f1-fd96-49c7-8ba2-07a61ed0ff1d" class="cell" data-execution_count="101">
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> root</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="fc2e7964-8787-4212-95c7-f11260615891" class="cell" data-execution_count="102">
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="co"># function root works on vector arguments and can use the jacobian when instructed</span></span>
+<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>sol <span class="op">=</span> root(</span>
+<span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">lambda</span> u: F_D(</span>
+<span id="cb94-4"><a href="#cb94-4" aria-hidden="true" tabindex="-1"></a>            m, s,</span>
+<span id="cb94-5"><a href="#cb94-5" aria-hidden="true" tabindex="-1"></a>            u.reshape((<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)),   <span class="co"># convert to matrix</span></span>
+<span id="cb94-6"><a href="#cb94-6" aria-hidden="true" tabindex="-1"></a>            grid,</span>
+<span id="cb94-7"><a href="#cb94-7" aria-hidden="true" tabindex="-1"></a>            x0,</span>
+<span id="cb94-8"><a href="#cb94-8" aria-hidden="true" tabindex="-1"></a>            (nodes, weights)</span>
+<span id="cb94-9"><a href="#cb94-9" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb94-10"><a href="#cb94-10" aria-hidden="true" tabindex="-1"></a>    xx0.ravel(),   <span class="co"># convert matrix to vector</span></span>
+<span id="cb94-11"><a href="#cb94-11" aria-hidden="true" tabindex="-1"></a>    jac<span class="op">=</span><span class="va">True</span></span>
+<span id="cb94-12"><a href="#cb94-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb94-13"><a href="#cb94-13" aria-hidden="true" tabindex="-1"></a>sol</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="102">
+<pre><code> message: The solution converged.
+ success: True
+  status: 1
+     fun: [-1.235e-09 -2.442e-10 ...  6.837e-10  7.361e-10]
+       x: [ 2.410e-01  2.429e-01 ...  3.545e-01  3.570e-01]
+  method: hybr
+    nfev: 12
+    njev: 1
+    fjac: [[-9.991e-01  1.240e-02 ...  1.144e-02  1.203e-02]
+           [-1.506e-02 -9.946e-01 ... -1.440e-03 -1.609e-03]
+           ...
+           [-1.135e-02  1.472e-03 ... -9.970e-01  4.203e-02]
+           [-1.293e-02  1.768e-03 ... -3.738e-02 -9.967e-01]]
+       r: [ 2.500e+00  2.535e-02 ... -1.275e-01  1.602e+00]
+     qtf: [ 1.899e-08 -1.896e-08 ... -6.215e-09 -7.123e-09]</code></pre>
+</div>
+</div>
+<div id="d40cc16d-305e-44ed-8626-75a73ed4540a" class="cell" data-execution_count="103">
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (lambda u: F_D(</span></span>
+<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a><span class="co">#             m, s,</span></span>
+<span id="cb96-3"><a href="#cb96-3" aria-hidden="true" tabindex="-1"></a><span class="co">#             u.reshape((-1,1)),   # convert to matrix</span></span>
+<span id="cb96-4"><a href="#cb96-4" aria-hidden="true" tabindex="-1"></a><span class="co">#             grid,</span></span>
+<span id="cb96-5"><a href="#cb96-5" aria-hidden="true" tabindex="-1"></a><span class="co">#             x0,</span></span>
+<span id="cb96-6"><a href="#cb96-6" aria-hidden="true" tabindex="-1"></a><span class="co">#             (nodes, weights)</span></span>
+<span id="cb96-7"><a href="#cb96-7" aria-hidden="true" tabindex="-1"></a><span class="co">#     )</span></span>
+<span id="cb96-8"><a href="#cb96-8" aria-hidden="true" tabindex="-1"></a><span class="co"># )(sol_0.ravel())[0]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><span class="theorem-title"><strong>Exercise 19</strong></span> Implement the time iteration algorithm.</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="5553172c-275a-4968-a102-371ecf182d03" class="cell" data-execution_count="104">
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> time_iteration_vectorized(m: Neoclassical, grid, discr, x0, T<span class="op">=</span><span class="dv">100</span>, tol_η<span class="op">=</span><span class="fl">1e-9</span>):</span>
+<span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-3"><a href="#cb98-3" aria-hidden="true" tabindex="-1"></a>    η_0 <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb98-4"><a href="#cb98-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb98-5"><a href="#cb98-5" aria-hidden="true" tabindex="-1"></a>    grid_shape <span class="op">=</span> [<span class="bu">len</span>(e) <span class="cf">for</span> e <span class="kw">in</span> grid]</span>
+<span id="cb98-6"><a href="#cb98-6" aria-hidden="true" tabindex="-1"></a>    x_shape <span class="op">=</span> grid_shape <span class="op">+</span> [<span class="dv">1</span>]  <span class="co"># controls are represented by (10,10,1) array</span></span>
+<span id="cb98-7"><a href="#cb98-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-8"><a href="#cb98-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> t <span class="kw">in</span> (<span class="bu">range</span>(T)):</span>
+<span id="cb98-9"><a href="#cb98-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-10"><a href="#cb98-10" aria-hidden="true" tabindex="-1"></a>        <span class="co">### solve for optimal controls on the grid (vectorized version)</span></span>
+<span id="cb98-11"><a href="#cb98-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-12"><a href="#cb98-12" aria-hidden="true" tabindex="-1"></a>        sol <span class="op">=</span> root(</span>
+<span id="cb98-13"><a href="#cb98-13" aria-hidden="true" tabindex="-1"></a>            <span class="kw">lambda</span> u: F_D(</span>
+<span id="cb98-14"><a href="#cb98-14" aria-hidden="true" tabindex="-1"></a>                    m, s,</span>
+<span id="cb98-15"><a href="#cb98-15" aria-hidden="true" tabindex="-1"></a>                    u.reshape((<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)),   <span class="co"># convert initial guess to matrix</span></span>
+<span id="cb98-16"><a href="#cb98-16" aria-hidden="true" tabindex="-1"></a>                    grid,</span>
+<span id="cb98-17"><a href="#cb98-17" aria-hidden="true" tabindex="-1"></a>                    x0,</span>
+<span id="cb98-18"><a href="#cb98-18" aria-hidden="true" tabindex="-1"></a>                    (nodes, weights)</span>
+<span id="cb98-19"><a href="#cb98-19" aria-hidden="true" tabindex="-1"></a>            ),</span>
+<span id="cb98-20"><a href="#cb98-20" aria-hidden="true" tabindex="-1"></a>            x0.ravel(),   <span class="co"># initial guess as vector</span></span>
+<span id="cb98-21"><a href="#cb98-21" aria-hidden="true" tabindex="-1"></a>            jac<span class="op">=</span><span class="va">True</span></span>
+<span id="cb98-22"><a href="#cb98-22" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb98-23"><a href="#cb98-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-24"><a href="#cb98-24" aria-hidden="true" tabindex="-1"></a>        <span class="co">###</span></span>
+<span id="cb98-25"><a href="#cb98-25" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb98-26"><a href="#cb98-26" aria-hidden="true" tabindex="-1"></a>        x1 <span class="op">=</span> sol.x.reshape(x_shape)</span>
+<span id="cb98-27"><a href="#cb98-27" aria-hidden="true" tabindex="-1"></a>        <span class="co"># compute successive approximation</span></span>
+<span id="cb98-28"><a href="#cb98-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-29"><a href="#cb98-29" aria-hidden="true" tabindex="-1"></a>        η <span class="op">=</span> <span class="bu">abs</span>(x1 <span class="op">-</span> x0).<span class="bu">max</span>()</span>
+<span id="cb98-30"><a href="#cb98-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-31"><a href="#cb98-31" aria-hidden="true" tabindex="-1"></a>        lam <span class="op">=</span> η<span class="op">/</span>η_0</span>
+<span id="cb98-32"><a href="#cb98-32" aria-hidden="true" tabindex="-1"></a>        η_0 <span class="op">=</span> η</span>
+<span id="cb98-33"><a href="#cb98-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-34"><a href="#cb98-34" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(t, η, lam)</span>
+<span id="cb98-35"><a href="#cb98-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-36"><a href="#cb98-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> η <span class="op">&lt;</span> tol_η:</span>
+<span id="cb98-37"><a href="#cb98-37" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> x1</span>
+<span id="cb98-38"><a href="#cb98-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-39"><a href="#cb98-39" aria-hidden="true" tabindex="-1"></a>        <span class="co"># new guess x1 has been computed</span></span>
+<span id="cb98-40"><a href="#cb98-40" aria-hidden="true" tabindex="-1"></a>        <span class="co"># it becomes the desicion rule tomorrow</span></span>
+<span id="cb98-41"><a href="#cb98-41" aria-hidden="true" tabindex="-1"></a>        x0 <span class="op">=</span> x1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="5a0ac711-fb7d-41ec-ae1a-c655932d896e" class="cell" data-execution_count="105">
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>time sol_1 <span class="op">=</span> time_iteration_vectorized(m, grid, (nodes, weights), x0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0 0.0648698601762892 0.0648698601762892
+1 0.013682472260681977 0.21092187070387894
+2 0.007885248439681414 0.5763028997574148
+3 0.005600051864473404 0.710193459002753
+4 0.0041464485554273955 0.7404303845348945
+5 0.0031181573817412322 0.7520067691807714
+6 0.002369015169110922 0.7597484280245096
+7 0.001814512890070119 0.7659355303964118
+8 0.0013992317144633781 0.7711335213547625
+9 0.0011799979102403158 0.8433184425732223
+10 0.0009952766958242765 0.8434563207163482
+11 0.0008391434605745096 0.8431258001871941
+12 0.000707188022641525 0.8427498465606311
+13 0.0005956878188427273 0.8423330143766908
+14 0.0005014981297128962 0.8418807869651957
+15 0.00042195998245264654 0.8413989154739527
+16 0.0003548232162096099 0.8408930490213703
+17 0.000298182250856871 0.840368491222743
+18 0.00025042241698636225 0.8398300578479646
+19 0.00021017502795572796 0.8392820039236898
+20 0.000176279680310365 0.8387279974455253
+21 0.0001477525377401312 0.8381711237505776
+22 0.00012375958075822036 0.8376139093860444
+23 0.00010359399137122027 0.8370583573129902
+24 8.665699413157313e-05 0.8365059882773042
+25 7.244159745389833e-05 0.8359578840677158
+26 6.051877688817431e-05 0.8354147204813963
+27 5.0525726716765806e-05 0.834876864912959
+28 4.215585126854382e-05 0.8343442837518924
+29 3.515025387729187e-05 0.8338167257820401
+30 2.9290483815780366e-05 0.8332936631989138
+31 2.4392363258407546e-05 0.8327743376251798
+32 2.0300734091760475e-05 0.8322577798919598
+33 1.688498993479559e-05 0.8317428255783498
+34 1.4035278541435492e-05 0.831228126024074
+35 1.1659276487829828e-05 0.8307121553312149
+36 9.679452205479944e-06 0.8301932127249523
+37 8.030745508258441e-06 0.8296694211385123
+38 6.65860206189306e-06 0.8291387213111991
+39 5.517310087022054e-06 0.8285988614032698
+40 4.568594174025886e-06 0.8280473821422945
+41 3.7804276064590248e-06 0.8274815977203942
+42 3.126030178213224e-06 0.8268985690592952
+43 2.5830233398305147e-06 0.8262950747669746
+44 2.13271860577402e-06 0.8256675705895706
+45 1.7595187521424194e-06 0.8250121452397812
+46 1.4504143503457634e-06 0.8243244629133476
+47 1.1945608186514356e-06 0.8235996964361701
+48 9.82923401948721e-07 0.8228324473745618
+49 8.079793978876815e-07 0.822016645738417
+50 6.63468591455274e-07 0.8211454316654543
+51 5.441842444442457e-07 0.8202110114219785
+52 4.4579816749212853e-07 0.8192044735646562
+53 3.6471442421692757e-07 0.8181155751910248
+54 2.979470524744343e-07 0.8169324619231927
+55 2.430179258938736e-07 0.815641315715738
+56 1.97871498852642e-07 0.8142259387854904
+57 1.6080366876947139e-07 0.8126671587464165
+58 1.3040246976681047e-07 0.8109421306410355
+59 1.0549864676301368e-07 0.8090233793245593
+60 8.512448701480935e-08 0.8068775252257812
+61 6.847955291711116e-08 0.8044636193249256
+62 5.490216603565301e-08 0.8017307896578639
+63 4.3845697017541596e-08 0.7986150671918584
+64 3.485885591292259e-08 0.795034821751754
+65 2.7569316274345113e-08 0.790884139835606
+66 2.1670120031735962e-08 0.786023121360514
+67 1.6908389799397128e-08 0.7802628584721605
+68 1.3075968863240917e-08 0.7733420519857629
+69 1.0001656114422275e-08 0.7648883397496357
+70 7.544774138779076e-09 0.7543524844750058
+71 6.3385388882064575e-09 0.8401230801101468
+72 5.499929150998284e-09 0.8676966802604148
+73 4.778501067059793e-09 0.8688295677758784
+74 4.156977845282128e-09 0.869933434552922
+75 3.6207526421527803e-09 0.871005999289141
+76 3.1593597460410905e-09 0.8725698931376431
+77 2.7855192596959455e-09 0.8816720739657474
+78 2.4593225789182327e-09 0.8828955572135161
+79 2.172584723236781e-09 0.8834077895517158
+80 1.9203297285663723e-09 0.8838917571441854
+81 1.6985455264517668e-09 0.884507228724632
+82 1.5200615210986257e-09 0.8949195046152273
+83 1.360651424864301e-09 0.8951291812721428
+84 1.2175114250112529e-09 0.8948003895506716
+85 1.0890620072423474e-09 0.89449838816279
+86 9.738615469601086e-10 0.894220476413513
+CPU times: user 387 ms, sys: 1 ms, total: 388 ms
+Wall time: 385 ms</code></pre>
+</div>
+</div>
+<div id="feecd5fc-9793-4eea-89cf-841b09322d6b" class="cell" data-execution_count="112">
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We reduced execution time from 30s to 385 ms !</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="2470df46-38e2-4be2-959c-bf59d710ba1f" class="cell" data-execution_count="115">
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check this is the same solution as befor</span></span>
+<span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a><span class="bu">abs</span>(sol_1 <span class="op">-</span> sol_0).<span class="bu">max</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="115">
+<pre><code>3.5416114485542494e-14</code></pre>
+</div>
+</div>
+<p><span class="theorem-title"><strong>Bonus</strong></span> Visualize the solution.</p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="2ecf42e8-224b-40bc-a62b-5b8f7894e0e0" class="cell" data-execution_count="126">
+<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="646c4806-3cf2-4c76-aaf1-df89277a41e6" class="cell" data-execution_count="132">
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a>ss,xx <span class="op">=</span> steady_state(m)</span>
+<span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):</span>
+<span id="cb106-3"><a href="#cb106-3" aria-hidden="true" tabindex="-1"></a>    plt.plot(grid[<span class="dv">1</span>], sol_0[i,:,<span class="dv">0</span>], label<span class="op">=</span><span class="ss">f"z=</span><span class="sc">{</span>grid[<span class="dv">0</span>][i]<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb106-4"><a href="#cb106-4" aria-hidden="true" tabindex="-1"></a>plt.plot(grid[<span class="dv">1</span>], x0[<span class="dv">0</span>,:,<span class="dv">0</span>], linestyle<span class="op">=</span><span class="st">'--'</span>, color<span class="op">=</span><span class="st">'black'</span>)</span>
+<span id="cb106-5"><a href="#cb106-5" aria-hidden="true" tabindex="-1"></a>plt.scatter([ss[<span class="dv">1</span>]], [xx[<span class="dv">0</span>]], color<span class="op">=</span><span class="st">'black'</span>)</span>
+<span id="cb106-6"><a href="#cb106-6" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">'upper left'</span>)</span>
+<span id="cb106-7"><a href="#cb106-7" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Investment"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="132">
+<pre><code>Text(0.5, 1.0, 'Investment')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="neoclassical_files/figure-html/cell-61-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/albop\.github\.io\/bbank_ce_2024\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

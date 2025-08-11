@@ -42,6 +42,8 @@ website:
             - corrections/numeric.ipynb
             - corrections/methods.ipynb
             - corrections/neoclassical.ipynb
+            - corrections/lifetime_reward.ipynb
+            
 
 format:
   html:

@@ -3,10 +3,11 @@ title: "Python"
 author: "Pablo Winant"
 subtitle: "Computational Economics @ Bundesbank"
 format:   
-    # html: default
-    # beamer:
-    #     aspectratio: 169
+    html: default
+    beamer:
+        aspectratio: 169
     revealjs:
+        output-file: python_beamer.html
         code-line-numbers: true
         syntax-definitions: 
             - mojo.xml

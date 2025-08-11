@@ -2,21 +2,20 @@
 author: "Pablo Winant"
 title: "Time Iteration"
 subtitle: "Computational Economics @ Bundesbank"
-format:
-  revealjs:
-    html-math-method: mathjax
-    navigation-mode: grid
-    width: 1920
-    height: 1080
-      # html: default
-  beamer:
-      aspectratio: 169
-    # revealjs:
-    #     code-line-numbers: true
-    #     syntax-definitions: 
-    #         - mojo.xml
-    #     width: 1920
-    #     height: 1080
+format:   
+    html: default
+    beamer:
+        aspectratio: 169
+        width: 1920
+        height: 1080
+        fontsize: "10pt"
+    revealjs:
+        output-file: time_iteration_beamer.html
+        code-line-numbers: true
+        syntax-definitions: 
+            - mojo.xml
+        width: 1920
+        height: 1080
 ---
 
 # Introduction
@@ -305,10 +304,10 @@ $\mathbf{x} \mapsto  F(\mathbf{x}, \mathbf{\tilde{x}})$
   - find the zero $\mathbf{x_{n+1}}$ of function $\mathbf{u}\mapsto F(u,\mathbf{x_n})$
     - that is, such that controls on the grid are optimal given controls tomorrow
     - nonlinear solver can use $\mathbf{x_n}$ as initial guess
-  - compute norm $\mathbf{\eta_n} = |\mathbf{x_n} - \mathbf{x_{n+1}}|$
+  - compute norm $\eta_n = |\mathbf{x_n} - \mathbf{x_{n+1}}|$
   - if $\eta_n<\eta$, stop and return $\mathbf{x_{n+1}}$
     - else, set $\mathbf{x_n} \leftarrow \mathbf{x_{n+1}}$ and continue
-- Like usual, during the iterations, it is useful to look at $\mathbf{\epsilon_n}=|F(\mathbf{x_n},\mathbf{x_n})|$ and $\lambda_n = \frac{\eta_n}{\eta_{n-1}}$
+- Like usual, during the iterations, it is useful to look at $\epsilon_n=|F(\mathbf{x_n},\mathbf{x_n})|$ and $\lambda_n = \frac{\eta_n}{\eta_{n-1}}$
 
 ----
 

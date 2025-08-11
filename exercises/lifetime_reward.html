@@ -377,20 +377,20 @@ window.Quarto = {
 <p>The main question they ask in the aforementioned paper is whether it is realistic that agents would learn good values of <span class="math inline">\(\theta_0\)</span> and <span class="math inline">\(\theta_1\)</span> by observing past experiences.</p>
 <p>We would like to examine this result by learning the optimal rule using stochastic gradient descent.</p>
 <p>In the whole notebook, we use JAX to perform the calculations.</p>
-<div id="628a09da" class="cell" data-execution_count="1">
+<div id="d7917e93" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> jax <span class="im">import</span> numpy <span class="im">as</span> jnp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="exr-python-main" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 1</strong></span> Define a class to represent the parameter values</p>
 </div>
-<div id="aafb2261" class="cell" data-execution_count="2">
+<div id="7d6459f9" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Model:</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="exr-python-main" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 2</strong></span> Define simple rule fonction <code>consumption(w: float, θ_0:float, θ_1:float, p:Model)-&gt;float</code> which compute consumption using a simple rule. What is the meaning of <span class="math inline">\(\theta_0\)</span> and <span class="math inline">\(\theta_1\)</span>? Make a plot in the space <span class="math inline">\(w,c\)</span>, including consumption rule and the line where <span class="math inline">\(w_{t+1} = w_t\)</span>. Check that it works when <code>w</code> is a JAX vector.</p>
 </div>
-<div id="3d148bc5" class="cell" data-execution_count="3">
+<div id="cee28174" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="exr-python-main" class="theorem exercise">
@@ -399,25 +399,25 @@ window.Quarto = {
 <p>Can you JIT compile the resulting fonction? What is the gain of using a native JAX loop?</p>
 <p>(hint: to use native loop, T needs to be treated as a constant paramete )</p>
 </div>
-<div id="1b86aaad" class="cell" data-execution_count="4">
+<div id="c8237549" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="exr-python-main" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 4</strong></span> Write a function <code>lifetime_reward(w_0: float, θ_0: float, θ_1: float, p:Model, key, N, T)-&gt;float</code> which computes expected lifetime reward using <code>N</code> Monte-Carlo draws. Mathematically, we write it <span class="math inline">\(\Xi^{N}(\theta_0, \theta_1) =\frac{1}{N} \sum_1^N {\xi(\omega_N; \theta_0, \theta_1)}\)</span>. Check empirically that standard deviation of these draws decrease proportionally to <span class="math inline">\(\frac{1}{\sqrt{N}}\)</span> .</p>
 </div>
-<div id="a9586e2b" class="cell" data-execution_count="5">
+<div id="876f0860" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="exr-python-main" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 5</strong></span> Using a high enough number for <code>N</code>, compute optimal values for <span class="math inline">\(\theta_0\)</span> and <span class="math inline">\(\theta_1\)</span>. What is the matching value for the objective function converted into an equivalent stream of deterministic consumption ? That is if <code>V</code> is the approximated value computed above, what is <span class="math inline">\(\bar{c}\in R\)</span> such that <span class="math inline">\(V= \sum_{t=0}^T \beta^t U(\bar{c})\)</span> ?</p>
 </div>
-<div id="d08dff6b" class="cell" data-execution_count="6">
+<div id="348eacb1" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="exr-python-main" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 6</strong></span> Using a high enough number for <code>N</code>, make contour plots of lifetime rewards as a function of <code>θ_0</code> and <code>θ_1</code>. Ideally, represent lines with <span class="math inline">\(1\%\)</span> consumption loss, <span class="math inline">\(5\%\)</span> and <span class="math inline">\(10\%\)</span> deterministic consumption loss w.r.t. to maximum.</p>
 </div>
-<div id="e50fde5a" class="cell" data-execution_count="7">
+<div id="3d64294b" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="learning-to-save" class="level2">
@@ -426,20 +426,20 @@ window.Quarto = {
 <div id="exr-python-main" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 7</strong></span> Implement a function <code>∇(θ:Vector, T, N)::Vector</code> which computes the gradient of the objective w.r.t. <code>θ==[θ_0,θ_1]</code>__</p>
 </div>
-<div id="93c548c2" class="cell" data-execution_count="8">
+<div id="3684655d" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="exr-python-main" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 8</strong></span> Implement a gradient descent algorithm to maximize <span class="math inline">\(\Xi^N(\theta_0, \theta_1)\)</span> using learning rate <span class="math inline">\(\lambda \in ]0,1]\)</span>. Stop after a predefined number of iterations. Compare convergence speed for different values of <span class="math inline">\(\lambda\)</span> and plot them on the <span class="math inline">\(\theta_0, \theta_1\)</span> plan. How many steps does it take to enter the <code>1%</code> error zone? The <code>5%</code> and the <code>10%</code> error zone?</p>
 </div>
-<div id="f36771c7" class="cell" data-execution_count="9">
+<div id="7ac898ae" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Even for big N, the evaluated value of ∇ are stochastic, and always slightly inaccurate. In average, they are non-biased and the algorithm converges in expectation (it fluctuates around the maximum). This is called the stochastic gradient method.</p>
 <div id="exr-python-main" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 9</strong></span> What are the values of <span class="math inline">\(N\)</span> and <span class="math inline">\(\lambda\)</span> which minimize the number of iterations before reaching the target zones (at 1%, 2%, etc…)? How many simulations periods does it correspond to? Would you say it is realistic that consumers learn from their own experience?</p>
 </div>
-<div id="1cf3d335" class="cell" data-execution_count="10">
+<div id="ea423b32" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
